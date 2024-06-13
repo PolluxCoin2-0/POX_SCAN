@@ -1,4 +1,4 @@
-import Home from "./Home";
+import Home from "./HomePage/Home";
 import Blockchain from "./Blockchain";
 import Tokens from "./Tokens";
 import Data from "./Data";

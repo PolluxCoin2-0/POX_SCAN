@@ -18,22 +18,22 @@ export default {
       "green": "#C2FFC1",
       "white": "#FFFFFF",
       "dark-yellow": "#F3BB1C",
-      "mid-yellow": "rgba(243, 187, 28, 0.4)",
+      "mid-yellow": "#EBDA9F",
       "mider-yellow": "rgba(243, 187, 28, 0.3)",
-      "light-yellow": "rgba(243, 187, 28, 0.1)",
+      "light-yellow": "#FEF9E9",
       "dark-red": "#C23631",
       "light-red": "rgba(194, 54, 49, 0.1)",
       "dark-brown": "#493808",
       "dark-skyblue": "#065BA1",
       "dark-blue": "#3A5AFE",
+      "light-gray": "#73787B",
+      "text-bg-gray": "#F3F3F3"
     },
     backgroundImage: {
       'purple-gradient': 'linear-gradient(to bottom, #B1B9F8 0%, #ADB7F9 100%)',
       'red-gradient': 'linear-gradient(to bottom, #F4A79D 0%, #F4A79D 100%)',
     },
-    boxShadow: {
-      'custom-shadow': '0 4px 6px rgba(0, 0, 0, 0.1)',
-    },
+   
   },
   plugins: [],
 }
