@@ -1,9 +1,13 @@
 import { Blocks } from "../../data/HomePageData";
+import { IoIosArrowForward } from "react-icons/io";
 
 const BlockContainer = () => {
   return (
     <>
+    <div className="flex justify-between">
       <p className="font-bold text-lg">Blocks</p>
+      <p>More <IoIosArrowForward />  </p>
+      </div>
       <div className="w-full flex flex-wrap justify-center">
         {Blocks.map((block, idx) => {
           return (
