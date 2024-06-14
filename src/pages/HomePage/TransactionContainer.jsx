@@ -46,7 +46,7 @@ const TransactionContainer = () => {
                 {/* Third column */}
                 <div>
                   <p>{transaction?.pox} POX</p>
-                  <p className="bg-green px-2 py-1">Transfer</p>
+                  <span className="bg-green px-2 py-1">Transfer</span>
                 </div>
               </>
             )

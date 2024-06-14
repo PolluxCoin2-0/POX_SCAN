@@ -1,5 +1,6 @@
+import React from 'react';
 
-const cardForTrendingSearch = () => {
+const CardForTrendingSearch = () => {
     return (
         <div className="flex justify-between">
             <div className="flex flex-row space-x-4">
@@ -17,8 +18,8 @@ const cardForTrendingSearch = () => {
                 <p>0</p>
             </div>
         </div>
-    )
-}
+    );
+};
 
 const TrendingSearch = () => {
     return (
@@ -42,13 +43,13 @@ const TrendingSearch = () => {
 
                 <div className="shadow-lg px-2 flex flex-row">
                     <div>
-                        <cardForTrendingSearch />
-                        <cardForTrendingSearch />
+                        <CardForTrendingSearch />
+                        <CardForTrendingSearch />
                     </div>
 
                     <div>
-                        <cardForTrendingSearch />
-                        <cardForTrendingSearch />
+                        <CardForTrendingSearch />
+                        <CardForTrendingSearch />
                     </div>
                 </div>
 
@@ -113,7 +114,7 @@ const TrendingSearch = () => {
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default TrendingSearch
+export default TrendingSearch;
