@@ -23,7 +23,7 @@ const Navbar = () => {
           return (
             <Link to={`/${formattedKey}`} key={index}>
               <p
-                className={`cursor-pointer ${
+                className={`cursor-pointer whitespace-nowrap ${
                   currentPath === `/${formattedKey}`
                     ? "text-black rounded-3xl bg-dark-yellow px-4 py-1"
                     : "text-white px-3"
