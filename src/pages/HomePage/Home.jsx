@@ -1,16 +1,14 @@
 import BlockContainer from "./BlockContainer";
 import StableCoinContainer from "./StableCoinContainer";
 import TransactionContainer from "./TransactionContainer";
+import TrendingSearch from "./TrendingSearch";
 import TvlContainer from "./TvlContainer";
 
 const Home = () => {
   return (
     <div>
       {/* First Row >> Trending Search */}
-      <div>
-        <div></div>
-        <div></div>
-      </div>
+      <TrendingSearch/>
 
       {/* Second Row >> Blocks */}
       <BlockContainer/>

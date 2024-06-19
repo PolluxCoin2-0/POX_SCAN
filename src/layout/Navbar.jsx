@@ -3,7 +3,7 @@ import LogoWithText from "../assets/Logowithtext.png";
 import Logo from "../assets/Logo.png";
 import { IoNotificationsCircleOutline } from "react-icons/io5";
 import { Link, useLocation } from "react-router-dom";
-import {SideBarOptions}  from "../data/SideBarOptions";
+import {SideBarOptions}  from "../data/SidebarOptions";
 
 const Navbar = () => {
   const location = useLocation();
@@ -23,7 +23,7 @@ const Navbar = () => {
           return (
             <Link to={`/${formattedKey}`} key={index}>
               <p
-                className={`cursor-pointer ${
+                className={`cursor-pointer whitespace-nowrap ${
                   currentPath === `/${formattedKey}`
                     ? "text-black rounded-3xl bg-dark-yellow px-4 py-1"
                     : "text-white px-3"
