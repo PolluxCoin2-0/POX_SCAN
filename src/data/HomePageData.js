@@ -184,7 +184,6 @@ export const TVLData = [
 export const StableCoins = [
     {
         stableCoin:{
-            coinImgLink:"",
             coin:"Pollux USD",
             tag:"USD",
         },
@@ -194,7 +193,6 @@ export const StableCoins = [
     },
     {
         stableCoin:{
-            coinImgLink:"",
             coin:"Pollux USD",
             tag:"USD",
         },
@@ -204,7 +202,6 @@ export const StableCoins = [
     },
     {
         stableCoin:{
-            coinImgLink:"",
             coin:"Pollux USD",
             tag:"USD",
         },
@@ -214,7 +211,6 @@ export const StableCoins = [
     },
     {
         stableCoin:{
-            coinImgLink:"",
             coin:"Pollux USD",
             tag:"USD",
         },
@@ -224,7 +220,6 @@ export const StableCoins = [
     },
     {
         stableCoin:{
-            coinImgLink:"",
             coin:"Pollux USD",
             tag:"USD",
         },
@@ -234,7 +229,6 @@ export const StableCoins = [
     },
     {
         stableCoin:{
-            coinImgLink:"",
             coin:"Pollux USD",
             tag:"USD",
         },
@@ -244,7 +238,6 @@ export const StableCoins = [
     },
     {
         stableCoin:{
-            coinImgLink:"",
             coin:"Pollux USD",
             tag:"USD",
         },
@@ -254,7 +247,6 @@ export const StableCoins = [
     },
     {
         stableCoin:{
-            coinImgLink:"",
             coin:"Pollux USD",
             tag:"USD",
         },
@@ -264,7 +256,6 @@ export const StableCoins = [
     },
     {
         stableCoin:{
-            coinImgLink:"",
             coin:"Pollux USD",
             tag:"USD",
         },
@@ -274,7 +265,6 @@ export const StableCoins = [
     },
     {
         stableCoin:{
-            coinImgLink:"",
             coin:"Pollux USD",
             tag:"USD",
         },
