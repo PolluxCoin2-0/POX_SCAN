@@ -49,7 +49,7 @@ const TvlContainer = () => {
           <p>Daily Txns (15 Days)</p>
           {/* Charts library integration */}
         </div>
-        <div className="shadow-lg px-4 px-2">
+        <div className="shadow-lg px-4 ">
           <p>Lorem ipsum dolor sit amet.</p>
           <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ducimus, accusantium.</p>
         </div>

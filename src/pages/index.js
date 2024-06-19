@@ -4,6 +4,11 @@ import Tokens from "./TokenPage/Tokens";
 import Data from "./DataPage/Data";
 import Governance from "./GovernancePage/Governance";
 import PoxEcosystem from "./PoxEcosystemPage/PoxEcosystem";
+import Register from "./Auth/Register/Regsiter";
+import Login from "./Auth/Login/Login";
+import ForgetPassword from "./Auth/ForgetPassword/ForgetPassword";
+
+
 
 export {
     Home,
@@ -12,4 +17,9 @@ export {
     Data,
     Governance,
     PoxEcosystem,
+    Register,
+    Login,
+    ForgetPassword,
+
+    
 }
