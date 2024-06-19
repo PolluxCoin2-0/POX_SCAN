@@ -1,7 +1,15 @@
+import Pox from "./Pox";
+import Usdx from "./Usdx";
 
 const Tokens = () => {
   return (
-    <div>Tokens</div>
+    <div>
+      <Pox/>
+
+      <Usdx/>
+     
+    
+    </div>
   )
 }
 

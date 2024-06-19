@@ -1,7 +1,27 @@
-
+import Accounts from "./Accounts";
+import Blocks from "./Blocks";
+import Contacts from "./Contacts";
+import Nodes from "./Nodes";
+import Transaction from "./Transaction";
+import Transfer from "./Transfer";
 const Blockchain = () => {
   return (
-    <div>Blockchain</div>
+    <div>
+     
+    <Accounts />
+
+    <Blocks />
+
+    <Contacts />
+
+    <Nodes />
+
+    <Transaction />
+
+    <Transfer />
+
+    
+    </div>
   )
 }
 
