@@ -5,6 +5,7 @@ import Data from "./DataPage/Data";
 import Governance from "./GovernancePage/Governance";
 import SuperRepresentatives from "./GovernancePage/SuperRepresentatives";
 import PoxStakingGovernance from "./GovernancePage/PoxStakingGovernance";
+
 import Votes from "./GovernancePage/Votes";
 import PoxEcosystem from "./PoxEcosystemPage/PoxEcosystem";
 import Register from "./Auth/Register/Regsiter";
