@@ -27,11 +27,17 @@ export default {
       "dark-skyblue": "#065BA1",
       "dark-blue": "#3A5AFE",
       "light-gray": "#73787B",
-      "text-bg-gray": "#F3F3F3"
+      "text-bg-gray": "#F3F3F3",
+      "darkest-blue" :"#132847",
+      "light-sky-blue" : "#E6EEF5",
+      "lightest-gray" : "#E6EEF5",
+      "light-orange" : "#FAE4A6",
+    
     },
     backgroundImage: {
       'purple-gradient': 'linear-gradient(to bottom, #B1B9F8 0%, #ADB7F9 100%)',
       'red-gradient': 'linear-gradient(to bottom, #F4A79D 0%, #F4A79D 100%)',
+      'gray-gradient': "linear-gradient(to bottom, #1e293b, #4b5563)"
     },
    
   },

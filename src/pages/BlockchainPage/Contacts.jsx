@@ -1,4 +1,4 @@
-import React from 'react'
+// import React from 'react'
 import { SearchBarExpand } from '../../components'
 import { IoIosArrowForward } from "react-icons/io";
 
@@ -65,4 +65,4 @@ const Contacts = () => {
   )
 }
 
-export default ContactsT
+export default Contacts;
