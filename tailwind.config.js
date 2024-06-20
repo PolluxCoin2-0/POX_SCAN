@@ -31,7 +31,8 @@ export default {
       "darkest-blue" :"#132847",
       "light-sky-blue" : "#E6EEF5",
       "lightest-gray" : "#E6EEF5",
-      "light-orange" : "#FAE4A6"
+      "light-orange" : "#FAE4A6",
+    
     },
     backgroundImage: {
       'purple-gradient': 'linear-gradient(to bottom, #B1B9F8 0%, #ADB7F9 100%)',
