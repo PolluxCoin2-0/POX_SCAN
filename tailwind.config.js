@@ -16,13 +16,14 @@ export default {
     colors:{
       "black":"#000000",
       "green": "#C2FFC1",
+      "dark-green": "#1F8829",
       "white": "#FFFFFF",
       "dark-yellow": "#F3BB1C",
       "mid-yellow": "#EBDA9F",
       "mider-yellow": "rgba(243, 187, 28, 0.3)",
       "light-yellow": "#FEF9E9",
       "dark-red": "#C23631",
-      "light-red": "rgba(194, 54, 49, 0.1)",
+      "light-red": "#EBDBE1",
       "dark-brown": "#493808",
       "dark-skyblue": "#065BA1",
       "dark-blue": "#3A5AFE",
@@ -32,7 +33,7 @@ export default {
       "light-sky-blue" : "#E6EEF5",
       "lightest-gray" : "#E6EEF5",
       "light-orange" : "#FAE4A6",
-    
+      "darker-blue" :"#1A5BA1"
     },
     backgroundImage: {
       'purple-gradient': 'linear-gradient(to bottom, #B1B9F8 0%, #ADB7F9 100%)',
