@@ -1,6 +1,6 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { Footer, Navbar } from "./layout";
-import { Blockchain, Data, Governance, Home, PoxEcosystem, Register, Login, ForgetPassword, Tokens, SuperRepresentatives, Votes,} from "./pages";
+import { Blockchain, Data, Governance, Home, PoxEcosystem, Register, Login, ForgetPassword, Tokens, SuperRepresentatives, Votes, PoxStakingGovernance} from "./pages";
 import Usdx from "./pages/TokenPage/Usdx";
 
 function App() {
@@ -21,7 +21,7 @@ function App() {
         <Route path="/USDX" element={<Usdx/>} />
         <Route path="/represents" element={<SuperRepresentatives/>} />
         <Route path="/vote" element={<Votes/>} />
-        
+        <Route path="/poxstake" element={<PoxStakingGovernance />} />
         
         
         
