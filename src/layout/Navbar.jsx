@@ -3,7 +3,7 @@ import LogoWithText from "../assets/Logowithtext.png";
 import Logo from "../assets/Logo.png";
 import { IoNotificationsCircleOutline } from "react-icons/io5";
 import { Link, useLocation } from "react-router-dom";
-import {SideBarOptions}  from "../data/SidebarOptions";
+import {NavbarOptions}  from "../data/NavbarOptions";
 
 const Navbar = () => {
   const location = useLocation();
@@ -18,7 +18,7 @@ const Navbar = () => {
           className="cursor-pointer border-r-2 border-white pr-8"
         />
         </Link>
-        {Object.keys(SideBarOptions).map((key, index) => {
+        {Object.keys(NavbarOptions).map((key, index) => {
           const formattedKey = key.replace(/\s+/g, ""); // Remove all spaces from key
           return (
             <Link to={`/${formattedKey}`} key={index}>
