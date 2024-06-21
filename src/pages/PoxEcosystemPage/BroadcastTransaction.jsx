@@ -1,8 +1,17 @@
-import React from 'react'
+import SearchBar from "./SearchBar"
 
 const BroadcastTransaction = () => {
   return (
-    <div>BroadcastTransaction</div>
+    <div className="bg-light-sky-blue m-10">
+
+      <div>
+        <SearchBar/>
+      </div>
+
+      <div></div>
+
+      <div></div>
+    </div>
   )
 }
 

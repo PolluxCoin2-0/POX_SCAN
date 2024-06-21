@@ -3,6 +3,7 @@
  import GovStack from "../../assets/Govstack.png";
  import GovPox from "../../assets/Govpox.png";
  import Poximg from "../../assets/PoxImg.png";
+ import justLend from "../../assets/justland.png";
  import LineChartComp from "../../components/LineChart";
  import iconPledge from "../../assets/iconpledge.png";
  import iconPower from "../../assets/power.png";
@@ -10,6 +11,7 @@
  import icon from "../../assets/icon.png";
  import svg from "../../assets/SVG.png";
  import { HiArrowUpRight} from "react-icons/hi2";
+import {IoIosArrowForward} from "react-icons/io";
 
 const PoxStakingGovernance = () => {
   return (
@@ -200,14 +202,14 @@ const PoxStakingGovernance = () => {
       
       </div>
     
-      <div>
+      <div  className="m-4 ">
          <p className="pl-10 text-2xl font-bold ">Calculate your Staking Rewards</p>
           
           <div className=" bg-white m-6 rounded-lg">
 
-            <div className="flex flex-row justify-around p-8 ">
+            <div className="flex flex-row justify-around p-10 ">
 
-              <div className="flex flex-col justify-start">
+              <div className="flex flex-col justify-start ">
                 <p className=" font-bold text-xl "> I want to stake</p>
                 <div className="flex flex-row  border-2 rounded-lg  px-40 py-2 mt-6 ">
                   <p className="font-bold  ">10000</p>
@@ -221,33 +223,59 @@ const PoxStakingGovernance = () => {
                   
                 
                 </div>
-                <p className="mt-6 font-bold">Est. Rewards   <span className="text-dark-brown">+1244.181000</span></p>
+                <p className="mt-6 font-bold">Est. Rewards   <span className="text-light-brown text-xl">+1244.181000</span></p>
               </div>
 
-              <div className=" flex flex-row">
-                <p>Highest APY</p>
-                <p>4.15%</p>
+              < div className="flex flex-row ">
+                <p className="font-bold text-xl"  >Highest APY</p>
+                <p className="text-light-brown font-bold text-xl">4.15%</p>
+                
                 <LineChartComp />
+                
+                
               </div>
             </div>
 
             <div>
-              <p></p>
+              <p className="pl-40 text-light-gray">* The estimated POX reward here are calculated based on the staking duration selected and the POX amount entered. The actual API and POX rewards may vary.</p>
             </div>
 
 
 
-            <div>
-            <button className="bg-dark-yellow py-1 px-5 rounded-xl text-black cursor-pointer">
-               Stake Now
+            <div className="flex justify-center mt-10">
+            <button className="bg-dark-yellow py-2 px-32 font-bold rounded-md text-black cursor-pointer flex flex-row mb-10" >
+              <p>Stake Now </p>
+               <p className="pt-1 pl-2 font-bold"><IoIosArrowForward/></p>
+               
         </button>
+        
             </div>
           </div>
 
 
       </div>
     
-      <div></div>
+      <div className="bg-white m-10 rounded-lg flex flex-row justify-between">
+         <div className="p-16">
+          <p className="font-bold text-xl">Stake POX on JustLend DAO</p>
+          <p className="pt-5 "><span className="">Easy Staking</span> Stake POX to get sPOX directly</p>
+          <p className="pt-5"><span>Higher Yields</span> Staking API consist of voting API  and Energy rental API.</p>
+          <p className="pt-5"><span>Safe & Reliable</span> DAO governance and contract audit ensure your asset security together</p>  
+          <button className="bg-dark-yellow py-2 px-32 font-bold rounded-md text-black cursor-pointer mt-10 " >
+              Go to JustLend DAO
+          </button>
+        
+          </div>
+
+         <div>
+
+          <img src={justLend}
+          alt="justlend image"
+          className="p-10"
+          />
+         </div>
+
+      </div>
     
       <div></div>
     
