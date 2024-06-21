@@ -2,14 +2,16 @@ import { useState } from "react";
 import {TokenData} from "../../data/Token";
 import SearchBar from "./SearchBar";
 
+
 const Pox = () => {
   const [onSearch, setOnSearch] = useState("");
   return (
     <div className="bg-light-sky-blue">
       <div>
         <SearchBar onSearch={setOnSearch} />
+        
       </div>
-      <p className="font-bold text-xl pl-16 pt-5 pb-5">Blocks</p>
+      <p className="font-bold text-xl pl-10 pt-5 pb-5">Blocks</p>
       <div className=" flex flex-row justify-around mt-4">
         <div className=" w-[25%] bg-white shadow-lg rounded-lg p-5">
           <div className="pt-1">
@@ -75,7 +77,7 @@ const Pox = () => {
 
 
       <p className="font-bold text-xl pl-16 pt-5 pb-5">StableCoin</p>
-      <div className="bg-white w-full rounded sm p-7 "> 
+      <div className="bg-white  rounded-xl p-7 m-12 "> 
       <p className="pb-5 font-medium text-light-gray">Only the first <span className="text-black font-semibold">10,000</span> records are displayed</p>
 
       <div className="flex flex-row justify-around p-2 bg-lightest-gray rounded-lg">
