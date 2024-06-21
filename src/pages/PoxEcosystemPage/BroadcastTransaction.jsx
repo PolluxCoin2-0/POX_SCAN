@@ -2,13 +2,19 @@ import SearchBar from "./SearchBar"
 
 const BroadcastTransaction = () => {
   return (
-    <div className="bg-light-sky-blue m-10">
+    <div className="bg-light-sky-blue ">
 
       <div>
         <SearchBar/>
       </div>
 
-      <div></div>
+      <div>
+        <p>Broadcast Transaction</p>
+        <div>
+          <p>Broadcast Raw Transaction</p>
+          <p>This page allows your t</p>
+        </div>
+      </div>
 
       <div></div>
     </div>
