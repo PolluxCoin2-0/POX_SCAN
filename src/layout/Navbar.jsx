@@ -3,7 +3,7 @@ import LogoWithText from "../assets/Logowithtext.png";
 import Logo from "../assets/Logo.png";
 import { IoNotificationsCircleOutline } from "react-icons/io5";
 import { Link, useLocation } from "react-router-dom";
-import {SideBarOptions}  from "../data/SidebarOptions";
+import {SideBarOptions}  from "../data/SideBarOptions";
 
 const Navbar = () => {
   const location = useLocation();
