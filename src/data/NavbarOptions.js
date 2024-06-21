@@ -1,4 +1,4 @@
-export const SideBarOptions = {
+export const NavbarOptions = {
   Home:[],
   Blockchain: [
     "Nodes",

@@ -15,7 +15,7 @@ const TvlContainer = () => {
 
       <div className="w-full flex justify-between">
         <div className="w-[75%]">
-        <div className=" bg-mid-yellow flex justify-between items-center font-semibold h-[42px] rounded-xl px-6 shadow-lg mb-4">
+        <div className=" bg-mid-yellow flex justify-between items-center font-semibold h-[42px] rounded-xl px-6 shadow-md mb-4">
           <p className="w-[25%]">Project</p>
           <p className="w-[35%]">Category</p>
           <p className="w-[15%]">TVL</p>
@@ -26,7 +26,7 @@ const TvlContainer = () => {
           return (
             <>
               <div
-                className="flex flex-row justify-between items-center py-4 px-2 mx-0 mb-4 mt-1 rounded-2xl shadow-lg bg-white px-6"
+                className="flex flex-row justify-between items-center py-4 mx-0 mb-4 mt-1 rounded-2xl shadow-md bg-white px-6"
                 key={idx}
               >
                 <div className="w-[25%] flex space-x-2 items-center">

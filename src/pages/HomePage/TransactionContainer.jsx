@@ -19,7 +19,7 @@ const TransactionContainer = () => {
               <>
                 <div
                   className={`flex flex-row justify-between ${
-                    idx % 2 === 0 ? "bg-text-bg-gray" : "bg-white"
+                    idx % 2 !== 0 ? "bg-text-bg-gray" : "bg-white"
                   } py-6 px-12
 ${idx === 0 ? "rounded-t-2xl" : "rounded-none"} ${
                     idx === Transactions.length - 1
