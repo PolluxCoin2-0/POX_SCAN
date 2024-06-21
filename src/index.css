@@ -5,3 +5,17 @@
 body{
     font-family: "Lato", sans-serif;
 }
+
+.slick-slide {
+    margin: 0 20px;
+}
+
+.slick-track
+{
+    display: flex !important;
+}
+
+.slick-slide
+{
+    height: inherit !important;
+}

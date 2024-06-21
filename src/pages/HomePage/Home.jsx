@@ -6,7 +6,7 @@ import TvlContainer from "./TvlContainer";
 
 const Home = () => {
   return (
-    <div>
+    <div className="bg-light-sky-blue">
       {/* First Row >> Trending Search */}
       <TrendingSearch/>
 
