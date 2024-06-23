@@ -4,9 +4,9 @@ import LogoWithText from "../assets/Logowithtext.png";
 import Logo from "../assets/Logo.png";
 import { IoNotificationsCircleOutline } from "react-icons/io5";
 import { Link, useLocation } from "react-router-dom";
-import { NavbarOptions } from "../data/NavbarOptions";
 import PoxImg from "../assets/PoxImg.png";
 import UsdxImg from "../assets/UsdxImg.png";
+import {NavbarOptions}  from "../data/NavbarOptions";
 
 const BlockchainHover = () => (
   <div className="absolute bg-white shadow-lg rounded-xl px-4 py-2">
@@ -105,6 +105,25 @@ const Navbar = () => {
                 onMouseEnter={() => setHoveredItem(formattedKey)}
                 onMouseLeave={() => setHoveredItem(null)}
                 className="relative"
+    <div className="bg-dark-skyblue py-2 h-16  font-medium text-lg flex items-center justify-between pl-8">
+      <div className="flex items-center space-x-10">
+        <Link to="/">
+        <img
+          src={LogoWithText}
+          alt="logo-poxscan"
+          className="cursor-pointer border-r-2 border-white pr-8"
+        />
+        </Link>
+        {Object.keys(NavbarOptions).map((key, index) => {
+          const formattedKey = key.replace(/\s+/g, ""); // Remove all spaces from key
+          return (
+            <Link to={`/${formattedKey}`} key={index}>
+              <p
+                className={`cursor-pointer whitespace-nowrap ${
+                  currentPath === `/${formattedKey}`
+                    ? "text-black rounded-3xl bg-dark-yellow px-4 py-1"
+                    : "text-white px-3"
+                }`}
               >
                 <Link to={`/${formattedKey}`}>
                   <p

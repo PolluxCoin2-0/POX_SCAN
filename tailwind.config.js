@@ -33,12 +33,17 @@ export default {
       "light-sky-blue" : "#E6EEF5",
       "lightest-gray" : "#E6EEF5",
       "light-orange" : "#FAE4A6",
-      "darker-blue" :"#1A5BA1"
+      "light-brown" : "#a97607",
+      "lightest-brown" : "#ecedf0",
+    
+
+      "darker-blue" :"#1A5BA1",
     },
     backgroundImage: {
       'purple-gradient': 'linear-gradient(to bottom, #B1B9F8 0%, #ADB7F9 100%)',
       'red-gradient': 'linear-gradient(to bottom, #F4A79D 0%, #F4A79D 100%)',
-      'gray-gradient': "linear-gradient(to bottom, #1e293b, #4b5563)"
+      'gray-gradient': "linear-gradient(to bottom, #1e293b, #4b5563)",
+      "blue-gradient" : "bg-gradient-to-r from-slate-50 to-sky-200"
     },
    
   },

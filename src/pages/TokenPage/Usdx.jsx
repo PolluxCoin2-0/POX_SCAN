@@ -75,7 +75,7 @@ const Usdx = () => {
 
 
       <p className="font-bold text-xl pl-16 pt-5 pb-5">StableCoin</p>
-      <div className="bg-white w-full rounded sm p-7 "> 
+      <div className="bg-white rounded-xl p-7 m-12"> 
       <p className="pb-5 font-medium text-light-gray">Only the first <span className="text-black font-semibold">10,000</span> records are displayed</p>
 
       <div className="flex flex-row justify-around p-2 bg-lightest-gray rounded-lg">

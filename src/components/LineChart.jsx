@@ -48,7 +48,7 @@ const data = [
 
 const LineChartComp = () => {
   return (
-    <ResponsiveContainer width="90%" height={200}>
+    <ResponsiveContainer width="80%" height={200}>
       <LineChart
         data={data}
         margin={{
