@@ -9,7 +9,7 @@ const BlockContainer = () => {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 5,
+    slidesToShow: 4,
     slidesToScroll: 4,
     responsive: [
       {
