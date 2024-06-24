@@ -1,6 +1,7 @@
 import { useState } from "react";
 import {TokenData} from "../../data/Token";
 import SearchBarExpand from "../../components/SearchBarExpand";
+import {MdKeyboardArrowRight} from "react-icons/md";
 
 
 const Blocks = () => {
@@ -32,8 +33,13 @@ const Blocks = () => {
         </div>
 
         <div className=" w-[25%]  rounded-lg p-5 bg-white shadow-md m-12">
-        <div className="pt-1"> 
+        <div className=" flex flex-row pt-1 justify-between"> 
           <p className="font-bold">Block Rewards</p>
+          <div className="flex flex-row">
+          <p>More</p>
+          <MdKeyboardArrowRight className="mt-1 text-xl"/>
+          </div>
+          
         </div>
           
           <div className=" w-full flex flex-row justify-between pt-9 pl-1">
@@ -53,8 +59,12 @@ const Blocks = () => {
 
       
         <div className="w-[25%] rounded-lg p-5 bg-white shadow-md m-12">
-          <div className="pt-1">
+          <div className=" flex flex-row justify-between pt-1">
             <p className="font-bold">Stats on Burned POX</p>
+            <div className="flex flex-row">
+            <p>More</p>
+            <MdKeyboardArrowRight className="mt-1 text-xl"/>
+            </div>
           </div>
 
           <div className=" w-full flex flex-row justify-between pt-9 pl-1">

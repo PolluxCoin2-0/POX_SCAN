@@ -2,6 +2,7 @@ import { useState } from "react";
 import {TokenData} from "../../data/Token";
 import SearchBarExpand from "../../components/SearchBarExpand";
 import {FaToggleOn} from "react-icons/fa";
+import {MdKeyboardArrowRight} from "react-icons/md";
 
 
 const Accounts = () => {
@@ -17,8 +18,12 @@ const Accounts = () => {
       <p className="font-bold text-2xl m-12">Blocks</p>
       <div className=" flex flex-row justify-around ">
         <div className=" w-[25%]  bg-white shadow-lg rounded-lg p-5 m-12">
-          <div className="pt-1">
+          <div className="flex flex-row justify-between pt-1">
             <p className="font-bold text-lg">Number of Accounts</p>
+            <div className="flex flex-row">
+            <p>More</p>
+            <MdKeyboardArrowRight className="mt-1 text-xl"/>
+            </div>
           </div>
 
           <div className=" w-full flex flex-row justify-between pt-9 pl-1 ">
@@ -35,8 +40,12 @@ const Accounts = () => {
         </div>
 
         <div className=" w-[25%]  rounded-lg p-5 bg-white shadow-md m-12">
-        <div className="pt-1"> 
+        <div className=" flex flex-row justify-between pt-1"> 
           <p className="font-bold text-lg">POX Holders</p>
+          <div className="flex flex-row">
+            <p>More</p>
+            <MdKeyboardArrowRight className="mt-1 text-xl"/>
+            </div>
         </div>
           
           <div className=" w-full flex flex-row justify-between pt-9 pl-1">
@@ -54,8 +63,12 @@ const Accounts = () => {
 
       
         <div className="w-[25%] rounded-lg p-5 bg-white shadow-md m-12">
-          <div className="pt-1">
+          <div className="flex flex-row justify-between pt-1">
             <p className="font-bold">POX Active Accounts</p>
+            <div className="flex flex-row">
+            <p>More</p>
+            <MdKeyboardArrowRight className="mt-1 text-xl"/>
+            </div>
           </div>
 
           <div className=" w-full flex flex-row justify-between pt-9 pl-1">

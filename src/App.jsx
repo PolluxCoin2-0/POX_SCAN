@@ -1,6 +1,6 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { Footer, Navbar } from "./layout";
-import { Nodes, Blocks, Contacts, Accounts, Transaction, Transfer, Data, Home, EncodingConverter, Register, Login, ForgetPassword, Pox, SuperRepresentatives, Votes, PoxStakingGovernance, ParametersProposals, ContractsDeployment, ContractsVerification, BroadcastTransaction, ActiveAccounts} from "./pages";
+import { Home, Nodes, Blocks, Contacts, Accounts, Transaction, Transfer, Data, PoxPrice, PoxSupply, PoxMarketCap, PoxGenerated, PoxStaked, ProtocolRevenue, Network,  EncodingConverter, Register, Login, ForgetPassword, Pox, SuperRepresentatives, Votes, PoxStakingGovernance, ParametersProposals, ContractsDeployment, ContractsVerification, BroadcastTransaction, ActiveAccounts} from "./pages";
 import Usdx from "./pages/TokenPage/Usdx";
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/home" element={<Home />} />
+         
 
         <Route path="/blockchain">
         <Route index element ={<Nodes/>} />
@@ -28,6 +28,14 @@ function App() {
         </Route>
 
         <Route path="/data" element={<Data />} />
+        <Route path="/poxprice" element={<PoxPrice/>} />
+        <Route path="/poxsupply" element ={<PoxSupply/> } />
+        <Route path="/poxmarket" element={<PoxMarketCap />} />
+        <Route path="/poxgenerated" element={<PoxGenerated/>} />
+        <Route path="/poxstaked" element={<PoxStaked/>} />
+        <Route path="/protocolrevenue" element={<ProtocolRevenue/>} />
+        <Route path="/network" element={<Network/>} />
+
         
         <Route path="/governance">
         <Route index element={<SuperRepresentatives/>} />

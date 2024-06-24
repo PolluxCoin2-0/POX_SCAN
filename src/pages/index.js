@@ -9,6 +9,14 @@ import Transfer from "./BlockchainPage/Transfer";
 import Tokens from "./TokenPage/Tokens";
 import Pox from "./TokenPage/Pox";
 import Data from "./DataPage/Data";
+import PoxPrice from "./DataPage/PoxSupply/Pox/PoxPrice";
+import PoxSupply from "./DataPage/PoxSupply/Pox/PoxSupply";
+import PoxMarketCap from "./DataPage/PoxSupply/Pox/PoxMarketCap";
+import PoxGenerated from "./DataPage/PoxSupply/Pox/PoxGenerated";
+import PoxStaked from "./DataPage/PoxSupply/Pox/PoxStaked";
+
+import Network from "./DataPage/PoxSupply/Networks/Network";
+import ProtocolRevenue from "./DataPage/PoxSupply/Networks/ProtocolRevenue";
 import Governance from "./GovernancePage/Governance";
 import SuperRepresentatives from "./GovernancePage/SuperRepresentatives";
 import PoxStakingGovernance from "./GovernancePage/PoxStakingGovernance";
@@ -38,6 +46,13 @@ export {
     Tokens,
     Pox,
     Data,
+    PoxPrice,
+    PoxSupply,
+    PoxMarketCap,
+    PoxGenerated,
+    PoxStaked,
+    ProtocolRevenue,
+    Network,
     Governance,
     PoxEcosystem,
     EncodingConverter,
