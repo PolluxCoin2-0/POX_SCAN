@@ -9,10 +9,10 @@ const SearchBar = ({ onSearch }) => {
   };
 
   return (
-    <div className="pt-2 relative mx-auto text-gray-600">
-      <div className="relative flex items-center   m-10">
+    <div className="pb-12 relative mx-auto text-gray-600">
+      <div className="relative flex items-center">
         <svg
-          className="absolute left-3 text-light-gray h-6 w-8 fill-current"
+          className="absolute left-3 text-black h-4 w-4 fill-current"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 56.966 56.966"
           width="512px"
@@ -24,19 +24,17 @@ const SearchBar = ({ onSearch }) => {
             s-17-7.626-17-17S14.61,6,23.984,6z" />
         </svg>
         <input
-          className="bg-white h-12 w-full pl-14 pr-12 rounded-3xl text-sm focus:outline-none placeholder:text-light-gray placeholder:font-medium"
+          className="bg-white h-12 w-full pl-10 pr-12 rounded-xl text-sm focus:outline-none placeholder:text-light-gray "
           type="search"
           name="search"
-          placeholder="Search By Token/ Account /Contract / POX Hash / Block "
+          placeholder="Search By Token/ Account/ Contract/ Pox Hash/ Block"
         />
-        <button type="submit" className="absolute right-0 top-0 mt-2 mr-4 ">
-          <div className=" flex flex-row relative  text-left">
-            <div className="w-5 h-6 bg-light-mid-gray rounded-md mt-2 pl-1 text-white font-bold">/</div>
-            <div className="text-light-mid-gray mt-1 pl-2 font-bold text-xl">|</div>
+        <button type="submit" className="absolute right-0 top-0 mt-2 mr-4">
+          <div className="relative inline-block text-left">
             <div>
               <button
                 type="button"
-                className="inline-flex justify-center w-full rounded-md px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                className="inline-flex justify-center w-full rounded-md px-4 py-2 bg-white text-sm font-medium text-light-gray hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                 onClick={toggleDropdown}
               >
                 All <HiOutlineChevronDown className="-mr-1 ml-2 h-5 w-5" aria-hidden="true" />

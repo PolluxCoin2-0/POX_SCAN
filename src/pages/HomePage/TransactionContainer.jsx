@@ -1,18 +1,18 @@
-import { IoIosArrowForward } from "react-icons/io";
+// import { IoIosArrowForward } from "react-icons/io";
 import { Transactions } from "../../data/HomePageData";
 import AreaChartComp from "../../components/AreaChart";
 
 const TransactionContainer = () => {
   return (
     <>
-      <div className="flex justify-between px-6 my-6 w-[75%]">
+      <div className="flex justify-between my-6 w-[75%]">
         <p className="font-bold text-xl">Transactions</p>
-        <p className="flex items-center cursor-pointer">
+        {/* <p className="flex items-center cursor-pointer">
           More <IoIosArrowForward />
-        </p>
+        </p> */}
       </div>
 
-      <div className="w-full flex justify-between px-6">
+      <div className="w-full flex justify-between">
         <div className="w-[75%]">
           {Transactions.map((transaction, idx) => {
             return (

@@ -40,13 +40,13 @@ const BlockContainer = () => {
 
   return (
     <>
-      <div className="flex justify-between mb-4 px-6 w-[75%]">
+      <div className="flex justify-between mb-4 w-[75%]">
         <p className="font-bold text-lg">Blocks</p>
-        <p className="flex items-center cursor-pointer">
+        {/* <p className="flex items-center cursor-pointer">
           More <IoIosArrowForward />
-        </p>
+        </p> */}
       </div>
-      <div className="w-full px-6">
+      <div className="w-full">
         <Slider {...settings}>
           {Blocks.map((block, idx) => (
             <div key={idx} className="w-full shadow-lg rounded-2xl py-4 px-8 m-4 bg-white over">

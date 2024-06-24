@@ -6,14 +6,15 @@ import SearchBarExpand from "../../components/SearchBarExpand";
 const Pox = () => {
   const [onSearch, setOnSearch] = useState("");
   return (
-    <div className="bg-light-sky-blue">
+    <div className="bg-light-sky-blue px-12 py-12">
       <div>
         <SearchBarExpand onSearch={setOnSearch} />
-        
       </div>
-      <p className="font-bold text-2xl m-12">Blocks</p>
-      <div className=" flex flex-row justify-around ">
-        <div className=" w-[25%]  bg-white shadow-lg rounded-lg p-5 m-12">
+      <p className="font-bold text-2xl">Blocks</p>
+      <div className=" flex flex-row justify-between">
+
+        {/* Number of Blocks */}
+        <div className=" w-[32%]  bg-white shadow-lg rounded-lg p-5 my-12">
           <div className="pt-1">
             <p className="font-bold">Number of Blocks</p>
           </div>
@@ -31,7 +32,8 @@ const Pox = () => {
           </div>
         </div>
 
-        <div className=" w-[25%]  rounded-lg p-5 bg-white shadow-md m-12">
+        {/* Block Rewards */}
+        <div className=" w-[32%]  rounded-lg p-5 bg-white shadow-md my-12">
         <div className="pt-1"> 
           <p className="font-bold">Block Rewards</p>
         </div>
@@ -51,8 +53,8 @@ const Pox = () => {
           </div>
         </div>
 
-      
-        <div className="w-[25%] rounded-lg p-5 bg-white shadow-md m-12">
+        {/* Stats on Burned Pox */}
+        <div className="w-[32%] rounded-lg p-5 bg-white shadow-md my-12">
           <div className="pt-1">
             <p className="font-bold">Stats on Burned POX</p>
           </div>
@@ -76,8 +78,8 @@ const Pox = () => {
       
 
 
-      <p className="font-bold text-2xl m-12">StableCoin</p>
-      <div className="bg-white  rounded-xl p-7 m-12 "> 
+      <p className="font-bold text-2xl mb-12">StableCoin</p>
+      <div className="bg-white  rounded-xl p-7"> 
       <p className="pb-5 font-medium text-light-gray">Only the first <span className="text-black font-semibold">10,000</span> records are displayed</p>
 
       <div className="flex flex-row justify-around p-2 bg-lightest-gray rounded-lg">

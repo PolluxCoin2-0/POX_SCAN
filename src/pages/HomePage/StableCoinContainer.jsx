@@ -1,16 +1,16 @@
 import {StableCoins} from "../../data/HomePageData";
 import PoxImg from "../../assets/PoxImg.png";
-import { IoIosArrowForward } from "react-icons/io";
+// import { IoIosArrowForward } from "react-icons/io";
 import AreaChartComp from "../../components/AreaChart";
 
 const StableCoinContainer = () => {
   return (
-  <div className="pb-6 px-6">
+  <div className="pb-6">
      <div className="flex justify-between my-6 w-[75%]">
         <p className="font-bold text-xl">Stablecoins</p>
-        <p className="flex items-center cursor-pointer">
+        {/* <p className="flex items-center cursor-pointer">
           More <IoIosArrowForward />
-        </p>
+        </p> */}
       </div>
       
     <div className="flex justify-between  w-full">
