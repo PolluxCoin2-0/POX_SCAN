@@ -1,4 +1,4 @@
-import SearchBar from "./SearchBar";
+import SearchBarExpand from "../../components/SearchBarExpand.jsx";
 import FileDropzone from "../../components/FileDropzone.jsx";
 
 const ContractsDeployment = () => {
@@ -6,7 +6,7 @@ const ContractsDeployment = () => {
     <div className="bg-light-sky-blue">
 
       <div>
-        <SearchBar />
+        <SearchBarExpand />
       </div>
 
       <div className="m-12 mb-10">

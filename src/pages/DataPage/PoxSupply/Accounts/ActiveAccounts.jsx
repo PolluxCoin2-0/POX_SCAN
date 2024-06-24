@@ -1,11 +1,11 @@
-import SearchBar from "../../../TokenPage/SearchBar"
+
 
 const ActiveAccounts = () => {
   return (
     <div className="bg-light-sky-blue">
 
       <div>
-        <SearchBar />
+        
       </div>
 
       <div className="flex flex-row justify-between">

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import {TokenData} from "../../data/Token";
-import SearchBar from "./SearchBar";
+import SearchBarExpand from "../../components/SearchBarExpand";
 
 
 const Pox = () => {
@@ -8,12 +8,12 @@ const Pox = () => {
   return (
     <div className="bg-light-sky-blue">
       <div>
-        <SearchBar onSearch={setOnSearch} />
+        <SearchBarExpand onSearch={setOnSearch} />
         
       </div>
-      <p className="font-bold text-xl pl-10 pt-5 pb-5">Blocks</p>
-      <div className=" flex flex-row justify-around mt-4">
-        <div className=" w-[25%] bg-white shadow-lg rounded-lg p-5">
+      <p className="font-bold text-2xl m-12">Blocks</p>
+      <div className=" flex flex-row justify-around ">
+        <div className=" w-[25%]  bg-white shadow-lg rounded-lg p-5 m-12">
           <div className="pt-1">
             <p className="font-bold">Number of Blocks</p>
           </div>
@@ -31,7 +31,7 @@ const Pox = () => {
           </div>
         </div>
 
-        <div className=" w-[25%]  rounded-lg p-5 bg-white shadow-md">
+        <div className=" w-[25%]  rounded-lg p-5 bg-white shadow-md m-12">
         <div className="pt-1"> 
           <p className="font-bold">Block Rewards</p>
         </div>
@@ -52,7 +52,7 @@ const Pox = () => {
         </div>
 
       
-        <div className="w-[25%] rounded-lg p-5 bg-white shadow-md">
+        <div className="w-[25%] rounded-lg p-5 bg-white shadow-md m-12">
           <div className="pt-1">
             <p className="font-bold">Stats on Burned POX</p>
           </div>
@@ -76,7 +76,7 @@ const Pox = () => {
       
 
 
-      <p className="font-bold text-xl pl-16 pt-5 pb-5">StableCoin</p>
+      <p className="font-bold text-2xl m-12">StableCoin</p>
       <div className="bg-white  rounded-xl p-7 m-12 "> 
       <p className="pb-5 font-medium text-light-gray">Only the first <span className="text-black font-semibold">10,000</span> records are displayed</p>
 

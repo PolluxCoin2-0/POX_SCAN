@@ -1,94 +1,119 @@
-import React from 'react'
-import { IoIosArrowForward } from "react-icons/io";
-import { SearchBarExpand } from '../../components';
+import { useState } from "react";
+import {TokenData} from "../../data/Token";
+import SearchBarExpand from "../../components/SearchBarExpand";
+
 
 const Blocks = () => {
+  const [onSearch, setOnSearch] = useState("");
   return (
-    <div>
-      {/* Search Box */}
-      <SearchBarExpand/>
-      
-      {/* Blocks */}
+    <div className="bg-light-sky-blue">
       <div>
-        <p className='font-semibold text-lg flex justify-around px-4'>Blocks</p>
-        {/* Number of blocks */}
-        <div className='shadow-lg'>
-          <p>Number of Blocks</p>
-          <div className='flex flex-row justify-between'>
-            <div>
-              <p className='text-dark-red'>6051403</p>
-              <p>Latest</p>
-            </div>
-            <div>
-              <p>+28,892</p>
-              <p>Yesterday</p>
-            </div>
-          </div>
-        </div>
-
-        {/* Block rewards */}
-        <div className='shadow-lg'>
-          <div className='flex justify-between'>
-            <p>Block Rewards</p>
-            <p>More <IoIosArrowForward />  </p>
-          </div>
-
-          <div className='flex justify-between'>
-            <div>
-              <p className='font-semibold'>8.87b POX</p>
-              <p>=$1,078,347.123</p>
-              <p>Total</p>
-            </div>
-            <div>
-            <p className='font-semibold'>5,062,392 TRX</p>
-              <p>=$1,078,347.123</p>
-              <p>Yesterday</p>
-            </div>
-          </div>
-        </div>
-
-        {/* Stats on burned pox */}
-        <div className='shadow-lg'>
-          <div className='flex justify-between'>
-            <p className='font-semibold'>Stats on Burned POX</p>
-            <p>More <IoIosArrowForward />  </p>
-          </div>
-
-          <div className='flex justify-between'>
-            <div>
-              <p className='font-semibold'>8.87b POX</p>
-              <p>=$1,078,347.123</p>
-              <p>Total</p>
-            </div>
-            <div>
-            <p className='font-semibold'>5,062,392 TRX</p>
-              <p>=$1,078,347.123</p>
-              <p>Yesterday</p>
-            </div>
-          </div>
-        </div>
+        <SearchBarExpand onSearch={setOnSearch} />
+        
       </div>
+      <p className="font-bold text-2xl m-12">Blocks</p>
+      <div className=" flex flex-row justify-around ">
+        <div className=" w-[25%]  bg-white shadow-lg rounded-lg p-5 m-12">
+          <div className="pt-1">
+            <p className="font-bold">Number of Blocks</p>
+          </div>
 
-      {/* StableCoins */}
-      <div className='shadow-lg px-4'>
-        <p>Only the first 10,000 records are displayed.</p>
-        <div>
-          <p>Block</p>
-          <p>Age</p>
-          <p>Producer</p>
-          <p>Pox Count</p>
-          <p>Consumed Energy/Bandwidth</p>
-          <p>Burned POX</p>
-          <p>Block Reward</p>
-          <p>Status</p>
+          <div className=" w-full flex flex-row justify-between pt-9 pl-1 ">
+            <div>
+              <p className="text-dark-red font-bold text-xl">60754103</p>
+              <p className="pt-4 text-sm text-light-gray">Latest</p>
+            </div>
+
+            <div>
+              <p className="text-xl font-bold">+28,793</p>
+              <p className="pt-4 text-sm text-light-gray flex justify-end">Yesterday</p>
+            </div>
+          </div>
         </div>
 
-        <div>
-          {/* javascript map */}
+        <div className=" w-[25%]  rounded-lg p-5 bg-white shadow-md m-12">
+        <div className="pt-1"> 
+          <p className="font-bold">Block Rewards</p>
         </div>
+          
+          <div className=" w-full flex flex-row justify-between pt-9 pl-1">
+            <div>
+              <p className="text-xl font-bold">8.87b POX</p>
+              <p className="text-xs flex justify-end ">=$1,078,347,147.3</p>
+              <p className="pt-4 text-sm text-light-gray">Total</p>
+            </div>
+
+            <div>
+              <p className="text-xl font-bold">5067,392 TRX</p>
+              <p className="text-xs flex justify-end">=$615,954.9</p>
+              <p className="pt-4 text-sm text-light-gray flex justify-end">Yesterday</p>
+            </div>
+          </div>
+        </div>
+
+      
+        <div className="w-[25%] rounded-lg p-5 bg-white shadow-md m-12">
+          <div className="pt-1">
+            <p className="font-bold">Stats on Burned POX</p>
+          </div>
+
+          <div className=" w-full flex flex-row justify-between pt-9 pl-1">
+            <div>
+              <p className="text-xl font-bold">11.21b POX</p>
+              <p className=" text-xs">=$1,363,166,000.31</p>
+              <p className="pt-4 text-sm text-light-gray flex ">Total</p>
+            </div>
+
+            <div>
+              <p className="text-xl font-bold">11,220,752 TRX</p>
+              <p className="text-xs flex justify-end">=$1,363,912.13</p>
+              <p className="pt-4 text-sm text-light-gray flex justify-end">Yesterday</p>
+            </div>
+          </div>
+        </div>
+
       </div>
+      
+
+
+      <p className="font-bold text-2xl m-12">StableCoin</p>
+      <div className="bg-white  rounded-xl p-7 m-12 "> 
+      <p className="pb-5 font-medium text-light-gray">Only the first <span className="text-black font-semibold">10,000</span> records are displayed</p>
+
+      <div className="flex flex-row justify-around p-2 bg-lightest-gray rounded-lg">
+        <p className=" w-[12%]">Block</p>
+        <p className=" w-[12%]">Age</p>
+        <p className=" w-[12%]">Producer</p>
+        <p className=" w-[12%]">Pox Count</p>
+        <p className=" w-[16%] whitespace-nowrap">Consumed Energy/Bandwidth</p>
+        <p className=" w-[8%]">Burned POX</p>
+        <p className=" w-[12%]">Block Reward</p>
+        <p className=" w-[12%]">Status</p>
+      </div>
+     
+
+
+      {TokenData.map((stablecoin, index) => {
+        return (
+          <>
+            <div className="flex flex-row  justify-around border-b-2 p-3 border-text-bg-gray ">
+                <p className="text-dark-red  w-[12%]">{stablecoin.Block}</p>
+                <p className=" w-[12%]">{stablecoin.Age}</p>
+                <p className="text-dark-red  w-[12%]">{stablecoin.Producer}</p>
+                <p className=" w-[12%]">{stablecoin.PoxCount }</p>
+                <p className=" w-[16%]">{stablecoin. ConsumedEnergy}</p>
+                <p className=" w-[8%]">{stablecoin.BurnedPOX }</p>
+                <p className=" w-[12%]">{stablecoin.BlockReward }</p>
+                <p className=" w-[12%]">{stablecoin.Status}</p>
+
+            </div>
+      </>
+        );
+        })}
+      </div>
+      
     </div>
-  )
-}
+  );
+};
 
-export default Blocks
+export default Blocks;

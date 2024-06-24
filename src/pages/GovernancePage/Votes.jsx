@@ -1,11 +1,12 @@
-import SearchBar from "./SearchBar";
+import SearchBarExpand from "../../components/SearchBarExpand";
+import SearchBar from "../../components/SearchBar";
 import { VotesData } from "../../data/Votes";
 
 const Votes = () => {
   return (
     <div className="bg-light-sky-blue">
       <div>
-      <SearchBar />
+      <SearchBarExpand />
       </div>
 
 

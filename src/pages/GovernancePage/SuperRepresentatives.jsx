@@ -1,5 +1,5 @@
-import SearchBar from "./SearchBar";
-import { useState } from "react";
+import SearchBarExpand from "../../components/SearchBarExpand";
+ import { useState } from "react";
 import  {RespresentativeData} from "../../data/Resprentative";
 import LineChartComp from "../../components/LineChart";
 // import DistributionChartComp from "../../components/DistributionChart";
@@ -10,7 +10,7 @@ const SuperRepresentatives = () => {
   return (
     <div className="bg-light-sky-blue">
       <div>
-        <SearchBar onSearch={setOnSearch} />
+        <SearchBarExpand onSearch={setOnSearch}/>
       </div>
 
       <p className=" text-2xl font-bold">Super Representatives</p>

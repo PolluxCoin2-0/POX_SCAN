@@ -1,4 +1,4 @@
-import SearchBar from "./SearchBar"
+import SearchBarExpand from "../../components/SearchBarExpand"
 import FileDropzone from "../../components/FileDropzone";
 import FormComponent from "../../components/FormComponent";
 
@@ -6,7 +6,7 @@ const ContractsVerification = () => {
   return (
     <div className="bg-light-sky-blue">
       <div>
-        <SearchBar />
+        <SearchBarExpand />
       </div>
 
       <div className="">

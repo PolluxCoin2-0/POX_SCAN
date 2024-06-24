@@ -1,4 +1,4 @@
-import SearchBar from "./SearchBar";
+import SearchBarExpand  from "../../components/SearchBarExpand";
 import { useState } from "react";
 
 
@@ -21,7 +21,7 @@ const BroadcastTransaction = () => {
     <div className="bg-light-sky-blue ">
 
       <div>
-        <SearchBar/>
+        <SearchBarExpand/>
       </div>
 
       <div>

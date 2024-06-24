@@ -1,5 +1,5 @@
 // import React from 'react'
- import SearchBar from "./SearchBar";
+ import SearchBarExapnd from "../../components/SearchBarExpand";
  import GovStack from "../../assets/Govstack.png";
  import GovPox from "../../assets/Govpox.png";
  import Poximg from "../../assets/PoxImg.png";
@@ -17,7 +17,7 @@ const PoxStakingGovernance = () => {
   return (
     <div className="bg-light-sky-blue">
       <div>
-        <SearchBar />
+        <SearchBarExapnd />
       </div>
 
 

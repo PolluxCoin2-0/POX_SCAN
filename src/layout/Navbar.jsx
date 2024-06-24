@@ -6,20 +6,20 @@ import { IoNotificationsCircleOutline } from "react-icons/io5";
 import { Link, useLocation } from "react-router-dom";
 import PoxImg from "../assets/PoxImg.png";
 import UsdxImg from "../assets/UsdxImg.png";
-import {NavbarOptions}  from "../data/NavbarOptions";
+import { NavbarOptions } from "../data/NavbarOptions";
 
 const BlockchainHover = () => (
   <div className="absolute bg-white shadow-lg rounded-xl px-4 py-2">
     <div className="flex flex-row justify-between space-x-12">
       <div>
-        <p className="font-medium">Nodes</p>
-        <p className="font-medium py-2">Blocks</p>
-        <p className="font-medium">Accounts</p>
+        <Link to="/blockchain/nodes"> <p className="font-medium">Nodes</p></Link>
+        <Link to="/blockchain/blocks"> <p className="font-medium py-2">Blocks</p></Link>
+        <Link to="/blockchain/accounts"> <p className="font-medium">Accounts</p></Link>
       </div>
       <div>
-        <p className="font-medium">Contacts</p>
-        <p className="font-medium py-2">Transfer</p>
-        <p className="font-medium">Transactions</p>
+        <Link to="/blockchain/contact"> <p className="font-medium">Contacts</p></Link>
+        <Link to="/blockchain/transfer"> <p className="font-medium py-2">Transfer</p></Link>
+        <Link to="/blockchain/transaction"> <p className="font-medium">Transactions</p></Link>
       </div>
     </div>
   </div>
@@ -28,17 +28,19 @@ const BlockchainHover = () => (
 const TokensHover = () => {
   return (
     <div className="w-32 bg-white shadow-lg rounded-xl px-4 py-2">
-      <div className="flex space-x-2 items-center  pb-4">
+      <div className="flex space-x-2 items-center pb-4">
+      
         <img src={PoxImg} alt="" />
-        <p>POX</p>
+        <Link to="/tokens/pox"> <p>POX</p></Link>
       </div>
       <div className="flex space-x-2 items-center">
         <img src={UsdxImg} alt="" />
-        <p>USDX</p>
+        <Link to="/tokens/usdx"> <p>USDX</p></Link>
       </div>
     </div>
   );
 };
+
 const DataHover = () => (
   <div className="absolute bg-white shadow-lg rounded-xl px-4 py-2">
     <p className="font-medium whitespace-nowrap">POX Supply</p>
@@ -48,19 +50,19 @@ const DataHover = () => (
 
 const GovernanceHover = () => (
   <div className="absolute bg-white shadow-lg rounded-xl px-4 py-2">
-    <p className="font-medium whitespace-nowrap">Super Representatives</p>
-    <p className="font-medium py-2">Votes</p>
-    <p className="font-medium whitespace-nowrap">POX Staking Governance</p>
-    <p className="font-medium pt-2 whitespace-nowrap">Parameters & Proposals</p>
+    <Link to="/governance/represents"><p className="font-medium whitespace-nowrap">Super Representatives</p></Link>
+    <Link to="/governance/vote"><p className="font-medium py-2">Votes</p></Link>
+    <Link to="/governance/poxstake"> <p className="font-medium whitespace-nowrap">POX Staking Governance</p></Link>
+    <Link to="/governance/parameter"><p className="font-medium pt-2 whitespace-nowrap">Parameters & Proposals</p></Link>
   </div>
 );
 
 const PoxecosystemHover = () => (
   <div className="absolute bg-white shadow-lg rounded-xl px-4 py-2">
-    <p className="font-medium whitespace-nowrap">Contracts Deployment</p>
-    <p className="font-medium py-2 whitespace-nowrap">Contracts Verification</p>
-    <p className="font-medium whitespace-nowrap">Encoding Converter</p>
-    <p className="font-medium pt-2 whitespace-nowrap">Broadcast Transaction</p>
+  <Link to="/poxecosystem/contractdeploy"><p className="font-medium whitespace-nowrap">Contracts Deployment</p></Link>  
+   <Link to="/poxecosystem/contractverify"><p className="font-medium py-2 whitespace-nowrap">Contracts Verification</p></Link> 
+    <Link to="/poxecosystem/encoding"> <p className="font-medium whitespace-nowrap">Encoding Converter</p></Link> 
+    <Link to="/poxecosystem/broadcast"> <p className="font-medium pt-2 whitespace-nowrap">Broadcast Transaction</p></Link>
   </div>
 );
 
@@ -103,33 +105,14 @@ const Navbar = () => {
               <div
                 key={index}
                 onMouseEnter={() => setHoveredItem(formattedKey)}
-                onMouseLeave={() => setHoveredItem(null)}
+                //  onMouseLeave={() => setHoveredItem(null)}
                 className="relative"
-    <div className="bg-dark-skyblue py-2 h-16  font-medium text-lg flex items-center justify-between pl-8">
-      <div className="flex items-center space-x-10">
-        <Link to="/">
-        <img
-          src={LogoWithText}
-          alt="logo-poxscan"
-          className="cursor-pointer border-r-2 border-white pr-8"
-        />
-        </Link>
-        {Object.keys(NavbarOptions).map((key, index) => {
-          const formattedKey = key.replace(/\s+/g, ""); // Remove all spaces from key
-          return (
-            <Link to={`/${formattedKey}`} key={index}>
-              <p
-                className={`cursor-pointer whitespace-nowrap ${
-                  currentPath === `/${formattedKey}`
-                    ? "text-black rounded-3xl bg-dark-yellow px-4 py-1"
-                    : "text-white px-3"
-                }`}
               >
                 <Link to={`/${formattedKey}`}>
                   <p
                     className={`cursor-pointer whitespace-nowrap ${
                       currentPath === `/${formattedKey}`
-                        ? "text-black rounded-3xl bg-dark-yellow px-4 py-1 font-semibold"
+                        ? "text-black rounded-3xl bg-dark-yellow px-4 py-1"
                         : "text-white px-3"
                     }`}
                   >

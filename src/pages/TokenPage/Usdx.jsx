@@ -1,13 +1,13 @@
 import { useState } from "react";
 import {TokenData} from "../../data/Token";
-import SearchBar from "./SearchBar";
+import SearchBarExpand from "../../components/SearchBarExpand";
 
 const Usdx = () => {
   const [onSearch, setOnSearch] = useState("");
   return (
     <div className="bg-light-sky-blue">
       <div>
-        <SearchBar onSearch={setOnSearch} />
+        <SearchBarExpand onSearch={setOnSearch} />
       </div>
       <p className="font-bold text-xl pl-16 pt-5 pb-5">Blocks</p>
       <div className=" flex flex-row justify-around mt-4">
