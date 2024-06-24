@@ -11,6 +11,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
 
+        {/* Blockchain Routes */}
         <Route path="/blockchain">
         <Route index element ={<Nodes/>} />
         <Route path="nodes" element={<Nodes/>} />
@@ -21,14 +22,17 @@ function App() {
         <Route path="transfer" element={<Transfer/>} />
         </Route>
        
+       {/* Tokens Routes */}
         <Route path="/tokens">
         <Route index element={<Pox />} />
         <Route path="pox" element={<Pox />} />
         <Route path="usdx" element={<Usdx />} />
         </Route>
 
+        {/* Data Routes */}
         <Route path="/data" element={<Data />} />
         
+        {/* Governance */}
         <Route path="/governance">
         <Route index element={<SuperRepresentatives/>} />
         <Route path="parameter" element={<ParametersProposals/>} />
@@ -37,6 +41,7 @@ function App() {
         <Route path="vote" element={<Votes/>} />
         </Route>
        
+       {/* Pox Ecosystem */}
         <Route path="/poxecosystem">
         <Route index element={<ContractsDeployment />} />
         <Route path="contractverify" element ={<ContractsVerification/> } />

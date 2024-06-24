@@ -35,7 +35,7 @@ const TrendingSearch = () => {
     setSelectedOption(event.target.value);
   };
   return (
-    <div className="flex justify-between p-6">
+    <div className="flex justify-between py-6">
       {/* Left Side Trending Search */}
       <div className="w-[75%]">
         <div className="flex justify-between space-x-4 pb-6">

@@ -1,16 +1,16 @@
 import { TVLData } from "../../data/HomePageData";
 import PoxImg from "../../assets/PoxImg.png";
-import { IoIosArrowForward } from "react-icons/io";
+// import { IoIosArrowForward } from "react-icons/io";
 import AreaChartComp from "../../components/AreaChart";
 
 const TvlContainer = () => {
   return (
-    <div className="px-6">
+    <div className="">
       <div className="flex justify-between my-6 w-[75%]">
         <p className="font-bold text-xl">TVL</p>
-        <p className="flex items-center cursor-pointer">
+        {/* <p className="flex items-center cursor-pointer">
           More <IoIosArrowForward />
-        </p>
+        </p> */}
       </div>
 
       <div className="w-full flex justify-between">
