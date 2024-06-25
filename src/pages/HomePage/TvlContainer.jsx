@@ -2,8 +2,28 @@ import { TVLData } from "../../data/HomePageData";
 import PoxImg from "../../assets/PoxImg.png";
 // import { IoIosArrowForward } from "react-icons/io";
 import AreaChartComp from "../../components/AreaChart";
+import { getTvlPriceData } from "../../utils/axios/Home";
+import { useEffect, useState } from "react";
+
 
 const TvlContainer = () => {
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    
+    const fetchData = async () => {
+      try {
+        const tvlData = await getTvlPriceData();
+        console.log(tvlData)
+        setData(tvlData?.tvlGraph);
+      } catch (error) {
+        console.error('Error fetching TVL price data:', error);
+      } 
+    };
+
+    fetchData();
+
+  }, []);
   return (
     <div className="">
       <div className="flex justify-between my-6 w-[75%]">

@@ -36,8 +36,6 @@ export default {
       "light-brown" : "#a97607",
       "lightest-brown" : "#ecedf0",
       "light-mid-gray" : "#968d8d",
-    
-
       "darker-blue" :"#1A5BA1",
     },
     backgroundImage: {

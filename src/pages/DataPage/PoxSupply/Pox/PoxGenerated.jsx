@@ -1,5 +1,5 @@
 import { SearchBarExpand } from "../../../../components"
-
+import CustomPieChart from "../../../../components/CustomPieChart"
 const PoxGenerated = () => {
   return (
     <div className="bg-light-sky-blue">
@@ -12,7 +12,28 @@ const PoxGenerated = () => {
         <p className="m-12 text-lg font-bold">POX Generated/Burned</p>
 
         <div className="flex flex-row justify-between m-12 gap-5">
-          <div className="bg-white rounded-xl shadow-lg w-[70%] h-auto">1</div>
+          <div className="bg-white flex flex-row justify-around rounded-xl shadow-lg w-[70%] h-auto">
+            <div className="text-lg font-bold space-y-12 pt-14 pl-36">
+              <p>0.552219</p>
+              <p>0.552219</p>
+              <p>0.552219</p>
+              <p>0.552219</p>
+            
+            </div>
+
+           <div className=" h-80">
+           <CustomPieChart />
+           </div>
+
+           <div className="text-lg font-bold space-y-12  pt-14 pr-36">
+              <p>2024</p>
+              <p>2023</p>
+              <p>2022</p>
+              <p>2021</p>
+            
+            </div>
+            
+          </div>
 
           <div className="flex flex-col w-[40%] gap-5 h-96">
             <div className="bg-white rounded-xl shadow-lg h-[40%]">

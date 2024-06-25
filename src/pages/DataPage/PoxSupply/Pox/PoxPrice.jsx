@@ -1,5 +1,5 @@
 import { SearchBarExpand } from "../../../../components"
-
+import BiaxialLineChart from "../../../../components/BiaxialLineChart"
 const PoxPrice = () => {
   return (
     <div className="bg-light-sky-blue">
@@ -10,12 +10,17 @@ const PoxPrice = () => {
 
       <div className="m-12 text-xl font-bold">
         <p>POX Price</p>
-        <div className="bg-white rounded-md m-12 px-96 py-60 shadow-lg">1</div>
+        <div className="bg-white rounded-xl   mt-8 px-12 py-6 shadow-xl">
+
+        <div className="h-96 pt-6">
+            <BiaxialLineChart  width="1000"/>
+            </div>
+        </div>
       </div>
 
       <div >
-        <p className="m-12 text-xl font-bold">List</p>
-        <div className="bg-white rounded-md m-12 shadow-lg p-10">
+        <p className="m-12 text-2xl font-bold">List</p>
+        <div className="bg-white rounded-xl m-12 shadow-xl p-10">
           <div className="flex flex-row justify-around bg-lightest-gray ml-8 mr-8 pt-2 pb-2 rounded-md text-light-gray">
             <p>Date(UTC)</p>
             <p>Pox Price</p>

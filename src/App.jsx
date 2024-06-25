@@ -1,6 +1,8 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { Footer, Navbar } from "./layout";
-import { Home, Nodes, Blocks, Contacts, Accounts, Transaction, Transfer, Data, PoxPrice, PoxSupply, PoxMarketCap, PoxGenerated, PoxStaked, ProtocolRevenue, Network,  EncodingConverter, Register, Login, ForgetPassword, Pox, SuperRepresentatives, Votes, PoxStakingGovernance, ParametersProposals, ContractsDeployment, ContractsVerification, BroadcastTransaction, ActiveAccounts} from "./pages";
+import { Home, Nodes, Blocks, Contacts, Accounts, Transaction, Transfer, Data, Pox1, PoxPrice, PoxSupply, PoxMarketCap, PoxGenerated, PoxStaked, ProtocolRevenue, EnergyConsumption, 
+  BandwidthConsumption, ResourceCosts, AverageBlockSize, Network, OnchainDataSize, RealtimeBlockProduction, SrVotesDistribution, EncodingConverter, Register, Login, ForgetPassword,
+   Pox, SuperRepresentatives, Votes, PoxStakingGovernance, ParametersProposals, ContractsDeployment, ContractsVerification, BroadcastTransaction, ActiveAccounts} from "./pages";
 import Usdx from "./pages/TokenPage/Usdx";
 
 function App() {
@@ -24,19 +26,27 @@ function App() {
        
        {/* Tokens Routes */}
         <Route path="/tokens">
-        <Route index element={<Pox />} />
+        <Route index element={<Pox/>} />
         <Route path="pox" element={<Pox />} />
         <Route path="usdx" element={<Usdx />} />
         </Route>
 
         {/* Data Routes */}
         <Route path="/data" element={<Data />} />
+        <Route path="/pox1" element ={<Pox1/>} />
         <Route path="/poxprice" element={<PoxPrice/>} />
         <Route path="/poxsupply" element ={<PoxSupply/> } />
         <Route path="/poxmarket" element={<PoxMarketCap />} />
         <Route path="/poxgenerated" element={<PoxGenerated/>} />
         <Route path="/poxstaked" element={<PoxStaked/>} />
         <Route path="/protocolrevenue" element={<ProtocolRevenue/>} />
+        <Route path="/energyconsume" element={<EnergyConsumption/>} />
+        <Route path="/bandwidthconsume" element ={<BandwidthConsumption/>} />
+        <Route path="/resourcecost" element={<ResourceCosts/>} />
+        <Route path="/averageblock" element={<AverageBlockSize/>} />
+        <Route path="/onchaindata" element ={<OnchainDataSize/>} />
+        <Route path="/realtimeblock" element ={<RealtimeBlockProduction/>} />
+        <Route path="/srvotedistribution" element={<SrVotesDistribution/>} />
         <Route path="/network" element={<Network/>} />
 
         

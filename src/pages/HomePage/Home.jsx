@@ -1,3 +1,4 @@
+import PieChartComp from "../../components/PieChartComp";
 import BlockContainer from "./BlockContainer";
 import StableCoinContainer from "./StableCoinContainer";
 import TransactionContainer from "./TransactionContainer";

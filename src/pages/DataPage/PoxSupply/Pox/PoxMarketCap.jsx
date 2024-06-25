@@ -1,5 +1,5 @@
 import { SearchBarExpand } from "../../../../components"
-
+import VerticalComposedChart from "../../../../components/VerticalComposedChart";
 const PoxMarketCap = () => {
   return (
     <div className="bg-light-sky-blue">
@@ -10,7 +10,11 @@ const PoxMarketCap = () => {
 
       <div className="m-12 text-xl font-bold">
         <p>POX Supply</p>
-        <div className="bg-white rounded-md m-12 px-96 py-60 shadow-lg">1</div>
+        <div className="bg-white rounded-md mt-5 px-12 py-6 shadow-lg">
+        <div className="pt-5 pl-14 pr-20  h-[550px]">
+            <VerticalComposedChart  width="1000"/>
+            </div>
+        </div>
       </div>
 
       <div >

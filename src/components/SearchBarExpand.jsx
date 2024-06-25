@@ -9,10 +9,10 @@ const SearchBar = ({ onSearch }) => {
   };
 
   return (
-    <div className="pb-12 relative mx-auto text-gray-600">
+    <div className="pb-12 relative mx-auto text-gray-600 p-12">
       <div className="relative flex items-center">
         <svg
-          className="absolute left-3 text-black h-4 w-4 fill-current"
+          className="absolute left-3 text-light-gray h-6 w-6 fill-current"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 56.966 56.966"
           width="512px"
@@ -30,7 +30,9 @@ const SearchBar = ({ onSearch }) => {
           placeholder="Search By Token/ Account/ Contract/ Pox Hash/ Block"
         />
         <button type="submit" className="absolute right-0 top-0 mt-2 mr-4">
-          <div className="relative inline-block text-left">
+          <div className=" flex flex-row relative  text-left">
+            <div className="bg-light-mid-gray w-6 h-6 rounded-md pl-2 mt-1 text-white">/</div>
+            <div className="text-2xl text-light-mid-gray pl-4">|</div>
             <div>
               <button
                 type="button"

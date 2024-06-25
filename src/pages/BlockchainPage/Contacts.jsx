@@ -6,7 +6,7 @@ import PieChartComp from "../../components/PieChartComp";
 import SearchBarExpand from "../../components/SearchBarExpand";
 import {IoSearch} from "react-icons/io5";
 import {PiArrowBendDownLeftBold} from "react-icons/pi";
-import Pagination from "../../components/Pagination.jsx";
+
 
 const Contacts = () => {
 
@@ -74,10 +74,11 @@ const Contacts = () => {
          <div className="bg-white px-80 py-6">
           <p className="font-bold text-xl p-0">24h Top Contracts</p>
 
-          <div>
-            <div className="w-full">
-               <PieChartComp />
-            </div>
+          <div className="flex flex-row border-2">
+          <div className=" h-80">
+          <PieChartComp />
+          </div>
+
 
             <div className=" flex flex-row justify-between ">
               <div className="">
