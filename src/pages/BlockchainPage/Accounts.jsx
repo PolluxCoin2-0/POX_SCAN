@@ -10,15 +10,16 @@ const Accounts = () => {
   
 
   return (
-    <div className="bg-light-sky-blue">
+    <div className="bg-light-sky-blue  px-12 pb-12">
       <div>
         <SearchBarExpand onSearch={setOnSearch} />
         
       </div>
-      <p className="font-bold text-2xl m-12">Blocks</p>
+
+      <p className="font-bold text-2xl pb-10">Blocks</p>
       <div className=" flex flex-row justify-around ">
-        <div className=" w-[25%]  bg-white shadow-lg rounded-lg p-5 m-12">
-          <div className="flex flex-row justify-between pt-1">
+        <div className=" w-[32%]  bg-white shadow-lg rounded-lg p-8">
+          <div className="flex flex-row justify-between pt-1 ">
             <p className="font-bold text-lg">Number of Accounts</p>
             <div className="flex flex-row">
             <p>More</p>
@@ -39,7 +40,7 @@ const Accounts = () => {
           </div>
         </div>
 
-        <div className=" w-[25%]  rounded-lg p-5 bg-white shadow-md m-12">
+        <div className=" w-[32%]  rounded-lg p-8 bg-white shadow-md ">
         <div className=" flex flex-row justify-between pt-1"> 
           <p className="font-bold text-lg">POX Holders</p>
           <div className="flex flex-row">
@@ -62,7 +63,7 @@ const Accounts = () => {
         </div>
 
       
-        <div className="w-[25%] rounded-lg p-5 bg-white shadow-md m-12">
+        <div className="w-[32%] rounded-lg p-8 bg-white shadow-md ">
           <div className="flex flex-row justify-between pt-1">
             <p className="font-bold">POX Active Accounts</p>
             <div className="flex flex-row">
@@ -89,14 +90,14 @@ const Accounts = () => {
 
 
     
-      <div className="bg-white  rounded-xl p-7 m-12 "> 
+      <div className="bg-white  rounded-xl p-7 mt-16"> 
       
       <div className="flex flex-row justify-start gap-5">
       <p className="pb-5 font-medium text-light-gray">The latest <span className="text-black font-semibold"> 10,000</span> 
       records are shown, sorted by decreasing POX balance by default  </p>
       <p className="text-light-gray text-3xl ">  <FaToggleOn/> </p >
       <p className="text-light-gray">Hide contract address</p>
-      <div className="bg-lightest-gray p-1 rounded-md w-5 h-6">?</div>
+      <div className="bg-lightest-gray font-bold pl-2 rounded-md w-5 h-6">?</div>
       </div>
       
       

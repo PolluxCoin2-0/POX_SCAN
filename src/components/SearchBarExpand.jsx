@@ -9,7 +9,7 @@ const SearchBar = ({ onSearch }) => {
   };
 
   return (
-    <div className="pb-12 relative mx-auto text-gray-600 p-12">
+    <div className="pb-12 relative mx-auto text-gray-600 py-12">
       <div className="relative flex items-center">
         <svg
           className="absolute left-3 text-light-gray h-6 w-6 fill-current"

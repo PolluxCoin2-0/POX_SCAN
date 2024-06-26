@@ -7,14 +7,14 @@ import {MdKeyboardArrowRight} from "react-icons/md";
 const Blocks = () => {
   const [onSearch, setOnSearch] = useState("");
   return (
-    <div className="bg-light-sky-blue">
+    <div className="bg-light-sky-blue px-12 pb-12">
       <div>
         <SearchBarExpand onSearch={setOnSearch} />
         
       </div>
-      <p className="font-bold text-2xl m-12">Blocks</p>
+      <p className="font-bold text-2xl pb-8">Blocks</p>
       <div className=" flex flex-row justify-around ">
-        <div className=" w-[25%]  bg-white shadow-lg rounded-lg p-5 m-12">
+        <div className=" w-[32%]  bg-white shadow-lg rounded-lg p-5 ">
           <div className="pt-1">
             <p className="font-bold">Number of Blocks</p>
           </div>
@@ -32,7 +32,7 @@ const Blocks = () => {
           </div>
         </div>
 
-        <div className=" w-[25%]  rounded-lg p-5 bg-white shadow-md m-12">
+        <div className=" w-[32%]  rounded-lg p-5 bg-white shadow-md ">
         <div className=" flex flex-row pt-1 justify-between"> 
           <p className="font-bold">Block Rewards</p>
           <div className="flex flex-row">
@@ -58,7 +58,7 @@ const Blocks = () => {
         </div>
 
       
-        <div className="w-[25%] rounded-lg p-5 bg-white shadow-md m-12">
+        <div className="w-[32%] rounded-lg p-5 bg-white shadow-md ">
           <div className=" flex flex-row justify-between pt-1">
             <p className="font-bold">Stats on Burned POX</p>
             <div className="flex flex-row">
@@ -86,11 +86,11 @@ const Blocks = () => {
       
 
 
-      <p className="font-bold text-2xl m-12">StableCoin</p>
-      <div className="bg-white  rounded-xl p-7 m-12 "> 
+      <p className="font-bold text-2xl pb-10  pt-10">StableCoin</p>
+      <div className="bg-white  rounded-xl p-7  "> 
       <p className="pb-5 font-medium text-light-gray">Only the first <span className="text-black font-semibold">10,000</span> records are displayed</p>
 
-      <div className="flex flex-row justify-around p-2 bg-lightest-gray rounded-lg">
+      <div className="flex flex-row justify-around p-2 pb-10 bg-lightest-gray rounded-lg">
         <p className=" w-[12%]">Block</p>
         <p className=" w-[12%]">Age</p>
         <p className=" w-[12%]">Producer</p>
