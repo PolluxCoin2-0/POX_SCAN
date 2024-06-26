@@ -12,6 +12,7 @@
  import svg from "../../assets/SVG.png";
  import { HiArrowUpRight} from "react-icons/hi2";
 import {IoIosArrowForward} from "react-icons/io";
+import { FaArrowRightLong} from "react-icons/fa6";
 
 const PoxStakingGovernance = () => {
   return (
@@ -23,11 +24,20 @@ const PoxStakingGovernance = () => {
 
       <div className="flex flex-row justify-around  bg-white m-12 rounded-lg ">
        <div className="w-[40%] pt-10">
-       <p className="text-3xl font-bold mt-10 ">POX STAKING GOVERNANCE</p>
+       <p className="text-4xl font-bold mt-10 ">POX STAKING GOVERNANCE</p>
+
        <p className="pt-4 mt-10 text-lg font-bold"> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s</p>
+      <div>
+        
+      </div>
        <button className="bg-dark-yellow py-2 px-6 rounded-xl text-black cursor-pointer mt-20">
-       Connect Wallet
+       Connect Wallet <FaArrowRightLong/>
      </button>
+
+     <button className="bg-dark-yellow py-2 px-6 rounded-xl text-black cursor-pointer mt-20 ml-20">
+       Stake
+     </button>
+       
        
        </div>
 
