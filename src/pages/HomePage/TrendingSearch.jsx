@@ -4,10 +4,14 @@ import TotalAccounts from "../../assets/TotalAccounts.png";
 import TVL from "../../assets/TVL.png";
 import TotalTxns from "../../assets/TotalTxns.png";
 import TotalTransferVolume from "../../assets/TotalTransferVolume.png";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AreaChartComp from "../../components/AreaChart";
+import { getTrendingSearchData } from "../../utils/axios/Home";
+import { formatNumberWithCommas } from "../../utils/FormattingNumber";
 
-const CardForTrendingSearch = ({ icon, title }) => {
+
+const CardForTrendingSearch = ({ icon, title, value, valueFor24hr }) => {
+
   return (
     <div className="flex justify-between ">
       <div className="flex flex-row items-center space-x-4">
@@ -16,13 +20,13 @@ const CardForTrendingSearch = ({ icon, title }) => {
         </div>
         <div>
           <p className="text-light-gray pb-1">{title}</p>
-          <p className="font-semibold">34433434</p>
+          <p className="font-semibold">{value && formatNumberWithCommas(parseInt(value))}</p>
         </div>
       </div>
 
       <div>
         <p className="text-light-gray pb-1">24h</p>
-        <p className="font-semibold">0</p>
+        <p className="font-semibold">{valueFor24hr && formatNumberWithCommas(parseInt(valueFor24hr))}</p>
       </div>
     </div>
   );
@@ -30,6 +34,20 @@ const CardForTrendingSearch = ({ icon, title }) => {
 
 const TrendingSearch = () => {
   const [selectedOption, setSelectedOption] = useState("Monthly");
+  const [data, setData] =useState({});
+
+  useEffect(()=>{
+    const fetchData=async()=>{
+    try {
+      const data = await getTrendingSearchData();
+      setData(data?.message);
+      }
+      catch (error) {
+        console.log(error);
+      }
+    } 
+    fetchData();
+  },[])
 
   const handleChange = (event) => {
     setSelectedOption(event.target.value);
@@ -61,9 +79,11 @@ const TrendingSearch = () => {
               <CardForTrendingSearch
                 icon={TotalAccounts}
                 title="Total Accounts"
+                value={data?.totaladdr}
+                valueFor24hr={data?.last24addr}
               />
             </div>
-            <CardForTrendingSearch icon={TotalTxns} title="Total Txns" />
+            <CardForTrendingSearch icon={TotalTxns} title="Total Txns"  value={data?.totaltxn} valueFor24hr={data?.last24hourtxn}/>
           </div>
 
           <div className="border-r-[1px] blur-sm"></div>
@@ -82,12 +102,12 @@ const TrendingSearch = () => {
         <div className="flex justify-between shadow-lg bg-white rounded-xl p-4">
           <div>
             <p className="text-light-gray pb-1">Current/MaxTPS:</p>
-            <p className="font-semibold">0/1000</p>
+            <p className="font-semibold">{data?.currenttps}/{data?.maxtps}</p>
           </div>
 
           <div>
             <p className="text-light-gray pb-1">Nodes:</p>
-            <p className="font-semibold">00</p>
+            <p className="font-semibold">{data?.nodes}</p>
           </div>
 
           <div>

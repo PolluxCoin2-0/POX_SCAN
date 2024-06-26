@@ -8,3 +8,13 @@ export const getTvlPriceData = async() => {
         console.log("error", error);
     }
 }
+
+export const getTrendingSearchData = async() => {
+    try {
+         const response = await axios.get("https://node.poxscan.io/api/status");
+         return (response?.data);
+    } catch (error) {
+        console.log("error", error);
+        
+    }
+}
