@@ -19,7 +19,6 @@ const Contract= () => {
             <div className="h-96  pt-12 w-[850px]">
             <BiaxialLineChart width="500"/>
             </div>
-          
           </div>
         </div>
 
