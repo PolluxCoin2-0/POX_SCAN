@@ -1,5 +1,5 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import { Footer, Navbar } from "./layout";
+import { Footer, Navbar, Sidebar } from "./layout";
 import { Home, Nodes, Blocks, Contacts, Accounts, Transaction, Transfer, Data, Pox1, PoxPrice, PoxSupply, PoxMarketCap, PoxGenerated, PoxStaked, ProtocolRevenue, EnergyConsumption, 
   BandwidthConsumption, ResourceCosts, AverageBlockSize, Network, OnchainDataSize, RealtimeBlockProduction, SrVotesDistribution, EncodingConverter, Register, Login, ForgetPassword,
    Pox, SuperRepresentatives, Votes, PoxStakingGovernance, ParametersProposals, ContractsDeployment, ContractsVerification, BroadcastTransaction, ActiveAccounts} from "./pages";
@@ -11,7 +11,8 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-         
+        <Route path="/home" element={<Home />} />
+        <Route path="/sidebar" element={<Sidebar />} />
 
         {/* Blockchain Routes */}
         <Route path="/blockchain">
