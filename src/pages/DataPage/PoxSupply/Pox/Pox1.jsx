@@ -7,13 +7,13 @@ import CustomPieChart from "../../../../components/CustomPieChart";
 
 const Pox = () => {
   return (
-    <div className="bg-light-sky-blue">
+    <div className="bg-light-sky-blue px-12 pb-12 ">
        
       <div>
         <SearchBarExpand />
       </div>
 
-      <div className="flex flex-row justify-between m-12">
+      <div className="flex flex-row justify-between ">
         <div>
           <p className="text-2xl font-bold">POX Price</p>
           <div className="bg-white rounded-2xl shadow-xl w-[880px] h-[400px] mt-5">
@@ -36,7 +36,7 @@ const Pox = () => {
 
 
       
-      <div className="flex flex-row justify-between m-12">
+      <div className="flex flex-row justify-between ">
         <div>
           <p className="text-2xl font-bold">POX Market Cap</p>
           <div className="bg-white rounded-2xl shadow-xl w-[880px] h-[400px] mt-5">
@@ -58,7 +58,7 @@ const Pox = () => {
       </div>
 
 
-      <div className="flex flex-row justify-between m-12">
+      <div className="flex flex-row justify-between ">
         <div>
           <p className="text-2xl font-bold">POX Staked</p>
           <div className="bg-white rounded-2xl shadow-xl w-[880px] h-[400px] mt-5">

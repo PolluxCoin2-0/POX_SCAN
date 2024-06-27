@@ -71,7 +71,7 @@ const BiaxialLineChart = ({width}) => {
       >
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="name" />
-        <YAxis yAxisId="left" orientation="left" />
+       <YAxis yAxisId="left" orientation="left" />
         <YAxis yAxisId="right" orientation="right" />
         <Tooltip />
         <Legend />

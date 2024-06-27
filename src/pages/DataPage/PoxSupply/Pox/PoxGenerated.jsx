@@ -2,17 +2,17 @@ import { SearchBarExpand } from "../../../../components"
 import CustomPieChart from "../../../../components/CustomPieChart"
 const PoxGenerated = () => {
   return (
-    <div className="bg-light-sky-blue">
+    <div className="bg-light-sky-blue px-12 pb-12">
 
       <div>
         <SearchBarExpand />
       </div>
 
       <div>
-        <p className="m-12 text-lg font-bold">POX Generated/Burned</p>
+        <p className=" text-lg font-bold">POX Generated/Burned</p>
 
-        <div className="flex flex-row justify-between m-12 gap-5">
-          <div className="bg-white flex flex-row justify-around rounded-xl shadow-lg w-[70%] h-auto">
+        <div className="flex flex-row justify-between mt-8 mb-8 gap-5">
+          <div className="bg-white flex flex-row  justify-around rounded-xl shadow-lg w-[70%] h-auto">
             <div className="text-lg font-bold space-y-12 pt-14 pl-36">
               <p>0.552219</p>
               <p>0.552219</p>
@@ -21,7 +21,7 @@ const PoxGenerated = () => {
             
             </div>
 
-           <div className=" h-80">
+           <div className=" h-80 w-[50%]">
            <CustomPieChart />
            </div>
 
@@ -60,9 +60,9 @@ const PoxGenerated = () => {
 
       
       <div >
-        <p className="m-12 text-xl font-bold">List</p>
-        <div className="bg-white rounded-md m-12 shadow-lg p-10">
-          <div className="flex flex-row justify-around bg-lightest-gray ml-8 mr-8 pt-2 pb-2 rounded-md text-light-gray">
+        <p className=" text-xl mb-10 font-bold">List</p>
+        <div className="bg-white rounded-md  shadow-lg p-12">
+          <div className="flex flex-row justify-around bg-lightest-gray  pt-2 pb-2 rounded-md text-light-gray">
             <p>Date(UTC)</p>
             <p>Pox Price</p>
           </div>
