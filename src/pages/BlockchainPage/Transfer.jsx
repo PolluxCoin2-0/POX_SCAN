@@ -5,7 +5,7 @@ import PieChartComp from "../../components/PieChartComp"
 import SearchBarExpand from "../../components/SearchBarExpand";
 import {IoSearch} from "react-icons/io5";
 import {PiArrowBendDownLeftBold} from "react-icons/pi";
-import {MdKeyboardArrowRight} from "react-icons/md";
+
 
 const Transfer = () => {
 
@@ -80,13 +80,13 @@ const Transfer = () => {
           <p className="font-bold text-xl pt-5 pl-8 ">Transfer Type Distribution</p>
 
           <div className="flex flex-row  justify-between">
-          <div className=" h-80 w-[40%]">
+          <div className=" h-80 w-[70%]">
            <PieChartComp />
           </div>
 
 
             <div className=" flex flex-row justify-between ">
-              <div className=" pr-20 pt-10 space-y-8">
+              <div className=" pr-20 space-y-6">
 
                 <p className="font-bold">TRX Transfer</p>
                 <p className="font-bold">TRC 10 Transfers</p>
@@ -95,7 +95,7 @@ const Transfer = () => {
                 <p className="font-bold">TRC1155 Transfers</p>
                 </div>
 
-              <div className="pr-10 pt-10 space-y-8">
+              <div className="pr-10  space-y-6">
                 <p className="font-bold">2,035,198 calls <span className="text-light-gray">(99.03%)</span></p>
                 <p className="font-bold">6,035 calls <span className="text-light-gray">(88.05%)</span></p>
                 <p className="font-bold">7,987 calls <span className="text-light-gray">(88.75%)</span></p>

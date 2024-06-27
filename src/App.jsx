@@ -14,6 +14,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/sidebar" element={<Sidebar />} />
 
+
         {/* Blockchain Routes */}
         <Route path="/blockchain">
         <Route index element ={<Nodes/>} />
