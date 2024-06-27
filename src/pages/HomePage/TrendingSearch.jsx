@@ -6,7 +6,7 @@ import TotalTxns from "../../assets/TotalTxns.png";
 import TotalTransferVolume from "../../assets/TotalTransferVolume.png";
 import { useEffect, useState } from "react";
 import AreaChartComp from "../../components/AreaChart";
-import { getTrendingSearchData } from "../../utils/axios/Home";
+import { getResourceDetailsData, getTrendingSearchData } from "../../utils/axios/Home";
 import { formatNumberWithCommas } from "../../utils/FormattingNumber";
 
 
@@ -35,12 +35,14 @@ const CardForTrendingSearch = ({ icon, title, value, valueFor24hr }) => {
 const TrendingSearch = () => {
   const [selectedOption, setSelectedOption] = useState("Monthly");
   const [data, setData] =useState({});
-
+ const [data2, setData2] = useState({});
   useEffect(()=>{
     const fetchData=async()=>{
     try {
       const data = await getTrendingSearchData();
+      const data2= await getResourceDetailsData();
       setData(data?.message);
+      setData2(data2?.message);
       }
       catch (error) {
         console.log(error);
@@ -122,7 +124,7 @@ const TrendingSearch = () => {
 
           <div>
             <p className="text-light-gray pb-1">Bandwidth:</p>
-            <p className="font-semibold">2925033</p>
+            <p className="font-semibold">{data2?.bandwidth}</p>
           </div>
 
           <div>

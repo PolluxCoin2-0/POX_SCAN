@@ -2,7 +2,8 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { Footer, Navbar } from "./layout";
 import { Home, Nodes, Blocks, Contacts, Accounts, Transaction, Transfer, Data, Pox1, PoxPrice, PoxSupply, PoxMarketCap, PoxGenerated, PoxStaked, ProtocolRevenue, EnergyConsumption, 
   BandwidthConsumption, ResourceCosts, AverageBlockSize, Network, OnchainDataSize, RealtimeBlockProduction, SrVotesDistribution, EncodingConverter, Register, Login, ForgetPassword,
-   Pox, SuperRepresentatives, Votes, PoxStakingGovernance, ParametersProposals, ContractsDeployment, ContractsVerification, BroadcastTransaction, ActiveAccounts} from "./pages";
+   Pox, SuperRepresentatives, Votes, PoxStakingGovernance, ParametersProposals, ContractsDeployment, ContractsVerification, BroadcastTransaction, Account, TotalAccounts, ActiveAccounts,
+  NewAccounts, PoxHolders, Transaction1, TransactionTrend, CumulativeTransactions, Contracts,} from "./pages";
 import Usdx from "./pages/TokenPage/Usdx";
 
 function App() {
@@ -74,7 +75,15 @@ function App() {
         <Route path="/login" element={<Login/>} />
         <Route path="/forgetpassword" element={<ForgetPassword/>} />
         
+        <Route path="/account" element={<Account />} />
+        <Route path="/totalaccount" element ={<TotalAccounts />} />
         <Route path="/activeaccount" element={<ActiveAccounts />} />
+        <Route path="/newaccount" element={<NewAccounts/>} />
+        <Route path="/poxholders" element ={<PoxHolders/>} />
+        <Route path="/transaction1" element={<Transaction1/>} />
+        <Route path="/transactiontrend" element={<TransactionTrend/>} />
+        <Route path="/cumulativetransactions" element={<CumulativeTransactions/>} />
+        <Route path="/contract" element ={<Contracts/>} />
       </Routes>
       <Footer/>
     </Router>

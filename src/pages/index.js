@@ -30,7 +30,17 @@ import Governance from "./GovernancePage/Governance";
 import SuperRepresentatives from "./GovernancePage/SuperRepresentatives";
 import PoxStakingGovernance from "./GovernancePage/PoxStakingGovernance";
 import ParametersProposals from "./GovernancePage/ParametersProposals";
+
+import Account from "./DataPage/PoxSupply/Accounts/Account";
+import TotalAccounts from "./DataPage/PoxSupply/Accounts/TotalAccounts";
 import ActiveAccounts from "./DataPage/PoxSupply/Accounts/ActiveAccounts";
+import NewAccounts from "./DataPage/PoxSupply/Accounts/NewAccounts";
+import PoxHolders from "./DataPage/PoxSupply/Accounts/PoxHolders";
+import Transaction1 from "./DataPage/PoxSupply/Transactions/Transaction1";
+import TransactionTrend from "./DataPage/PoxSupply/Transactions/TransactionTrend";
+import CumulativeTransactions from "./DataPage/PoxSupply/Transactions/CumulativeTransactions";
+
+import Contracts from "./DataPage/PoxSupply/Contracts/Contract";
 import Votes from "./GovernancePage/Votes";
 import PoxEcosystem from "./PoxEcosystemPage/PoxEcosystem";
 import ContractsDeployment from "./PoxEcosystemPage/ContractsDeployment";
@@ -83,7 +93,15 @@ export {
     ContractsDeployment,
     ContractsVerification,
     BroadcastTransaction,
+    Account,
+    TotalAccounts,
     ActiveAccounts,
+    NewAccounts,
+    PoxHolders,
+    Transaction1,
+    TransactionTrend,
+    CumulativeTransactions,
+    Contracts,
 
     }
     

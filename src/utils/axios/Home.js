@@ -18,3 +18,13 @@ export const getTrendingSearchData = async() => {
         
     }
 }
+
+export const getResourceDetailsData = async() => {
+    try {
+        const response = await axios.get("https://governance.poxscan.io/governance/resourcedetails");
+        return (response?.data);
+    } catch (error) {
+        console.log("error", error);
+        
+    }
+}

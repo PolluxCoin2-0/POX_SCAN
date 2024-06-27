@@ -76,13 +76,13 @@ const FormComponent = () => {
   };
 
   return (
-    <div className=" w-full mx-auto mt-10 p-20 bg-white rounded-md ">
+    <div className=" w-full mx-auto mt-10 p-20 pb-2 bg-white rounded-lg ">
       {/* <h2 className="text-2xl font-semibold mb-6">Form</h2> */}
       <form onSubmit={handleSubmit}>
         <div className="flex flex-row justify-between">
             <div className="w-[40%]">
-        <div className="mb-4 flex flex-row ">
-          <label htmlFor="currentAddress" className="block text-sm font-medium  text-gray-700  ">Contract Address</label>
+        <div className="mb-4 flex flex-row items-center">
+          <label htmlFor="currentAddress" className="block text-lg font-medium  text-light-gray  mr-8 whitespace-nowrap">Contract Address</label>
           <input
             type="text"
             id="currentAddress"
@@ -90,13 +90,13 @@ const FormComponent = () => {
             placeholder="Contract Address"
             value={formData.currentAddress}
             onChange={handleInputChange}
-            className={`mt-1 block w-full px-3 py-2 border ${errors.currentAddress ? 'border-red-300' : 'border-gray-300'} rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm`}
+            className={`mt-1 block w-full px-3 py-2 border ${errors.currentAddress ? 'border-red-300' : 'border-gray-300'} border-lightest-gray rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm`}
             required
           />
           {errors.currentAddress && <p className="mt-1 text-red-500 text-sm">{errors.currentAddress}</p>}
         </div>
-        <div className="mb-4 flex flex-row">
-          <label htmlFor="optimization" className="block text-sm font-medium text-gray-700  ">Optimization</label>
+        <div className="mb-4 flex flex-row items-center">
+          <label htmlFor="optimization" className="block text-lg font-medium text-light-gray  mr-16">Optimization</label>
           <input
             type="text"
             id="optimization"
@@ -104,13 +104,13 @@ const FormComponent = () => {
             placeholder='Optimization'
             value={formData.optimization}
             onChange={handleInputChange}
-            className={`mt-1 block w-full px-3 py-2 border ${errors.optimization ? 'border-red-300' : 'border-gray-300'} rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm`}
+            className={`mt-1 block w-full px-3 py-2 border ${errors.optimization ? 'border-red-300' : 'border-gray-300'} border-lightest-gray rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm`}
             required
           />
           {errors.optimization && <p className="mt-1 text-red-500 text-sm">{errors.optimization}</p>}
         </div>
-        <div className="mb-4 flex flex-row ">
-          <label htmlFor="compiler" className="block text-sm font-medium text-gray-700  ">Compiler</label>
+        <div className="mb-4 flex flex-row  items-center">
+          <label htmlFor="compiler" className="block text-lg font-medium text-light-gray   mr-24">Compiler</label>
           <input
             type="text"
             id="compiler"
@@ -118,7 +118,7 @@ const FormComponent = () => {
             placeholder="Please select compiler"
             value={formData.compiler}
             onChange={handleInputChange}
-            className={`mt-1 block w-full px-3 py-2 border ${errors.compiler ? 'border-red-300' : 'border-gray-300'} rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm`}
+            className={`mt-1 block w-full px-3 py-2 border ${errors.compiler ? 'border-red-300' : 'border-gray-300'} border-lightest-gray rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm`}
             required
         
           />
@@ -129,8 +129,8 @@ const FormComponent = () => {
         </div>
 
         <div className="w-[40%]">
-        <div className="mb-4 flex flex-row">
-          <label htmlFor="contractName" className="block text-sm font-medium text-gray-700">Contract Name</label>
+        <div className="mb-4 flex flex-row items-center">
+          <label htmlFor="contractName" className="block text-lg font-medium text-light-gray  mr-9 whitespace-nowrap">Contract Name</label>
           <input
             type="text"
             id="contractName"
@@ -138,13 +138,13 @@ const FormComponent = () => {
             placeholder="Please enter the name of the main contractor"
             value={formData.contractName}
             onChange={handleInputChange}
-            className={`mt-1 block w-full px-3 py-2 border ${errors.contractName ? 'border-red-300' : 'border-gray-300'} rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm`}
+            className={`mt-1 block w-full px-3 py-2 border ${errors.contractName ? 'border-red-300' : 'border-gray-300'} border-lightest-gray rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm`}
             required
           />
           {errors.contractName && <p className="mt-1 text-red-500 text-sm">{errors.contractName}</p>}
         </div>
-        <div className="mb-4 flex flex-row">
-          <label htmlFor="license" className="block text-sm font-medium text-gray-700">License</label>
+        <div className="mb-4 flex flex-row items-center">
+          <label htmlFor="license" className="block text-lg font-medium text-dark-red  mr-24">License:</label>
           <input
             type="text"
             id="license"
@@ -152,20 +152,20 @@ const FormComponent = () => {
             placeholder="Please select licence"
             value={formData.license}
             onChange={handleInputChange}
-            className={`mt-1 block w-full px-3 py-2 border ${errors.license ? 'border-red-300' : 'border-gray-300'} rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm`}
+            className={`mt-1 block w-full px-3 py-2 border ${errors.license ? 'border-red-300' : 'border-gray-300'} border-lightest-gray rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm`}
             required
           />
           {errors.license && <p className="mt-1 text-red-500 text-sm">{errors.license}</p>}
         </div>
-        <div className="mb-4 flex flex-row">
-          <label htmlFor="runs" className="block text-sm font-medium text-gray-700">Runs</label>
+        <div className="mb-4 flex flex-row items-center">
+          <label htmlFor="runs" className="block text-lg font-medium text-light-gray  mr-28">Runs</label>
           <input
             type="text"
             id="runs"
             name="runs"
             value={formData.runs}
             onChange={handleInputChange}
-            className={`mt-1 block w-full px-3 py-2 border ${errors.runs ? 'border-red-300' : 'border-gray-300'} rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm`}
+            className={`mt-1 block w-full px-3 py-2 border ${errors.runs ? 'border-red-300' : 'border-gray-300'} border-lightest-gray rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm`}
             required
           />
           {errors.runs && <p className="mt-1 text-red-500 text-sm">{errors.runs}</p>}

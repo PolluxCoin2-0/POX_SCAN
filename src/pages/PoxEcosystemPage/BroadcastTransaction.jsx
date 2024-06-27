@@ -18,21 +18,21 @@ const BroadcastTransaction = () => {
     setMessage('');
   };
   return (
-    <div className="bg-light-sky-blue ">
+    <div className="bg-light-sky-blue px-12 pb-20">
 
       <div>
         <SearchBarExpand/>
       </div>
 
       <div>
-        <p className="text-xl font-bold p-12">Broadcast Transaction</p>
-        <div className="bg-white rounded-xl p-10 ml-12 mr-12">
+        <p className="text-xl font-bold pb-10 ">Broadcast Transaction</p>
+        <div className="bg-white rounded-xl p-10 ">
           <p className="text-lg font-bold">Broadcast Raw Transaction</p>
           <p className="pt-8 text-md text-light-gray tracking-wider">This Page Allows You To Paste A Signed Raw Transaction In Hex Format (I.E. Characters 0-9, A-F) And Broadcast It Over The POLLUX Network.</p>
         </div>
       </div>
 
-      <div className=" m-12 p-6 bg-white rounded-lg shadow-md">
+      <div className=" mt-10 p-6 bg-white rounded-lg shadow-md">
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
           <label htmlFor="message" className="block text-sm font-medium text-gray-700"></label>
@@ -42,7 +42,7 @@ const BroadcastTransaction = () => {
             rows="5"
             value={message}
             onChange={handleChange}
-            className="mt-1 block w-full px-3 py-2 rounded-md  focus:outline-none  "
+            className="mt-1 block w-full px-3 py-2 rounded-md  focus:outline-none resize-none "
             placeholder="Enter signed transaction hex |"
             required
           />
