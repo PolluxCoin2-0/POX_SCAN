@@ -37,7 +37,7 @@ export const NavbarOptions = {
       Transactions: ["Transaction Trend", "Cumulative Transactions"],
       Contracts: ["Contract Calls", "Top Contracts"],
     },
-    Ranking: ["Accounts, Tokens, Contracts"],
+    Ranking: ["Accounts", "Tokens", "Contracts"],
   },
   Governance: [
     "Super Representatives",

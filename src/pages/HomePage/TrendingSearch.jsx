@@ -11,7 +11,6 @@ import { formatNumberWithCommas } from "../../utils/FormattingNumber";
 
 
 const CardForTrendingSearch = ({ icon, title, value, valueFor24hr }) => {
-
   return (
     <div className="flex justify-between ">
       <div className="flex flex-row items-center space-x-4">
