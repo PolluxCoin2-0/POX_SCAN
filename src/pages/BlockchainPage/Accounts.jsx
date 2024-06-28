@@ -2,7 +2,6 @@ import { useState } from "react";
 import {TokenData} from "../../data/Token";
 import SearchBarExpand from "../../components/SearchBarExpand";
 import {FaToggleOn} from "react-icons/fa";
-import Toggle from "../../components/Toggle";
 import {MdKeyboardArrowRight} from "react-icons/md";
 
 
@@ -96,7 +95,7 @@ const Accounts = () => {
       <div className="flex flex-row justify-start gap-5">
       <p className="pb-5 font-medium text-light-gray">The latest <span className="text-black font-semibold"> 10,000</span> 
       records are shown, sorted by decreasing POX balance by default  </p>
-      <p className="text-light-gray text-3xl ">  <FaToggleOn/> <Toggle /> </p >
+      <p className="text-light-gray text-3xl ">  <FaToggleOn/> </p >
       <p className="text-light-gray">Hide contract address</p>
       <div className="bg-lightest-gray font-bold pl-2 rounded-md w-5 h-6">?</div>
       </div>
