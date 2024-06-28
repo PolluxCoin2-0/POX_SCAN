@@ -41,6 +41,11 @@ import TransactionTrend from "./DataPage/PoxSupply/Transactions/TransactionTrend
 import CumulativeTransactions from "./DataPage/PoxSupply/Transactions/CumulativeTransactions";
 
 import Contracts from "./DataPage/PoxSupply/Contracts/Contract";
+import ContractCalls from "./DataPage/PoxSupply/Contracts/ContractCalls";
+import TopContracts from "./DataPage/PoxSupply/Contracts/TopContracts";
+import Accounts1 from "./DataPage/Ranking/Accounts1";
+import Tokens2 from "./DataPage/Ranking/Tokens2";
+import Contracts2 from "./DataPage/Ranking/Contracts2";
 import Votes from "./GovernancePage/Votes";
 import PoxEcosystem from "./PoxEcosystemPage/PoxEcosystem";
 import ContractsDeployment from "./PoxEcosystemPage/ContractsDeployment";
@@ -102,6 +107,11 @@ export {
     TransactionTrend,
     CumulativeTransactions,
     Contracts,
+    ContractCalls,
+    TopContracts,
+    Accounts1,
+    Tokens2,
+    Contracts2,
 
     }
     
