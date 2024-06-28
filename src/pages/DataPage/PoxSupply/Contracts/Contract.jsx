@@ -1,6 +1,5 @@
 import { SearchBarExpand } from "../../../../components";
 import BiaxialLineChart from "../../../../components/BiaxialLineChart";
-import MixBarChart from "../../../../components/MixBarChart";
 import SimpleAreaChart from "../../../../components/SimpleAreaChart";
 
 

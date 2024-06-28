@@ -3,7 +3,7 @@ import { Footer, Navbar, Sidebar } from "./layout";
 import { Home, Nodes, Blocks, Contacts, Accounts, Transaction, Transfer, Data, Pox1, PoxPrice, PoxSupply, PoxMarketCap, PoxGenerated, PoxStaked, ProtocolRevenue, EnergyConsumption, 
   BandwidthConsumption, ResourceCosts, AverageBlockSize, Network, OnchainDataSize, RealtimeBlockProduction, SrVotesDistribution, EncodingConverter, Register, Login, ForgetPassword,
    Pox, SuperRepresentatives, Votes, PoxStakingGovernance, ParametersProposals, ContractsDeployment, ContractsVerification, BroadcastTransaction, Account, TotalAccounts, ActiveAccounts,
-  NewAccounts, PoxHolders, Transaction1, TransactionTrend, CumulativeTransactions, Contracts,} from "./pages";
+  NewAccounts, PoxHolders, Transaction1, TransactionTrend, CumulativeTransactions, Contracts, ContractCalls, TopContracts, Accounts1, Tokens2, Contracts2,} from "./pages";
 import Usdx from "./pages/TokenPage/Usdx";
 
 const AppRoutes = () => {

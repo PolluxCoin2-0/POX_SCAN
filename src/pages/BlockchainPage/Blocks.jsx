@@ -90,15 +90,15 @@ const Blocks = () => {
       <div className="bg-white  rounded-xl p-7  "> 
       <p className="pb-5 font-medium text-light-gray">Only the first <span className="text-black font-semibold">10,000</span> records are displayed</p>
 
-      <div className="flex flex-row justify-around p-2 pb-10 bg-lightest-gray rounded-lg">
-        <p className=" w-[12%]">Block</p>
-        <p className=" w-[12%]">Age</p>
-        <p className=" w-[12%]">Producer</p>
-        <p className=" w-[12%]">Pox Count</p>
-        <p className=" w-[16%] whitespace-nowrap">Consumed Energy/Bandwidth</p>
-        <p className=" w-[8%]">Burned POX</p>
-        <p className=" w-[12%]">Block Reward</p>
-        <p className=" w-[12%]">Status</p>
+      <div className="flex flex-row justify-around p-2 pb-3 bg-lightest-gray rounded-lg">
+        <p className=" w-[12%]  font-bold">Block</p>
+        <p className=" w-[12%] font-bold">Age</p>
+        <p className=" w-[12%] font-bold">Producer</p>
+        <p className=" w-[12%] font-bold">Pox Count</p>
+        <p className=" w-[16%] font-bold whitespace-nowrap">Consumed Energy/Bandwidth</p>
+        <p className=" w-[8%] font-bold">Burned POX</p>
+        <p className=" w-[12%] font-bold">Block Reward</p>
+        <p className=" w-[12%] font-bold">Status</p>
       </div>
      
 
