@@ -88,6 +88,11 @@ const AppRoutes = () => {
             <Route path="/transactiontrend" element={<TransactionTrend />} />
             <Route path="/cumulativetransactions" element={<CumulativeTransactions />} />
             <Route path="/contract" element={<Contracts />} />
+            <Route path="/contractcalls" element={<ContractCalls/>} />
+            <Route path="/topcontract" element={<TopContracts/>} />
+            <Route path="/accounts1" element={<Accounts1/>} />
+            <Route path="/tokens2" element={<Tokens2/>} />
+            <Route path="/contracts2" element={<Contracts2/>} />
           </Routes>
         </Sidebar>
       )}
