@@ -15,11 +15,24 @@ const Sidebar = ({children}) => {
 
   useEffect(() => {
     const pathNameFromURL = location.pathname.split("/")[1];
-    console.log(pathNameFromURL)
     const capitalizedPath = capitalizeFirstLetter(pathNameFromURL);
-    setPath(capitalizedPath);
+    if(capitalizedPath==="PoxEcosystem")
+      {
+        setPath("Pox Ecosystem")
+      }
+      else{
+        setPath(capitalizedPath)
+      }
 
-    const submenuList = getSubmenuList(capitalizedPath);
+      let submenuList;
+
+      if(capitalizedPath==="PoxEcosystem"){
+        submenuList = getSubmenuList("Pox Ecosystem");
+      }
+      else{
+        submenuList = getSubmenuList(capitalizedPath);
+      }
+
     setSubmenu(submenuList);
   }, [location]);
 
@@ -34,9 +47,10 @@ const Sidebar = ({children}) => {
     }));
   };
 
+
   const getSubmenuList = (path) => {
     const submenu = NavbarOptions[path];
-    console.log(submenu)
+
     if (submenu) {
       return submenu;
     }
@@ -49,8 +63,6 @@ const Sidebar = ({children}) => {
   };
 
   const renderSubmenu = (submenu) => {
-    console.log(Array.isArray(submenu));
-  
     // Check if submenu is an array
     if (Array.isArray(submenu)) {
       return (
@@ -112,7 +124,7 @@ const Sidebar = ({children}) => {
       </aside>
 
       <div className="p-4 sm:ml-64">
-        <div className="p-4 border-2  border-dashed rounded-lg dark:border-light-sky-blue">
+        <div className="p-4">
           {children}
         </div>
       </div>
