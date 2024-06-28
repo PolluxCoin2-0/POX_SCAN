@@ -49,48 +49,56 @@ const Sidebar = ({children}) => {
   };
 
   const renderSubmenu = (submenu) => {
-    console.log(Array.isArray(submenu))
-    return Object.entries(submenu).map(([key, value], index) => {
-      if (Array.isArray(value)) {
-        return (
-          <li key={index}>
-            <button
-              onClick={() => toggleSubmenu(key)}
-              className="flex items-center p-2 text-white rounded-lg hover:bg-white hover:text-black  group"
-            >
-              {key}
-            </button>
-            {openSubmenus[key] && (
-              <ul className="pl-4">
-                {value.map((subItem, subIndex) => (
-                  <li key={subIndex} className="flex items-center p-2 text-white rounded-lg hover:bg-white hover:text-black group">
-                    {subItem}
-                  </li>
-                ))}
-              </ul>
-            )}
-          </li>
-        );
-      } else if (typeof value === "object") {
-        return (
-          <li key={index}>
-            <button
-              onClick={() => toggleSubmenu(key)}
-              className="flex items-center p-2 text-white rounded-lg hover:bg-white hover:text-black  group"
-            >
-              {key}
-            </button>
-            {openSubmenus[key] && (
-              <ul className="pl-4">
-                {renderSubmenu(value)}
-              </ul>
-            )}
-          </li>
-        );
-      }
-      return null;
-    });
+    console.log(Array.isArray(submenu));
+  
+    // Check if submenu is an array
+    if (Array.isArray(submenu)) {
+      return (
+        <>
+          {submenu.map((item, index) => (
+            <li key={index}>
+              <button
+                onClick={() => toggleSubmenu(item)}
+                className="flex items-center p-2 text-white rounded-lg hover:bg-white hover:text-black group"
+              >
+                {item}
+              </button>
+              {openSubmenus[item] && (
+                <ul className="pl-4">
+                  {/* Here you can render additional nested items if needed */}
+                </ul>
+              )}
+            </li>
+          ))}
+        </>
+      );
+    } else if (typeof submenu === "object" && !Array.isArray(submenu)) {
+      // If submenu is an object
+      return (
+        <>
+          {Object.entries(submenu).map(([key, value], index) => (
+            <li key={index}>
+              <button
+                onClick={() => toggleSubmenu(key)}
+                className="flex items-center p-2 text-white rounded-lg hover:bg-white hover:text-black group"
+              >
+                {key}
+              </button>
+              {openSubmenus[key] && (
+                <ul className="pl-4">
+                  {renderSubmenu(value)} {/* Recursively render nested submenu */}
+                </ul>
+              )}
+            </li>
+          ))}
+        </>
+      );
+    }
+  
+    // Return null if submenu is neither array nor object
+    return null;
   };
+  
 
   return (
     <>
