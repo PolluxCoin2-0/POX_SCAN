@@ -6,6 +6,10 @@ body{
     font-family: "Lato", sans-serif; 
 }
 
+.children-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
 .slick-slide {
     margin-right:0px;
     margin-left: 20px;

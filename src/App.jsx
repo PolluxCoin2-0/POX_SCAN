@@ -1,6 +1,6 @@
 import { Route, BrowserRouter as Router, Routes, useLocation } from "react-router-dom";
 import { Footer, Navbar, Sidebar } from "./layout";
-import { Home, Nodes, Blocks, Contacts, Accounts, Transaction, Transfer, Data, Pox1, PoxPrice, PoxSupply, PoxMarketCap, PoxGenerated, PoxStaked, ProtocolRevenue, EnergyConsumption, 
+import { Home, Nodes, Blocks, Contacts, Accounts, Transaction, Transfer, Pox1, PoxPrice, PoxSupply, PoxMarketCap, PoxGenerated, PoxStaked, ProtocolRevenue, EnergyConsumption, 
   BandwidthConsumption, ResourceCosts, AverageBlockSize, Network, OnchainDataSize, RealtimeBlockProduction, SrVotesDistribution, EncodingConverter, Register, Login, ForgetPassword,
    Pox, SuperRepresentatives, Votes, PoxStakingGovernance, ParametersProposals, ContractsDeployment, ContractsVerification, BroadcastTransaction, Account, TotalAccounts, ActiveAccounts,
   NewAccounts, PoxHolders, Transaction1, TransactionTrend, CumulativeTransactions, Contracts, ContractCalls, TopContracts, Accounts1, Tokens2, Contracts2,} from "./pages";
@@ -8,7 +8,7 @@ import Usdx from "./pages/TokenPage/Usdx";
 
 const AppRoutes = () => {
   const location = useLocation();
-  const hideSidebar = location.pathname === "/" || location.pathname === "/home";
+  const hideSidebar = location.pathname === "/" || location.pathname === "/Home";
 
   return (
     <>
@@ -26,9 +26,9 @@ const AppRoutes = () => {
               <Route index element={<Nodes />} />
               <Route path="nodes" element={<Nodes />} />
               <Route path="blocks" element={<Blocks />} />
-              <Route path="contact" element={<Contacts />} />
+              <Route path="contacts" element={<Contacts />} />
               <Route path="accounts" element={<Accounts />} />
-              <Route path="transaction" element={<Transaction />} />
+              <Route path="transactions" element={<Transaction />} />
               <Route path="transfer" element={<Transfer />} />
             </Route>
 
@@ -40,59 +40,70 @@ const AppRoutes = () => {
             </Route>
 
             {/* Data Routes */}
-            <Route path="/data" element={<Data />} />
+            <Route path="/data">
+            <Route index element={<PoxSupply />} />
+            <Route path="poxsupply" >
+            <Route index element={<PoxSupply />} />
+            <Route path="pox/poxprice" element={<PoxPrice />} />
+            <Route path="pox/poxsupply" element={<PoxSupply />} />
+            <Route path="pox/poxmarket" element={<PoxMarketCap />} />
+            <Route path="pox/poxgenerated" element={<PoxGenerated />} />
+            <Route path="pox/poxstaked" element={<PoxStaked />} />
+            <Route path="network" element={<Network />} />
+            <Route path="network/protocolrevenue" element={<ProtocolRevenue />} />
+            <Route path="network/energyconsume" element={<EnergyConsumption />} />
+            <Route path="network/bandwidthconsume" element={<BandwidthConsumption />} />
+            <Route path="network/resourcecost" element={<ResourceCosts />} />
+            <Route path="network/averageblock" element={<AverageBlockSize />} />
+            <Route path="network/realtimeblock" element={<RealtimeBlockProduction />} />
+            <Route path="network/srvotedistribution" element={<SrVotesDistribution />} />
+            <Route path="accounts" element={<Account />} />
+            <Route path="accounts/totalaccount" element={<TotalAccounts />} />
+            <Route path="accounts/activeaccount" element={<ActiveAccounts />} />
+            <Route path="accounts/newaccount" element={<NewAccounts />} />
+            <Route path="accounts/poxholders" element={<PoxHolders />} />
+            <Route path="transaction1" element={<Transaction1 />} />
+            <Route path="transactions/transactiontrend" element={<TransactionTrend />} />
+            <Route path="transactions/cumulativetransactions" element={<CumulativeTransactions />} />
+            <Route path="contracts" element={<Contracts />} />
+            <Route path="contracts/contractcalls" element={<ContractCalls/>} />
+            <Route path="contracts/topcontract" element={<TopContracts/>} />
+            </Route>
+
+            <Route path="ranking">
+            <Route index element={<Accounts1 />} />
+            <Route path="ranking/accounts1" element={<Accounts1/>} />
+            <Route path="ranking/tokens2" element={<Tokens2/>} />
+            <Route path="ranking/contracts2" element={<Contracts2/>} />
+            </Route>
+            </Route>
+
+
             <Route path="/pox1" element={<Pox1 />} />
-            <Route path="/poxprice" element={<PoxPrice />} />
-            <Route path="/poxsupply" element={<PoxSupply />} />
-            <Route path="/poxmarket" element={<PoxMarketCap />} />
-            <Route path="/poxgenerated" element={<PoxGenerated />} />
-            <Route path="/poxstaked" element={<PoxStaked />} />
-            <Route path="/protocolrevenue" element={<ProtocolRevenue />} />
-            <Route path="/energyconsume" element={<EnergyConsumption />} />
-            <Route path="/bandwidthconsume" element={<BandwidthConsumption />} />
-            <Route path="/resourcecost" element={<ResourceCosts />} />
-            <Route path="/averageblock" element={<AverageBlockSize />} />
             <Route path="/onchaindata" element={<OnchainDataSize />} />
-            <Route path="/realtimeblock" element={<RealtimeBlockProduction />} />
-            <Route path="/srvotedistribution" element={<SrVotesDistribution />} />
-            <Route path="/network" element={<Network />} />
+
 
             {/* Governance */}
             <Route path="/governance">
               <Route index element={<SuperRepresentatives />} />
-              <Route path="parameter" element={<ParametersProposals />} />
-              <Route path="poxstake" element={<PoxStakingGovernance />} />
-              <Route path="represents" element={<SuperRepresentatives />} />
-              <Route path="vote" element={<Votes />} />
+              <Route path="superrepresentatives" element={<SuperRepresentatives />} />
+              <Route path="parametersproposals" element={<ParametersProposals />} />
+              <Route path="poxstakinggovernance" element={<PoxStakingGovernance />} />
+              <Route path="votes" element={<Votes />} />
             </Route>
 
             {/* Pox Ecosystem */}
             <Route path="/poxecosystem">
               <Route index element={<ContractsDeployment />} />
-              <Route path="contractverify" element={<ContractsVerification />} />
-              <Route path="contractdeploy" element={<ContractsDeployment />} />
-              <Route path="broadcast" element={<BroadcastTransaction />} />
-              <Route path="encoding" element={<EncodingConverter />} />
+              <Route path="contractsdeployment" element={<ContractsDeployment />} />
+              <Route path="contractsverification" element={<ContractsVerification />} />
+              <Route path="encodingconverter" element={<EncodingConverter />} />  
+              <Route path="broadcasttransaction" element={<BroadcastTransaction />} />
             </Route>
 
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
             <Route path="/forgetpassword" element={<ForgetPassword />} />
-
-            <Route path="/account" element={<Account />} />
-            <Route path="/totalaccount" element={<TotalAccounts />} />
-            <Route path="/activeaccount" element={<ActiveAccounts />} />
-            <Route path="/newaccount" element={<NewAccounts />} />
-            <Route path="/poxholders" element={<PoxHolders />} />
-            <Route path="/transaction1" element={<Transaction1 />} />
-            <Route path="/transactiontrend" element={<TransactionTrend />} />
-            <Route path="/cumulativetransactions" element={<CumulativeTransactions />} />
-            <Route path="/contract" element={<Contracts />} />
-            <Route path="/contractcalls" element={<ContractCalls/>} />
-            <Route path="/topcontract" element={<TopContracts/>} />
-            <Route path="/accounts1" element={<Accounts1/>} />
-            <Route path="/tokens2" element={<Tokens2/>} />
-            <Route path="/contracts2" element={<Contracts2/>} />
           </Routes>
         </Sidebar>
       )}

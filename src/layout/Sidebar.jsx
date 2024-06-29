@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { NavbarOptions } from "../data/NavbarOptions";
+import { FaArrowLeftLong } from "react-icons/fa6";
 
-const Sidebar = ({children}) => {
+const Sidebar = ({ children }) => {
   const [path, setPath] = useState("");
   const [submenu, setSubmenu] = useState({});
   const [isOpen, setIsOpen] = useState(true);
   const [openSubmenus, setOpenSubmenus] = useState({});
+  const [routePath, setRoutePath] = useState("");
   const location = useLocation();
 
   const capitalizeFirstLetter = (string) => {
@@ -15,26 +17,22 @@ const Sidebar = ({children}) => {
 
   useEffect(() => {
     const pathNameFromURL = location.pathname.split("/")[1];
+    setRoutePath(pathNameFromURL);
     const capitalizedPath = capitalizeFirstLetter(pathNameFromURL);
-    if(capitalizedPath==="PoxEcosystem")
-      {
-        setPath("Pox Ecosystem")
-      }
-      else{
-        setPath(capitalizedPath)
-      }
+    let submenuList;
+    console.log("path>>>",capitalizedPath)
 
-      let submenuList;
+    if (capitalizedPath === "PoxEcosystem" || capitalizedPath==="Poxecosystem") {
+      setPath("Pox Ecosystem");
+      submenuList = getSubmenuList(path);
+      setSubmenu(submenuList);
+    } else {
+      setPath(capitalizedPath);
+      submenuList = getSubmenuList(capitalizedPath);
+      setSubmenu(submenuList);
+    }
 
-      if(capitalizedPath==="PoxEcosystem"){
-        submenuList = getSubmenuList("Pox Ecosystem");
-      }
-      else{
-        submenuList = getSubmenuList(capitalizedPath);
-      }
-
-    setSubmenu(submenuList);
-  }, [location]);
+  }, [location,path]);
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
@@ -47,10 +45,8 @@ const Sidebar = ({children}) => {
     }));
   };
 
-
   const getSubmenuList = (path) => {
     const submenu = NavbarOptions[path];
-
     if (submenu) {
       return submenu;
     }
@@ -62,6 +58,11 @@ const Sidebar = ({children}) => {
     return {};
   };
 
+  // Function to remove spaces from a string
+const removeSpaces = (str) => {
+  return str.replace(/[&\s]+/g, ''); // This removes all whitespace characters
+};
+
   const renderSubmenu = (submenu) => {
     // Check if submenu is an array
     if (Array.isArray(submenu)) {
@@ -69,17 +70,14 @@ const Sidebar = ({children}) => {
         <>
           {submenu.map((item, index) => (
             <li key={index}>
+             <Link to={`/${routePath}/${removeSpaces(item)}`}>
               <button
                 onClick={() => toggleSubmenu(item)}
                 className="flex items-center p-2 text-white rounded-lg hover:bg-white hover:text-black group"
               >
                 {item}
               </button>
-              {openSubmenus[item] && (
-                <ul className="pl-4">
-                  {/* Here you can render additional nested items if needed */}
-                </ul>
-              )}
+              </Link>
             </li>
           ))}
         </>
@@ -98,7 +96,7 @@ const Sidebar = ({children}) => {
               </button>
               {openSubmenus[key] && (
                 <ul className="pl-4">
-                  {renderSubmenu(value)} {/* Recursively render nested submenu */}
+                  {renderSubmenu(value)}{" "}
                 </ul>
               )}
             </li>
@@ -106,30 +104,33 @@ const Sidebar = ({children}) => {
         </>
       );
     }
-  
+
     // Return null if submenu is neither array nor object
     return null;
   };
-  
 
   return (
-    <>
-      <aside
-        className="fixed top-16 left-0 z-40 w-64 h-screen bg-black text-white">
-        <div className="h-full px-3 py-4 overflow-y-auto ">
-          <ul className="space-y-2 font-medium">
-            {renderSubmenu(submenu)}
-          </ul>
-        </div>
-      </aside>
+    <div className="flex h-screen">
+      {isOpen && (
+        <aside className="flex-none w-64 bg-black text-white">
+          <div className="h-full px-3 py-4 overflow-y-auto">
+            <div className="flex justify-end pr-4 pb-4">
+              <FaArrowLeftLong
+                size={20}
+                className="cursor-pointer"
+                onClick={toggleSidebar}
+              />
+            </div>
+            <ul className="space-y-2 font-medium">{renderSubmenu(submenu)}</ul>
+          </div>
+        </aside>
+      )}
 
-      <div className="p-4 sm:ml-64">
-        <div className="p-4">
-          {children}
-        </div>
+      <div className="children-scrollbar flex-1 h-full overflow-y-auto ">
+        {children}
       </div>
-    </>
+    </div>
   );
-};
+}
 
 export default Sidebar;

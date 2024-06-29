@@ -17,9 +17,9 @@ const BlockchainHover = () => (
         <Link to="/blockchain/accounts"> <p className="font-medium">Accounts</p></Link>
       </div>
       <div>
-        <Link to="/blockchain/contact"> <p className="font-medium">Contacts</p></Link>
+        <Link to="/blockchain/contacts"> <p className="font-medium">Contacts</p></Link>
         <Link to="/blockchain/transfer"> <p className="font-medium py-2">Transfer</p></Link>
-        <Link to="/blockchain/transaction"> <p className="font-medium">Transactions</p></Link>
+        <Link to="/blockchain/transactions"> <p className="font-medium">Transactions</p></Link>
       </div>
     </div>
   </div>
@@ -43,26 +43,26 @@ const TokensHover = () => {
 
 const DataHover = () => (
   <div className="absolute bg-white shadow-lg rounded-xl px-4 py-2">
-    <p className="font-medium whitespace-nowrap">POX Supply</p>
-    <p className="font-medium pt-2">Ranking</p>
+   <Link to="/data/poxsupply"><p className="font-medium whitespace-nowrap">POX Supply</p></Link>
+   <Link to="/data/ranking"><p className="font-medium pt-2">Ranking</p></Link>
   </div>
 );
 
 const GovernanceHover = () => (
   <div className="absolute bg-white shadow-lg rounded-xl px-4 py-2">
-    <Link to="/governance/represents"><p className="font-medium whitespace-nowrap">Super Representatives</p></Link>
-    <Link to="/governance/vote"><p className="font-medium py-2">Votes</p></Link>
-    <Link to="/governance/poxstake"> <p className="font-medium whitespace-nowrap">POX Staking Governance</p></Link>
-    <Link to="/governance/parameter"><p className="font-medium pt-2 whitespace-nowrap">Parameters & Proposals</p></Link>
+    <Link to="/governance/superrepresentatives"><p className="font-medium whitespace-nowrap">Super Representatives</p></Link>
+    <Link to="/governance/votes"><p className="font-medium py-2">Votes</p></Link>
+    <Link to="/governance/poxstakinggovernance"> <p className="font-medium whitespace-nowrap">POX Staking Governance</p></Link>
+    <Link to="/governance/parametersproposals"><p className="font-medium pt-2 whitespace-nowrap">Parameters & Proposals</p></Link>
   </div>
 );
 
 const PoxecosystemHover = () => (
   <div className="absolute bg-white shadow-lg rounded-xl px-4 py-2">
-  <Link to="/poxecosystem/contractdeploy"><p className="font-medium whitespace-nowrap">Contracts Deployment</p></Link>  
-   <Link to="/poxecosystem/contractverify"><p className="font-medium py-2 whitespace-nowrap">Contracts Verification</p></Link> 
-    <Link to="/poxecosystem/encoding"> <p className="font-medium whitespace-nowrap">Encoding Converter</p></Link> 
-    <Link to="/poxecosystem/broadcast"> <p className="font-medium pt-2 whitespace-nowrap">Broadcast Transaction</p></Link>
+  <Link to="/poxecosystem/contractsdeployment"><p className="font-medium whitespace-nowrap">Contracts Deployment</p></Link>  
+   <Link to="/poxecosystem/contractsverification"><p className="font-medium py-2 whitespace-nowrap">Contracts Verification</p></Link> 
+    <Link to="/poxecosystem/encodingconverter"> <p className="font-medium whitespace-nowrap">Encoding Converter</p></Link> 
+    <Link to="/poxecosystem/broadcasttransaction"> <p className="font-medium pt-2 whitespace-nowrap">Broadcast Transaction</p></Link>
   </div>
 );
 
