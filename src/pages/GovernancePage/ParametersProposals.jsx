@@ -17,7 +17,7 @@ const ParametersProposals = () => {
 
 
 
-      <div className=" bg-white rounded-xl m-7 p-10">
+      <div className=" bg-white rounded-xl my-7 p-10">
         <div className="flex flex-row space-x-8">
           <p>Network Parameter</p>
           <p>Committee  Proposals</p>

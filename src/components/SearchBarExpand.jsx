@@ -12,11 +12,10 @@ const SearchBar = ({ onSearch }) => {
     <div className="pb-12 relative mx-auto text-gray-600 py-12">
       <div className="relative flex items-center">
         <svg
-          className="absolute left-3 text-light-gray h-6 w-6 fill-current"
+          className="absolute left-3 h-4 w-4 fill-light-gray"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 56.966 56.966"
-          width="512px"
-          height="512px"
+        
         >
           <path d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23 
             s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92 
@@ -43,7 +42,7 @@ const SearchBar = ({ onSearch }) => {
               </button>
             </div>
             {isOpen && (
-              <div className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+              <div className="origin-top-right absolute right-0 top-10 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
                 <div className="py-1" role="none">
                   <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Daily</a>
                   <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Weekly</a>

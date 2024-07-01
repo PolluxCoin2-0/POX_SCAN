@@ -88,19 +88,15 @@ const Votes = () => {
 </div>
 
 {/*List */}
-      <div className="bg-white pt-10 mt-20 shadow-xl rounded-2xl">
-        <div className="flex flex-row justify-between">
-        <div className="border-2 border-lightest-gray pb-1 w-[40%] ml-5 mb-5 rounded-xl">
-           <SearchBar />
+      <div className="bg-[#FAFAFA] py-10 mt-20 shadow-xl rounded-2xl">
+        <div className="flex flex-row justify-between items-center bg-[#FFFFFF] mx-6 px-4 py-2 mb-6">
+        <div className="border-2 border-lightest-gray rounded-xl">
+           <SearchBar/>
          </div>
 
-         <div className="bg-lightest-gray px-4 pt-1 rounded-md mr-10 mb-10">Vote</div>
+         <button className="bg-lightest-gray px-4 py-1 rounded-md">Vote</button>
         </div>
-         
-
-        
-         
-         <div className="bg-white">
+         <div className="bg-[#FAFAFA] px-6">
             <div className="flex flex-row justify-evenly p-5 bg-text-bg-gray rounded-lg">
             <p>Name</p>
             <p>Ranking</p>
