@@ -1,11 +1,15 @@
-import PieChartComp from "../../components/PieChartComp";
+
+
 import BlockContainer from "./BlockContainer";
 import StableCoinContainer from "./StableCoinContainer";
 import TransactionContainer from "./TransactionContainer";
 import TrendingSearch from "./TrendingSearch";
 import TvlContainer from "./TvlContainer";
 
+
+
 const Home = () => {
+ 
   return (
     <div className="px-12">
       {/* First Row >> Trending Search */}
@@ -22,6 +26,7 @@ const Home = () => {
 
       {/* Fifth Row >> StableCoins */}
       <StableCoinContainer/>
+
     </div>
   )
 }

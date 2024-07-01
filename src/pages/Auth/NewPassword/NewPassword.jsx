@@ -4,7 +4,7 @@ import { useState } from "react";
 import { RxCross2 } from "react-icons/rx";
 import { FaArrowLeftLong } from "react-icons/fa6";
 
-const ForgetPassword= () => {
+const ForgetPasswordForm = () => {
   //   for cross button
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -32,8 +32,7 @@ const ForgetPassword= () => {
   };
 
   return (
-    <div className="fixed z-10 backdrop-blur-sm  h-screen w-full inset-0">
-         <div className="flex flex-col items-center justify-center min-h-screen bg-white w-full py-20">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-white w-full py-20">
       {!isModalOpen && (
         <div className=" w-[700px] h-[550px] pl-16 pr-16 p-10 bg-white rounded-2xl shadow-md">
           <div className="flex flex-row justify-between text-light-gray ">
@@ -42,7 +41,7 @@ const ForgetPassword= () => {
           </div>
 
           <h2 className="mb-8 mt-4 text-3xl font-semibold text-center text-black">
-            Forget Password
+            New Password
           </h2>
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
@@ -50,13 +49,13 @@ const ForgetPassword= () => {
                 htmlFor="phoneOrEmail"
                 className="block text-lg font-bold mb-4 text-gray-700 text-black"
               >
-                Email
+                New Password
               </label>
               <input
-                type="text"
-                id="phoneOrEmail"
-                name="phoneOrEmail"
-                placeholder="Enter your email address"
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Enter your new password"
                 value={formData.phoneOrEmail}
                 onChange={handleChange}
                 className="w-full px-4 py-4 border border-lightest-gray rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -64,40 +63,39 @@ const ForgetPassword= () => {
               />
             </div>
 
-            <button
-              type="submit"
-              className="w-full bg-darker-blue text-white text-yellow p-4 rounded-xl text-xl hover:bg-indigo-700"
-            >
-              Send
-            </button>
+        
 
             <div>
               <label
                 htmlFor="password"
                 className="block text-lg font-bold mb-4 mt-8 text-gray-700 text-black"
               >
-                Verification Code
+               Confirm New Password
               </label>
               <input
                 type="password"
                 id="password"
                 name="password"
-                placeholder="......                                         "
+                placeholder="Enter your new password again"                                         
                 value={formData.password}
                 onChange={handleChange}
-                className="w-full px-4 py-4 border border-lightest-gray  rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder:text-4xl placeholder:tracking-[20px]"
+                className="w-full px-4 py-4 border border-lightest-gray  rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 "
                 required
               />
             </div>
+            <button
+              type="submit"
+              className="w-full bg-darker-blue text-white text-yellow p-4 rounded-xl text-xl hover:bg-indigo-700"
+            >
+              Create
+            </button>
             <div></div>
           </form>
         </div>
+        
       )}
     </div>
-
-    </div>
-   
   );
 };
 
-export default ForgetPassword;
+export default ForgetPasswordForm;

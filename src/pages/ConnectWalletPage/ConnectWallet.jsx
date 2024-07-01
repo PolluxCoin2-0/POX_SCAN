@@ -2,8 +2,8 @@
 
 const ConnectWallet = () => {
   return (
-    <div>
-      
+    <div className="">
+      <p>112</p>
     </div>
   )
 }

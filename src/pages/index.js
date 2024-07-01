@@ -52,13 +52,14 @@ import ContractsDeployment from "./PoxEcosystemPage/ContractsDeployment";
 import ContractsVerification from "./PoxEcosystemPage/ContractsVerification";
 import BroadcastTransaction from "./PoxEcosystemPage/BroadcastTransaction";
 import EncodingConverter from "./PoxEcosystemPage/EncodingConverter";
-import Register from "./Auth/Register/Regsiter";
+import Register from "./Auth/Register/Register";
 import Login from "./Auth/Login/Login";
 import ForgetPassword from "./Auth/ForgetPassword/ForgetPassword";
-
+import NewPassword from "./Auth/NewPassword/NewPassword"
 import Error from "../pages/ErrorPage/Error";
 
-
+import ConnectWallet from "./ConnectWalletPage/ConnectWallet";
+import ConnectWallet2 from "./ConnectWalletPage/ConnectWallet2";
 export {
     Home,
     Blockchain,
@@ -113,8 +114,10 @@ export {
     Accounts1,
     Tokens2,
     Contracts2,
-    
+    NewPassword,
     Error,
+    ConnectWallet,
+    ConnectWallet2,
     }
     
     

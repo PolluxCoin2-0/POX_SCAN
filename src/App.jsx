@@ -3,12 +3,14 @@ import { Footer, Navbar, Sidebar } from "./layout";
 import { Home, Nodes, Blocks, Contacts, Accounts, Transaction, Transfer, Pox1, PoxPrice, PoxSupply, PoxMarketCap, PoxGenerated, PoxStaked, ProtocolRevenue, EnergyConsumption, 
   BandwidthConsumption, ResourceCosts, AverageBlockSize, Network, OnchainDataSize, RealtimeBlockProduction, SrVotesDistribution, EncodingConverter, Register, Login, ForgetPassword,
    Pox, SuperRepresentatives, Votes, PoxStakingGovernance, ParametersProposals, ContractsDeployment, ContractsVerification, BroadcastTransaction, Account, TotalAccounts, ActiveAccounts,
-  NewAccounts, PoxHolders, Transaction1, TransactionTrend, CumulativeTransactions, Contracts, ContractCalls, TopContracts, Accounts1, Tokens2, Contracts2, Error,} from "./pages";
+  NewAccounts, PoxHolders, Transaction1, TransactionTrend, CumulativeTransactions, Contracts, ContractCalls, TopContracts, Accounts1, Tokens2, Contracts2, Error, NewPassword,
+ConnectWallet, ConnectWallet2} from "./pages";
 import Usdx from "./pages/TokenPage/Usdx";
 
 const AppRoutes = () => {
   const location = useLocation();
-  const hideSidebar = location.pathname === "/" || location.pathname === "/Home";
+  const hideSidebar = location.pathname === "/" || location.pathname === "/Home" || location.pathname === "/connectwallet" || location.pathname === "/connectwallet2" ||
+  location.pathname === "/login" || location.pathname === "/forgetpassword" || location.pathname=== "/newpassword" || location.pathname==="/register" || location.pathname === "/error";
 
   return (
     <div className="app-bg">
@@ -17,6 +19,14 @@ const AppRoutes = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
+          <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/forgetpassword" element={<ForgetPassword />} />
+            <Route path="/newpassword" element={<NewPassword/>} />
+            <Route path="/error" element ={<Error/> } />
+
+            <Route path="/connectwallet" element={<ConnectWallet/>} />
+            <Route path="/connectwallet2" element={<ConnectWallet2/>} />
         </Routes>
       ) : (
         <Sidebar>
@@ -37,6 +47,7 @@ const AppRoutes = () => {
               <Route index element={<Pox />} />
               <Route path="pox" element={<Pox />} />
               <Route path="usdx" element={<Usdx />} />
+              
             </Route>
 
             {/* Data Routes */}
@@ -101,11 +112,7 @@ const AppRoutes = () => {
               <Route path="broadcasttransaction" element={<BroadcastTransaction />} />
             </Route>
 
-            <Route path="/register" element={<Register />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/forgetpassword" element={<ForgetPassword />} />
-
-            <Route path="/error" element ={<Error/> } />
+       
           </Routes>
         </Sidebar>
       )}
