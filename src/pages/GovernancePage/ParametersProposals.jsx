@@ -2,7 +2,7 @@ import { ParameterData } from "../../data/Parameters"
 
 const ParametersProposals = () => {
   return (
-    <div className="bg-light-sky-blue p-16">
+    <div className="p-16">
 
       <div>
 

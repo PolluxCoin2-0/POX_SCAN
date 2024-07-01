@@ -5,7 +5,7 @@ import { SearchBarExpand } from "../../../../components"
 
 const AverageBlockSize = () => {
   return (
-    <div className="bg-light-sky-blue">
+    <div className="">
 
       <div>
         <SearchBarExpand/>

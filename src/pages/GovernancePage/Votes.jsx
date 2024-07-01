@@ -6,7 +6,7 @@ import VoteTotal from "../../assets/Votetotal.png";
 
 const Votes = () => {
   return (
-    <div className="bg-light-sky-blue px-12 pb-10">
+    <div className="px-12 pb-10">
       <div>
       <SearchBarExpand />
       </div>

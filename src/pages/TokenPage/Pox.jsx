@@ -6,7 +6,7 @@ import SearchBarExpand from "../../components/SearchBarExpand";
 const Pox = () => {
   const [onSearch, setOnSearch] = useState("");
   return (
-    <div className="bg-light-sky-blue px-12 py-12">
+    <div className="px-12 py-12">
       <div>
         <SearchBarExpand onSearch={setOnSearch} />
       </div>

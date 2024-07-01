@@ -5,7 +5,7 @@ import SimpleAreaChart from "../../../../components/SimpleAreaChart";
 
 const Contract= () => {
   return (
-    <div className="bg-light-sky-blue px-12 pb-80">
+    <div className="px-12 pb-80">
        
       <div>
         <SearchBarExpand />

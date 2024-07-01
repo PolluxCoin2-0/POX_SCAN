@@ -2,7 +2,7 @@ import { SearchBarExpand } from "../../../../components"
 import BarHashChart from "../../../../components/BarHashChart";
 const PoxSupply = () => {
   return (
-    <div className="bg-light-sky-blue">
+    <div className="">
 
       <div>
         <SearchBarExpand />

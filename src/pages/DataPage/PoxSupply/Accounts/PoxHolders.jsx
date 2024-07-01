@@ -5,7 +5,7 @@ import BarChartNo from "../../../../components/BarChartNo";
 
 const PoxHolders = () => {
   return (
-    <div className="bg-light-sky-blue px-12 pb-12">
+    <div className="px-12 pb-12">
 
       <div><SearchBarExpand/> </div>
 

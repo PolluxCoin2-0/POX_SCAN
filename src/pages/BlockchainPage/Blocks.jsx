@@ -7,7 +7,7 @@ import {MdKeyboardArrowRight} from "react-icons/md";
 const Blocks = () => {
   const [onSearch, setOnSearch] = useState("");
   return (
-    <div className="bg-light-sky-blue px-12 pb-12">
+    <div className="px-12 pb-12">
       <div>
         <SearchBarExpand onSearch={setOnSearch} />
         
