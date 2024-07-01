@@ -23,10 +23,9 @@ const AppRoutes = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/forgetpassword" element={<ForgetPassword />} />
             <Route path="/newpassword" element={<NewPassword/>} />
-            <Route path="/error" element ={<Error/> } />
-
             <Route path="/connectwallet" element={<ConnectWallet/>} />
             <Route path="/connectwallet2" element={<ConnectWallet2/>} />
+            <Route path="/error" element ={<Error/> } />
         </Routes>
       ) : (
         <Sidebar>
