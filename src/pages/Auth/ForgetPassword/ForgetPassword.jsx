@@ -1,25 +1,19 @@
-// import React from 'react'
+import ForgetPasswordForm from "./ForgetPasswordForm";
 
-import AuthLogo from "../../../assets/Authlogo.png";
+
 
 const ForgetPassword = () => {
   return (
-    <div className=" flex flex-row min-h-screen justify-between items-center px-12 py-5 bg-">
-      <div>
-        <p>SIGN UP</p>
-        <img src={AuthLogo}
-        alt="authorization image"
-        className=" "
-        />
-      </div>
+    <div className=" flex flex-row  justify-center  items-center px-12 ">
+     
 
 
       <div>
-      
+        <ForgetPasswordForm />
       </div>
       
     </div>
   )
 }
 
-export default ForgetPassword
+export default ForgetPassword;

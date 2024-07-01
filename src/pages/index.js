@@ -56,6 +56,7 @@ import Register from "./Auth/Register/Regsiter";
 import Login from "./Auth/Login/Login";
 import ForgetPassword from "./Auth/ForgetPassword/ForgetPassword";
 
+import Error from "../pages/ErrorPage/Error";
 
 
 export {
@@ -112,7 +113,8 @@ export {
     Accounts1,
     Tokens2,
     Contracts2,
-
+    
+    Error,
     }
     
     
