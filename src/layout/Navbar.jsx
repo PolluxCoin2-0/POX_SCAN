@@ -144,7 +144,7 @@ const Navbar = () => {
 
         <div className="flex items-center justify-between space-x-6">
           <SearchBar />
-          <p className="text-white cursor-pointer border-r-2 pr-6">Register</p>
+          <Link to="/register"> <p className="text-white cursor-pointer border-r-2 pr-6">Register</p>  </Link>
           <Link to="/login"><p className="text-white cursor-pointer">Login</p> </Link>
           <button className="bg-dark-yellow py-1 px-3 rounded-xl text-black cursor-pointer">
             Connect Wallet
