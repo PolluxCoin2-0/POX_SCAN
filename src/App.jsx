@@ -46,41 +46,41 @@ const AppRoutes = () => {
             <Route index element={<PoxSupply />} />
             <Route path="pox/poxprice" element={<PoxPrice />} />
             <Route path="pox/poxsupply" element={<PoxSupply />} />
-            <Route path="pox/poxmarket" element={<PoxMarketCap />} />
-            <Route path="pox/poxgenerated" element={<PoxGenerated />} />
+            <Route path="pox/poxmarketcap" element={<PoxMarketCap />} />
+            <Route path="pox/poxgenerated/burned" element={<PoxGenerated />} />
             <Route path="pox/poxstaked" element={<PoxStaked />} />
             <Route path="network" element={<Network />} />
             <Route path="network/protocolrevenue" element={<ProtocolRevenue />} />
-            <Route path="network/energyconsume" element={<EnergyConsumption />} />
-            <Route path="network/bandwidthconsume" element={<BandwidthConsumption />} />
-            <Route path="network/resourcecost" element={<ResourceCosts />} />
-            <Route path="network/averageblock" element={<AverageBlockSize />} />
-            <Route path="network/realtimeblock" element={<RealtimeBlockProduction />} />
-            <Route path="network/srvotedistribution" element={<SrVotesDistribution />} />
+            <Route path="network/energyconsumption" element={<EnergyConsumption />} />
+            <Route path="network/bandwidthconsumption" element={<BandwidthConsumption />} />
+            <Route path="network/resourcecosts" element={<ResourceCosts />} />
+            <Route path="network/averageblocksize" element={<AverageBlockSize />} />
+            <Route path="network/on-chaindatasize" element={<OnchainDataSize />} />
+            <Route path="network/real-timeblockproduction" element={<RealtimeBlockProduction />} />
+            <Route path="network/srvotesdistribution" element={<SrVotesDistribution />} />
             <Route path="accounts" element={<Account />} />
-            <Route path="accounts/totalaccount" element={<TotalAccounts />} />
-            <Route path="accounts/activeaccount" element={<ActiveAccounts />} />
-            <Route path="accounts/newaccount" element={<NewAccounts />} />
+            <Route path="accounts/totalaccounts" element={<TotalAccounts />} />
+            <Route path="accounts/activeaccounts" element={<ActiveAccounts />} />
+            <Route path="accounts/newaccounts" element={<NewAccounts />} />
             <Route path="accounts/poxholders" element={<PoxHolders />} />
             <Route path="transaction1" element={<Transaction1 />} />
             <Route path="transactions/transactiontrend" element={<TransactionTrend />} />
             <Route path="transactions/cumulativetransactions" element={<CumulativeTransactions />} />
             <Route path="contracts" element={<Contracts />} />
             <Route path="contracts/contractcalls" element={<ContractCalls/>} />
-            <Route path="contracts/topcontract" element={<TopContracts/>} />
+            <Route path="contracts/topcontracts" element={<TopContracts/>} />
             </Route>
 
             <Route path="ranking">
             <Route index element={<Accounts1 />} />
-            <Route path="ranking/accounts1" element={<Accounts1/>} />
-            <Route path="ranking/tokens2" element={<Tokens2/>} />
-            <Route path="ranking/contracts2" element={<Contracts2/>} />
+            <Route path="accounts" element={<Accounts1/>} />
+            <Route path="tokens" element={<Tokens2/>} />
+            <Route path="contracts" element={<Contracts2/>} />
             </Route>
             </Route>
 
 
             <Route path="/pox1" element={<Pox1 />} />
-            <Route path="/onchaindata" element={<OnchainDataSize />} />
 
 
             {/* Governance */}
