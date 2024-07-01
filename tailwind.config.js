@@ -27,6 +27,7 @@ export default {
       "dark-brown": "#493808",
       "dark-skyblue": "#065BA1",
       "dark-blue": "#3A5AFE",
+      "dark-midblue" :"#065ba1",
       "light-gray": "#73787B",
       "text-bg-gray": "#F3F3F3",
       "darkest-blue" :"#132847",
