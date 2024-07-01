@@ -16,7 +16,7 @@ import { FaArrowRightLong} from "react-icons/fa6";
 
 const PoxStakingGovernance = () => {
   return (
-    <div className="bg-light-sky-blue">
+    <div className="">
       <div>
         <SearchBarExapnd />
       </div>

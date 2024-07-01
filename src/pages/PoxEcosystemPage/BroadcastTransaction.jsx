@@ -18,7 +18,7 @@ const BroadcastTransaction = () => {
     setMessage('');
   };
   return (
-    <div className="bg-light-sky-blue px-12 pb-20">
+    <div className=" px-12 pb-20">
 
       <div>
         <SearchBarExpand/>

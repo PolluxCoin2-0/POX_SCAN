@@ -3,7 +3,7 @@ import FileDropzone from "../../components/FileDropzone.jsx";
 
 const ContractsDeployment = () => {
   return (
-    <div className="bg-light-sky-blue px-12 pb-20">
+    <div className=" px-12 pb-20">
       <div>
         <SearchBarExpand />
       </div>

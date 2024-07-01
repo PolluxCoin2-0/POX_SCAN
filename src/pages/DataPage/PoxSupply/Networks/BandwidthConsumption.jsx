@@ -2,7 +2,7 @@ import { SearchBarExpand } from "../../../../components"
 
 const BandwidthConsumption = () => {
   return (
-    <div className="bg-light-sky-blue">
+    <div className="">
 
       <div>
         <SearchBarExpand/>

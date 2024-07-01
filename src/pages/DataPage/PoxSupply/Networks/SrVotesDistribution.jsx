@@ -6,7 +6,7 @@ import VerticalComposedChart from "../../../../components/VerticalComposedChart"
 
 const SrVotesDistribution = () => {
   return (
-    <div className="bg-light-sky-blue">
+    <div className="">
 
       <div>
         <SearchBarExpand/>

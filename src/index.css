@@ -25,6 +25,15 @@ body{
     height: inherit !important;
 }
 
+.app-bg{
+    background-image: url("./assets/BgImage.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-color: rgba(230, 238, 245, 0.6);
+    background-blend-mode: overlay;
+}
+
 
 
 

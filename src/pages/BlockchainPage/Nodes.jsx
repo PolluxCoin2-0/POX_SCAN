@@ -3,7 +3,7 @@ import { SearchBarExpand } from '../../components'
 
 const Nodes = () => {
   return (
-    <div className="bg-light-sky-blue px-12 ">
+    <div className="px-12 ">
       {/* Search Box */}
 
       <div>

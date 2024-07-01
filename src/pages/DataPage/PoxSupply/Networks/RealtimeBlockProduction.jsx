@@ -6,7 +6,7 @@ import PieChartComp from "../../../../components/PieChartComp";
 
 const RealtimeBlockProduction = () => {
   return (
-    <div className="bg-light-sky-blue">
+    <div className="">
 
       <div>
         <SearchBarExpand/>

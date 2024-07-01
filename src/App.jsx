@@ -11,7 +11,7 @@ const AppRoutes = () => {
   const hideSidebar = location.pathname === "/" || location.pathname === "/Home";
 
   return (
-    <>
+    <div className="app-bg">
       <Navbar />
       {hideSidebar ? (
         <Routes>
@@ -108,7 +108,7 @@ const AppRoutes = () => {
         </Sidebar>
       )}
       <Footer />
-    </>
+    </div>
   );
 };
 

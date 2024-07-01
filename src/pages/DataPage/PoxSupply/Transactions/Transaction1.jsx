@@ -3,7 +3,7 @@ import SimpleAreaChart from "../../../../components/SimpleAreaChart"
 
 const Transaction1 = () => {
   return (
-    <div className="bg-light-sky-blue px-12 pb-96">
+    <div className="px-12 pb-96">
       
       <div>
         <SearchBarExpand/> 
