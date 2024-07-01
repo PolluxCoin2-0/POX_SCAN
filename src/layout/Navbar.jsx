@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SearchBar } from "../components";
 import LogoWithText from "../assets/Logowithtext.png";
 import Logo from "../assets/Logo.png";
@@ -88,6 +88,19 @@ const Navbar = () => {
     }
   };
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (event.target.closest(".hover-menu") === null) {
+        setHoveredItem(null);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
     <>
       <div className="bg-dark-skyblue py-2 h-16 font-medium text-lg flex items-center justify-between pl-8 relative">
@@ -110,7 +123,7 @@ const Navbar = () => {
               >
                 <Link to={`/${formattedKey}`}>
                   <p
-                    className={`cursor-pointer whitespace-nowrap ${
+                    className={`cursor-pointer whitespace-nowrap font-semibold ${
                       currentPath === `/${formattedKey}`
                         ? "text-black rounded-3xl bg-dark-yellow px-4 py-1"
                         : "text-white px-3"
@@ -120,7 +133,7 @@ const Navbar = () => {
                   </p>
                 </Link>
                 {hoveredItem === formattedKey && (
-                  <div className="absolute top-full left-0 mt-2 z-10">
+                  <div className="absolute top-full left-0 mt-2 z-10 hover-menu">
                     {renderHoverComponent()}
                   </div>
                 )}

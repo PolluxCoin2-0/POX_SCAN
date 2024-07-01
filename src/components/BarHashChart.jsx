@@ -47,7 +47,7 @@ const data = [
 ];
 
 const BarHashChart= () => (
-  <ResponsiveContainer width="100%" height={300}>
+  <ResponsiveContainer width="100%" height={500}>
     <BarChart
       width={500}
       height={300}

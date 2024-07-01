@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 // import { FaArrowLeftLong } from 'react-icons/fa';
-import { NavbarOptions } from '../data/NavbarOptions';
+import { MdKeyboardArrowUp, MdOutlineKeyboardArrowDown } from "react-icons/md";
+import { BsDot } from "react-icons/bs";
+import { NavbarOptions } from "../data/NavbarOptions";
 
+// eslint-disable-next-line react/prop-types
 const Sidebar = ({ children }) => {
-  const [path, setPath] = useState('');
+  const [path, setPath] = useState("");
   const [submenu, setSubmenu] = useState({});
   const [isOpen, setIsOpen] = useState(true);
   const [openSubmenus, setOpenSubmenus] = useState({});
@@ -15,11 +18,23 @@ const Sidebar = ({ children }) => {
   };
 
   useEffect(() => {
-    const pathNameFromURL = location.pathname.split('/')[1];
+    const pathNameFromURL = location.pathname.split("/")[1];
     const capitalizedPath = capitalizeFirstLetter(pathNameFromURL);
-    setPath(capitalizedPath);
-    setSubmenu(getSubmenuList(capitalizedPath));
-  }, [location]);
+    let submenuList;
+
+    if (
+      capitalizedPath === "PoxEcosystem" ||
+      capitalizedPath === "Poxecosystem"
+    ) {
+      setPath("Pox Ecosystem");
+      submenuList = getSubmenuList(path);
+      setSubmenu(submenuList);
+    } else {
+      setPath(capitalizedPath);
+      submenuList = getSubmenuList(capitalizedPath);
+      setSubmenu(submenuList);
+    }
+  }, [location, path]);
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
@@ -44,16 +59,20 @@ const Sidebar = ({ children }) => {
   };
 
   const removeSpaces = (str) => {
-    return str.replace(/[&\s]+/g, '');
+    return str.replace(/[&\s]+/g, "");
   };
 
   const buildPath = (parentPath, item) => {
     // Remove leading slash from parentPath to avoid double slashes in the URL
-    const basePath = parentPath.replace(/^\/|\/$/g, '');
+    const basePath = parentPath.replace(/^\/|\/$/g, "").replace(/\s+/g, "");
     return `/${basePath}/${removeSpaces(item)}`;
   };
 
-  const renderSubmenu = (submenu, parentPath = '') => {
+  const isActiveRoute = (menuItemPath) => {
+    return location.pathname.startsWith(menuItemPath);
+  };
+
+  const renderSubmenu = (submenu, parentPath = "") => {
     if (Array.isArray(submenu)) {
       return (
         <>
@@ -62,7 +81,11 @@ const Sidebar = ({ children }) => {
               <Link to={buildPath(parentPath, item)}>
                 <button
                   onClick={() => toggleSubmenu(item)}
-                  className="flex items-center p-2 text-white rounded-lg hover:bg-white hover:text-black group"
+                  className={`flex items-center p-2  rounded-lg group font-semibold ${
+                    isActiveRoute(buildPath(parentPath, item))
+                      ? "bg-dark-yellow text-black px-4 my-2"
+                      : "hover:bg-white hover:text-black hover:px-4"
+                  }`}
                 >
                   {item}
                 </button>
@@ -71,19 +94,28 @@ const Sidebar = ({ children }) => {
           ))}
         </>
       );
-    } else if (typeof submenu === 'object' && !Array.isArray(submenu)) {
+    } else if (typeof submenu === "object" && !Array.isArray(submenu)) {
       return (
         <>
           {Object.entries(submenu).map(([key, value], index) => (
             <li key={index}>
               <button
                 onClick={() => toggleSubmenu(key)}
-                className="flex items-center p-2 text-white rounded-lg hover:bg-white hover:text-black group"
+                className={`flex items-center p-2 text-white rounded-lg whitespace-nowrap hover:bg-white hover:text-black group
+                 ${openSubmenus[key] ? "bg-dark-brown mb-2 list-disc" : ""}`}
               >
-                {key}
+                {openSubmenus[key] && <BsDot size={28} className="mt-1 " />}
+                {key}{" "}
+                {openSubmenus[key] ? (
+                  <MdKeyboardArrowUp className="mt-1 ml-2" size={22} />
+                ) : (
+                  <MdOutlineKeyboardArrowDown className="mt-1 ml-2" size={22} />
+                )}
               </button>
               {openSubmenus[key] && (
-                <ul className="pl-4">{renderSubmenu(value, buildPath(parentPath, key))}</ul>
+                <ul className="pl-4 whitespace-nowrap font-semibold">
+                  {renderSubmenu(value, buildPath(parentPath, key))}
+                </ul>
               )}
             </li>
           ))}
@@ -101,11 +133,15 @@ const Sidebar = ({ children }) => {
             <div className="flex justify-end pr-4 pb-4">
               {/* <FaArrowLeftLong size={20} className="cursor-pointer" onClick={toggleSidebar} /> */}
             </div>
-            <ul className="space-y-2 font-medium">{renderSubmenu(submenu, `/${path}`)}</ul>
+            <ul className="space-y-2 font-medium">
+              {renderSubmenu(submenu, `/${path}`)}
+            </ul>
           </div>
         </aside>
       )}
-      <div className="children-scrollbar flex-1 h-full overflow-y-auto">{children}</div>
+      <div className="children-scrollbar flex-1 h-full overflow-y-auto">
+        {children}
+      </div>
     </div>
   );
 };
