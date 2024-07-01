@@ -6,6 +6,45 @@ import TinyChartComp from "../../components/TinyChartComp";
 // import DistributionChartComp from "../../components/DistributionChart";
 // import BarChartComp from "../../components/Barchart"
 
+const Table1 = () => {
+  return (
+    <div className="bg-white pt-2">
+      <div className="flex flex-row justify-evenly bg-light-orange p-3 rounded-lg m-4">
+        <p>Ranks</p>
+        <p>Name</p>
+        <p>Current Version</p>
+        <p>Status</p>
+        <p>Last Block</p>
+        <p>Block Produced</p>
+        <p>Block Missed</p>
+        <p>Productivity</p>
+        <p>Current Vote</p>
+        <p>Reward Distribution</p>
+        <p>APR</p>
+      </div>
+
+      {RespresentativeData.map((representative, index) => (
+        <div
+          key={index}
+          className="flex flex-row justify-evenly p-3 border-b-2 border-lightest-gray "
+        >
+          <p>{representative.Rank}</p>
+          <p>{representative.Name}</p>
+          <p>{representative.CurrentVersion}</p>
+          <p>{representative.Status}</p>
+          <p>{representative.LastBlock}</p>
+          <p>{representative.BlockProduced}</p>
+          <p>{representative.BlockMissed}</p>
+          <p>{representative.Productivity}</p>
+          <p>{representative.CurrentVote}</p>
+          <p>{representative.RewardDistribution}</p>
+          <p>{representative.Apr}</p>
+        </div>
+      ))}
+    </div>
+  );
+};
+
 const CardSuperRepresentative = () => {
   return (
     <>
@@ -30,6 +69,21 @@ const CardSuperRepresentative = () => {
 
 const SuperRepresentatives = () => {
   const [onSearch, setOnSearch] = useState("");
+  const [isRender, setIsRender] = useState("");
+
+  const renderItemComponent = () => {
+    switch (isRender) {
+      case "Super Representative":
+        return <Table1 />;
+      case "SR Partner":
+        return <Table1 />;
+      case "SR Candidates":
+        return <Table1 />;
+      default:
+        return null;
+    }
+  };
+
   return (
     <div className="px-12 pb-10">
       <div>
@@ -86,46 +140,30 @@ const SuperRepresentatives = () => {
         readable content of a page when looking at its layout.
       </p>
 
-      <div className="bg-white mt-10 rounded-2xl ">
-        <div className="flex flex-row justify-evenly p-5  rounded-xl">
-          <p className="bg-white">Super Representatives</p>
-          <p>SR Partner</p>
-          <p>SR Candidates</p>
+      <div className=" mt-10 rounded-2xl ">
+        <div className="flex flex-row justify-between  rounded-xl">
+          <p
+            className={`cursor-pointer ${isRender === "Super Representative" ? "bg-white pb-2 px-4 pt-4 rounded-t-2xl" : "text-black"}`}
+            onClick={() => setIsRender("Super Representative")}
+          > 
+            Super Representatives
+          </p>
+          <p
+            className={`cursor-pointer ${isRender === "SR Partner" ? "bg-white pb-2 px-4 pt-4 rounded-t-2xl" : "text-black"}`}
+            onClick={() => setIsRender("SR Partner")}
+          >
+            SR Partner
+          </p>
+          <p
+            className={`cursor-pointer ${isRender === "SR Candidates" ? "bg-white pb-2 px-4 pt-4 rounded-t-2xl" : "text-black"}`}
+            onClick={() => setIsRender("SR Candidates")}
+          >
+            SR Candidates
+          </p>
           <p>Only the first 27 records are displayed</p>
         </div>
 
-        <div className="flex flex-row justify-evenly bg-light-orange p-3 rounded-lg m-4">
-          <p>Ranks</p>
-          <p>Name</p>
-          <p>Current Version</p>
-          <p>Status</p>
-          <p>Last Block</p>
-          <p>Block Produced</p>
-          <p>Block Missed</p>
-          <p>Productivity</p>
-          <p>Current Vote</p>
-          <p>Reward Distribution</p>
-          <p>APR</p>
-        </div>
-
-        {RespresentativeData.map((representative, index) => (
-          <div
-            key={index}
-            className="flex flex-row justify-evenly p-3 border-b-2 border-lightest-gray "
-          >
-            <p>{representative.Rank}</p>
-            <p>{representative.Name}</p>
-            <p>{representative.CurrentVersion}</p>
-            <p>{representative.Status}</p>
-            <p>{representative.LastBlock}</p>
-            <p>{representative.BlockProduced}</p>
-            <p>{representative.BlockMissed}</p>
-            <p>{representative.Productivity}</p>
-            <p>{representative.CurrentVote}</p>
-            <p>{representative.RewardDistribution}</p>
-            <p>{representative.Apr}</p>
-          </div>
-        ))}
+        <div>{renderItemComponent()}</div>
       </div>
     </div>
   );
