@@ -69,7 +69,7 @@ const CardSuperRepresentative = () => {
 
 const SuperRepresentatives = () => {
   const [onSearch, setOnSearch] = useState("");
-  const [isRender, setIsRender] = useState("");
+  const [isRender, setIsRender] = useState("Super Representative");
 
   const renderItemComponent = () => {
     switch (isRender) {
@@ -99,7 +99,7 @@ const SuperRepresentatives = () => {
           <CustomPieChart />
         </div>
 
-        <div className="  flex flex-row mt-10  w-[50%]">
+        <div className="flex flex-row mt-10 w-[50%]">
           <div className="w-full mr-3">
             <div className="bg-white  mb-3 rounded-tl-2xl pl-10 pt-5">
               <CardSuperRepresentative />
@@ -141,21 +141,21 @@ const SuperRepresentatives = () => {
       </p>
 
       <div className=" mt-10 rounded-2xl ">
-        <div className="flex flex-row justify-between  rounded-xl">
+        <div className="flex flex-row space-x-12  rounded-xl">
           <p
-            className={`cursor-pointer ${isRender === "Super Representative" ? "bg-white pb-2 px-4 pt-4 rounded-t-2xl" : "text-black"}`}
+            className={`cursor-pointer py-3 px-4 ${isRender === "Super Representative" ? "bg-white  rounded-t-2xl" : "text-black"}`}
             onClick={() => setIsRender("Super Representative")}
           > 
             Super Representatives
           </p>
           <p
-            className={`cursor-pointer ${isRender === "SR Partner" ? "bg-white pb-2 px-4 pt-4 rounded-t-2xl" : "text-black"}`}
+            className={`cursor-pointer py-3 px-4 ${isRender === "SR Partner" ? "bg-white  rounded-t-2xl" : "text-black"}`}
             onClick={() => setIsRender("SR Partner")}
           >
             SR Partner
           </p>
           <p
-            className={`cursor-pointer ${isRender === "SR Candidates" ? "bg-white pb-2 px-4 pt-4 rounded-t-2xl" : "text-black"}`}
+            className={`cursor-pointer py-3 px-4 ${isRender === "SR Candidates" ? "bg-white  rounded-t-2xl" : "text-black"}`}
             onClick={() => setIsRender("SR Candidates")}
           >
             SR Candidates
