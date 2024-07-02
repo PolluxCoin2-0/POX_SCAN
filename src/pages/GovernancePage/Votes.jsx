@@ -3,8 +3,19 @@ import SearchBar from "../../components/SearchBar";
 import { VotesData } from "../../data/Votes";
 import VoteAdd from "../../assets/Voteadd.png";
 import VoteTotal from "../../assets/Votetotal.png";
+import Pagination from "../../components/Pagination";
+import { useState } from "react";
 
 const Votes = () => {
+
+   // For Pagination
+   const [currentPage, setCurrentPage] = useState(1);
+   const totalPages = 10; // Example total pages
+ 
+   const handlePageChange = (page) => {
+     setCurrentPage(page);
+   };
+
   return (
     <div className="px-12 pb-10">
       <div>
@@ -130,6 +141,14 @@ const Votes = () => {
          
               )
             })}
+
+            <div className="flex justify-end">
+            <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={handlePageChange}
+      />
+            </div>
         
          
          </div>

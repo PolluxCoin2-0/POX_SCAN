@@ -1,6 +1,69 @@
-import { ParameterData } from "../../data/Parameters"
+import { useState } from "react";
+import { ParameterData } from "../../data/Parameters";
+import Pagination from "../../components/Pagination";
+
+const ParameterTable = () => {
+  // For Pagination
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = 10; // Example total pages
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
+ return (
+    <div className="bg-white pt-2 pb-8">
+    <div className="flex flex-row justify-between mt-7 ml-2 mr-2 rounded-xl bg-lightest-gray pt-3 pb-3 pl-5 pr-5">
+          <p>Number</p>
+          <p className="">Parameter</p>
+          <p>Current Value</p>
+        </div>
+
+        {ParameterData.map ((parameter, index) => {
+        return (
+          <>
+           <div className="flex flex-row justify-between p-5 border-b-2 border-b-lightest-gray">
+               <p>{parameter.Number}</p>
+               <p>{parameter.Parameter}</p>
+               <p>{parameter.CurrentValue}</p>
+           </div>
+          </>
+        )
+       })}
+
+       <div className="flex justify-end">
+       <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={handlePageChange}
+      />
+       </div>
+        
+    </div>
+  )
+}
+
+
 
 const ParametersProposals = () => {
+
+  
+
+  const [isRender, setIsRender] = useState("Network Parameter");
+
+  const renderItemComponent = () => {
+    switch (isRender) {
+      case "Network Parameter":
+        return <ParameterTable />;
+      case "Committee Proposals":
+        return <ParameterTable />;
+     
+      default:
+        return null;
+    }
+  };
+
+ 
   return (
     <div className="p-16">
 
@@ -17,29 +80,28 @@ const ParametersProposals = () => {
 
 
 
-      <div className=" bg-white rounded-xl my-7 p-10">
+      <div className=" rounded-xl my-7 p-10">
         <div className="flex flex-row space-x-8">
-          <p>Network Parameter</p>
-          <p>Committee  Proposals</p>
+          <p className={`cursor-pointer py-3 px-4 whitespace-nowrap ${isRender === "Network Parameter" ? "bg-white  rounded-t-2xl" : "text-black"}`}
+           onClick={() => setIsRender("Network Parameter")}>Network Parameter</p>
+
+          <p  className={`cursor-pointer py-3 px-4 whitespace-nowrap ${isRender === "Committee Proposals" ? "bg-white  rounded-t-2xl" : "text-black"}`}
+          onClick={() => setIsRender("Committee Proposals")}>Committee  Proposals</p>
+
+          <div className="flex flex-row justify-end w-full space-x-8 pb-3">
+          <button className="bg-white py-1 px-4 rounded-md text-black cursor-pointer">
+             Raise a Proposal
+         </button>
+
+         <button className="bg-white py-1 px-4 rounded-md text-black cursor-pointer">
+           My Proposals
+         </button>
+          </div>
         </div>
 
-        <div className="flex flex-row justify-between mt-7 ml-2 mr-2 rounded-xl bg-lightest-gray pt-3 pb-3 pl-5 pr-5">
-          <p>Number</p>
-          <p className="">Parameter</p>
-          <p>Current Value</p>
-        </div>
+        <div>{renderItemComponent()}</div>
 
-       {ParameterData.map ((parameter, index) => {
-        return (
-          <>
-           <div className="flex flex-row justify-between p-5 border-b-2 border-b-lightest-gray">
-               <p>{parameter.Number}</p>
-               <p>{parameter.Parameter}</p>
-               <p>{parameter.CurrentValue}</p>
-           </div>
-          </>
-        )
-       })}
+      
         
 
 

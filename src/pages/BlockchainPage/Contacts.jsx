@@ -6,8 +6,20 @@ import SearchBarExpand from "../../components/SearchBarExpand";
 import { IoSearch } from "react-icons/io5";
 import { PiArrowBendDownLeftBold } from "react-icons/pi";
 import { MdKeyboardArrowRight } from "react-icons/md";
+import Pagination from "../../components/Pagination";
+import { useState } from "react";
+
 
 const Contacts = () => {
+
+   // For Pagination
+   const [currentPage, setCurrentPage] = useState(1);
+   const totalPages = 10; // Example total pages
+ 
+   const handlePageChange = (page) => {
+     setCurrentPage(page);
+   };
+
   return (
     <div className="px-12 pb-12">
       <div>
@@ -189,7 +201,7 @@ const Contacts = () => {
         </button>
       </div>
 
-      <div>
+       <div>
         <div className="bg-white rounded-2xl p-10 ">
           <div className=" flex flex-row justify-between">
             <div>
@@ -256,7 +268,16 @@ const Contacts = () => {
               </>
             );
           })}
+
+<div className="flex justify-end">
+        <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={handlePageChange}
+      />
         </div>
+        </div>
+       
       </div>
     </div>
   );

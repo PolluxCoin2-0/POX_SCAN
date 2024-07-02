@@ -3,8 +3,19 @@ import { TokenData } from "../../data/Token";
 import SearchBarExpand from "../../components/SearchBarExpand";
 import { FaToggleOn } from "react-icons/fa";
 import { MdKeyboardArrowRight } from "react-icons/md";
+import Pagination from "../../components/Pagination";
+
 
 const Accounts = () => {
+
+  // For Pagination
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = 10; // Example total pages
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
   const [onSearch, setOnSearch] = useState("");
 
   return (
@@ -135,6 +146,14 @@ const Accounts = () => {
             </>
           );
         })}
+
+        <div className="flex justify-end">
+        <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={handlePageChange}
+      />
+        </div>
       </div>
     </div>
   );

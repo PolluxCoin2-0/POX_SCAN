@@ -2,8 +2,20 @@ import { useState } from "react";
 import { TokenData } from "../../data/Token";
 import SearchBarExpand from "../../components/SearchBarExpand";
 import { MdKeyboardArrowRight } from "react-icons/md";
+import Pagination from "../../components/Pagination";
+
 
 const Blocks = () => {
+
+  // For Pagination
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = 10; // Example total pages
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
+
   const [onSearch, setOnSearch] = useState("");
   return (
     <div className="px-12 pb-12">
@@ -122,6 +134,16 @@ const Blocks = () => {
             </>
           );
         })}
+        
+        <div className="flex justify-end">
+
+        <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={handlePageChange}
+      />
+        </div>
+      
       </div>
     </div>
   );

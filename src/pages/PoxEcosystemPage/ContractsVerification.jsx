@@ -3,6 +3,12 @@ import FileDropzone from "../../components/FileDropzone";
 import FormComponent from "../../components/FormComponent";
 
 const ContractsVerification = () => {
+
+  const handleFileUpload = (file) => {
+    console.log('File uploaded:', file);
+    // You can handle the file upload process here, like sending it to a server
+  };
+
   return (
     <div className=" px-12 pb-12">
       <div>
@@ -25,9 +31,10 @@ const ContractsVerification = () => {
         <div >
               <FormComponent />
         </div>
-        <div className="pb-8">
-          <FileDropzone/>
-        </div>
+
+          <div className="bg-white  rounded-xl  ">
+        <FileDropzone onFileUpload={handleFileUpload} />
+      </div>
       </div>
     </div>
   )

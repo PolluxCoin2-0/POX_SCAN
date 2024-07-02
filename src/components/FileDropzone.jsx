@@ -1,22 +1,90 @@
+import React, { useState, useRef } from 'react';
+import { SlCloudUpload } from 'react-icons/sl';
 
+const FileDropzone = ({ onFileUpload }) => {
+  const [file, setFile] = useState(null);
+  const [dragging, setDragging] = useState(false);
+  const fileInputRef = useRef(null);
 
-const FileDropzone = () => {
-    return (
-        <div className="flex items-center justify-center w-full">
-            <label htmlFor="dropzone-file" className="flex flex-col items-center justify-center w-full h-64 border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
-                <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                    <svg className="w-32 h-32 mb-4 text-gray-500 dark:text-gray-400 text-light-mid-gray" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
-                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
-                    </svg>
-                    <button className="bg-dark-yellow py-2 px-24 font-bold rounded-xl text-black cursor-pointer mt-10  " >
-                   Upload Contract File(s)
+  const handleFileChange = (event) => {
+    const selectedFile = event.target.files[0];
+    setFile(selectedFile);
+    if (onFileUpload) {
+      onFileUpload(selectedFile);
+    }
+  };
+
+  const handleDrop = (event) => {
+    event.preventDefault();
+    setDragging(false);
+    const selectedFile = event.dataTransfer.files[0];
+    setFile(selectedFile);
+    if (onFileUpload) {
+      onFileUpload(selectedFile);
+    }
+  };
+
+  const handleDragOver = (event) => {
+    event.preventDefault();
+    setDragging(true);
+  };
+
+  const handleDragLeave = () => {
+    setDragging(false);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (file) {
+      // Handle file upload process here
+      console.log('Uploading file:', file);
+    }
+  };
+
+  const handleButtonClick = () => {
+    fileInputRef.current.click();
+  };
+
+  return (
+    <div className="max-w-md mx-auto my-8 p-4">
+      <form onSubmit={handleSubmit}>
+        <div
+          className={`mb-4 p-4  rounded-lg flex flex-col items-center justify-center ${
+            dragging ? 'border-blue-500 bg-blue-100' : 'border-gray-300'
+          }`}
+          onDrop={handleDrop}
+          onDragOver={handleDragOver}
+          onDragLeave={handleDragLeave}
+        >
+          <input
+            type="file"
+            id="fileInput"
+            className="hidden"
+            onChange={handleFileChange}
+            ref={fileInputRef}
+          />
+          <label htmlFor="fileInput" className="cursor-pointer flex flex-col items-center">
+            <SlCloudUpload className=" mb-4 text-8xl text-light-gray" />
+            <span className="text-blue-500 hover:underline">
+              {file ? file.name : 'Drag & Drop your file here or click to upload'}
+            </span>
+          </label>
+          <button
+            type="button"
+            onClick={handleButtonClick}
+            className="bg-dark-yellow py-3 px-10 font-bold rounded-lg text-black cursor-pointer mt-10"
+          >
+            Upload Contract File(s)
           </button>
-        
-                </div>
-                <input id="dropzone-file" type="file" className="hidden" />
-            </label>
         </div>
-    );
+        {file && (
+          <div className="mb-4 text-center">
+            {/* <p className="text-gray-700">Selected file: {file.name}</p> */}
+          </div>
+        )}
+      </form>
+    </div>
+  );
 };
 
 export default FileDropzone;

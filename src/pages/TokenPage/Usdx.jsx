@@ -1,8 +1,18 @@
 import { useState } from "react";
 import { TokenData } from "../../data/Token";
 import SearchBarExpand from "../../components/SearchBarExpand";
+import Pagination from "../../components/Pagination";
 
 const Usdx = () => {
+
+  // For PAGINATION
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = 10; // Example total pages
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
   const [onSearch, setOnSearch] = useState("");
   return (
     <div className="px-12 py-12">
@@ -116,6 +126,14 @@ const Usdx = () => {
             </>
           );
         })}
+
+        <div className="flex justify-end">
+        <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={handlePageChange}
+      />
+        </div>
       </div>
     </div>
   );
