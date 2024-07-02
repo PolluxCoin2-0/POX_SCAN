@@ -59,7 +59,6 @@ import NewPassword from "./Auth/NewPassword/NewPassword"
 import Error from "../pages/ErrorPage/Error";
 
 import ConnectWallet from "./ConnectWalletPage/ConnectWallet";
-import ConnectWallet2 from "./ConnectWalletPage/ConnectWallet2";
 export {
     Home,
     Blockchain,
@@ -117,7 +116,6 @@ export {
     NewPassword,
     Error,
     ConnectWallet,
-    ConnectWallet2,
     }
     
     

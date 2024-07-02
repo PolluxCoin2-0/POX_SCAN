@@ -103,7 +103,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="bg-dark-skyblue py-2 h-16 font-medium text-lg flex items-center justify-between pl-8 relative">
+      <div className="bg-dark-skyblue py-2 h-16 text-lg flex items-center justify-between pl-8 relative">
         <div className="flex items-center space-x-10">
           <Link to="/">
             <img
@@ -146,9 +146,10 @@ const Navbar = () => {
           <SearchBar />
           <Link to="/register"> <p className="text-white cursor-pointer border-r-2 pr-6">Register</p>  </Link>
           <Link to="/login"><p className="text-white cursor-pointer">Login</p> </Link>
+          <Link to ="/connectwallet">
           <button className="bg-dark-yellow py-1 px-3 rounded-xl text-black cursor-pointer">
             Connect Wallet
-          </button>
+          </button></Link>
           <IoNotificationsCircleOutline
             size={36}
             color="white"
