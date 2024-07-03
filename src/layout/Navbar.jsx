@@ -123,7 +123,7 @@ const Navbar = () => {
   const location = useLocation();
   const currentPath = location.pathname;
   const [hoveredItem, setHoveredItem] = useState(null);
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
 
   const renderHoverComponent = () => {
     switch (hoveredItem) {
@@ -227,7 +227,7 @@ const Navbar = () => {
 
 
       {/* Mobile Screen Navbar */}
-      <div className="sm:block md:hidden lg:hidden xl:hidden 2xl:hidden bg-dark-skyblue flex justify-between items-center px-4 py-2 pb-6">
+      <div className="sm:block md:hidden lg:hidden xl:hidden 2xl:hidden bg-dark-skyblue flex justify-between items-center p-4">
         <Link to="/">
           <img
             src={LogoWithText}
@@ -242,7 +242,7 @@ const Navbar = () => {
       {
         isOpen &&(
           <>
-          <div className="fixed inset-0 bg-dark-skyblue pb-6 z-20 top-14 min-h-fit">
+          <div className="fixed inset-0 bg-dark-skyblue py-6 px-4 z-20 top-14 min-h-fit">
             {Object.keys(NavbarOptions).map((key, index) => {
             const formattedKey = key.replace(/\s+/g, ""); // Remove all spaces from key
             return (

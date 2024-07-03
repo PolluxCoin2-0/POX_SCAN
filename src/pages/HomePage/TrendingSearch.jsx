@@ -54,9 +54,9 @@ const TrendingSearch = () => {
     setSelectedOption(event.target.value);
   };
   return (
-    <div className="flex justify-between py-6">
+    <div className="flex flex-col md:flex-row justify-between py-6">
       {/* Left Side Trending Search */}
-      <div className="w-[75%]">
+      <div className="w-full md:w-[75%] ">
         <div className="flex justify-between space-x-4 pb-6">
           <div className="flex space-x-4 items-center">
             <p className="font-semibold text-xl">Trending Search :</p>
@@ -69,13 +69,13 @@ const TrendingSearch = () => {
               <p>USDX</p>
             </div>
           </div>
-          <p className="bg-light-red px-3 py-1 rounded-2xl text-dark-red">
+          <p className="hidden md:block bg-light-red px-3 py-1 rounded-2xl text-dark-red">
             last 24 hours ago
           </p>
         </div>
 
-        <div className="shadow-md px-2 mb-6 rounded-xl py-6 bg-white flex flex-row justify-evenly">
-          <div className="flex flex-col w-[40%] ">
+        <div className="shadow-md px-2 mb-6 rounded-xl py-6 bg-white flex flex-col md:flex-row justify-evenly">
+          <div className="flex flex-col w-full  md:w-[40%] px-2 md:px-0">
             <div className="mb-6 border-b-[2px] border-text-bg-gray pb-6">
               <CardForTrendingSearch
                 icon={TotalAccounts}
@@ -84,12 +84,14 @@ const TrendingSearch = () => {
                 valueFor24hr={data?.last24addr}
               />
             </div>
+            <div className="pb-4 md:pb-0 mb-6 md:mb-0 border-b-[2px] md:border-none border-text-bg-gray">
             <CardForTrendingSearch icon={TotalTxns} title="Total Txns"  value={data?.totaltxn} valueFor24hr={data?.last24hourtxn}/>
+            </div>
           </div>
 
-          <div className="border-r-[1px] blur-sm"></div>
+          <div className="border-r-[1px] blur-sm hidden md:block"></div>
 
-          <div className="flex flex-col justify-around w-[40%]">
+          <div className="flex flex-col justify-around w-full md:w-[40%] px-2 md:px-0">
             <div className="mb-6 border-b-[2px] border-text-bg-gray pb-6">
               <CardForTrendingSearch icon={TVL} title="TVL (Current)" />
             </div>
@@ -100,7 +102,7 @@ const TrendingSearch = () => {
           </div>
         </div>
 
-        <div className="flex justify-between shadow-lg bg-white rounded-xl p-4">
+        <div className="flex justify-between flex-wrap shadow-lg bg-white rounded-xl p-4">
           <div>
             <p className="text-light-gray pb-1">Current/MaxTPS:</p>
             <p className="font-semibold">{data?.currenttps}/{data?.maxtps}</p>
@@ -116,17 +118,17 @@ const TrendingSearch = () => {
             <p className="font-semibold">00</p>
           </div>
 
-          <div>
+          <div className="pt-4 md:pt-0">
             <p className="text-light-gray pb-1">Total Contracts:</p>
             <p className="font-semibold">00</p>
           </div>
 
-          <div>
+          <div className="pt-4 md:pt-0">
             <p className="text-light-gray pb-1">Bandwidth:</p>
             <p className="font-semibold">{data2?.bandwidth}</p>
           </div>
 
-          <div>
+          <div className="pt-4 md:pt-0">
             <p className="text-light-gray">Energy:</p>
             <p className="font-semibold">4245642</p>
           </div>
@@ -134,7 +136,7 @@ const TrendingSearch = () => {
       </div>
 
       {/* Right Side Chart */}
-      <div className="w-[20%]  rounded-xl px-4 pb-6">
+      <div className="w-full md:w-[20%] rounded-xl px-0 md:px-4  pb-6 mt-8 md:mt-0">
         <div className="flex justify-between items-center mb-3">
           <p className="font-semibold text-lg">POX</p>
           <select

@@ -49,7 +49,7 @@ const BlockContainer = () => {
       <div className="w-full">
         <Slider {...settings}>
           {Blocks.map((block, idx) => (
-            <div key={idx} className="w-full shadow-lg rounded-2xl py-4 px-8 m-4 bg-white over">
+            <div key={idx} className="w-full shadow-lg rounded-2xl py-4 px-8 mx-0 md:mx-4 my-4 bg-white over">
               <div className="flex flex-row justify-between">
                 <p className="font-semibold">#{block?.HashValue}</p>
                 <p className="text-light-gray border-light-gray border-[1px] py-1 px-4 rounded-md">{"Block Producer..  >"}</p>
