@@ -1,7 +1,22 @@
 import { useState } from 'react';
+import { HiOutlineChevronDown } from 'react-icons/hi';
 
 
 const FormComponent = () => {
+
+
+  // const [isOpened, setIsOpened] = useState(false);
+
+  // const toggleDropdown1 = () => {
+  //   setIsOpened(!isOpened);
+  // };
+
+  const [isDrop, setIsDrop] =useState(false);
+
+  const toggleDrop = () => {
+    setIsDrop(!isDrop);
+  }
+
   // State variables to store form data and errors
   const [formData, setFormData] = useState({
     currentAddress: '',
@@ -97,6 +112,7 @@ const FormComponent = () => {
         </div>
         <div className="mb-4 flex flex-row items-center">
           <label htmlFor="optimization" className="block text-lg font-medium text-light-gray  mr-16">Optimization</label>
+
           <input
             type="text"
             id="optimization"
@@ -107,6 +123,28 @@ const FormComponent = () => {
             className={`mt-1 block w-full px-3 py-2 border ${errors.optimization ? 'border-red-300' : 'border-gray-300'} border-lightest-gray rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm`}
             required
           />
+          <div>
+          <button
+                type="button"
+                className="inline-flex justify-center w-full rounded-md px-4 py-2 bg-white text-sm font-medium text-light-gray hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                onClick={toggleDrop}
+              >
+               <HiOutlineChevronDown className="-mr-1 ml-2 h-5 w-5" aria-hidden="true" />
+              </button>
+          </div>
+
+          {isDrop && (
+              <div className="origin-top-right absolute left-2/4 top-100 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                <div className="py-1" role="none">
+                  <a  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" >Daily</a>
+                  <a  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" >Weekly</a>
+                  
+                </div>
+              </div>
+            )}
+
+         
+           
           {errors.optimization && <p className="mt-1 text-red-500 text-sm">{errors.optimization}</p>}
         </div>
         <div className="mb-4 flex flex-row  items-center">

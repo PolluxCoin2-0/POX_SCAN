@@ -1,9 +1,11 @@
 import SearchBarExpand from "../../components/SearchBarExpand"
 import FileDropzone from "../../components/FileDropzone";
 import FormComponent from "../../components/FormComponent";
+import { IoIosArrowDown } from "react-icons/io";
 
 const ContractsVerification = () => {
-
+   
+  
   const handleFileUpload = (file) => {
     console.log('File uploaded:', file);
     // You can handle the file upload process here, like sending it to a server

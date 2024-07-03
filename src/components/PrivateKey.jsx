@@ -1,7 +1,23 @@
 import { useState } from "react";
 import {FaRegCopy} from "react-icons/fa6";
+import { MdArrowRightAlt } from "react-icons/md";
+import { SiTicktick } from "react-icons/si";
 
 const PrivateKeyCard = ({input}) => {
+    const [isCopy, setIsCopy] = useState(false);
+
+    const [textArea2, setTextArea2] = useState("");
+  
+    const handleCopy = (value) => {
+      navigator.clipboard.writeText(value);
+      setIsCopy(!isCopy);
+  
+      setTimeout(() => {
+        setIsCopy(false);
+      }, 2000);
+    };
+
+
    return (
     <>
      <textarea
@@ -10,12 +26,30 @@ const PrivateKeyCard = ({input}) => {
             cols={66}
             className="shadow appearance-none border-text-bg-gray border-[1px] rounded-xl w-full px-6 py-4  text-gray-700 leading-tight focus:outline-none focus:shadow-outline resize-none"
             placeholder={input}
+            onChange={(e) => setTextArea2(e.target.value)}
             > </textarea>
 
 
       <div className="flex flex-row justify-end items-center -mt-9 mr-4">
-                <FaRegCopy className="text-light-gray"/> 
-                <p className="text-light-gray pl-1">copy</p>
+      { 
+                  isCopy ? (
+                    <>
+                 <SiTicktick className="text-light-gray"
+                  onClick={()=>handleCopy(textArea2)}/> 
+                 <p className="text-light-gray pl-1">copied</p>
+                 </>
+                 )
+                 :
+                 (
+                  <>
+                  <FaRegCopy className="text-light-gray"
+                  onClick={()=>handleCopy(textArea2)}/> 
+                 <p className="text-light-gray pl-1">copy</p>
+
+                 
+                 </>
+                 )
+              }
             </div>
     </>
    )
@@ -23,6 +57,19 @@ const PrivateKeyCard = ({input}) => {
 
 
 const PrivateKey = ({title1, title2, placeholder1, placeholder2, placeholder3}) => {
+
+    
+    const [isCopy, setIsCopy] = useState(false);
+    const [textArea1, setTextArea1] = useState("");
+
+    const handleCopy = (value) => {
+        navigator.clipboard.writeText(value);
+        setIsCopy(!isCopy);
+    
+        setTimeout(() => {
+          setIsCopy(false);
+        }, 2000);
+      };
 
     const [isRender, setIsRender] = useState("Address (Base58Check)");
     
@@ -55,18 +102,36 @@ const PrivateKey = ({title1, title2, placeholder1, placeholder2, placeholder3}) 
             cols={66}
             className="shadow appearance-none border-text-bg-gray border-[1px] rounded-xl w-full px-6 py-4  text-gray-700 leading-tight focus:outline-none focus:shadow-outline resize-none"
             placeholder={placeholder1}
+            onChange={(e) => setTextArea1(e.target.value)}
             > </textarea>
 
             <div className="flex flex-row justify-end items-center -mt-9 mr-4">
-                <FaRegCopy className="text-light-gray"/> 
-                <p className="text-light-gray pl-1">copy</p>
+            { 
+                  isCopy ? (
+                    <>
+                 <SiTicktick className="text-light-gray"
+                  onClick={()=>handleCopy(textArea1)}/> 
+                 <p className="text-light-gray pl-1">copied</p>
+                 </>
+                 )
+                 :
+                 (
+                  <>
+                  <FaRegCopy className="text-light-gray"
+                  onClick={()=>handleCopy(textArea1)}/> 
+                 <p className="text-light-gray pl-1">copy</p>
+
+                 
+                 </>
+                 )
+              }
             </div>
         
         </div>
 
         <div className="flex flex-col ">
-        <button className="bg-dark-yellow py-2  px-10 font-bold rounded-lg text-black cursor-pointer mt-14 " > Convert  </button>
-    
+        <button className="bg-dark-yellow py-2  px-16 font-bold rounded-lg text-black cursor-pointer mt-14 " > Convert  </button>
+        <MdArrowRightAlt  className="ml-32 -mt-8" size={28}/>
         </div>
 
         <div>
@@ -80,11 +145,30 @@ const PrivateKey = ({title1, title2, placeholder1, placeholder2, placeholder3}) 
             cols={66}
             className="shadow appearance-none border-text-bg-gray border-[1px] rounded-xl w-full px-6 py-4  text-gray-700 leading-tight focus:outline-none focus:shadow-outline resize-none"
             placeholder={placeholder2}
+            onChange={(e) => setTextArea1(e.target.value)}
             > </textarea>
 
             <div className="flex flex-row justify-end items-center -mt-9 mr-4">
-                <FaRegCopy className="text-light-gray"/> 
-                <p className="text-light-gray pl-1">copy</p>
+            { 
+                  isCopy ? (
+                    <>
+                 <SiTicktick className="text-light-gray"
+                  onClick={()=>handleCopy(textArea1)}/> 
+                 <p className="text-light-gray pl-1">copied</p>
+                 </>
+                 )
+                 :
+                 (
+                  <>
+                  <FaRegCopy className="text-light-gray"
+                  onClick={()=>handleCopy(textArea1)}/> 
+                 <p className="text-light-gray pl-1">copy</p>
+
+                 
+                 </>
+                 )
+              }
+
             </div>
         
         </div>

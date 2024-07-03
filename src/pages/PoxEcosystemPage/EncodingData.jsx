@@ -2,8 +2,27 @@ import { useState } from "react";
 import {FaRegCopy} from "react-icons/fa6";
 import PublicKey from "../../components/PublicKey";
 import PrivateKey from "../../components/PrivateKey";
+import { MdArrowRightAlt } from "react-icons/md";
+import { HiMiniArrowLongLeft } from "react-icons/hi2";
+import { SiTicktick } from "react-icons/si";
 
 const EncodingTable = ({title1, title2, placeholder1, placeholder2}) => {
+
+
+  const [isCopy, setIsCopy] = useState(false);
+
+  const [textArea1, setTextArea1] = useState("");
+  const [textArea2, setTextArea2] = useState("");
+
+  const handleCopy = (value) => {
+    navigator.clipboard.writeText(value);
+    setIsCopy(!isCopy);
+
+    setTimeout(() => {
+      setIsCopy(false);
+    }, 2000);
+  };
+
   return (
     <div className="bg-white pt-2 pb-40 rounded-lg">
      <div className="flex flex-row justify-around pt-14 items-center">
@@ -16,19 +35,45 @@ const EncodingTable = ({title1, title2, placeholder1, placeholder2}) => {
             cols={66}
             className="shadow appearance-none border-text-bg-gray border-[1px] rounded-xl w-full px-6 py-4  text-gray-700 leading-tight focus:outline-none focus:shadow-outline resize-none"
             placeholder={placeholder1}
+            onChange={(e)=>setTextArea1(e.target.value)}
             > </textarea>
 
             <div className="flex flex-row justify-end items-center -mt-9 mr-4">
-                <FaRegCopy className="text-light-gray"/> 
-                <p className="text-light-gray pl-1">copy</p>
+              { 
+                  isCopy ? (
+                    <>
+                 <SiTicktick className="text-light-gray"
+                  onClick={()=>handleCopy(textArea1)}/> 
+                 <p className="text-light-gray pl-1">copied</p>
+                 </>
+                 )
+                 :
+                 (
+                  <>
+                  <FaRegCopy className="text-light-gray"
+                  onClick={()=>handleCopy(textArea1)}/> 
+                 <p className="text-light-gray pl-1">copy</p>
+
+                 
+                 </>
+                 )
+              }
+               
             </div>
         
         </div>
 
-        <div className="flex flex-col ">
-        <button className="bg-dark-yellow py-2  font-bold rounded-lg text-black cursor-pointer mt-14 " > Convert  </button>
-        <button className="bg-white py-2  font-bold rounded-lg text-black border-2 cursor-pointer mt-5 " > Convert </button>
+        < div className="flex flex-col ">
+          
+          <button className="bg-dark-yellow py-2 px-16 font-bold rounded-lg  text-black cursor-pointer mt-14 " > Convert </button>
+          <MdArrowRightAlt  className="ml-36 -mt-8 mr-12" size={28}/>
+          
+          
+          <button className="bg-white py-2  font-bold rounded-lg text-black border-2 cursor-pointer mt-5 " > Convert </button>
+          < HiMiniArrowLongLeft  className="-mt-8 ml-12" size={24}/>
+
         <button className="bg-white py-2 px-16 font-bold rounded-lg text-black border-2 cursor-pointer mt-5  " > Reset </button>
+        
         </div>
         <div>
             <p className="text-lg font-bold pb-5">{title2}</p>
@@ -38,11 +83,29 @@ const EncodingTable = ({title1, title2, placeholder1, placeholder2}) => {
             cols={66}
             className="shadow appearance-none border-text-bg-gray border-[1px] rounded-xl w-full px-6 py-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline resize-none"
             placeholder={placeholder2}
+            onChange={(e) => setTextArea2(e.target.value)}
             ></textarea>
 
                  <div className="flex flex-row justify-end items-center -mt-9 mr-4">
-                <FaRegCopy className="text-light-gray"/> 
-                <p className="text-light-gray pl-1">copy</p>
+                 { 
+                  isCopy ? (
+                    <>
+                 <SiTicktick className="text-light-gray"
+                  onClick={()=>handleCopy(textArea2)}/> 
+                 <p className="text-light-gray pl-1">copied</p>
+                 </>
+                 )
+                 :
+                 (
+                  <>
+                  <FaRegCopy className="text-light-gray"
+                  onClick={()=>handleCopy(textArea2)}/> 
+                 <p className="text-light-gray pl-1">copy</p>
+
+                 
+                 </>
+                 )
+              }
             </div>
         </div>
       </div>
@@ -103,23 +166,23 @@ const EncodingData = () => {
     <div className=" rounded-lg pb-48">
       <div className="flex flex-row space-x-12 pt-12">
 
-        <p className={`cursor-pointer py-3 px-4 whitespace-nowrap ${isRender === "Pollux- EVM Address" ? "bg-white  rounded-t-2xl" : "text-light-gray"}`}
+        <p className={`cursor-pointer py-3 px-4 whitespace-nowrap ${isRender === "Pollux- EVM Address" ? "bg-white font-bold  rounded-t-2xl" : "text-light-gray"}`}
         onClick={() => setIsRender("Pollux- EVM Address")}
         >Pollux- EVM Address</p>
 
-        <p className={`cursor-pointer py-3 px-4 whitespace-nowrap ${isRender === "Base64 Encode /Decode" ? "bg-white  rounded-t-2xl" : "text-light-gray"}`}
+        <p className={`cursor-pointer py-3 px-4 whitespace-nowrap ${isRender === "Base64 Encode /Decode" ? "bg-white  font-bold rounded-t-2xl" : "text-light-gray"}`}
         onClick={() => setIsRender("Base64 Encode /Decode")}
         >Base64 Encode /Decode</p>
 
-        <p className={`cursor-pointer py-3 px-4 whitespace-nowrap ${isRender === "Base58 Check Encode / Decode" ? "bg-white  rounded-t-2xl" : "text-light-gray"}`}
+        <p className={`cursor-pointer py-3 px-4 whitespace-nowrap ${isRender === "Base58 Check Encode / Decode" ? "bg-white font-bold rounded-t-2xl" : "text-light-gray"}`}
         onClick={() => setIsRender("Base58 Check Encode / Decode")}
         >Base58 Check Encode / Decode</p>
 
-        <p className={`cursor-pointer py-3 px-4 whitespace-nowrap ${isRender === "Public Key - Address" ? "bg-white  rounded-t-2xl" : "text-light-gray"}`}
+        <p className={`cursor-pointer py-3 px-4 whitespace-nowrap ${isRender === "Public Key - Address" ? "bg-white font-bold rounded-t-2xl" : "text-light-gray"}`}
         onClick={() => setIsRender("Public Key - Address")}
         >Public Key - Address</p>
 
-        <p className={`cursor-pointer py-3 px-4 whitespace-nowrap ${isRender === "Private Key - Public Key & Address" ? "bg-white  rounded-t-2xl" : "text-light-gray"}`}
+        <p className={`cursor-pointer py-3 px-4 whitespace-nowrap ${isRender === "Private Key - Public Key & Address" ? "bg-white font-bold  rounded-t-2xl" : "text-light-gray"}`}
         onClick={() => setIsRender("Private Key - Public Key & Address")}
         >Private Key - Public Key & Address</p>
 
