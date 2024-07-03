@@ -5,6 +5,7 @@ import VoteAdd from "../../assets/Voteadd.png";
 import VoteTotal from "../../assets/Votetotal.png";
 import Pagination from "../../components/Pagination";
 import { useState } from "react";
+import { IoIosArrowForward } from "react-icons/io"
 
 const Votes = () => {
 
@@ -22,8 +23,15 @@ const Votes = () => {
       <SearchBarExpand />
       </div>
 
-
+      <div className="flex flex-row justify-between">
       <p className="text-xl font-bold pb-5">Votes</p>
+      <div className="flex flex-row">
+      <p className="text-dark-red">View Super Representatives</p> 
+      <IoIosArrowForward  className="text-dark-red"   />
+      </div>
+      
+      </div>
+      
       <div className=" flex flex-row space-x-5 w-full">
          <div className="w-[50%] rounded-xl bg-white shadow-xl flex flex-row justify-between pb-10 h-64">
           <div className=" pl-20 p-10">

@@ -3,8 +3,7 @@ import { useState } from "react";
 import { RespresentativeData } from "../../data/Resprentative";
 import CustomPieChart from "../../components/CustomPieChart";
 import TinyChartComp from "../../components/TinyChartComp";
-// import DistributionChartComp from "../../components/DistributionChart";
-// import BarChartComp from "../../components/Barchart"
+
 
 const Table1 = () => {
   return (
@@ -160,8 +159,13 @@ const SuperRepresentatives = () => {
           >
             SR Candidates
           </p>
-          <p>Only the first 27 records are displayed</p>
+          
+          <p >Only the first 27 records are displayed</p>
+          
+          
         </div>
+
+        
 
         <div>{renderItemComponent()}</div>
       </div>

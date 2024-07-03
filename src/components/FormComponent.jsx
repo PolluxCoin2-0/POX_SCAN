@@ -111,33 +111,33 @@ const FormComponent = () => {
           {errors.currentAddress && <p className="mt-1 text-red-500 text-sm">{errors.currentAddress}</p>}
         </div>
         <div className="mb-4 flex flex-row items-center">
-          <label htmlFor="optimization" className="block text-lg font-medium text-light-gray  mr-16">Optimization</label>
+          <label htmlFor="optimization" className="block text-lg font-medium text-light-gray  ">Optimization</label>
 
           <input
             type="text"
             id="optimization"
             name="optimization"
-            placeholder='Optimization'
+            placeholder='Yes'
             value={formData.optimization}
             onChange={handleInputChange}
-            className={`mt-1 block w-full px-3 py-2 border ${errors.optimization ? 'border-red-300' : 'border-gray-300'} border-lightest-gray rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm`}
+            className={`mt-1 block w-full px-28 py-2 ml-16  border ${errors.optimization ? 'border-red-300' : 'border-gray-300'} border-lightest-gray rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm`}
             required
           />
           <div>
           <button
                 type="button"
-                className="inline-flex justify-center w-full rounded-md px-4 py-2 bg-white text-sm font-medium text-light-gray hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                className="inline-flex justify-center w-full  bg-white text-sm font-medium text-light-gray hover:bg-gray-50 "
                 onClick={toggleDrop}
               >
-               <HiOutlineChevronDown className="-mr-1 ml-2 h-5 w-5" aria-hidden="true" />
+               <HiOutlineChevronDown className="-ml-4" size={16}/>
               </button>
           </div>
 
           {isDrop && (
-              <div className="origin-top-right absolute left-2/4 top-100 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+              <div className="origin-top-right absolute left-1/2 top-100 -mt-96 w-20 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
                 <div className="py-1" role="none">
-                  <a  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" >Daily</a>
-                  <a  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" >Weekly</a>
+                  <a  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" >Yes</a>
+                  <a  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" >No</a>
                   
                 </div>
               </div>
@@ -161,6 +161,7 @@ const FormComponent = () => {
         
           />
           
+          <HiOutlineChevronDown className="-ml-4" size={20}/>
           {errors.compiler && <p className="mt-1 text-red-500 text-sm">{errors.compiler}</p>}
         </div>
 
@@ -193,6 +194,8 @@ const FormComponent = () => {
             className={`mt-1 block w-full px-3 py-2 border ${errors.license ? 'border-red-300' : 'border-gray-300'} border-lightest-gray rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm`}
             required
           />
+
+           <HiOutlineChevronDown className="-ml-4" size={20}/>
           {errors.license && <p className="mt-1 text-red-500 text-sm">{errors.license}</p>}
         </div>
         <div className="mb-4 flex flex-row items-center">
@@ -201,6 +204,7 @@ const FormComponent = () => {
             type="text"
             id="runs"
             name="runs"
+            placeholder="0"
             value={formData.runs}
             onChange={handleInputChange}
             className={`mt-1 block w-full px-3 py-2 border ${errors.runs ? 'border-red-300' : 'border-gray-300'} border-lightest-gray rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm`}
