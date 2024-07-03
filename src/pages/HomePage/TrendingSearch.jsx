@@ -59,7 +59,7 @@ const TrendingSearch = () => {
       <div className="w-full md:w-[75%] ">
         <div className="flex justify-between space-x-4 pb-6">
           <div className="flex space-x-4 items-center">
-            <p className="font-semibold text-xl">Trending Search :</p>
+            <p className="font-semibold text-xl whitespace-nowrap">Trending Search :</p>
             <div className="flex space-x-2 items-center font-semibold">
               <img src={PoxImg} alt="" />
               <p>POX</p>
