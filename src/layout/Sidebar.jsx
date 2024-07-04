@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-// import { FaArrowLeftLong } from 'react-icons/fa';
 import { MdKeyboardArrowUp, MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { BsDot } from "react-icons/bs";
 import { NavbarOptions } from "../data/NavbarOptions";
@@ -9,7 +8,6 @@ import { NavbarOptions } from "../data/NavbarOptions";
 const Sidebar = ({ children }) => {
   const [path, setPath] = useState("");
   const [submenu, setSubmenu] = useState({});
-  const [isOpen, setIsOpen] = useState(true);
   const [openSubmenus, setOpenSubmenus] = useState({});
   const location = useLocation();
 
@@ -35,10 +33,6 @@ const Sidebar = ({ children }) => {
       setSubmenu(submenuList);
     }
   }, [location, path]);
-
-  const toggleSidebar = () => {
-    setIsOpen(!isOpen);
-  };
 
   const toggleSubmenu = (key) => {
     setOpenSubmenus((prev) => ({
@@ -127,18 +121,13 @@ const Sidebar = ({ children }) => {
 
   return (
     <div className="flex h-screen">
-      {isOpen && (
-        <aside className="flex-none w-64 bg-black text-white">
-          <div className="h-full px-3 py-4 overflow-y-auto">
-            <div className="flex justify-end pr-4 pb-4">
-              {/* <FaArrowLeftLong size={20} className="cursor-pointer" onClick={toggleSidebar} /> */}
-            </div>
-            <ul className="space-y-2 font-medium">
-              {renderSubmenu(submenu, `/${path}`)}
-            </ul>
-          </div>
-        </aside>
-      )}
+      <aside className="hidden md:flex w-64 bg-black text-white">
+        <div className="h-full px-3 py-4 overflow-y-auto">
+          <ul className="space-y-2 font-medium">
+            {renderSubmenu(submenu, `/${path}`)}
+          </ul>
+        </div>
+      </aside>
       <div className="children-scrollbar flex-1 h-full overflow-y-auto">
         {children}
       </div>

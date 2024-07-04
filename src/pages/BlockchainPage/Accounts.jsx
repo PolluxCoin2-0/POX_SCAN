@@ -42,14 +42,14 @@ const Accounts = () => {
   const [onSearch, setOnSearch] = useState("");
 
   return (
-    <div className="px-12 pb-12">
+    <div className="px-4 md:px-12 pb-12">
       <div>
         <SearchBarExpand onSearch={setOnSearch} />
       </div>
 
       <p className="font-bold text-2xl pb-10">Blocks</p>
-      <div className=" flex flex-row justify-around ">
-        <div className=" w-[32%]  bg-white shadow-lg rounded-2xl p-8">
+      <div className="flex flex-col space-y-6 md:space-y-0 md:flex-row justify-around ">
+        <div className="w-full md:w-[32%] bg-white shadow-lg rounded-2xl p-8">
           <div className="flex flex-row justify-between pt-1 ">
             <p className="font-bold text-lg">Number of Accounts</p>
             <div className="flex flex-row">
@@ -73,7 +73,7 @@ const Accounts = () => {
           </div>
         </div>
 
-        <div className=" w-[32%]  rounded-2xl p-8 bg-white shadow-md ">
+        <div className="w-full md:w-[32%]  rounded-2xl p-8 bg-white shadow-md ">
           <div className=" flex flex-row justify-between pt-1">
             <p className="font-bold text-lg">POX Holders</p>
             <div className="flex flex-row">
@@ -97,7 +97,7 @@ const Accounts = () => {
           </div>
         </div>
 
-        <div className="w-[32%] rounded-2xl p-8 bg-white shadow-md ">
+        <div className="w-full md:w-[32%] rounded-2xl p-8 bg-white shadow-md ">
           <div className="flex flex-row justify-between pt-1">
             <p className="font-bold">POX Active Accounts</p>
             <div className="flex flex-row">
@@ -124,8 +124,8 @@ const Accounts = () => {
         </div>
       </div>
 
-      <div className="bg-white  rounded-2xl p-7 mt-16">
-        <div className="flex flex-row justify-start gap-5">
+      <div className="bg-white  rounded-2xl p-2 md:p-7  overflow-x-auto mt-8 md:mt-16">
+        <div className="flex flex-row justify-start gap-5 min-w-[1500px] md:min-w-full">
           <p className="pb-5 font-medium text-light-gray">
             The latest <span className="text-black font-semibold"> 10,000</span>
             records are shown, sorted by decreasing POX balance by default{" "}
@@ -140,7 +140,7 @@ const Accounts = () => {
           </div>
         </div>
 
-        <div className="flex flex-row justify-around p-2 bg-lightest-gray rounded-lg">
+        <div className="flex flex-row justify-around p-2 bg-lightest-gray rounded-lg min-w-[1500px] md:min-w-full">
           <p className=" w-[12%]">Block</p>
           <p className=" w-[12%]">Age</p>
           <p className=" w-[12%]">Producer</p>
@@ -156,7 +156,7 @@ const Accounts = () => {
         {TokenData.map((stablecoin, index) => {
           return (
             <>
-              <div className="flex flex-row  justify-around border-b-2 p-3 border-text-bg-gray ">
+              <div className="flex flex-row  justify-around border-b-2 p-3 border-text-bg-gray min-w-[1500px] md:min-w-full">
                 <p className="text-dark-red  w-[12%]">{stablecoin.Block}</p>
                 <p className=" w-[12%]">{stablecoin.Age}</p>
                 <p className="text-dark-red  w-[12%]">{stablecoin.Producer}</p>
@@ -170,7 +170,7 @@ const Accounts = () => {
           );
         })}
 
-        <div className="flex justify-end">
+        <div className="flex justify-start md:justify-end min-w-[800px] overflow-x-auto">
         <Pagination
         currentPage={currentPage}
         totalPages={totalPages}
