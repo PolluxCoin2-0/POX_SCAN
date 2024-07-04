@@ -1,8 +1,28 @@
 // import { IoIosArrowForward } from "react-icons/io";
 import { Transactions } from "../../data/HomePageData";
 import AreaChartComp from "../../components/AreaChart";
+import { useEffect, useState } from "react";
+import { getTransactionGraphData } from "../../utils/axios/Home";
 
 const TransactionContainer = () => {
+
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    
+    const fetchData = async () => {
+      try {
+        const data = await getTransactionGraphData();
+        
+        setData(data?.message);
+      } catch (error) {
+        console.error('error', error);
+      } 
+    };
+
+    fetchData();
+
+  }, []);
   return (
     <>
       <div className="flex justify-between my-6 w-[75%]">
@@ -84,7 +104,10 @@ const TransactionContainer = () => {
         <div className="w-full md:w-[20%] mt-6 md:mt-0">
           <div className="shadow-lg bg-white rounded-xl p-4">
             <p className="font-semibold">Daily Txns (15 Days)</p>
-            <AreaChartComp/>
+            <AreaChartComp
+            value={data}
+            xDataKey="date"
+            yDataKey="count"/>
           </div>
           <div className="shadow-lg bg-white rounded-lg p-4 mt-4">
             <p className="font-semibold pb-2">Lorem ipsum dolor sit amet.</p>

@@ -28,3 +28,48 @@ export const getResourceDetailsData = async() => {
         
     }
 }
+
+export const getTrendingSearchGraphData = async() => {
+    try {
+        const response = await axios.get("https://node.poxscan.io/api/token0");
+        return (response?.data);
+    } catch (error) {
+        console.log("error", error);
+    }
+}
+
+export const getStakedData = async() => {
+    try {
+        const response = await axios.get("https://governance.poxscan.io/governance/getstakedata");
+        return (response?.data);
+    } catch (error) {
+        console.log("error", error);
+    }
+}
+
+export const getTransactionGraphData = async() => {
+    try {
+        const response = await axios.get("https://node.poxscan.io/api/txngraph");
+        return (response?.data);
+    } catch (error) {
+        console.log("error", error);
+    }
+}
+
+export const getPriceChartGraphData = async() => {
+    try {
+        const response = await axios.get("https://node.poxscan.io/api/priceChart");
+        return (response?.data);
+    } catch (error) {
+        console.log("error", error);
+    }
+}
+
+export const getStableCoinGraphData = async() => {
+    try {
+        const response = await axios.get ("https://node.poxscan.io/api/graphdata");
+        return (response?.data);
+    } catch (error) {
+        console.log("error", error);
+    }
+}

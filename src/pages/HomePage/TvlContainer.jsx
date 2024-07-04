@@ -7,15 +7,15 @@ import { useEffect, useState } from "react";
 
 
 const TvlContainer = () => {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState({});
 
   useEffect(() => {
     
     const fetchData = async () => {
       try {
-        const tvlData = await getTvlPriceData();
-        console.log(tvlData)
-        setData(tvlData?.tvlGraph);
+        const data = await getTvlPriceData();
+        console.log(data);
+        setData(data);
       } catch (error) {
         console.error('Error fetching TVL price data:', error);
       } 
@@ -57,7 +57,7 @@ const TvlContainer = () => {
             <p className="bg-text-bg-gray px-3 py-1 rounded-lg text-light-gray" key={idx}>{category}</p>
           ))}
         </div>
-        <p className="w-[15%]">{tvl?.tvl}</p>
+        <p className="w-[15%]">{data?.totalTvl}</p>
         <p className="w-[15%] text-right">{tvl?.change24hr}%</p>
       </div>
     ))}
@@ -69,7 +69,10 @@ const TvlContainer = () => {
       <div className="w-full md:w-[20%] mt-6 md:mt-0">
           <div className="shadow-lg bg-white rounded-xl p-4">
             <p className="font-semibold">Daily Txns (15 Days)</p>
-            <AreaChartComp/>
+            <AreaChartComp
+            value={data?.tvlGraph}
+            xDataKey="date"
+            yDataKey="count"/>
           </div>
           <div className="shadow-lg bg-white rounded-lg p-4 mt-4">
             <p className="font-semibold pb-2">Lorem ipsum dolor sit amet.</p>

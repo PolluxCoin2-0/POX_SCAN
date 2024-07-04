@@ -126,59 +126,12 @@ export const Transactions =[
 
 export const TVLData = [
     {
-        project:"Just Crypto",
+        project:"POX Staking Goverance",
         category:["Staking",],
         tvl:654511,
         change24hr:"-4.73",
     },
-    {
-        project:"Just Crypto",
-        category:["Staking", "Lending"],
-        tvl:654511,
-        change24hr:"-4.73",
-    },
-    {
-        project:"Just Crypto",
-        category:["Staking", "Lending"],
-        tvl:654511,
-        change24hr:"-4.73",
-    },
-    {
-        project:"Just Crypto",
-        category:["Staking", "Lending"],
-        tvl:654511,
-        change24hr:"-4.73",
-    },
-    {
-        project:"Just Crypto",
-        category:["Staking",],
-        tvl:654511,
-        change24hr:"-4.73",
-    },
-    {
-        project:"Just Crypto",
-        category:["Staking", ],
-        tvl:654511,
-        change24hr:"-4.73",
-    },
-    {
-        project:"Just Crypto",
-        category:["Staking", "Lending"],
-        tvl:654511,
-        change24hr:"-4.73",
-    },
-    {
-        project:"Just Crypto",
-        category:["Staking", ],
-        tvl:654511,
-        change24hr:"-4.73",
-    },
-    {
-        project:"Just Crypto",
-        category:["Staking", "Lending"],
-        tvl:654511,
-        change24hr:"-4.73",
-    },
+ 
 ]
 
 export const StableCoins = [
@@ -191,87 +144,7 @@ export const StableCoins = [
         transferCount:654511,
         volume:"21,234,345,232"
     },
-    {
-        stableCoin:{
-            coin:"Pollux USD",
-            tag:"USD",
-        },
-        circulatingSupply:"55,818,486,891",
-        transferCount:654511,
-        volume:"21,234,345,232"
-    },
-    {
-        stableCoin:{
-            coin:"Pollux USD",
-            tag:"USD",
-        },
-        circulatingSupply:"55,818,486,891",
-        transferCount:654511,
-        volume:"21,234,345,232"
-    },
-    {
-        stableCoin:{
-            coin:"Pollux USD",
-            tag:"USD",
-        },
-        circulatingSupply:"55,818,486,891",
-        transferCount:654511,
-        volume:"21,234,345,232"
-    },
-    {
-        stableCoin:{
-            coin:"Pollux USD",
-            tag:"USD",
-        },
-        circulatingSupply:"55,818,486,891",
-        transferCount:654511,
-        volume:"21,234,345,232"
-    },
-    {
-        stableCoin:{
-            coin:"Pollux USD",
-            tag:"USD",
-        },
-        circulatingSupply:"55,818,486,891",
-        transferCount:654511,
-        volume:"21,234,345,232"
-    },
-    {
-        stableCoin:{
-            coin:"Pollux USD",
-            tag:"USD",
-        },
-        circulatingSupply:"55,818,486,891",
-        transferCount:654511,
-        volume:"21,234,345,232"
-    },
-    {
-        stableCoin:{
-            coin:"Pollux USD",
-            tag:"USD",
-        },
-        circulatingSupply:"55,818,486,891",
-        transferCount:654511,
-        volume:"21,234,345,232"
-    },
-    {
-        stableCoin:{
-            coin:"Pollux USD",
-            tag:"USD",
-        },
-        circulatingSupply:"55,818,486,891",
-        transferCount:654511,
-        volume:"21,234,345,232"
-    },
-    {
-        stableCoin:{
-            coin:"Pollux USD",
-            tag:"USD",
-        },
-        circulatingSupply:"55,818,486,891",
-        transferCount:654511,
-        volume:"21,234,345,232"
-    },
+  
 
 ]
 

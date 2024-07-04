@@ -1,12 +1,35 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TokenData } from "../../data/Token";
 import SearchBarExpand from "../../components/SearchBarExpand";
 import { FaToggleOn } from "react-icons/fa";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import Pagination from "../../components/Pagination";
+import { getAccountsData, getAccountTableData } from "../../utils/axios/Blockchain";
 
 
 const Accounts = () => {
+   const [data, setData] = useState({});
+   const [data1, setData1] = useState({});
+
+   useEffect(() => {
+    
+    const fetchData = async () => {
+      try {
+        const data = await getAccountsData();
+        const data1 = await getAccountTableData();
+
+        console.log(data1);
+
+        setData(data?.message);
+        setData1(data1?.message);
+        
+      } catch (error) {
+        console.error('error', error);
+      } 
+    };
+
+    fetchData();
+  }, [])
 
   // For Pagination
   const [currentPage, setCurrentPage] = useState(1);
@@ -37,12 +60,12 @@ const Accounts = () => {
 
           <div className=" w-full flex flex-row justify-between pt-9 pl-1 ">
             <div>
-              <p className="font-bold text-xl">...................</p>
+              <p className="font-bold text-xl">{data?.totaladdr && data?.totaladdr}</p>
               <p className="pt-4 text-sm text-light-gray">Total</p>
             </div>
 
             <div>
-              <p className="text-xl font-bold text-dark-green">+128,792</p>
+              <p className="text-xl font-bold text-dark-green">+{data?.yestudayaddr && data?.yestudayaddr}</p>
               <p className="pt-4 text-sm text-light-gray flex justify-end">
                 Last 24h
               </p>
@@ -61,12 +84,12 @@ const Accounts = () => {
 
           <div className=" w-full flex flex-row justify-between pt-9 pl-1">
             <div>
-              <p className="text-xl font-bold">4,51,421</p>
+              <p className="text-xl font-bold">{data?.hodlers && data?.hodlers}</p>
               <p className="pt-4 text-sm text-light-gray">Total holders</p>
             </div>
 
             <div>
-              <p className="text-xl font-bold text-light-brown">55.51%</p>
+              <p className="text-xl font-bold text-light-brown">{data?.hpercen && data?.hpercen}%</p>
               <p className="pt-4 text-sm text-light-gray flex justify-end">
                 Percentage
               </p>
@@ -85,14 +108,14 @@ const Accounts = () => {
 
           <div className=" w-full flex flex-row justify-between pt-9 pl-1">
             <div>
-              <p className="text-xl font-bold">1,65,541</p>
+              <p className="text-xl font-bold">{data?.avgdailyactiveadr && data?.avgdailyactiveadr}</p>
               <p className="pt-4 text-sm text-light-gray flex ">
                 Daily Active Accounts
               </p>
             </div>
 
             <div>
-              <p className="text-xl font-bold text-dark-red">-5.56%</p>
+              <p className="text-xl font-bold text-dark-red">- {data?.percentagedailyactiveaddr && data?.percentagedailyactiveaddr.toFixed(2)}%</p>
               <p className="pt-4 text-sm text-light-gray flex justify-end">
                 24h Change
               </p>

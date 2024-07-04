@@ -6,7 +6,7 @@ import TotalTxns from "../../assets/TotalTxns.png";
 import TotalTransferVolume from "../../assets/TotalTransferVolume.png";
 import { useEffect, useState } from "react";
 import AreaChartComp from "../../components/AreaChart";
-import { getResourceDetailsData, getTrendingSearchData } from "../../utils/axios/Home";
+import { getPriceChartGraphData, getResourceDetailsData, getStakedData, getTrendingSearchData, getTrendingSearchGraphData, getTvlPriceData } from "../../utils/axios/Home";
 import { formatNumberWithCommas } from "../../utils/FormattingNumber";
 
 
@@ -35,13 +35,26 @@ const TrendingSearch = () => {
   const [selectedOption, setSelectedOption] = useState("Monthly");
   const [data, setData] =useState({});
  const [data2, setData2] = useState({});
+ const [data3, setData3] =useState({});
+ const [data4, setData4] = useState({});
+ const [data5, setData5] = useState({});
+ const [data6, setData6] = useState({});
   useEffect(()=>{
     const fetchData=async()=>{
     try {
       const data = await getTrendingSearchData();
       const data2= await getResourceDetailsData();
+      const data3= await getTrendingSearchGraphData();
+      const data4= await getStakedData();
+      const data5= await getPriceChartGraphData();
+      const data6= await getTvlPriceData();
+      console.log(data6);
       setData(data?.message);
       setData2(data2?.message);
+      setData3(data3);
+      setData4(data4);
+      setData5(data5?.message);
+      setData6(data6);
       }
       catch (error) {
         console.log(error);
@@ -85,7 +98,11 @@ const TrendingSearch = () => {
               />
             </div>
             <div className="pb-4 md:pb-0 mb-6 md:mb-0 border-b-[2px] md:border-none border-text-bg-gray">
-            <CardForTrendingSearch icon={TotalTxns} title="Total Txns"  value={data?.totaltxn} valueFor24hr={data?.last24hourtxn}/>
+            <CardForTrendingSearch 
+            icon={TotalTxns} 
+            title="Total Txns" 
+             value={data?.totaltxn} 
+             valueFor24hr={data?.last24hourtxn}/>
             </div>
           </div>
 
@@ -93,11 +110,16 @@ const TrendingSearch = () => {
 
           <div className="flex flex-col justify-around w-full md:w-[40%] px-2 md:px-0">
             <div className="mb-6 border-b-[2px] border-text-bg-gray pb-6">
-              <CardForTrendingSearch icon={TVL} title="TVL (Current)" />
+              <CardForTrendingSearch 
+              icon={TVL} 
+              title="TVL (Current)" />
             </div>
+
             <CardForTrendingSearch
               icon={TotalTransferVolume}
               title="Total Transfer Volume"
+              value={` ${data3?.tradingvol}`}
+
             />
           </div>
         </div>
@@ -115,12 +137,12 @@ const TrendingSearch = () => {
 
           <div>
             <p className="text-light-gray pb-1">Total Tokens:</p>
-            <p className="font-semibold">00</p>
+            <p className="font-semibold">{data4?.totalTokenContracts}</p>
           </div>
 
           <div className="pt-4 md:pt-0">
             <p className="text-light-gray pb-1">Total Contracts:</p>
-            <p className="font-semibold">00</p>
+            <p className="font-semibold">{data4?.totalContacts}</p>
           </div>
 
           <div className="pt-4 md:pt-0">
@@ -130,7 +152,7 @@ const TrendingSearch = () => {
 
           <div className="pt-4 md:pt-0">
             <p className="text-light-gray">Energy:</p>
-            <p className="font-semibold">4245642</p>
+            <p className="font-semibold">{data2?.energy}</p>
           </div>
         </div>
       </div>
@@ -152,22 +174,25 @@ const TrendingSearch = () => {
         <div className="shadow-lg bg-white px-4 py-6 rounded-xl">
           <div className="flex space-x-4 items-center">
             <img src={PoxImg} alt="" />
-            <p className="font-medium text-light-gray">POX <span className="text-darker-blue font-bold">$0.755</span></p>
+            <p className="font-medium text-light-gray">POX <span className="text-darker-blue font-bold">${data3?.price}</span></p>
           </div>
 
           {/* Charts Library */}
           <div className="">
             <div>
-                <AreaChartComp/>
+                <AreaChartComp
+                value={data5}
+                xDataKey="date"
+                yDataKey="value"/>
             </div>
                 <div className="flex justify-between">
             <div >
-              <p className="text-light-gray mb-1">Market Cap:<span className="text-darker-blue font-semibold"> $000</span></p>
-              <p className="text-light-gray">Volume(24h):<span className="text-darker-blue font-semibold"> 2423</span></p>
+              <p className="text-light-gray mb-1">Market Cap:<span className="text-darker-blue font-semibold"> ${(data3?.totalmatket/Math.pow(10,6)).toFixed(2)}M</span></p>
+              <p className="text-light-gray">Volume(24h):<span className="text-darker-blue font-semibold"> {(data?.last24hourvol/Math.pow(10,3)).toFixed(2)}K</span></p>
             </div>
             <div>
-              <p className="text-light-gray mb-1">Supply:<span className="text-darker-blue font-semibold"> 0 POX</span></p>
-              <p className="text-light-gray">Staked:<span className="text-darker-blue font-semibold"> 7,210,345</span></p>
+              <p className="text-light-gray mb-1">Supply:<span className="text-darker-blue font-semibold"> {data3?.circsupply} POX</span></p>
+              <p className="text-light-gray whitespace-nowrap">Staked:<span className="text-darker-blue font-semibold"> {data6?.totalTvl}</span></p>
             </div>
             </div>
           </div>

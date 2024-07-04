@@ -1,11 +1,34 @@
-import { useState } from "react";
-import { TokenData } from "../../data/Token";
+import { useEffect, useState } from "react";
 import SearchBarExpand from "../../components/SearchBarExpand";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import Pagination from "../../components/Pagination";
-
+import { getBlockData,  getBlockTableData } from "../../utils/axios/Blockchain";
+import { secondsAgo } from "../../utils/secondAgo";
+import { formatNumberWithCommas } from "../../utils/FormattingNumber";
 
 const Blocks = () => {
+   
+  const [data, setData] = useState({});
+  const [data1, setData1] =useState({});
+
+  useEffect(()=>{
+    const fetchData=async()=>{
+    try {
+      const data = await  getBlockTableData();
+      const data1 = await getBlockData();
+      
+
+      setData(data?.message);
+      setData1(data1);
+
+      }
+      catch (error) {
+        console.log(error);
+      }
+    } 
+    fetchData();
+  },[])
+
 
   // For Pagination
   const [currentPage, setCurrentPage] = useState(1);
@@ -31,12 +54,12 @@ const Blocks = () => {
 
           <div className=" w-full flex flex-row justify-between pt-9 pl-1 ">
             <div>
-              <p className="text-dark-red font-bold text-xl">60754103</p>
+              <p className="text-dark-red font-bold text-xl">{formatNumberWithCommas(Number(data1?.totalBlocks ?? 0))}</p>
               <p className="pt-4 text-sm text-light-gray">Latest</p>
             </div>
-
+            
             <div>
-              <p className="text-xl font-bold">+28,793</p>
+              <p className="text-xl font-bold">+{formatNumberWithCommas(Number(data1?.totalBlocks24H ))}</p>
               <p className="pt-4 text-sm text-light-gray flex justify-end">
                 Yesterday
               </p>
@@ -55,7 +78,7 @@ const Blocks = () => {
 
           <div className=" w-full flex flex-row justify-between pt-9 pl-1">
             <div>
-              <p className="text-xl font-bold">8.87b POX</p>
+              <p className="text-xl font-bold">{formatNumberWithCommas(Number(data1?.totalBlockReward ?? 0).toFixed(1))} POX</p>
               <p className="text-xs flex justify-end ">=$1,078,347,147.3</p>
               <p className="pt-4 text-sm text-light-gray">Total</p>
             </div>
@@ -81,13 +104,13 @@ const Blocks = () => {
 
           <div className=" w-full flex flex-row justify-between pt-9 pl-1">
             <div>
-              <p className="text-xl font-bold">11.21b POX</p>
+              <p className="text-xl font-bold">{formatNumberWithCommas(Number(data1?.burnedPOX ?? 0).toFixed(3))} POX</p>
               <p className=" text-xs">=$1,363,166,000.31</p>
               <p className="pt-4 text-sm text-light-gray flex ">Total</p>
             </div>
 
             <div>
-              <p className="text-xl font-bold">11,220,752 TRX</p>
+              <p className="text-xl font-bold">{data1?.burnedPOX24H && data1?.burnedPOX24H.toFixed(3)} TRX</p>
               <p className="text-xs flex justify-end">=$1,363,912.13</p>
               <p className="pt-4 text-sm text-light-gray flex justify-end">
                 Yesterday
@@ -118,18 +141,18 @@ const Blocks = () => {
           <p className=" w-[12%] font-bold">Status</p>
         </div>
 
-        {TokenData.map((stablecoin, index) => {
+        {data?.apiResult && data?.apiResult.map((stablecoin, index) => {
           return (
             <>
-              <div className="flex flex-row  justify-around border-b-2 p-3 border-text-bg-gray ">
-                <p className="text-dark-red  w-[12%]">{stablecoin.Block}</p>
-                <p className=" w-[12%]">{stablecoin.Age}</p>
-                <p className="text-dark-red  w-[12%]">{stablecoin.Producer}</p>
-                <p className=" w-[12%]">{stablecoin.PoxCount}</p>
-                <p className=" w-[16%]">{stablecoin.ConsumedEnergy}</p>
-                <p className=" w-[8%]">{stablecoin.BurnedPOX}</p>
-                <p className=" w-[12%]">{stablecoin.BlockReward}</p>
-                <p className=" w-[12%]">{stablecoin.Status}</p>
+              <div className="flex flex-row  justify-around border-b-2 p-3 border-text-bg-gray" key={index}>
+                <p className="text-dark-red w-[12%]">{stablecoin?.number}</p>
+                <p className=" w-[12%]">{stablecoin?.timestamp && secondsAgo(stablecoin?.timestamp)} seconds ago</p>
+                <p className="text-dark-red  w-[12%]">{stablecoin?.witnessName}</p>
+                <p className=" w-[12%]">{stablecoin?.nrOfTrx}</p>
+                <p className=" w-[16%]">{stablecoin?.energyUsage}</p>
+                <p className=" w-[8%]">{stablecoin?.BurnedPOX}</p>
+                <p className=" w-[12%]">{stablecoin?.blockReward}</p>
+                <p className=" w-[12%]">{stablecoin?.Status}</p>
               </div>
             </>
           );
