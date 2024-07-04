@@ -144,16 +144,17 @@ const Blocks = () => {
         {data?.apiResult && data?.apiResult.map((stablecoin, index) => {
           return (
             <>
-              <div className="flex flex-row justify-around border-b-2 p-3 border-text-bg-gray min-w-[1500px] md:min-w-full">
-                <p className="text-dark-red  w-[12%]">{stablecoin.Block}</p>
-                <p className=" w-[12%]">{stablecoin.Age}</p>
-                <p className="text-dark-red  w-[12%]">{stablecoin.Producer}</p>
-                <p className=" w-[12%]">{stablecoin.PoxCount}</p>
-                <p className=" w-[16%]">{stablecoin.ConsumedEnergy}</p>
-                <p className=" w-[8%]">{stablecoin.BurnedPOX}</p>
-                <p className=" w-[12%]">{stablecoin.BlockReward}</p>
-                <p className=" w-[12%]">{stablecoin.Status}</p>
-              </div>
+              <div className="flex flex-row justify-around border-b-2 p-3 border-text-bg-gray min-w-[1500px] md:min-w-full" key={index}>
+                <p className="text-dark-red w-[12%]">{stablecoin?.number}</p>
+                <p className=" w-[12%]">{stablecoin?.timestamp && secondsAgo(stablecoin?.timestamp)} seconds ago</p>
+                <p className="text-dark-red  w-[12%]">{stablecoin?.witnessName}</p>
+                <p className=" w-[12%]">{stablecoin?.nrOfTrx}</p>
+                <p className=" w-[16%]">{stablecoin?.energyUsage}</p>
+                <p className=" w-[8%]">{stablecoin?.BurnedPOX}</p>
+                <p className=" w-[12%]">{stablecoin?.blockReward}</p>
+                <p className=" w-[12%]">{stablecoin?.Status}</p>
+
+             </div>
             </>
           );
         })}
