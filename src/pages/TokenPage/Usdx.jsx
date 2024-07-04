@@ -5,24 +5,25 @@ import Pagination from "../../components/Pagination";
 
 const Usdx = () => {
 
-  // For PAGINATION
+  // For Pagination
+
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = 10; // Example total pages
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
-
+  
   const [onSearch, setOnSearch] = useState("");
   return (
-    <div className="px-12 py-12">
+    <div className="px-4 md:px-12 pb-12">
       <div>
         <SearchBarExpand onSearch={setOnSearch} />
       </div>
       <p className="font-bold text-2xl">Blocks</p>
-      <div className=" flex flex-row justify-between">
+      <div className=" flex flex-col  md:flex-row justify-between">
         {/* Number of Blocks */}
-        <div className=" w-[32%]  bg-white shadow-lg rounded-2xl p-5 my-12">
+        <div className="w-full md:w-[32%]  bg-white shadow-lg rounded-2xl p-5 my-6 md:my-12">
           <div className="pt-1">
             <p className="font-bold">Number of Blocks</p>
           </div>
@@ -43,7 +44,7 @@ const Usdx = () => {
         </div>
 
         {/* Block Rewards */}
-        <div className=" w-[32%]  rounded-2xl p-5 bg-white shadow-md my-12">
+        <div className="w-full md:w-[32%]  rounded-2xl p-5 bg-white shadow-md my-3 md:my-12">
           <div className="pt-1">
             <p className="font-bold">Block Rewards</p>
           </div>
@@ -66,7 +67,7 @@ const Usdx = () => {
         </div>
 
         {/* Stats on Burned Pox */}
-        <div className="w-[32%] rounded-2xl p-5 bg-white shadow-md my-12">
+        <div className="w-full md:w-[32%] rounded-2xl p-5 bg-white shadow-md my-3 md:my-12">
           <div className="pt-1">
             <p className="font-bold">Stats on Burned POX</p>
           </div>
@@ -89,15 +90,16 @@ const Usdx = () => {
         </div>
       </div>
 
-      <p className="font-bold text-2xl mb-12">StableCoin</p>
-      <div className="bg-white  rounded-2xl p-7">
+      <p className="font-bold text-2xl mb-6 mt-6 md:mt-0 md:mb-12">StableCoin</p>
+      <div className="bg-white rounded-2xl p-4 md:p-7 ">
+      <div className="overflow-x-auto md:overflow-hidden">
         <p className="pb-5 font-medium text-light-gray">
           Only the first{" "}
           <span className="text-black font-semibold">10,000</span> records are
           displayed
         </p>
 
-        <div className="flex flex-row justify-around p-2 bg-lightest-gray rounded-lg">
+        <div className="min-w-[1500px]  flex flex-row justify-around p-2 bg-lightest-gray rounded-lg ">
           <p className=" w-[12%]">Block</p>
           <p className=" w-[12%]">Age</p>
           <p className=" w-[12%]">Producer</p>
@@ -113,7 +115,7 @@ const Usdx = () => {
         {TokenData.map((stablecoin, index) => {
           return (
             <>
-              <div className="flex flex-row  justify-around border-b-2 p-3 border-text-bg-gray ">
+              <div className="min-w-[1500px]  flex flex-row  justify-around border-b-2 p-3 border-text-bg-gray">
                 <p className="text-dark-red  w-[12%]">{stablecoin.Block}</p>
                 <p className=" w-[12%]">{stablecoin.Age}</p>
                 <p className="text-dark-red  w-[12%]">{stablecoin.Producer}</p>
@@ -134,6 +136,7 @@ const Usdx = () => {
         onPageChange={handlePageChange}
       />
         </div>
+      </div>
       </div>
     </div>
   );

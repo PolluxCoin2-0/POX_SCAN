@@ -20,19 +20,18 @@ const TransferTable = () => {
 
   return (
     <div>
-      <div className="bg-white rounded-2xl p-4 md:p-10 min-w-[1500px] overflow-x-auto">
+      <div className="bg-white rounded-2xl p-4 md:p-10 overflow-x-auto md:overflow-hidden">
         <div className=" flex flex-row justify-between">
           <div>
             <p className="">
-              {" "}
-              <span className="text-lg font-bold">36,045 </span>{" "}
+              <span className="text-lg font-bold">36,045 </span>
               <span className="font-bold text-light-gray">
                 contracts in total
               </span>
             </p>
           </div>
 
-          <div className="flex flex-row justify-between px-32 rounded-md  border-2 border-lightest-gray">
+          <div className="hidden md:flex flex-row justify-between px-32 rounded-md  border-2 border-lightest-gray">
             <IoSearch className=" text-xl pt-4 w-10 h-10 text-light-gray" />
 
             <input
@@ -46,7 +45,7 @@ const TransferTable = () => {
           </div>
         </div>
 
-        <div className="flex flex-row justify-evenly bg-lightest-gray p-2 m-3 rounded-xl">
+        <div className="min-w-[1500px] flex flex-row justify-evenly bg-lightest-gray p-2 m-3 rounded-xl">
           <p className="w-[24%]">Account</p>
           <p className="w-[10%]">Contract</p>
           <p className="w-[10%]">Number of Calls </p>
@@ -61,7 +60,7 @@ const TransferTable = () => {
         {ContactData.map((contact, index) => {
           return (
             <>
-              <div className="flex flex-row justify-evenly p-5 border-b-2 border-lightest-gray  rounded-xl ">
+              <div className="min-w-[1500px] flex flex-row justify-evenly p-5 border-b-2 border-lightest-gray  rounded-xl ">
                 <p className="whitespace-nowrap w-[24%]">
                   <span className="px-3 py-1 bg-lightest-gray rounded-lg">
                     SC
