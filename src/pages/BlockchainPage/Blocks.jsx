@@ -18,13 +18,13 @@ const Blocks = () => {
 
   const [onSearch, setOnSearch] = useState("");
   return (
-    <div className="px-12 pb-12">
+    <div className="px-4 md:px-12 pb-12">
       <div>
         <SearchBarExpand onSearch={setOnSearch} />
       </div>
       <p className="font-bold text-2xl pb-8">Blocks</p>
-      <div className=" flex flex-row justify-around ">
-        <div className=" w-[32%]  bg-white shadow-lg rounded-2xl p-5 ">
+      <div className=" flex flex-col space-y-6 md:space-y-0 md:flex-row justify-around ">
+        <div className="w-full md:w-[32%]  bg-white shadow-lg rounded-2xl p-5 ">
           <div className="pt-1">
             <p className="font-bold">Number of Blocks</p>
           </div>
@@ -44,7 +44,7 @@ const Blocks = () => {
           </div>
         </div>
 
-        <div className=" w-[32%]  rounded-2xl p-5 bg-white shadow-md ">
+        <div className="w-full md:w-[32%]  rounded-2xl p-5 bg-white shadow-md ">
           <div className=" flex flex-row pt-1 justify-between">
             <p className="font-bold">Block Rewards</p>
             <div className="flex flex-row">
@@ -70,7 +70,7 @@ const Blocks = () => {
           </div>
         </div>
 
-        <div className="w-[32%] rounded-2xl p-5 bg-white shadow-md ">
+        <div className="w-full md:w-[32%] rounded-2xl p-5 bg-white shadow-md ">
           <div className=" flex flex-row justify-between pt-1">
             <p className="font-bold">Stats on Burned POX</p>
             <div className="flex flex-row">
@@ -98,30 +98,30 @@ const Blocks = () => {
       </div>
 
       <p className="font-bold text-2xl pb-10  pt-10">StableCoin</p>
-      <div className="bg-white  rounded-2xl p-7  ">
+      <div className="bg-white  rounded-2xl p-2 md:p-7  overflow-x-auto ">
         <p className="pb-5 font-medium text-light-gray">
           Only the first{" "}
           <span className="text-black font-semibold">10,000</span> records are
           displayed
         </p>
-
-        <div className="flex flex-row justify-around p-2 pb-3 bg-lightest-gray rounded-lg">
+ 
+        <div className="flex flex-row justify-around p-2 pb-3 bg-lightest-gray rounded-lg min-w-[1500px] md:min-w-full">
           <p className=" w-[12%]  font-bold">Block</p>
           <p className=" w-[12%] font-bold">Age</p>
           <p className=" w-[12%] font-bold">Producer</p>
-          <p className=" w-[12%] font-bold">Pox Count</p>
+          <p className=" w-[12%] font-bold whitespace-nowrap">Pox Count</p>
           <p className=" w-[16%] font-bold whitespace-nowrap">
             Consumed Energy/Bandwidth
           </p>
-          <p className=" w-[8%] font-bold">Burned POX</p>
-          <p className=" w-[12%] font-bold">Block Reward</p>
-          <p className=" w-[12%] font-bold">Status</p>
+          <p className=" w-[8%] font-bold whitespace-nowrap">Burned POX</p>
+          <p className=" w-[12%] font-bold whitespace-nowrap">Block Reward</p>
+          <p className=" w-[12%] font-bold whitespace-nowrap">Status</p>
         </div>
 
         {TokenData.map((stablecoin, index) => {
           return (
             <>
-              <div className="flex flex-row  justify-around border-b-2 p-3 border-text-bg-gray ">
+              <div className="flex flex-row justify-around border-b-2 p-3 border-text-bg-gray min-w-[1500px] md:min-w-full">
                 <p className="text-dark-red  w-[12%]">{stablecoin.Block}</p>
                 <p className=" w-[12%]">{stablecoin.Age}</p>
                 <p className="text-dark-red  w-[12%]">{stablecoin.Producer}</p>
@@ -135,7 +135,7 @@ const Blocks = () => {
           );
         })}
         
-        <div className="flex justify-end">
+        <div className="flex justify-start md:justify-end min-w-[800px] overflow-x-auto">
 
         <Pagination
         currentPage={currentPage}

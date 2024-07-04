@@ -21,7 +21,7 @@ const Transaction = () => {
    };
 
   return (
-    <div className="px-12 pb-12">
+    <div className="px-4 md:px-12 pb-12">
       <div>
         <SearchBarExpand />
       </div>
@@ -31,28 +31,30 @@ const Transaction = () => {
           <p className="text-2xl font-bold">Transactions</p>
         </div>
 
-        <div className=" flex flex-row justify-between w-full">
-          <div className=" flex flex-col gap-10 w-[48%]">
-            <div className="bg-white  py-6 gap-9 rounded-2xl shadow-xl ">
+        <div className=" flex flex-col space-y-6 md:space-y-0 md:flex-row justify-between w-full">
+          <div className=" flex flex-col gap-10 w-full md:w-[48%]">
+            <div className="bg-white px-4 md:px-12 py-6 gap-9 rounded-2xl shadow-xl ">
               <div className="flex flex-row justify-between">
-                <p className=" text-xl font-bold pl-12">Tnx Counts</p>
+                <p className=" text-xl font-bold">Tnx Counts</p>
               </div>
 
-              <div className=" flex flex-row justify-between gap-20 p-5">
-                <div className="pl-8">
-                  <p className="text-xl font-bold">55,451,455,,254</p>
+              <div className=" flex flex-row justify-between gap-20 py-5">
+                <div className="">
+                  <p className="text-xl font-bold">55,451,455,254</p>
                   <p className="text-light-gray  pt-5">Total</p>
                 </div>
 
                 <div>
-                  <p className="text-dark-green font-bold text-xl pr-20">
+                  <p className="text-dark-green font-bold text-xl">
                     +4,048,420
                   </p>
                   <p className="text-light-gray  pt-5"> Yesterday</p>
                 </div>
               </div>
             </div>
-            <div className="bg-white px-16 py-6 gap-9 rounded-2xl shadow-xl">
+
+            {/* Trading Volume */}
+            <div className="bg-white px-4 md:px-12 py-6 gap-9 rounded-2xl shadow-xl">
               <div className="flex flex-row justify-between ">
                 <p className=" text-xl font-bold "> Trading Volume</p>
               </div>
@@ -75,34 +77,30 @@ const Transaction = () => {
             </div>
           </div>
 
-          <div className="bg-white rounded-2xl shadow-xl w-[48%] py-3">
-            <div className="flex flex-row justify-between">
-              <p className="font-bold text-xl pt-5 pl-8">
-                {" "}
+          <div className="bg-white rounded-2xl shadow-xl w-full md:w-[48%] py-3">
+            <div className="flex flex-row items-center justify-between pt-4 px-6">
+              <p className="font-bold text-xl">
                 Daily Tnx Distribution
               </p>
-              <div className="flex flex-row pr-10 pt-4">
+              <div className="flex flex-row">
                 <p>More</p>
                 <MdKeyboardArrowRight className="mt-1 text-xl" />
               </div>
             </div>
 
-            <div className="flex flex-row justify-between">
-              <div className=" h-80 w-[70%] text-center">
+            <div className="flex w-full h-80 flex-row justify-center items-center">
                 <SimplePieChartComp />
-              </div>
             </div>
           </div>
         </div>
       </div>
 
       <div>
-        <div className="bg-white rounded-2xl p-10 mt-16">
+        <div className="bg-white rounded-2xl p-4 md:p-10 min-w-[1500px] overflow-x-auto mt-16">
           <div className=" flex flex-row justify-between">
             <div>
               <p className="">
-                {" "}
-                <span className="text-lg font-bold">36,045 </span>{" "}
+                <span className="text-lg font-bold">36,045 </span>
                 <span className="font-bold text-light-gray">
                   A total of 10000 transactions(s)
                 </span>
@@ -151,7 +149,7 @@ const Transaction = () => {
                       USDT Token
                     </span>
                   </p>
-                  <p className="w-[10%]">{contact.Contract}</p>
+                  <p className="w-[10%]">{contact.ContractName}</p>
                   <p className="w-[10%]">{contact.NumberOfCalls}</p>
                   <p className="w-[10%]">{contact.POXBalance}</p>
                   <p className="w-[10%]">{contact.Version}</p>
@@ -164,7 +162,7 @@ const Transaction = () => {
             );
           })}
 
-           <div className=" flex justify-end">
+           <div className="flex justify-start md:justify-end">
            <Pagination
         currentPage={currentPage}
         totalPages={totalPages}
