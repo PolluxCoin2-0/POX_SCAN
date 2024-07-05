@@ -4,10 +4,34 @@ import { VotesData } from "../../data/Votes";
 import VoteAdd from "../../assets/Voteadd.png";
 import VoteTotal from "../../assets/Votetotal.png";
 import Pagination from "../../components/Pagination";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IoIosArrowForward } from "react-icons/io"
+import { getVotesTableData } from "../../utils/axios/Governance";
 
 const Votes = () => {
+
+  const [data, setData] = useState({});
+
+  useEffect(() => {
+    
+    const fetchData = async () => {
+      try {
+        const data = await getVotesTableData();
+
+        console.log(data);
+
+        setData(data?.message);
+        
+        
+      } catch (error) {
+        console.log('error', error);
+      } 
+    };
+
+    fetchData();
+  }, [])
+
+
 
    // For Pagination
    const [currentPage, setCurrentPage] = useState(1);
@@ -128,7 +152,7 @@ const Votes = () => {
             </div>
 
             
-            {VotesData.map ((voter, index) => {
+            {data?.result && data?.result.map ((voter, index) => {
               return (
 
                 <>
@@ -136,7 +160,8 @@ const Votes = () => {
                   <p>{voter.Name}</p>
                   <p>{voter.Ranking}</p>
                   <p>{voter.RealtimeVotes}</p>
-                  <p>{voter.Productivity}</p>
+                  <p>{voter?.votePercentage}</p>
+                  <p>{voter.productivity}</p>
                   <p>{voter.RewardDistribution}</p>
                   <p>{voter.APR}</p>
                   <p>{voter.MyVotes}</p>

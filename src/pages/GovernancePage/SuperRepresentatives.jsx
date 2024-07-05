@@ -1,43 +1,63 @@
 import SearchBarExpand from "../../components/SearchBarExpand";
-import { useState } from "react";
-import { RespresentativeData } from "../../data/Resprentative";
+import { useEffect, useState } from "react";
 import CustomPieChart from "../../components/CustomPieChart";
 import TinyChartComp from "../../components/TinyChartComp";
+import { getSuperTableData } from "../../utils/axios/Governance";
 
 
 const Table1 = () => {
+  const [data, setData] = useState({});
+
+  useEffect(() => {
+    
+    const fetchData = async () => {
+      try {
+        const data = await getSuperTableData();
+
+        setData(data?.message);
+        
+        
+      } catch (error) {
+        console.log('error', error);
+      } 
+    };
+
+    fetchData();
+  }, [])
   return (
     <div className="bg-white pt-2">
       <div className="flex flex-row justify-evenly bg-light-orange p-3 rounded-lg m-4">
-        <p>Ranks</p>
-        <p>Name</p>
-        <p>Current Version</p>
-        <p>Status</p>
-        <p>Last Block</p>
-        <p>Block Produced</p>
-        <p>Block Missed</p>
-        <p>Productivity</p>
-        <p>Current Vote</p>
-        <p>Reward Distribution</p>
-        <p>APR</p>
+        <p className="w-[8%]">Ranks</p>
+        <p className="w-[8%]">Name</p>
+        <p className="w-[8%]">Current Version</p>
+        <p className="w-[8%]">Status</p>
+        <p className="w-[8%]">Last Block</p>
+        <p className="w-[8%]">Block Produced</p>
+        <p className="w-[8%]">Block Missed</p>
+        <p className="w-[8%]">Productivity</p>
+        <p className="w-[8%]">Current Vote</p>
+        <p className="w-[8%]">Vote Weightage</p>
+        <p className="w-[8%]">Reward Distribution</p>
+        <p className="w-[8%]">APR</p>
       </div>
 
-      {RespresentativeData.map((representative, index) => (
+      {data?.witnesses && data?.witnesses.map((representative, index) => (
         <div
           key={index}
           className="flex flex-row justify-evenly p-3 border-b-2 border-lightest-gray "
         >
-          <p>{representative.Rank}</p>
-          <p>{representative.Name}</p>
-          <p>{representative.CurrentVersion}</p>
-          <p>{representative.Status}</p>
-          <p>{representative.LastBlock}</p>
-          <p>{representative.BlockProduced}</p>
-          <p>{representative.BlockMissed}</p>
-          <p>{representative.Productivity}</p>
-          <p>{representative.CurrentVote}</p>
-          <p>{representative.RewardDistribution}</p>
-          <p>{representative.Apr}</p>
+          <p className="w-[8%]">{representative.Rank}</p>
+          <p className="w-[8%]">{representative.url}</p>
+          <p className="w-[8%]">{representative.CurrentVersion}</p>
+          <p className="w-[8%]">{representative.Status}</p> 
+          <p className="w-[8%]">{representative.latestBlockNum}</p>
+          <p className="w-[8%]">{representative.totalProduced}</p>
+          <p className="w-[8%]">{representative.totalMissed}</p>
+          <p className="w-[8%]">{representative.productivity.toFixed(8)}</p>
+          <p className="w-[8%]">{representative.voteCount}</p>
+          <p className="w-[8%]">{representative.voteWeightage.toFixed(8)}%</p>
+          <p className="w-[8%]">{representative.RewardDistribution}</p>
+          <p className="w-[8%]">{representative.apr}%</p>
         </div>
       ))}
     </div>

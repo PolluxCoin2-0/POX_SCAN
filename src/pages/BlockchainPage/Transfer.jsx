@@ -23,7 +23,7 @@ const TransferTable = () => {
       try {
         const data = await getTransferTableData();
 
-        console.log(data);
+        
 
         setData(data?.message);
         
