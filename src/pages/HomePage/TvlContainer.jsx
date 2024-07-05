@@ -14,7 +14,6 @@ const TvlContainer = () => {
     const fetchData = async () => {
       try {
         const data = await getTvlPriceData();
-        console.log(data);
         setData(data);
       } catch (error) {
         console.error('Error fetching TVL price data:', error);
@@ -66,13 +65,14 @@ const TvlContainer = () => {
 
           
           {/* Charts */}
-      <div className="w-full md:w-[20%] mt-6 md:mt-0">
+      <div className="w-full md:w-[23%] mt-6 md:mt-0">
           <div className="shadow-lg bg-white rounded-xl p-4">
-            <p className="font-semibold">Daily Txns (15 Days)</p>
+            <p className="font-semibold">TVL</p>
             <AreaChartComp
             value={data?.tvlGraph}
             xDataKey="date"
-            yDataKey="count"/>
+            yDataKey="count"
+            componentChartColor="#c2a3fd"/>
           </div>
           <div className="shadow-lg bg-white rounded-lg p-4 mt-4">
             <p className="font-semibold pb-2">Lorem ipsum dolor sit amet.</p>

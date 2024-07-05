@@ -73,3 +73,12 @@ export const getStableCoinGraphData = async() => {
         console.log("error", error);
     }
 }
+
+export const getNewAndActiveAndTotalAccounts = async() => {
+    try {
+        const response = await axios.get ("https://node.poxscan.io/api/stats");
+        return (response?.data);
+    } catch (error) {
+        console.log("error", error);
+    }
+};

@@ -1,9 +1,18 @@
-
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
-const AreaChartComp = ({value, xDataKey, yDataKey}) => {
+// Function to format X-axis labels
+const formatXAxis = (value) => {
+  const date = new Date(value);
+  const day = date.getDate();
+  const month = date.getMonth() + 1; // Months are 0-based in JavaScript
+  return `${day}/${month}`;
+};
+
+// eslint-disable-next-line react/prop-types
+const AreaChartComp = ({ value, xDataKey, yDataKey, componentChartColor }) => {
+
   return (
-    <div style={{ width: '100%', height: 150,margin:"16px 0px" }}> {/* Set a specific height */}
+    <div style={{ width: '100%', height: 150, margin: "16px 0px" }}> {/* Set a specific height */}
       <ResponsiveContainer>
         <AreaChart
           data={value}
@@ -15,10 +24,16 @@ const AreaChartComp = ({value, xDataKey, yDataKey}) => {
           }}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey={xDataKey} />
+          <XAxis dataKey={xDataKey} tickFormatter={formatXAxis} /> {/* Use the formatting function */}
           <YAxis />
           <Tooltip />
-          <Area type="monotone" dataKey={yDataKey} stroke="#AFD6EB" fill="#E4F1F8" />
+          <Area type="monotone" dataKey={yDataKey} stroke={componentChartColor} fill={`url(#colorGradient${componentChartColor})`} />
+          <defs>
+            <linearGradient id={`colorGradient${componentChartColor}`} x1="0" y1="0" x2="0" y2="1">
+              <stop offset="35%" stopColor={componentChartColor} stopOpacity={0.8}/>
+              <stop offset="65%" stopColor={componentChartColor} stopOpacity={0.1}/>
+            </linearGradient>
+          </defs>
         </AreaChart>
       </ResponsiveContainer>
     </div>

@@ -15,17 +15,17 @@ const CardForTrendingSearch = ({ icon, title, value, valueFor24hr }) => {
     <div className="flex justify-between ">
       <div className="flex flex-row items-center space-x-4">
         <div>
-          <img src={icon} alt="" />
+          <img src={icon} alt={title} />
         </div>
         <div>
           <p className="text-light-gray pb-1">{title}</p>
-          <p className="font-semibold">{value && formatNumberWithCommas(parseInt(value))}</p>
+          <p className="font-semibold">{title==="Total Transfer Volume"?"$":""} {value && value}</p>
         </div>
       </div>
 
       <div>
         <p className="text-light-gray pb-1">24h</p>
-        <p className="font-semibold">{valueFor24hr && formatNumberWithCommas(parseInt(valueFor24hr))}</p>
+        <p className="font-semibold">{valueFor24hr && valueFor24hr}</p>
       </div>
     </div>
   );
@@ -43,17 +43,16 @@ const TrendingSearch = () => {
     const fetchData=async()=>{
     try {
       const data = await getTrendingSearchData();
-      const data2= await getResourceDetailsData();
-      const data3= await getTrendingSearchGraphData();
-      const data4= await getStakedData();
-      const data5= await getPriceChartGraphData();
-      const data6= await getTvlPriceData();
-      console.log(data6);
       setData(data?.message);
+      const data2= await getResourceDetailsData();
       setData2(data2?.message);
+      const data3= await getTrendingSearchGraphData();
       setData3(data3);
+      const data4= await getStakedData();
       setData4(data4);
+      const data5= await getPriceChartGraphData();
       setData5(data5?.message);
+      const data6= await getTvlPriceData();
       setData6(data6);
       }
       catch (error) {
@@ -93,16 +92,16 @@ const TrendingSearch = () => {
               <CardForTrendingSearch
                 icon={TotalAccounts}
                 title="Total Accounts"
-                value={data?.totaladdr}
-                valueFor24hr={data?.last24addr}
+                value={data?.totaladdr && formatNumberWithCommas(parseInt(data?.totaladdr))}
+                valueFor24hr={data?.last24addr && formatNumberWithCommas(parseInt(data?.last24addr))}
               />
             </div>
             <div className="pb-4 md:pb-0 mb-6 md:mb-0 border-b-[2px] md:border-none border-text-bg-gray">
             <CardForTrendingSearch 
             icon={TotalTxns} 
             title="Total Txns" 
-             value={data?.totaltxn} 
-             valueFor24hr={data?.last24hourtxn}/>
+             value={data?.totaltxn && formatNumberWithCommas(parseInt(data?.totaltxn))} 
+             valueFor24hr={data?.last24hourtxn && formatNumberWithCommas(parseInt(data?.last24hourtxn))}/>
             </div>
           </div>
 
@@ -118,8 +117,8 @@ const TrendingSearch = () => {
             <CardForTrendingSearch
               icon={TotalTransferVolume}
               title="Total Transfer Volume"
-              value={` ${data3?.tradingvol}`}
-
+              value={data3?.tradingvol && formatNumberWithCommas(parseInt(data3?.tradingvol))}
+              valueFor24hr={""}
             />
           </div>
         </div>
@@ -158,7 +157,7 @@ const TrendingSearch = () => {
       </div>
 
       {/* Right Side Chart */}
-      <div className="w-full md:w-[20%] rounded-xl px-0 md:px-4  pb-6 mt-8 md:mt-0">
+      <div className="w-full md:w-[23%] rounded-xl px-0 md:px-4  pb-6 mt-8 md:mt-0">
         <div className="flex justify-between items-center mb-3">
           <p className="font-semibold text-lg">POX</p>
           <select
@@ -183,16 +182,17 @@ const TrendingSearch = () => {
                 <AreaChartComp
                 value={data5}
                 xDataKey="date"
-                yDataKey="value"/>
+                yDataKey="value"
+                componentChartColor="#87CEEB"/>
             </div>
                 <div className="flex justify-between">
             <div >
-              <p className="text-light-gray mb-1">Market Cap:<span className="text-darker-blue font-semibold"> ${(data3?.totalmatket/Math.pow(10,6)).toFixed(2)}M</span></p>
-              <p className="text-light-gray">Volume(24h):<span className="text-darker-blue font-semibold"> {(data?.last24hourvol/Math.pow(10,3)).toFixed(2)}K</span></p>
+              <p className="text-light-gray mb-1">Market Cap:<span className="text-darker-blue font-semibold"> ${data3?.totalmatket && (data3?.totalmatket/Math.pow(10,6)).toFixed(2)}M</span></p>
+              <p className="text-light-gray">Volume(24h):<span className="text-darker-blue font-semibold"> {(data?.last24hourvol && (data?.last24hourvol/Math.pow(10,3)).toFixed(2))}K</span></p>
             </div>
             <div>
-              <p className="text-light-gray mb-1">Supply:<span className="text-darker-blue font-semibold"> {data3?.circsupply} POX</span></p>
-              <p className="text-light-gray whitespace-nowrap">Staked:<span className="text-darker-blue font-semibold"> {data6?.totalTvl}</span></p>
+              <p className="text-light-gray mb-1">Supply:<span className="text-darker-blue font-semibold"> {data3?.circsupply && data3?.circsupply} POX</span></p>
+              <p className="text-light-gray whitespace-nowrap">Staked:<span className="text-darker-blue font-semibold"> {data6?.totalTvl && data6?.totalTvl}</span></p>
             </div>
             </div>
           </div>

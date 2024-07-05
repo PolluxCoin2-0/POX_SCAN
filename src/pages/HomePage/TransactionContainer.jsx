@@ -101,13 +101,14 @@ const TransactionContainer = () => {
 
 
         {/* Charts */}
-        <div className="w-full md:w-[20%] mt-6 md:mt-0">
+        <div className="w-full md:w-[23%] mt-6 md:mt-0">
           <div className="shadow-lg bg-white rounded-xl p-4">
             <p className="font-semibold">Daily Txns (15 Days)</p>
             <AreaChartComp
             value={data}
             xDataKey="date"
-            yDataKey="count"/>
+            yDataKey="count"
+            componentChartColor="#5D3FD3"/>
           </div>
           <div className="shadow-lg bg-white rounded-lg p-4 mt-4">
             <p className="font-semibold pb-2">Lorem ipsum dolor sit amet.</p>
