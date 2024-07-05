@@ -80,3 +80,13 @@ export const getTransferTableData = async() => {
         console.log("error", error);
     }
 }
+
+export const getBlockchainNodeMapData = async() => {
+    try {
+        const response = await axios.get("https://node.poxscan.io/api/nodeinfo")
+        return (response?.data);
+    } catch (error) {
+        console.log(error)
+    }
+}
+

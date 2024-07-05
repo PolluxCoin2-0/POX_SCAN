@@ -1,11 +1,29 @@
 // import React from 'react'
+import { useEffect, useState } from "react";
 import { SearchBarExpand } from "../../components";
+import { getBlockchainNodeMapData } from "../../utils/axios/Blockchain";
 
 const Nodes = () => {
+
+  const [mapData, setMapData] = useState([]);
+
+  useEffect(() => {
+    const fetchData=async()=>{
+      try {
+        const NodeMapData = await getBlockchainNodeMapData();
+        setMapData(NodeMapData?.message);
+        }
+        catch (error) {
+          console.log(error);
+        }
+      } 
+      fetchData();
+    fetchData();
+  }, []);
+
   return (
     <div className="px-4 md:px-12 ">
       {/* Search Box */}
-
       <div>
         <SearchBarExpand />
       </div>

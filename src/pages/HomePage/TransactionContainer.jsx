@@ -16,8 +16,6 @@ const TransactionContainer = () => {
       try {
         const data = await getTransactionGraphData();
         const data1= await getTransactionTableData();
-        console.log(data1);
-
         setData(data?.message);
         setData1(data1?.message);
       } catch (error) {
@@ -40,14 +38,14 @@ const TransactionContainer = () => {
       <div className="w-full flex flex-col md:flex-row justify-between">
       <div className="w-full md:w-[75%] overflow-x-auto">
       <div className="min-w-[900px]"> {/* Adjust min-width as needed */}
-    {data1?.transactions && data1?.transactions.map((transaction, idx) => {
+    {data1?.transactions && data1?.transactions.slice(0, 5).map((transaction, idx) => {
       return (
         <div
           className={`flex flex-row justify-between ${
             idx % 2 !== 0 ? "bg-text-bg-gray" : "bg-white"
           } py-6 px-12
           ${idx === 0 ? "rounded-t-2xl" : "rounded-none"} ${
-            idx === data1?.transactions.length - 1
+            idx === data1?.transactions.slice(0, 5).length - 1
               ? "rounded-b-2xl"
               : "rounded-none"
           }`}
