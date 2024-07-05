@@ -73,3 +73,12 @@ export const getStableCoinGraphData = async() => {
         console.log("error", error);
     }
 }
+
+export const getTransactionTableData = async() => {
+try {
+    const response = await axios.post("https://node.poxscan.io/api/transaction");
+    return (response?.data);
+} catch (error) {
+    console.log("error", error);
+}
+}

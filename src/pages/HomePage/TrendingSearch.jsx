@@ -48,7 +48,7 @@ const TrendingSearch = () => {
       const data4= await getStakedData();
       const data5= await getPriceChartGraphData();
       const data6= await getTvlPriceData();
-      console.log(data6);
+      
       setData(data?.message);
       setData2(data2?.message);
       setData3(data3);

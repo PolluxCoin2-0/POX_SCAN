@@ -1,20 +1,25 @@
 // import { IoIosArrowForward } from "react-icons/io";
-import { Transactions } from "../../data/HomePageData";
+// import { Transactions } from "../../data/HomePageData";
 import AreaChartComp from "../../components/AreaChart";
 import { useEffect, useState } from "react";
-import { getTransactionGraphData } from "../../utils/axios/Home";
+import { getTransactionGraphData, getTransactionTableData } from "../../utils/axios/Home";
+import { secondsAgo } from "../../utils/secondAgo";
 
 const TransactionContainer = () => {
 
   const [data, setData] = useState([]);
+  const [data1, setData1] = useState([]);
 
   useEffect(() => {
     
     const fetchData = async () => {
       try {
         const data = await getTransactionGraphData();
-        
+        const data1= await getTransactionTableData();
+        console.log(data1);
+
         setData(data?.message);
+        setData1(data1?.message);
       } catch (error) {
         console.error('error', error);
       } 
@@ -35,14 +40,14 @@ const TransactionContainer = () => {
       <div className="w-full flex flex-col md:flex-row justify-between">
       <div className="w-full md:w-[75%] overflow-x-auto">
       <div className="min-w-[900px]"> {/* Adjust min-width as needed */}
-    {Transactions.map((transaction, idx) => {
+    {data1?.transactions && data1?.transactions.map((transaction, idx) => {
       return (
         <div
           className={`flex flex-row justify-between ${
             idx % 2 !== 0 ? "bg-text-bg-gray" : "bg-white"
           } py-6 px-12
           ${idx === 0 ? "rounded-t-2xl" : "rounded-none"} ${
-            idx === Transactions.length - 1
+            idx === data1?.transactions.length - 1
               ? "rounded-b-2xl"
               : "rounded-none"
           }`}
@@ -51,10 +56,10 @@ const TransactionContainer = () => {
           {/* First column */}
           <div>
             <p className="font-semibold pb-3 mr-6 md:mr-0">
-              {transaction?.transactionId}
+              {transaction?.transactionId && transaction?.transactionId}
             </p>
             <p className="text-light-gray">
-              {transaction?.time} secs ago
+              {transaction?.timeStamp && secondsAgo(transaction?.timeStamp)} secs ago
             </p>
           </div>
 
@@ -66,12 +71,12 @@ const TransactionContainer = () => {
             </div>
 
             <div>
-              <p className="font-semibold pb-3">{transaction?.from}</p>
-              <p className="font-semibold">{transaction?.to}</p>
+              <p className="font-semibold pb-3">{transaction?.fromAddress && transaction?.fromAddress}</p>
+              <p className="font-semibold">{transaction?.toAddress && transaction?.toAddress}</p>
             </div>
 
             <div className="flex items-center space-x-4 whitespace-nowrap">
-              {transaction?.tags.map((tag, index) => {
+              {data1?.transaction?.tags.map((tag, index) => {
                 return (
                   <p
                     className={`${
@@ -87,8 +92,8 @@ const TransactionContainer = () => {
           </div>
 
           {/* Third column */}
-          <div className="ml-6 md:ml-0">
-            <p className="pb-3 font-semibold">{transaction?.pox} POX</p>
+          <div className="ml-6 text-right md:ml-0">
+            <p className="pb-3 font-semibold">{transaction?.assetAmount && transaction?.assetAmount} {transaction?.assetName && transaction?.assetName}</p>
             <span className="bg-green text-dark-green font-medium px-2 py-1 rounded-md">
               Transfer
             </span>

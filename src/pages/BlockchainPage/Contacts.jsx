@@ -1,16 +1,39 @@
 // import React from 'react'
 
-import { ContactData } from "../../data/ContactData";
+
 import PieChartComp from "../../components/PieChartComp";
 import SearchBarExpand from "../../components/SearchBarExpand";
 import { IoSearch } from "react-icons/io5";
 import { PiArrowBendDownLeftBold } from "react-icons/pi";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import Pagination from "../../components/Pagination";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getAllContractTableData, getContractTableData } from "../../utils/axios/Blockchain";
+import { PiWrenchLight } from "react-icons/pi";
 
 
 const Contacts = () => {
+
+  const [data, setData] = useState([]);
+  const [data1, setData1] = useState([]);
+
+  useEffect(() => {
+    
+    const fetchData = async () => {
+      try {
+        const data = await getContractTableData();
+        setData(data);
+        const data1 = await getAllContractTableData();
+        setData1(data1);
+        
+      } catch (error) {
+        console.error('error', error);
+      } 
+    };
+
+    fetchData();
+  }, [])
+
 
    // For Pagination
    const [currentPage, setCurrentPage] = useState(1);
@@ -19,6 +42,9 @@ const Contacts = () => {
    const handlePageChange = (page) => {
      setCurrentPage(page);
    };
+
+  
+
 
   return (
     <div className="px-4 md:px-12 pb-12">
@@ -47,13 +73,13 @@ const Contacts = () => {
 
               <div className=" flex flex-row justify-between gap-20 py-5">
                 <div className="pl-0">
-                  <p>............................................</p>
+                  <p>{data1[1]?.total_contracts && data1[1]?.total_contracts}</p>
                   <p className="text-light-gray  pt-5">Total</p>
                 </div>
 
                 <div>
                   <p className="text-dark-green font-bold text-xl pr-0">
-                    +18,792
+                    {data1[1]?.allContract24h && data1[1]?.allContract24h}
                   </p>
                   <p className="text-light-gray  pt-5">Last 24h</p>
                 </div>
@@ -72,13 +98,13 @@ const Contacts = () => {
 
               <div className=" flex flex-row justify-between gap-20 rounded-lg pt-6 pb-6">
                 <div>
-                  <p className="text-xl font-bold ">51,421</p>
+                  <p className="text-xl font-bold ">{data[1]?.verifiedContractCount}</p>
                   <p className="text-light-gray pt-5">Total</p>
                 </div>
 
                 <div>
-                  <p className="text-xl font-bold text-dark-green text-right">+3</p>
-                  <p className="text-light-gray pt-5">Percentage</p>
+                  <p className="text-xl font-bold text-dark-green text-right">{data[1]?.verifiedContract24h}</p>
+                  <p className="text-light-gray pt-5">Yesterday</p>
                 </div>
               </div>
             </div>
@@ -100,7 +126,7 @@ const Contacts = () => {
                       SC
                     </span>{" "}
                     <span className="px-2 py-1 bg-lightest-gray text-dark-red rounded-md">
-                      USDT Token{" "}
+                    USDT Token{" "}
                     </span>
                   </p>
                   <p className="">
@@ -230,42 +256,42 @@ const Contacts = () => {
             </div>
           </div>
 
-          <div className="min-w-[1500px] flex flex-row justify-evenly bg-lightest-gray p-2 m-3 rounded-xl ">
-            <p className="w-[24%]">Account</p>
-            <p className="w-[10%]">Contract</p>
+          <div className="min-w-[1500px] flex flex-row justify-evenly text-center bg-lightest-gray p-2 m-3 rounded-xl ">
+            <p className="w-[30%]">Account</p>
+            <p className="w-[10%]">Contract Name</p>
             <p className="w-[10%]">Number of Calls </p>
-            <p className="w-[10%]">POX Balance </p>
+            
             <p className="w-[10%]">Version</p>
             <p className="w-[10%]">License</p>
-            <p className="w-[10%]">Created On</p>
-            <p className="w-[10%]">Verified On</p>
+            <p className="w-[12%]">Created On</p>
+            <p className="w-[12%]">Verified On</p>
             <p className="w-[6%]">Setting</p>
           </div>
 
-          {ContactData.map((contact, index) => {
+          {data[0] && data[0].map((contact, index) => {
             return (
               <>
                 <div className="min-w-[1500px]  flex flex-row justify-evenly p-5 border-b-2 border-lightest-gray  rounded-xl ">
-                  <p className="whitespace-nowrap w-[24%]">
+                  <p className="whitespace-nowrap w-[30%]">
                     <span className="px-3 py-1 bg-lightest-gray rounded-lg">
                       SC
                     </span>
                     <span className="text-dark-red px-2">
                       {" "}
-                      {contact.Account}{" "}
+                      {contact?.contractAddress}{" "}
                     </span>
-                    <span className="px-3 py-1 bg-lightest-gray rounded-lg">
+                    {/* <span className="px-3 py-1 bg-lightest-gray rounded-lg">
                       USDT Token
-                    </span>
+                    </span> */}
                   </p>
-                  <p className="w-[10%]">{contact.ContractName}</p>
-                  <p className="w-[10%]">{contact.NumberOfCalls}</p>
-                  <p className="w-[10%]">{contact.POXBalance}</p>
-                  <p className="w-[10%]">{contact.Version}</p>
-                  <p className="w-[10%]">{contact.Licence}</p>
-                  <p className="w-[10%]">{contact.CreatedOn}</p>
-                  <p className="w-[10%]">{contact.VerifiedOn}</p>
-                  <p className="w-[6%]">{contact.Settings}</p>
+                  <p className="w-[10%] text-center">{contact?.contractAddress && contact?.contractName}</p>
+                  <p className="w-[10%] text-center">{contact?.noOfCalls && contact?.noOfCalls}</p>
+                  
+                  <p className="w-[10%] text-center">{contact?.compiler && contact?.compiler}</p>
+                  <p className="w-[10%] text-center">{contact?.license && contact?.license}</p>
+                  <p className="w-[12%] text-center">{contact?.createdAt && contact.createdAt}</p>
+                  <p className="w-[12%] text-center">{contact?.updatedAt && contact?.updatedAt}</p>
+                  <p className="w-[6%] "><PiWrenchLight /></p>
                 </div>
               </>
             );

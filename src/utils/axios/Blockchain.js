@@ -35,3 +35,48 @@ export const getAccountTableData =  async() => {
         console.log("error", error);
     }
 }
+
+export const getContractTableData = async() => {
+    try {
+        const response = await axios.post("https://governance.poxscan.io/dev/verifiedcontract",
+            
+                {
+                    "pageNos": 0, 
+                    "pageLimit": 10
+                }
+            
+        );
+        return (response?.data);
+    } catch (error) {
+        console.log("error", error);
+    }
+}
+
+export const getAllContractTableData =  async() => {
+    try {
+        const response = await axios.post("https://governance.poxscan.io/dev/getcontracts",
+            {
+                "pageNos": 0, 
+                "pageLimit": 10
+            }
+        );
+        return (response?.data);
+    } catch (error) {
+        console.log("error", error)
+    }
+}
+
+export const getTransferTableData = async() => {
+    try {
+        const response = await axios.post("https://node.poxscan.io/api/transaction",
+            {
+                " page": 0,
+              "limit": 10, 
+              "filter": "POX"
+             }
+        );
+        return (response?.data);
+    } catch (error) {
+        console.log("error", error);
+    }
+}

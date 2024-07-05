@@ -14,7 +14,7 @@ const TvlContainer = () => {
     const fetchData = async () => {
       try {
         const data = await getTvlPriceData();
-        console.log(data);
+        
         setData(data);
       } catch (error) {
         console.error('Error fetching TVL price data:', error);

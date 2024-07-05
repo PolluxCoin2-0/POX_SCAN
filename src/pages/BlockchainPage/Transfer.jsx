@@ -5,11 +5,37 @@ import PieChartComp from "../../components/PieChartComp";
 import SearchBarExpand from "../../components/SearchBarExpand";
 import { IoSearch } from "react-icons/io5";
 import { PiArrowBendDownLeftBold } from "react-icons/pi";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Pagination from "../../components/Pagination";
+import { getTransferTableData } from "../../utils/axios/Blockchain";
+import { secondsAgo } from "../../utils/secondAgo";
+import { shortenString } from "../../utils/shortenString";
 
 // For Tab Switching
 const TransferTable = () => {
+  
+  // For API Integration
+  const [data, setData] = useState({});
+
+  useEffect(() => {
+    
+    const fetchData = async () => {
+      try {
+        const data = await getTransferTableData();
+
+        console.log(data);
+
+        setData(data?.message);
+        
+        
+      } catch (error) {
+        console.log('error', error);
+      } 
+    };
+
+    fetchData();
+  }, [])
+
   // For Pagination
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = 10; // Example total pages
@@ -45,23 +71,23 @@ const TransferTable = () => {
           </div>
         </div>
 
-        <div className="min-w-[1500px] flex flex-row justify-evenly bg-lightest-gray p-2 m-3 rounded-xl">
-          <p className="w-[24%]">Account</p>
-          <p className="w-[10%]">Contract</p>
-          <p className="w-[10%]">Number of Calls </p>
-          <p className="w-[10%]">POX Balance </p>
-          <p className="w-[10%]">Version</p>
-          <p className="w-[10%]">License</p>
-          <p className="w-[10%]">Created On</p>
-          <p className="w-[10%]">Verified On</p>
-          <p className="w-[6%]">Setting</p>
+        <div className="min-w-[1500px] flex flex-row justify-evenly items-center bg-lightest-gray p-2 m-3 rounded-xl">
+          <p className="w-[20%]">Token</p>
+          <p className="w-[10%]">Amount/Token TD</p>
+          <p className="w-[6%]">Result </p>
+          <p className="w-[10%]">Age </p>
+          <p className="w-[16%]">From</p>
+          <p className="w-[16%]">To</p>
+          <p className="w-[16%]">Hash</p>
+          <p className="w-[10%]">Block</p>
+          
         </div>
 
-        {ContactData.map((contact, index) => {
+        {data?.transactions && data?.transactions.map((contact, index) => {
           return (
             <>
-              <div className="min-w-[1500px] flex flex-row justify-evenly p-5 border-b-2 border-lightest-gray  rounded-xl ">
-                <p className="whitespace-nowrap w-[24%]">
+              <div className="min-w-[1500px] flex flex-row justify-evenly items-center p-5 border-b-2 border-lightest-gray  rounded-xl ">
+                <p className="whitespace-nowrap w-[20%]">
                   <span className="px-3 py-1 bg-lightest-gray rounded-lg">
                     SC
                   </span>
@@ -73,14 +99,14 @@ const TransferTable = () => {
                     USDT Token
                   </span>
                 </p>
-                <p className="w-[10%]">{contact.ContractName}</p>
-                <p className="w-[10%]">{contact.NumberOfCalls}</p>
-                <p className="w-[10%]">{contact.POXBalance}</p>
-                <p className="w-[10%]">{contact.Version}</p>
-                <p className="w-[10%]">{contact.Licence}</p>
-                <p className="w-[10%]">{contact.CreatedOn}</p>
-                <p className="w-[10%]">{contact.VerifiedOn}</p>
-                <p className="w-[6%]">{contact.Settings}</p>
+                <p className="w-[10%]">{contact?.ContractName}</p>
+                <p className="w-[6%]">{contact?.NumberOfCalls}</p>
+                <p className="w-[10%]">{contact?.POXBalance}</p>
+                <p className="w-[10%]">{contact?.timeStamp && secondsAgo(contact?.timeStamp)} seconds ago</p>
+                <p className="w-[16%]">{contact?.fromAddress && shortenString(contact?.fromAddress)}</p>
+                <p className="w-[16%]">{contact?.toAddress && shortenString(contact?.toAddress)}</p>
+                <p className="w-[16%]">{contact?.blockHash && shortenString(contact?.blockHash)}</p>
+                <p className="w-[10%]">{contact?.blockNumber}</p>
               </div>
             </>
           );
@@ -99,6 +125,8 @@ const TransferTable = () => {
 };
 
 const Transfer = () => {
+
+ 
   const [isRender, setIsRender] = useState("POX20 Transfers");
 
   const renderItemComponent = () => {

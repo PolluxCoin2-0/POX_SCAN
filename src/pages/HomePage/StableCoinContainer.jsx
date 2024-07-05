@@ -18,7 +18,7 @@ const StableCoinContainer = () => {
       try {
         const data = await getStableCoinGraphData();
         const data1= await getStakedData();
-        console.log(data1);
+        
 
         setData(data?.message);
         setData1(data1);

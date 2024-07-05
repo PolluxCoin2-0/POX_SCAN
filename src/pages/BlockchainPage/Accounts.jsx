@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { TokenData } from "../../data/Token";
 import SearchBarExpand from "../../components/SearchBarExpand";
 import { FaToggleOn } from "react-icons/fa";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import Pagination from "../../components/Pagination";
 import { getAccountsData, getAccountTableData } from "../../utils/axios/Blockchain";
+
 
 
 const Accounts = () => {
@@ -18,7 +18,7 @@ const Accounts = () => {
         const data = await getAccountsData();
         const data1 = await getAccountTableData();
 
-        console.log(data1);
+        
 
         setData(data?.message);
         setData1(data1?.message);
@@ -47,7 +47,7 @@ const Accounts = () => {
         <SearchBarExpand onSearch={setOnSearch} />
       </div>
 
-      <p className="font-bold text-2xl pb-10">Blocks</p>
+      <p className="font-bold text-2xl pb-10">Accounts</p>
       <div className="flex flex-col space-y-6 md:space-y-0 md:flex-row justify-around ">
         <div className="w-full md:w-[32%] bg-white shadow-lg rounded-2xl p-8">
           <div className="flex flex-row justify-between pt-1 ">
@@ -141,30 +141,30 @@ const Accounts = () => {
         </div>
 
         <div className="flex flex-row justify-around p-2 bg-lightest-gray rounded-lg min-w-[1500px] md:min-w-full">
-          <p className=" w-[12%]">Block</p>
-          <p className=" w-[12%]">Age</p>
-          <p className=" w-[12%]">Producer</p>
-          <p className=" w-[12%]">Pox Count</p>
-          <p className=" w-[16%] whitespace-nowrap">
-            Consumed Energy/Bandwidth
+          <p className=" w-[8%]">#</p>
+          <p className=" w-[28%]">Account</p>
+          <p className=" w-[12%]">Pox Balance</p>
+          <p className=" w-[12%]">Percentage</p>
+          <p className=" w-[8%] whitespace-nowrap">
+            POX Power
           </p>
-          <p className=" w-[8%]">Burned POX</p>
-          <p className=" w-[12%]">Block Reward</p>
-          <p className=" w-[12%]">Status</p>
+          <p className=" w-[8%]">Pox Count</p>
+          <p className=" w-[12%]">Age</p>
+          
         </div>
 
-        {TokenData.map((stablecoin, index) => {
+        {data1?.apiResult && data1?.apiResult.map((stablecoin, index) => {
           return (
             <>
               <div className="flex flex-row  justify-around border-b-2 p-3 border-text-bg-gray min-w-[1500px] md:min-w-full">
-                <p className="text-dark-red  w-[12%]">{stablecoin.Block}</p>
-                <p className=" w-[12%]">{stablecoin.Age}</p>
-                <p className="text-dark-red  w-[12%]">{stablecoin.Producer}</p>
-                <p className=" w-[12%]">{stablecoin.PoxCount}</p>
-                <p className=" w-[16%]">{stablecoin.ConsumedEnergy}</p>
-                <p className=" w-[8%]">{stablecoin.BurnedPOX}</p>
-                <p className=" w-[12%]">{stablecoin.BlockReward}</p>
-                <p className=" w-[12%]">{stablecoin.Status}</p>
+                <p className="text-dark-red  w-[8%]">{stablecoin.Block}</p>
+                <p className=" w-[28%]">{stablecoin?.address}</p>
+                <p className="text-dark-red  w-[12%]">{stablecoin?.balance}</p>
+                <p className=" w-[12%]">{stablecoin?.percentage}</p>
+                <p className=" w-[8%]">{stablecoin?.poxpower}</p>
+                <p className=" w-[8%]">{stablecoin?.txnCount}</p>
+                <p className=" w-[12%]">{stablecoin?.age && (stablecoin?.age)}seconds ago</p>
+                
               </div>
             </>
           );
