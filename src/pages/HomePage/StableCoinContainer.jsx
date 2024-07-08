@@ -129,7 +129,9 @@ const StableCoinContainer = () => {
 
         {/* Charts */}
 
-        {/* Protocol Revenue     (NEEDED API) */}       
+        {/* Protocol Revenue     (NEEDED API) */}  
+
+        
         <div className="w-full md:w-[23%] mt-6 md:mt-0">
           <div className="shadow-lg bg-white rounded-xl p-4 mb-4">
             <p className="font-semibold">Protocol Revenue</p>                                                      
@@ -156,6 +158,8 @@ const StableCoinContainer = () => {
             <AreaChartComp value={data} xDataKey="date" yDataKey="value" componentChartColor="#ff0000" />
           </div>
         </div>
+        
+        
       </div>
     </div>
   );

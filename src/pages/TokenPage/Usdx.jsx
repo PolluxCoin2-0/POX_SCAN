@@ -1,9 +1,134 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TokenData } from "../../data/Token";
 import SearchBarExpand from "../../components/SearchBarExpand";
 import Pagination from "../../components/Pagination";
+import { getUsdxData, getUsdxHolderData } from "../../utils/Token";
+import { IoShirtOutline } from "react-icons/io5";
+import { shortenString } from "../../utils/shortenString";
+import { GiSandsOfTime } from "react-icons/gi";
 
+const UsdxTable = () => {
+  const [data, setData] = useState({});
+
+  useEffect(() => {
+    
+    const fetchData = async () => {
+      try {
+        const data = await getUsdxData();
+        
+        
+        setData(data);
+        
+        
+      } catch (error) {
+        console.log('error', error);
+      } 
+    };
+
+    fetchData();
+  }, [])
+
+  return (
+    <div>
+      <div className="min-w-[1500px]  flex flex-row justify-around p-2 bg-lightest-gray rounded-lg ">
+          <p className=" w-[14%]">Amount</p>
+          <p className=" w-[14%]">Result</p>
+          <p className=" w-[14%]">Time(UTC)</p>
+          <p className=" w-[14%]">From</p>
+          <p className=" w-[14%] whitespace-nowrap">
+            To
+          </p>
+          <p className=" w-[14%]">Hash</p>
+          <p className=" w-[14%]">Block</p>
+          
+        </div>
+
+        {data?.transactions  && data?.transactions.map((stablecoin, index) => {
+          return (
+            <>
+              <div className="min-w-[1500px]  flex flex-row  justify-around border-b-2 p-3 border-text-bg-gray">
+                <p className="w-[14%] text-dark-red ">{stablecoin?.asset}</p>
+                <p className=" w-[14%]">{stablecoin?.result}</p>
+                <p className="w-[14%] text-dark-red ">{stablecoin?.timeStamp}</p>
+                <p className="w-[14%] ">{stablecoin?.fromAddress && shortenString(stablecoin?.fromAddress)}</p>
+                <p className=" w-[14%]">{stablecoin?.toAddress && shortenString(stablecoin?.toAddress)}</p>
+                <p className=" w-[14%]">{stablecoin?.transactionId && shortenString(stablecoin?.transactionId)}</p>
+                <p className="w-[14%]">{stablecoin?.blockNumber}</p>
+                
+              </div>
+            </>
+          );
+        })}
+    </div>
+  )
+}
+
+
+const TokenHolderTable = () => {
+
+  const [holderdata, setHolderData] = useState({});
+
+  useEffect(() => {
+    
+    const fetchData = async () => {
+      try {
+        const data = await getUsdxHolderData();
+    
+        
+        setHolderData(data);
+        
+        
+      } catch (error) {
+        console.log('error', error);
+      } 
+    };
+
+    fetchData();
+  }, [])
+
+  return (
+    <div>
+       <div className="flex flex-row justify-evenly ">
+        <p  className="w-[8%]">#</p>
+        <p  className="w-[28%]">Account</p>
+        <p  className="w-[16%]">Amount</p>
+        <p  className="w-[16%]">Value</p>
+        <p className="w-[16%]">Percentage</p>
+        <p  className="w-[12%]">Latest TXN Time(Local)</p>
+       </div>
+
+
+       {holderdata?.holders?.map && holderdata?.holders?.map((stablecoin, index) => {
+          return (
+            <>
+              <div className="min-w-[1500px]  flex flex-row  justify-around border-b-2 p-3 border-text-bg-gray">
+                <p className="w-[8%] text-dark-red "></p>
+                <p className=" w-[28%]">{stablecoin?.walletAddress}</p>
+                <p className="w-[16%] text-dark-red ">{stablecoin?.balance}</p>
+                <p className="w-[16%] ">{stablecoin?.balance}</p>
+                <p className=" w-[16%]">{stablecoin?.percentage}</p>
+                <p className=" w-[12%]"></p>
+                
+              </div>
+            </>
+          );
+        })}
+    </div>
+  )
+}
 const Usdx = () => {
+  const [isRender, setIsRender] = useState("Token Transfer");
+  const renderItemComponent = () => {
+    switch (isRender) {
+      case "Token Transfer":
+        return <UsdxTable />;
+      case "Token Holders":
+        return <TokenHolderTable />;
+     
+      default:
+        return null;
+    }
+  };
 
   // For Pagination
 
@@ -89,8 +214,14 @@ const Usdx = () => {
           </div>
         </div>
       </div>
-
-      <p className="font-bold text-2xl mb-6 mt-6 md:mt-0 md:mb-12">StableCoin</p>
+       
+       <div className="flex flex-row space-x-8">
+       <p className="font-bold text-2xl mb-6 mt-6 md:mt-0 md:mb-12 bg-dark-yellow px-12 py-2 rounded-lg"
+       onClick={() => setIsRender("Token Transfer")}>Token Transfer</p>
+       <p className="font-bold text-2xl mb-6 mt-6 md:mt-0 md:mb-12 bg-light-mid-gray px-12 py-2 rounded-lg"
+       onClick={() => setIsRender("Token Holders")}>Token Holders</p>
+       </div>
+      
       <div className="bg-white rounded-2xl p-4 md:p-7 ">
       <div className="overflow-x-auto md:overflow-hidden">
         <p className="pb-5 font-medium text-light-gray">
@@ -99,35 +230,9 @@ const Usdx = () => {
           displayed
         </p>
 
-        <div className="min-w-[1500px]  flex flex-row justify-around p-2 bg-lightest-gray rounded-lg ">
-          <p className=" w-[12%]">Block</p>
-          <p className=" w-[12%]">Age</p>
-          <p className=" w-[12%]">Producer</p>
-          <p className=" w-[12%]">Pox Count</p>
-          <p className=" w-[16%] whitespace-nowrap">
-            Consumed Energy/Bandwidth
-          </p>
-          <p className=" w-[8%]">Burned POX</p>
-          <p className=" w-[12%]">Block Reward</p>
-          <p className=" w-[12%]">Status</p>
-        </div>
+        <div>{renderItemComponent()}</div>
 
-        {TokenData.map((stablecoin, index) => {
-          return (
-            <>
-              <div className="min-w-[1500px]  flex flex-row  justify-around border-b-2 p-3 border-text-bg-gray">
-                <p className="text-dark-red  w-[12%]">{stablecoin.Block}</p>
-                <p className=" w-[12%]">{stablecoin.Age}</p>
-                <p className="text-dark-red  w-[12%]">{stablecoin.Producer}</p>
-                <p className=" w-[12%]">{stablecoin.PoxCount}</p>
-                <p className=" w-[16%]">{stablecoin.ConsumedEnergy}</p>
-                <p className=" w-[8%]">{stablecoin.BurnedPOX}</p>
-                <p className=" w-[12%]">{stablecoin.BlockReward}</p>
-                <p className=" w-[12%]">{stablecoin.Status}</p>
-              </div>
-            </>
-          );
-        })}
+      
 
         <div className="flex justify-end">
         <Pagination

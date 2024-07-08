@@ -1,18 +1,19 @@
 import { useEffect, useState } from "react";
-import { ParameterData } from "../../data/Parameters";
 import Pagination from "../../components/Pagination";
-import { getNetworkParameterData } from "../../utils/axios/Governance";
+import { getCommitteeProposalData, getNetworkParameterData } from "../../utils/axios/Governance";
+import { shortenString } from "../../utils/shortenString";
+
+
 
 const ParameterTable = () => {
 
   const [data, setData] = useState({});
-
+  
   useEffect(() => {
     
     const fetchData = async () => {
       try {
         const data = await getNetworkParameterData();
-        console.log(data);
         setData(data?.message);
         
         
@@ -35,18 +36,18 @@ const ParameterTable = () => {
  return (
     <div className="bg-white pt-2 pb-8">
     <div className="flex flex-row justify-between mt-7 ml-2 mr-2 rounded-xl bg-lightest-gray pt-3 pb-3 pl-5 pr-5">
-          <p>Number</p>
-          <p className="">Parameter</p>
-          <p>Current Value</p>
+          <p className="w-[20%]">Number</p>
+          <p className="w-[60%]">Parameter</p>
+          <p className="w-[20%]">Current Value</p>
         </div>
 
-        {data?.map ((parameter, index) => {
+        {data?.map && data?.map ((parameter, index) => {
         return (
           <>
            <div className="flex flex-row justify-between p-5 border-b-2 border-b-lightest-gray">
-               <p>{parameter?.number}</p>
-               <p>{parameter?.description}</p>
-               <p>{parameter?.value}</p>
+               <p className="w-[20%]">{parameter?.number}</p>
+               <p className="w-[60%]">{parameter?.description}</p>
+               <p className="w-[20%]">{parameter?.value}</p>
            </div>
           </>
         )
@@ -64,6 +65,61 @@ const ParameterTable = () => {
   )
 }
 
+const CommitteProposalTable = () => {
+
+  const [data1, setData1] = useState({});
+
+  useEffect(() => {
+    
+    const fetchData = async () => {
+      try {
+        const data1 = await getCommitteeProposalData();
+        console.log(data1);
+        setData1(data1?.message);
+        
+        
+      } catch (error) {
+        console.log('error', error);
+      } 
+    };
+
+    fetchData();
+  }, []);
+
+
+  return (
+  <div className="bg-white pt-2 pb-8">
+    <div className="flex flex-row justify-evenly  mt-7 ml-2 mr-2 rounded-xl bg-lightest-gray pt-3 pb-3 pl-5 pr-5">
+      <p className="w-[14%]">No.</p>
+      <p className="w-[14%]">Content</p>
+      <p className="w-[14%]">Proposer</p>
+      <p className="w-[14%]">Created / Expire on (UTC)</p>
+      <p className="w-[14%]">Status</p>
+      <p className="w-[14%]">Upvotes / Total Votes</p>
+      <p className="w-[14%]">Operation</p>
+    </div>
+
+    {data1?.map && data1?.map ((param, index) => {
+        return (
+          <>
+           <div className="flex flex-row justify-evenly p-5 border-b-2 border-b-lightest-gray">
+               <p className="w-[14%]">{param?.proposal_id}</p>
+               <p className="w-[14%]">{param?.parameters?.description }</p>
+               <p className="w-[14%]">{param?.proposer_address && shortenString(param?.proposer_address)}</p>
+               <p className="w-[14%]">{param?.create_time}/ {param?.expiration_time}</p>
+               <p className="w-[14%]">{param?.state}</p>
+               <p className="w-[14%]"></p>
+               <p className="w-[14%]">View Details Committee Proposals </p>
+           </div>
+          </>
+        )
+       })}
+
+
+  </div>
+  )
+}
+
 
 
 const ParametersProposals = () => {
@@ -74,7 +130,7 @@ const ParametersProposals = () => {
       case "Network Parameter":
         return <ParameterTable />;
       case "Committee Proposals":
-        return <ParameterTable />;
+        return <CommitteProposalTable />;
      
       default:
         return null;

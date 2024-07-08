@@ -1,26 +1,29 @@
 import SearchBarExpand from "../../components/SearchBarExpand";
 import SearchBar from "../../components/SearchBar";
-import { VotesData } from "../../data/Votes";
 import VoteAdd from "../../assets/Voteadd.png";
 import VoteTotal from "../../assets/Votetotal.png";
 import Pagination from "../../components/Pagination";
 import { useEffect, useState } from "react";
 import { IoIosArrowForward } from "react-icons/io"
-import { getVotesTableData } from "../../utils/axios/Governance";
+import { getVotesData, getVotesTableData } from "../../utils/axios/Governance";
+import { extractSiteName } from "../../utils/extractSiteName";
 
 const Votes = () => {
 
   const [data, setData] = useState({});
+  const [votedata, setVoteData] = useState({});
 
   useEffect(() => {
     
     const fetchData = async () => {
       try {
         const data = await getVotesTableData();
-
-        console.log(data);
+        const votedata = await getVotesData();
+        console.log(votedata);
+        
 
         setData(data?.message);
+        setVoteData(votedata);
         
         
       } catch (error) {
@@ -68,7 +71,7 @@ const Votes = () => {
               </div>
               <div className="pl-14 pb-4">
                 <p className="text-light-gray">Real-time Votes this round</p>
-                <p className="text-lg font-bold">44,628,534,525 <span className="text-sm font-bold text-dark-green">+1,939,145</span></p>
+                <p className="text-lg font-bold">{votedata?.realTimeTotalVotes} <span className="text-sm font-bold text-dark-green">(+)</span></p>
               </div>
             </div>
 
@@ -83,7 +86,7 @@ const Votes = () => {
               </div>
               <div className="pt-4">
                 <p className="text-light-gray">Most Votes Gained this round</p>
-                <p className="text-lg font-bold">44,628,534,525 <span className="text-sm font-bold text-dark-green">+1,939,145</span></p>
+                <p className="text-lg font-bold">{votedata?.gettingwitnessFields && extractSiteName(votedata?.gettingwitnessFields)}</p>
               </div>
             </div>
 
@@ -140,15 +143,15 @@ const Votes = () => {
          <button className="bg-lightest-gray px-4 py-1 rounded-md">Vote</button>
         </div>
          <div className="bg-[#FAFAFA] px-6">
-            <div className="flex flex-row justify-evenly p-5 bg-text-bg-gray rounded-lg">
-            <p>Name</p>
-            <p>Ranking</p>
-            <p>Real-time Votes</p>
-            <p>Percentage</p>
-            <p>Productivity</p>
-            <p>Reward Distribution</p>
-            <p>APR</p>
-            <p>My Votes</p>
+            <div className="flex flex-row justify-around p-5 bg-text-bg-gray rounded-lg">
+            <p className="w-[25%]">Name</p>
+            <p className="w-[10%]">Ranking</p>
+            <p className="w-[10%]">Real-time Votes</p>
+            <p className="w-[10%]">Percentage</p>
+            <p className="w-[10%]">Productivity</p>
+            <p className="w-[11%]">Reward Distribution</p>
+            <p className="w-[10%]">APR</p>
+            <p className="w-[10%]">My Votes</p>
             </div>
 
             
@@ -156,16 +159,16 @@ const Votes = () => {
               return (
 
                 <>
-                <div className="flex flex-row justify-evenly p-5 border-b-2 border-text-bg-gray">
-                  <p>{voter.Name}</p>
-                  <p>{voter.Ranking}</p>
-                  <p>{voter.RealtimeVotes}</p>
-                  <p>{voter?.votePercentage}</p>
-                  <p>{voter.productivity}</p>
-                  <p>{voter.RewardDistribution}</p>
-                  <p>{voter.APR}</p>
-                  <p>{voter.MyVotes}</p>
-                  <p>3</p>
+                <div className="flex flex-row justify-around p-5 border-b-2 border-text-bg-gray">
+                  <p className="w-[25%]">{voter?.url && extractSiteName(voter?.url)}  {voter?.poxaddress}</p>
+                  <p className="w-[10%] text-dark-blue"></p>
+                  <p className="w-[10%]">{voter.brokerage}</p>
+                  <p className="w-[10%]">{voter?.votePercentage.toFixed(2)}</p>
+                  <p className="w-[10%]">{voter.productivity.toFixed(2)}</p>
+                  <p className="w-[11%]">{voter?.brokerage}%</p>
+                  <p className="w-[10%]">{voter?.apr}</p>
+                  <p className="w-[10%]">{voter.MyVotes}</p>
+                
             
             
             </div>

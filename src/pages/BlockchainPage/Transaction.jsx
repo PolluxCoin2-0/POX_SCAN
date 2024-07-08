@@ -8,9 +8,31 @@ import { IoSearch } from "react-icons/io5";
 import { PiArrowBendDownLeftBold } from "react-icons/pi";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import Pagination from "../../components/Pagination";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getTransactionStatsData } from "../../utils/axios/Blockchain";
 
 const Transaction = () => {
+
+  const [data, setData] = useState({});
+
+  useEffect(() => {
+    
+    const fetchData = async () => {
+      try {
+        const data = await getTransactionStatsData();
+        console.log(data);
+        
+        setData(data?.message);
+        
+        
+      } catch (error) {
+        console.log('error', error);
+      } 
+    };
+
+    fetchData();
+  }, [])
+
 
    // For Pagination
    const [currentPage, setCurrentPage] = useState(1);
@@ -40,13 +62,13 @@ const Transaction = () => {
 
               <div className=" flex flex-row justify-between gap-20 py-5">
                 <div className="">
-                  <p className="text-xl font-bold">55,451,455,254</p>
+                  <p className="text-xl font-bold">{data?.Total_Transactions}</p>
                   <p className="text-light-gray  pt-5">Total</p>
                 </div>
 
                 <div>
                   <p className="text-dark-green font-bold text-xl">
-                    +4,048,420
+                    +{data?.Yesterday_Transaction}
                   </p>
                   <p className="text-light-gray  pt-5"> Yesterday</p>
                 </div>
@@ -61,14 +83,14 @@ const Transaction = () => {
 
               <div className=" flex flex-row justify-between gap-20 rounded-lg pt-6 pb-4">
                 <div>
-                  <p className="text-xl font-bold ">51,421 POX</p>
+                  <p className="text-xl font-bold ">{(data?.Total_Volume / Math.pow(10,6)).toFixed(2)} POX</p>
                   <p className="font-bold">=$18, 294.13b</p>
                   <p className="text-light-gray pt-5">Total</p>
                 </div>
 
                 <div>
                   <p className="text-xl font-bold text-dark-green ">
-                    +4,048,420 POX
+                    +{(data?.Yesterday_Volume / Math.pow(10,6)).toFixed(2)} POX
                   </p>
                   <p className="font-bold">=$15.85b</p>
                   <p className="text-light-gray pt-5">Yesterday</p>

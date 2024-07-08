@@ -11,7 +11,7 @@ export const getSuperTableData = async() => {
 
 export const getPartnersTableData = async() => {
     try {
-        const response = await axios.post("", 
+        const response = await axios.post("https://governance.poxscan.io/governance/getWitnessDataP", 
             {
                 "pageNos": 0, 
                 "pageSize": 10
@@ -19,6 +19,15 @@ export const getPartnersTableData = async() => {
 
         );
 
+        return (response?.data);
+    } catch (error) {
+        console.log("error", error);
+    }
+}
+
+export const getVotesData = async() => {
+    try {
+        const response = await axios.get("https://governance.poxscan.io/governance/votesData");
         return (response?.data);
     } catch (error) {
         console.log("error", error);
@@ -37,6 +46,15 @@ export const getVotesTableData = async() => {
 export const getNetworkParameterData = async() => {
     try {
         const response = await axios.get("https://governance.poxscan.io/governance/networkParameters");
+        return (response?.data);
+    } catch (error) {
+        console.log("error", error);
+    }
+}
+
+export const getCommitteeProposalData = async() => {
+    try {
+        const response = await axios.get("https://governance.poxscan.io/governance/getProposal");
         return (response?.data);
     } catch (error) {
         console.log("error", error);

@@ -90,3 +90,12 @@ export const getBlockchainNodeMapData = async() => {
     }
 }
 
+export const getTransactionStatsData = async() => {
+    try {
+        const response = await axios.get("https://node.poxscan.io/api/transaction/stats");
+        return (response?.data);
+    } catch (error) {
+        console.log("error", error);
+    }
+}
+
