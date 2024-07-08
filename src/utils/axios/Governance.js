@@ -33,3 +33,12 @@ export const getVotesTableData = async() => {
         console.log("error", error);
     }
 }
+
+export const getNetworkParameterData = async() => {
+    try {
+        const response = await axios.get("https://governance.poxscan.io/governance/networkParameters");
+        return (response?.data);
+    } catch (error) {
+        console.log("error", error);
+    }
+}

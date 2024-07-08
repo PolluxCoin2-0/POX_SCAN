@@ -1,8 +1,29 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ParameterData } from "../../data/Parameters";
 import Pagination from "../../components/Pagination";
+import { getNetworkParameterData } from "../../utils/axios/Governance";
 
 const ParameterTable = () => {
+
+  const [data, setData] = useState({});
+
+  useEffect(() => {
+    
+    const fetchData = async () => {
+      try {
+        const data = await getNetworkParameterData();
+        console.log(data);
+        setData(data?.message);
+        
+        
+      } catch (error) {
+        console.log('error', error);
+      } 
+    };
+
+    fetchData();
+  }, [])
+
   // For Pagination
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = 10; // Example total pages
@@ -19,13 +40,13 @@ const ParameterTable = () => {
           <p>Current Value</p>
         </div>
 
-        {ParameterData.map ((parameter, index) => {
+        {data?.map ((parameter, index) => {
         return (
           <>
            <div className="flex flex-row justify-between p-5 border-b-2 border-b-lightest-gray">
-               <p>{parameter.Number}</p>
-               <p>{parameter.Parameter}</p>
-               <p>{parameter.CurrentValue}</p>
+               <p>{parameter?.number}</p>
+               <p>{parameter?.description}</p>
+               <p>{parameter?.value}</p>
            </div>
           </>
         )
@@ -46,9 +67,6 @@ const ParameterTable = () => {
 
 
 const ParametersProposals = () => {
-
-  
-
   const [isRender, setIsRender] = useState("Network Parameter");
 
   const renderItemComponent = () => {
