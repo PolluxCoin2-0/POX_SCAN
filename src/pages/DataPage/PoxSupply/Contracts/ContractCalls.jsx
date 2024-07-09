@@ -1,9 +1,30 @@
 
 
+import { useEffect, useState } from "react";
 import { SearchBarExpand } from "../../../../components"
 import SimpleAreaChart from "../../../../components/SimpleAreaChart";
+import { getContractCallTableData } from "../../../../utils/axios/Data";
 
 const ContractCalls = () => {
+
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    
+    const fetchData = async () => {
+      try {
+        const data = await getContractCallTableData();
+        
+        setData(data);
+        
+        
+      } catch (error) {
+        console.log('error', error);
+      } 
+    };
+
+    fetchData();
+  }, []);
   return (
     <div className="px-12 pb-12">
 
@@ -39,43 +60,23 @@ const ContractCalls = () => {
         <p className=" text-2xl font-bold mt-14 mb-8">List</p>
         <div className="bg-white rounded-2xl  shadow-lg p-10">
           <div className="flex flex-row justify-around bg-lightest-gray ml-8 mr-8 pt-2 pb-2 rounded-md text-light-gray">
-            <p>Address</p>
-            <p>Count</p>
+            <p className="w-[50%]">Address</p>
+            <p className="w-[50%]">Count</p>
           </div>
+           
+          {data?.map && data?.map((param, index) => {
+        return (
+          <>
+           <div className="flex flex-row justify-around p-5 border-b-2 border-b-lightest-gray">
+               <p className="w-[50%]">{param?.date}</p>
+               <p className="w-[50%]">{param?. totalCount}</p>
+               
+           </div>
+          </>
+        )
+       })}
 
-
-          <div className="flex flex-row justify-around  border-b-2 border-b-lightest-gray">
-            <div className="pt-8">
-              
-            <p className="pt-8 ">2024-05-11</p>
-            <p className="pt-8">2024-05-11</p>
-            <p className="pt-8">2024-05-11</p>
-            <p className="pt-8">2024-05-11</p>
-            <p className="pt-8">2024-05-11</p>
-            <p className="pt-8">2024-05-11</p>
-            <p className="pt-8">2024-05-11</p>
-            <p className="pt-8">2024-05-11</p>
-            <p className="pt-8">2024-05-11</p>
-            <p className="pt-8">2024-05-11</p>
-            <p className="pt-8">2024-05-11</p>
-            
-            </div>
-
-            <div className="pt-8">
-              
-            <p className="pt-8">7652</p>
-            <p className="pt-8">7652</p>
-            <p className="pt-8">7652</p>
-            <p className="pt-8">7652</p>
-            <p className="pt-8">7652</p>
-            <p className="pt-8">7652</p>
-            <p className="pt-8">7652</p>
-            <p className="pt-8">7652</p>
-            <p className="pt-8">7652</p>
-            <p className="pt-8">7652</p> 
-            <p className="pt-8">7652</p>
-            </div>
-          </div>
+        
         </div>
       </div>
     </div>

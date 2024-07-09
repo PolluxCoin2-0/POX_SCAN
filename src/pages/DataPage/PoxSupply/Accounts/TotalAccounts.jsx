@@ -1,7 +1,28 @@
+import { useEffect, useState } from "react";
 import { SearchBarExpand } from "../../../../components"
 import SimpleComposedChart from "../../../../components/SimpleComposedChart";
+import { getTotalAccountTableData } from "../../../../utils/axios/Data";
 
 const TotalAccounts = () => {
+
+  const [data, setData] = useState({});
+
+  useEffect(() => {
+    
+    const fetchData = async () => {
+      try {
+        const data = await getTotalAccountTableData();
+      
+        setData(data?.message);
+        
+        
+      } catch (error) {
+        console.log('error', error);
+      } 
+    };
+
+    fetchData();
+  }, []);
   return (
     <div className="px-12 pb-12">
 
@@ -37,10 +58,21 @@ const TotalAccounts = () => {
         <p className=" text-2xl font-bold mt-14 mb-8">List</p>
         <div className="bg-white rounded-md  shadow-lg p-10">
           <div className="flex flex-row justify-around bg-lightest-gray ml-8 mr-8 pt-2 pb-2 rounded-md text-light-gray">
-            <p>Date(UTC)</p>
-            <p>Pox Price</p>
+            <p className="w-[50%]">Date(UTC)</p>
+            <p className="w-[50%]">Pox Price</p>
           </div>
 
+          {data?.TotalAccount?.map && data?.TotalAccount?.map((param, index) => {
+        return (
+          <>
+           <div className="flex flex-row justify-between p-5 border-b-2 border-b-lightest-gray">
+               <p className="w-[50%]">{param?.date}</p>
+               <p className="w-[50%]">{param?.totalaccount}</p>
+               
+           </div>
+          </>
+        )
+       })}
 
           <div className="flex flex-row justify-around  border-b-2 border-b-lightest-gray">
             <div className="pt-8">

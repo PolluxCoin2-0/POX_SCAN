@@ -1,21 +1,43 @@
+import { useEffect, useState } from "react"
 import { SearchBarExpand } from "../../../../components"
+import { getBandwidthConsumptionTableData } from "../../../../utils/axios/Data";
 
 const BandwidthConsumption = () => {
+
+  const [data, setData] = useState({});
+
+  useEffect(() => {
+    
+    const fetchData = async () => {
+      try {
+        const data = await getBandwidthConsumptionTableData();
+        
+        setData(data?.message);
+        
+        
+      } catch (error) {
+        console.log('error', error);
+      } 
+    };
+
+    fetchData();
+  }, []);
+
   return (
-    <div className="">
+    <div className="px-12 pb-12">
 
       <div>
         <SearchBarExpand/>
       </div>
 
       <div >
-        <p className="m-12 text-xl font-bold">Bandwidth Consumption</p>
-        <div className="flex flex-row justify-between">
-          <div className="bg-white rounded-2xl w-[1300px]  h-[500px] ml-12 shadow-xl">
+        <p className=" text-xl font-bold">Bandwidth Consumption</p>
+        <div className="flex flex-row mt-8 justify-between">
+          <div className="bg-white rounded-2xl w-[1300px]  h-[500px]  shadow-xl">
             
           </div>
 
-          <div className="flex flex-col mr-12 ">
+          <div className="flex flex-col  ">
             <div className="bg-white rounded-2xl shadow-2xl w-[450px] h-[180px] ">
             <p className="text-lg font-bold pt-7 pl-8 pr-8">About</p>
             <p className="pl-8 pt-2 text-light-gray leading-5 text-md">The Bandwidth Consumption chart shows<br/> total bandwidth consumed on TRON per day. <br/>
@@ -35,13 +57,24 @@ const BandwidthConsumption = () => {
 
       
       <div >
-        <p className="m-12 text-xl font-bold">List</p>
-        <div className="bg-white rounded-md m-12 shadow-lg p-10">
+        <p className=" text-xl mt-10 font-bold">List</p>
+        <div className="bg-white rounded-md  mt-8 shadow-lg p-10">
           <div className="flex flex-row justify-around bg-lightest-gray ml-8 mr-8 pt-2 pb-2 rounded-md text-light-gray">
-            <p>Date(UTC)</p>
-            <p>Pox Price</p>
+            <p className="w-[50%]">Date(UTC)</p>
+            <p className="w-[50%]">Pox Price</p>
           </div>
 
+          {data?.map && data?.map ((param, index) => {
+        return (
+          <>
+           <div className="flex flex-row justify-between p-5 border-b-2 border-b-lightest-gray">
+               <p className="w-[50%]">{param?._id}</p>
+               <p className="w-[50%]">{param?.bandwidth}</p>
+               
+           </div>
+          </>
+        )
+       })}
 
           <div className="flex flex-row justify-around ">
             <div className="pt-8">

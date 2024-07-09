@@ -1,6 +1,29 @@
+import { useEffect, useState } from "react";
 import { SearchBarExpand } from "../../../../components"
-import CustomPieChart from "../../../../components/CustomPieChart"
+import CustomPieChart from "../../../../components/CustomPieChart";
+import { getPoxGeneratedTableData } from "../../../../utils/axios/Data";
+
+
 const PoxGenerated = () => {
+  const [data, setData] = useState({});
+
+  useEffect(() => {
+    
+    const fetchData = async () => {
+      try {
+        const data = await getPoxGeneratedTableData();
+        console.log(data);
+        setData(data?.message);
+        
+        
+      } catch (error) {
+        console.log('error', error);
+      } 
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <div className="px-12 pb-12">
 
@@ -67,39 +90,19 @@ const PoxGenerated = () => {
             <p>Pox Price</p>
           </div>
 
+          {data?.map && data?.map ((param, index) => {
+        return (
+          <>
+           <div className="flex flex-row justify-between p-5 border-b-2 border-b-lightest-gray">
+               <p className="w-[50%]">{param?.date}</p>
+               <p className="w-[50%]">{param?.value}</p>
+               
+           </div>
+          </>
+        )
+       })}
 
-          <div className="flex flex-row justify-around  border-b-2 border-b-lightest-gray">
-            <div className="pt-8">
-              
-            <p className="pt-8 ">2024-05-11T00.07;8:35.519Z</p>
-            <p className="pt-8">2024-05-11T00.07;8:35.519Z</p>
-            <p className="pt-8">2024-05-11T00.07;8:35.519Z</p>
-            <p className="pt-8">2024-05-11T00.07;8:35.519Z</p>
-            <p className="pt-8">2024-05-11T00.07;8:35.519Z</p>
-            <p className="pt-8">2024-05-11T00.07;8:35.519Z</p>
-            <p className="pt-8">2024-05-11T00.07;8:35.519Z</p>
-            <p className="pt-8">2024-05-11T00.07;8:35.519Z</p>
-            <p className="pt-8">2024-05-11T00.07;8:35.519Z</p>
-            <p className="pt-8">2024-05-11T00.07;8:35.519Z</p>
-            <p className="pt-8">2024-05-11T00.07;8:35.519Z</p>
-            
-            </div>
-
-            <div className="pt-8">
-              
-            <p className="pt-8">0.21365437442842399</p>
-            <p className="pt-8">0.21365437442842399</p>
-            <p className="pt-8">0.21365437442842399</p>
-            <p className="pt-8">0.21365437442842399</p>
-            <p className="pt-8">0.21365437442842399</p>
-            <p className="pt-8">0.21365437442842399</p>
-            <p className="pt-8">0.21365437442842399</p>
-            <p className="pt-8">0.21365437442842399</p>
-            <p className="pt-8">0.21365437442842399</p>
-            <p className="pt-8">0.21365437442842399</p> 
-            <p className="pt-8">0.21365437442842399</p>
-            </div>
-          </div>
+         
         </div>
       </div>
     </div>

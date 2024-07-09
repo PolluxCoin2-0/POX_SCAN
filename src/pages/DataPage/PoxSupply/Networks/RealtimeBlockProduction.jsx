@@ -6,23 +6,23 @@ import PieChartComp from "../../../../components/PieChartComp";
 
 const RealtimeBlockProduction = () => {
   return (
-    <div className="">
+    <div className="px-12 pb-12">
 
       <div>
         <SearchBarExpand/>
       </div>
 
       <div >
-        <p className="m-12 text-2xl font-bold">Real-Time Block Production</p>
-        <div className="flex flex-row justify-between">
-          <div className="bg-white rounded-2xl w-[1300px]  h-[500px] ml-12 shadow-xl">
+        <p className=" text-2xl font-bold">Real-Time Block Production</p>
+        <div className="flex flex-row justify-between mt-8">
+          <div className="bg-white rounded-2xl w-[1300px]  h-[500px] shadow-xl">
             <div className="h-80 pt-20">
             <PieChartComp />
             </div>
             
           </div>
 
-          <div className="flex flex-col mr-12 ">
+          <div className="flex flex-col ">
             <div className="bg-white rounded-2xl shadow-2xl w-[450px] h-[180px] ">
             <p className="text-lg font-bold pt-7 pl-10 pr-8">About</p>
             <p className="pl-10 pt-1 text-light-gray leading-5 text-md">The real-time block production chart<br/>shows the block distribution of Super 
@@ -43,8 +43,8 @@ const RealtimeBlockProduction = () => {
 
       
       <div >
-        <p className="m-12 text-xl font-bold">List</p>
-        <div className="bg-white rounded-md m-12 shadow-lg p-10">
+        <p className=" text-xl font-bold mt-10">List</p>
+        <div className="bg-white rounded-md shadow-lg p-10 mt-8">
           <div className="flex flex-row justify-around bg-lightest-gray ml-8 mr-8 pt-2 pb-2 rounded-md text-light-gray">
             <p>Date(UTC)</p>
             <p>Block</p>
