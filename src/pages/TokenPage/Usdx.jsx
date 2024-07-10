@@ -6,20 +6,16 @@ import { getUsdxData, getUsdxHolderData } from "../../utils/Token";
 import { IoShirtOutline } from "react-icons/io5";
 import { shortenString } from "../../utils/shortenString";
 import { GiSandsOfTime } from "react-icons/gi";
+import { secondsAgo } from "../../utils/secondAgo";
 
 const UsdxTable = () => {
   const [data, setData] = useState({});
 
   useEffect(() => {
-    
     const fetchData = async () => {
       try {
         const data = await getUsdxData();
-        
-        
         setData(data);
-        
-        
       } catch (error) {
         console.log('error', error);
       } 
@@ -47,12 +43,12 @@ const UsdxTable = () => {
           return (
             <>
               <div className="min-w-[1500px]  flex flex-row  justify-around border-b-2 p-3 border-text-bg-gray">
-                <p className="w-[14%] text-dark-red ">{stablecoin?.asset}</p>
+                <p className="w-[14%] text-dark-red ">{Number(stablecoin?.asset).toFixed(6)}</p>
                 <p className=" w-[14%]">{stablecoin?.result}</p>
-                <p className="w-[14%] text-dark-red ">{stablecoin?.timeStamp}</p>
-                <p className="w-[14%] ">{stablecoin?.fromAddress && shortenString(stablecoin?.fromAddress)}</p>
-                <p className=" w-[14%]">{stablecoin?.toAddress && shortenString(stablecoin?.toAddress)}</p>
-                <p className=" w-[14%]">{stablecoin?.transactionId && shortenString(stablecoin?.transactionId)}</p>
+                <p className="w-[14%] text-dark-red ">{secondsAgo(stablecoin?.timeStamp)}</p>
+                <p className="w-[14%] ">{stablecoin?.fromAddress && shortenString(stablecoin?.fromAddress,10)}</p>
+                <p className=" w-[14%]">{stablecoin?.toAddress && shortenString(stablecoin?.toAddress,10)}</p>
+                <p className=" w-[14%]">{stablecoin?.transactionId && shortenString(stablecoin?.transactionId,10)}</p>
                 <p className="w-[14%]">{stablecoin?.blockNumber}</p>
                 
               </div>
@@ -69,15 +65,10 @@ const TokenHolderTable = () => {
   const [holderdata, setHolderData] = useState({});
 
   useEffect(() => {
-    
     const fetchData = async () => {
       try {
         const data = await getUsdxHolderData();
-    
-        
         setHolderData(data);
-        
-        
       } catch (error) {
         console.log('error', error);
       } 
@@ -116,6 +107,7 @@ const TokenHolderTable = () => {
     </div>
   )
 }
+
 const Usdx = () => {
   const [isRender, setIsRender] = useState("Token Transfer");
   const renderItemComponent = () => {
@@ -216,9 +208,9 @@ const Usdx = () => {
       </div>
        
        <div className="flex flex-row space-x-8">
-       <p className="font-bold text-2xl mb-6 mt-6 md:mt-0 md:mb-12 bg-dark-yellow px-12 py-2 rounded-lg"
+       <p className="font-bold text-xl mb-6 mt-6 md:mt-0 md:mb-12 bg-dark-yellow px-8 py-2 rounded-lg"
        onClick={() => setIsRender("Token Transfer")}>Token Transfer</p>
-       <p className="font-bold text-2xl mb-6 mt-6 md:mt-0 md:mb-12 bg-light-mid-gray px-12 py-2 rounded-lg"
+       <p className="font-bold text-xl mb-6 mt-6 md:mt-0 md:mb-12 bg-lightest-gray px-8 py-2 rounded-lg"
        onClick={() => setIsRender("Token Holders")}>Token Holders</p>
        </div>
       

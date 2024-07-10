@@ -7,8 +7,6 @@ import { extractSiteName } from "../../utils/extractSiteName";
 
 
 const Table1 = ({data}) => {
-  
-  
   return (
     <div className="bg-white pt-2">
       <div className="flex flex-row justify-evenly bg-light-orange p-3 rounded-lg m-4">

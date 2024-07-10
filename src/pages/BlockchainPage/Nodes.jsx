@@ -47,15 +47,17 @@ const Nodes = () => {
       <div className="pb-14 ">
         <div className="flex flex-row  justify-between font-bold">
         <p className="text-2xl font-bold pb-6">Nodes Distribution</p>
-        <div>
-        <p>(Nodes:89)</p>
-        <p>(Countries/Regions: 79)</p>
+        <div className="flex space-x-6">
+        <p>Nodes:89</p>
+        <p>Countries/Regions: 79</p>
         </div>
         
         </div>
       
         {/* Map Integration */}
-        <div className="bg-white px-8 py-64 shadow-lg rounded-2xl overflow-x-auto "></div>
+        <div className="bg-white px-8 py-64 shadow-lg rounded-2xl overflow-x-auto ">
+          
+        </div>
       </div>
 
     

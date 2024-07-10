@@ -5,101 +5,104 @@ import Pagination from "../../components/Pagination";
 import { getHoldersData, getPoxData } from "../../utils/Token";
 import { IoCheckmarkCircleOutline } from "react-icons/io5";
 import { shortenString } from "../../utils/shortenString";
-import {secondsAgo} from "../../utils/secondAgo";
+import { secondsAgo } from "../../utils/secondAgo";
 
 const TokenTransferTable = () => {
-
   const [data, setData] = useState({});
 
   useEffect(() => {
-    
     const fetchData = async () => {
       try {
         const data = await getPoxData();
-        
         setData(data?.message);
-        
-        
       } catch (error) {
-        console.log('error', error);
-      } 
+        console.log("error", error);
+      }
     };
 
     fetchData();
-  }, [])
+  }, []);
 
- return (
-  
-     <div>
-    <div className="min-w-[1500px]  flex flex-row justify-around p-2 bg-lightest-gray rounded-lg ">
-    <p className=" w-[12%]">Hash</p>
-    <p className=" w-[12%]">Block</p>
-    <p className=" w-[8%]">Time</p>
-    <p className=" w-[12%]">Transaction Type</p>
-    <p className=" w-[16%] whitespace-nowrap">
-      From
-    </p>
-    <p className=" w-[12%]">To</p>
-    <p className=" w-[16%]">Token</p>
-    <p className=" w-[8%]">Result</p>
-  </div>
+  return (
+    <div>
+      <div className="min-w-[1500px]  flex flex-row justify-around p-2 bg-lightest-gray rounded-lg ">
+        <p className=" w-[12%]">Hash</p>
+        <p className=" w-[12%]">Block</p>
+        <p className=" w-[8%]">Time</p>
+        <p className=" w-[12%]">Transaction Type</p>
+        <p className=" w-[16%] whitespace-nowrap">From</p>
+        <p className=" w-[12%]">To</p>
+        <p className=" w-[16%]">Token</p>
+        <p className=" w-[8%]">Result</p>
+      </div>
 
-
-  {data?.transactions?.map && data?.transactions?.map((stablecoin, index) => {
+      {data?.transactions?.map &&
+        data?.transactions?.map((stablecoin, index) => {
           return (
             <>
               <div className="min-w-[1500px]  flex flex-row  justify-around border-b-2 p-3 border-text-bg-gray">
-                <p className="text-dark-red  w-[12%]">{stablecoin?.transactionId && shortenString(stablecoin?.transactionId)}</p>
+                <p className="text-dark-red  w-[12%]">
+                  {stablecoin?.transactionId &&
+                    shortenString(stablecoin?.transactionId, 10)}
+                </p>
                 <p className=" w-[12%]">{stablecoin.blockNumber}</p>
-                <p className="text-dark-red  w-[8%]">{stablecoin.timeStamp && secondsAgo(stablecoin?.timeStamp)}</p>
+                <p className="text-dark-red  w-[8%]">
+                  {stablecoin.timeStamp && secondsAgo(stablecoin?.timeStamp)}
+                </p>
                 <p className=" w-[12%]">{stablecoin.PoxCount}</p>
-                <p className=" w-[16%]">{stablecoin.fromAddress && shortenString(stablecoin?.fromAddress)}</p>
-                <p className=" w-[12%]">{stablecoin.toAddress && shortenString(stablecoin?.toAddress)}</p>
-                <p className=" w-[16%]">{stablecoin?.assetAmount && ((stablecoin.assetAmount/1000000).toFixed(6))} {stablecoin?.assetName}</p>
-                <p className=" w-[8%] text-dark-green text-xl"><IoCheckmarkCircleOutline /></p>
+                <p className=" w-[16%]">
+                  {stablecoin.fromAddress &&
+                    shortenString(stablecoin?.fromAddress, 5)}
+                </p>
+                <p className=" w-[12%]">
+                  {stablecoin.toAddress &&
+                    shortenString(stablecoin?.toAddress, 5)}
+                </p>
+                <p className=" w-[16%]">
+                  {stablecoin?.assetAmount &&
+                    (stablecoin.assetAmount / 1000000).toFixed(6)}{" "}
+                  {stablecoin?.assetName}
+                </p>
+                <p className=" w-[8%] text-dark-green text-xl">
+                  <IoCheckmarkCircleOutline />
+                </p>
               </div>
             </>
           );
         })}
-
-  </div>
-
- )
-}
+    </div>
+  );
+};
 
 const HoldersTable = () => {
   const [holderdata, setHolderData] = useState({});
 
   useEffect(() => {
-    
     const fetchData = async () => {
       try {
         const holderdata = await getHoldersData();
-        
-        
         setHolderData(holderdata?.message);
-        
-        
       } catch (error) {
-        console.log('error', error);
-      } 
+        console.log("error", error);
+      }
     };
 
     fetchData();
-  }, [])
+  }, []);
 
   return (
     <div>
-       <div className="flex flex-row justify-evenly p-2 bg-lightest-gray rounded-lg ">
+      <div className="flex flex-row justify-evenly p-2 bg-lightest-gray rounded-lg ">
         <p className="w-[8%]">#</p>
         <p className="w-[32%]">Account</p>
         <p className="w-[15%]">Amount</p>
         <p className="w-[15%]">Value</p>
         <p className="w-[15%]">Percentage</p>
         <p className="w-[15%]">Latest TXN Time(Local)</p>
-       </div>
+      </div>
 
-       {holderdata?.apiResult?.map && holderdata?.apiResult?.map((stablecoin, index) => {
+      {holderdata?.apiResult?.map &&
+        holderdata?.apiResult?.map((stablecoin, index) => {
           return (
             <>
               <div className="min-w-[1500px]  flex flex-row  justify-around border-b-2 p-3 border-text-bg-gray">
@@ -109,15 +112,14 @@ const HoldersTable = () => {
                 <p className="w-[15%] ">{stablecoin.PoxCount}</p>
                 <p className=" w-[15%]">{stablecoin?.percentage.toFixed(6)}%</p>
                 <p className=" w-[15%]"></p>
-                
               </div>
             </>
           );
         })}
-
     </div>
-  )
-}
+  );
+};
+
 const Pox = () => {
   const [isRender, setIsRender] = useState("Token Transfer");
   const renderItemComponent = () => {
@@ -126,7 +128,7 @@ const Pox = () => {
         return <TokenTransferTable />;
       case "Holders":
         return <HoldersTable />;
-     
+
       default:
         return null;
     }
@@ -140,7 +142,7 @@ const Pox = () => {
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
-  
+
   const [onSearch, setOnSearch] = useState("");
   return (
     <div className="px-4 md:px-12 pb-12">
@@ -216,38 +218,42 @@ const Pox = () => {
           </div>
         </div>
       </div>
-       
-       <div className="flex flex-row space-x-8">
-       <p className="font-bold text-xl mb-6 mt-6 md:mt-0 md:mb-12 bg-dark-yellow rounded-md px-10 py-2"
-        onClick={() => setIsRender("Token Transfer")}>Token Transfer</p>
 
-       <p  className="font-bold text-xl mb-6 mt-6 md:mt-0 md:mb-12 bg-light-mid-gray rounded-md px-14 py-2"
-       onClick={() => setIsRender("Holders")}>Holders</p>
-       </div>
-       
-      
-      <div className="bg-white rounded-2xl p-4 md:p-7 ">
-      <div className="overflow-x-auto md:overflow-hidden">
-        <p className="pb-5 font-medium text-light-gray">
-          Only the first{" "}
-          <span className="text-black font-semibold">10,000</span> records are
-          displayed
+      <div className="flex flex-row space-x-8">
+        <p
+          className="font-bold text-xl mb-6 mt-6 md:mt-0 md:mb-12 bg-dark-yellow rounded-md px-8 py-2"
+          onClick={() => setIsRender("Token Transfer")}
+        >
+          Token Transfer
         </p>
 
-      
+        <p
+          className="font-bold text-xl mb-6 mt-6 md:mt-0 md:mb-12 bg-lightest-gray rounded-md px-8 py-2"
+          onClick={() => setIsRender("Holders")}
+        >
+          Holders
+        </p>
+      </div>
 
-        <div>{renderItemComponent()}</div>
+      <div className="bg-white rounded-2xl p-4 md:p-7 ">
+        <div className="overflow-x-auto md:overflow-hidden">
+          <p className="pb-5 font-medium text-light-gray">
+            Only the first{" "}
+            <span className="text-black font-semibold">10,000</span> records are
+            displayed
+          </p>
 
-        <div className="flex justify-end">
-        <Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={handlePageChange}
-      />
+          <div>{renderItemComponent()}</div>
+
+          <div className="flex justify-end">
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={handlePageChange}
+            />
+          </div>
         </div>
       </div>
-      </div>
-      
     </div>
   );
 };

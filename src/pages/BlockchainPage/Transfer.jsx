@@ -102,10 +102,10 @@ const TransferTable = () => {
                 <p className="w-[10%]">{contact?.ContractName}</p>
                 <p className="w-[6%]">{contact?.NumberOfCalls}</p>
                 <p className="w-[10%]">{contact?.POXBalance}</p>
-                <p className="w-[10%]">{contact?.timeStamp && secondsAgo(contact?.timeStamp)} seconds ago</p>
-                <p className="w-[16%]">{contact?.fromAddress && shortenString(contact?.fromAddress)}</p>
-                <p className="w-[16%]">{contact?.toAddress && shortenString(contact?.toAddress)}</p>
-                <p className="w-[16%]">{contact?.blockHash && shortenString(contact?.blockHash)}</p>
+                <p className="w-[10%]">{contact?.timeStamp && secondsAgo(contact?.timeStamp)}</p>
+                <p className="w-[16%]">{contact?.fromAddress && shortenString(contact?.fromAddress,4)}</p>
+                <p className="w-[16%]">{contact?.toAddress && shortenString(contact?.toAddress,4)}</p>
+                <p className="w-[16%]">{contact?.blockHash && shortenString(contact?.blockHash,4)}</p>
                 <p className="w-[10%]">{contact?.blockNumber}</p>
               </div>
             </>

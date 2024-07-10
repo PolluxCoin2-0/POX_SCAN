@@ -4,6 +4,8 @@ import { FaToggleOn } from "react-icons/fa";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import Pagination from "../../components/Pagination";
 import { getAccountsData, getAccountTableData } from "../../utils/axios/Blockchain";
+import { shortenString } from "../../utils/shortenString";
+import { secondsAgo } from "../../utils/secondAgo";
 
 
 
@@ -156,14 +158,14 @@ const Accounts = () => {
         {data1?.apiResult && data1?.apiResult.map((stablecoin, index) => {
           return (
             <>
-              <div className="flex flex-row  justify-around border-b-2 p-3 border-text-bg-gray min-w-[1500px] md:min-w-full">
+              <div className="flex flex-row  justify-around border-b-2 p-3 border-text-bg-gray min-w-[1500px] md:min-w-full" key={index}>
                 <p className="text-dark-red  w-[8%]">{stablecoin.Block}</p>
-                <p className=" w-[28%]">{stablecoin?.address}</p>
-                <p className="text-dark-red  w-[12%]">{stablecoin?.balance}</p>
-                <p className=" w-[12%]">{stablecoin?.percentage}</p>
+                <p className=" w-[28%]">{shortenString(stablecoin?.address,8)}</p>
+                <p className="text-dark-red  w-[12%]">{Number(stablecoin?.balance).toFixed(6)}</p>
+                <p className=" w-[12%]">{Number(stablecoin?.percentage).toFixed(2)} %</p>
                 <p className=" w-[8%]">{stablecoin?.poxpower}</p>
                 <p className=" w-[8%]">{stablecoin?.txnCount}</p>
-                <p className=" w-[12%]">{stablecoin?.age && (stablecoin?.age)}seconds ago</p>
+                <p className=" w-[12%]">{stablecoin?.age && secondsAgo(stablecoin?.age)}</p>
                 
               </div>
             </>

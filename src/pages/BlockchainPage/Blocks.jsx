@@ -16,11 +16,8 @@ const Blocks = () => {
     try {
       const data = await  getBlockTableData();
       const data1 = await getBlockData();
-      
-
       setData(data?.message);
       setData1(data1);
-
       }
       catch (error) {
         console.log(error);
@@ -146,13 +143,13 @@ const Blocks = () => {
             <>
               <div className="flex flex-row justify-around border-b-2 p-3 border-text-bg-gray min-w-[1500px] md:min-w-full" key={index}>
                 <p className="text-dark-red w-[12%]">{stablecoin?.number}</p>
-                <p className=" w-[12%]">{stablecoin?.timestamp && secondsAgo(stablecoin?.timestamp)} seconds ago</p>
+                <p className=" w-[12%]">{stablecoin?.timestamp && secondsAgo(stablecoin?.timestamp)}</p>
                 <p className="text-dark-red  w-[12%]">{stablecoin?.witnessName}</p>
                 <p className=" w-[12%]">{stablecoin?.nrOfTrx}</p>
                 <p className=" w-[16%]">{stablecoin?.energyUsage}</p>
                 <p className=" w-[8%]">{stablecoin?.BurnedPOX}</p>
                 <p className=" w-[12%]">{stablecoin?.blockReward}</p>
-                <p className=" w-[12%]">{stablecoin?.Status}</p>
+                <p className=" w-[12%]">{""}</p>
 
              </div>
             </>

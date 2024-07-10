@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Pagination from "../../components/Pagination";
 import { getCommitteeProposalData, getNetworkParameterData } from "../../utils/axios/Governance";
 import { shortenString } from "../../utils/shortenString";
+import { formatTimestamp } from "../../utils/formatTimestamp ";
 
 
 
@@ -105,8 +106,8 @@ const CommitteProposalTable = () => {
            <div className="flex flex-row justify-evenly p-5 border-b-2 border-b-lightest-gray">
                <p className="w-[14%]">{param?.proposal_id}</p>
                <p className="w-[14%]">{param?.parameters?.description }</p>
-               <p className="w-[14%]">{param?.proposer_address && shortenString(param?.proposer_address)}</p>
-               <p className="w-[14%]">{param?.create_time}/ {param?.expiration_time}</p>
+               <p className="w-[14%]">{param?.proposer_address && shortenString(param?.proposer_address,10)}</p>
+               <p className="w-[14%]">{formatTimestamp(param?.create_time)}/ {formatTimestamp(param?.expiration_time)}</p>
                <p className="w-[14%]">{param?.state}</p>
                <p className="w-[14%]"></p>
                <p className="w-[14%]">View Details Committee Proposals </p>
