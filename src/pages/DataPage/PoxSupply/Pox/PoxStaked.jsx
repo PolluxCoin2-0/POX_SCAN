@@ -34,7 +34,7 @@ const PoxStaked = () => {
         <p>POX Supply</p>
         <div className="bg-white mt-8 rounded-2xl pl-40 py-14 shadow-lg">
         <div className="h-96 pl-5 pt-12 w-[1050px]">
-        <BarHashChart1 />
+        <BarHashChart1 value={data?.tvlGraph} xAxis="date" yAxis="count"/>
         </div>
         </div>
       </div>
