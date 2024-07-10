@@ -1,8 +1,28 @@
 
 
+import { useEffect, useState } from "react";
 import { SearchBarExpand } from "../../../../components";
 import BiaxialLineChart from "../../../../components/BiaxialLineChart";
+import { getTopContractTableData } from "../../../../utils/axios/Data";
+
 const TopContracts = () => {
+   const [data, setData] = useState({});
+   useEffect(() => {
+    
+    const fetchData = async () => {
+      try {
+        const data = await getTopContractTableData();
+        console.log(data);
+        setData(data);
+        
+        
+      } catch (error) {
+        console.log('error', error);
+      } 
+    };
+
+    fetchData();
+  }, []);
   return (
     <div className="px-12 pb-12">
 
@@ -41,43 +61,24 @@ const TopContracts = () => {
         <p className=" text-2xl font-bold mt-14 mb-8">List</p>
         <div className="bg-white rounded-2xl  shadow-lg p-10">
           <div className="flex flex-row justify-around bg-lightest-gray ml-8 mr-8 pt-2 pb-2 rounded-md text-light-gray">
-            <p>Address</p>
-            <p>Count</p>
+            <p className="w-[50%]">Address</p>
+            <p className="w-[50%]">Count</p>
           </div>
+           
+             
+          {data?.calls?.map && data?.calls?.map((param, index) => {
+        return (
+          <>
+           <div className="flex flex-row justify-around p-5 border-b-2 border-b-lightest-gray">
+               <p className="w-[50%]">{param?.contractAddress}</p>
+               <p className="w-[50%]">{param?.totalCount}</p>
+               
+           </div>
+          </>
+        )
+       })}
 
-
-          <div className="flex flex-row justify-around  border-b-2 border-b-lightest-gray">
-            <div className="pt-8">
-              
-            <p className="pt-8 ">PSTv3ZweeCRHd5cmxoL3dTTbSKGgtYZ5cm</p>
-            <p className="pt-8">PSTv3ZweeCRHd5cmxoL3dTTbSKGgtYZ5cm</p>
-            <p className="pt-8">PSTv3ZweeCRHd5cmxoL3dTTbSKGgtYZ5cm</p>
-            <p className="pt-8">PSTv3ZweeCRHd5cmxoL3dTTbSKGgtYZ5cm</p>
-            <p className="pt-8">PSTv3ZweeCRHd5cmxoL3dTTbSKGgtYZ5cm</p>
-            <p className="pt-8">PSTv3ZweeCRHd5cmxoL3dTTbSKGgtYZ5cm</p>
-            <p className="pt-8">PSTv3ZweeCRHd5cmxoL3dTTbSKGgtYZ5cm</p>
-            <p className="pt-8">PSTv3ZweeCRHd5cmxoL3dTTbSKGgtYZ5cm</p>
-            <p className="pt-8">PSTv3ZweeCRHd5cmxoL3dTTbSKGgtYZ5cm</p>
-            <p className="pt-8">PSTv3ZweeCRHd5cmxoL3dTTbSKGgtYZ5cm</p>
-            <p className="pt-8">PSTv3ZweeCRHd5cmxoL3dTTbSKGgtYZ5cm</p>
-            
-            </div>
-
-            <div className="pt-8">
-              
-            <p className="pt-8">7652</p>
-            <p className="pt-8">7652</p>
-            <p className="pt-8">7652</p>
-            <p className="pt-8">7652</p>
-            <p className="pt-8">7652</p>
-            <p className="pt-8">7652</p>
-            <p className="pt-8">7652</p>
-            <p className="pt-8">7652</p>
-            <p className="pt-8">7652</p>
-            <p className="pt-8">7652</p> 
-            <p className="pt-8">7652</p>
-            </div>
-          </div>
+         
         </div>
       </div>
     </div>

@@ -1,31 +1,55 @@
+import { useEffect, useState } from "react";
 import { SearchBarExpand } from "../../../components";
+import { getRankingTokenData } from "../../../utils/axios/Data";
 
 
 
 const CardForTokens2 = ({title}) => {
+
+  const [data, setData] = useState({});
+
+  useEffect(() => {
+    
+    const fetchData = async () => {
+      try {
+        const data = await getRankingTokenData();
+        console.log(data);
+        setData(data);
+        
+        
+      } catch (error) {
+        console.log('error', error);
+      } 
+    };
+
+    fetchData();
+  }, []);
+
+
    return (
       <>
       <p className="text-2xl font-bold pb-8 pt-8">{title}</p>
       <div className="bg-white rounded-xl py-8 pl-10 pr-10 pb-10">
         <div className="flex flex-row justify-around bg-lightest-gray p-2 rounded-lg">
-          <p className="text-light-gray">Rank</p>
-          <p className="text-light-gray">Account</p>
-          <p className="text-light-gray">Holder Count</p>
+          <p className="text-light-gray w-[25%]">Rank</p>
+          <p className="text-light-gray w-[50%]">Account</p>
+          <p className="text-light-gray w-[25%]">Holder Count</p>
           
         </div>
 
-        {Array(10).fill(null).map(()=>{
-          return (
-            <>
-              <div className="flex flex-row justify-around pt-3 pb-3 border-b-[1px] border-b-text-bg-gray">
-          <p>1</p>
-          <p>PWfT7g5SBm...gKv18bAeFt</p>
-          <p>13,306</p>
-          
-        </div>
-            </>
-          )
-        })}
+        {data?.tokenHolders?.map && data?.tokenHolders?.map((param, index) => {
+        return (
+          <>
+           <div className="flex flex-row justify-around p-5 border-b-2 border-b-lightest-gray">
+               <p className="w-[15%]">1</p>
+               <p className="w-[60%]">{param?._id}</p>
+               <p className="w-[25%]">{param?.holderCount}</p>
+               
+           </div>
+          </>
+        )
+       })}
+
       
       </div>
     </>
@@ -35,29 +59,51 @@ const CardForTokens2 = ({title}) => {
 
 
 const CardForAccounts1 = ({title}) => {
+
+  const [data1, setData1] = useState({});
+
+  useEffect(() => {
+    
+    const fetchData = async () => {
+      try {
+        const data1 = await getRankingTokenData();
+        
+        setData1(data1);
+        
+        
+      } catch (error) {
+        console.log('error', error);
+      } 
+    };
+
+    fetchData();
+  }, []);
+
+
   return (
       <>
       <p className="text-2xl font-bold pb-8 pt-8">{title}</p>
       <div className="bg-white rounded-xl pt-6 pl-10 pr-10 pb-10">
         <div className="flex flex-row justify-around bg-lightest-gray p-2 rounded-lg">
-          <p className="text-light-gray">Rank</p>
-          <p className="text-light-gray">Account</p>
-          <p className="text-light-gray">Amount</p>
-          <p className="text-light-gray">Percentage</p>
+          <p className="text-light-gray w-[10%]">Rank</p>
+          <p className="text-light-gray w-[60%]">Account</p>
+          <p className="text-light-gray w-[15%]">Amount</p>
+          <p className="text-light-gray w-[15%]">Percentage</p>
         </div>
 
-        {Array(10).fill(null).map(()=>{
-          return (
-            <>
-              <div className="flex flex-row justify-around pt-3 pb-3 border-b-[1px] border-b-text-bg-gray">
-          <p>1</p>
-          <p>PWfT7g5SBm...gKv18bAeFt</p>
-          <p>100000</p>
-          <p>30.72%</p>
-        </div>
-            </>
-          )
-        })}
+        {data1?.topTokensbyVol?.map && data1?.topTokensbyVol?.map((param, index) => {
+        return (
+          <>
+           <div className="flex flex-row justify-around p-5 border-b-2 border-b-lightest-gray">
+               <p className="w-[10%]">1</p>
+               <p className="w-[60%]">{param?._id}</p>
+               <p className="w-[15%]">{param?. count}</p>
+               <p className="w-[15%]">{param?.volume.toFixed(2)}%</p>
+               
+           </div>
+          </>
+        )
+       })}
       
       </div>
     </>
@@ -71,7 +117,13 @@ const Tokens2 = () => {
       <div>
         <SearchBarExpand />
       </div>
-
+       
+      <div className="flex flex-row space-x-8">
+          <p className="bg-light-mid-gray px-6 py-1 rounded-lg">1 Day </p>
+          <p className="bg-light-mid-gray px-6 py-1 rounded-lg"> 3 Day </p>
+          <p className="bg-light-mid-gray px-6 py-1 rounded-lg">7 Day</p>
+        </div>
+        
       <div className="flex felx-row justify-between w-full">
         <div className="w-[49%]">
           <CardForTokens2

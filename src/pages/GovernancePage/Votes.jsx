@@ -75,7 +75,9 @@ const Votes = () => {
               </div>
             </div>
 
-              <div className="border-b-2 border-text-bg-gray border-dashed w-[100%]"></div>
+              <div className="border-b-2 border-text-bg-gray border-dashed w-[100%] ">
+                 
+              </div>
 
               <div className="flex flex-row justify-between">
               <div >
