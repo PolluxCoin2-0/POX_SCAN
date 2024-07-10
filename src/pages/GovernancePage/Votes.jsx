@@ -86,15 +86,15 @@ const Votes = () => {
                 className="pt-5"
                 />
               </div>
-              <div className="pt-4">
-                <p className="text-light-gray">Most Votes Gained this round</p>
-                <p className="text-lg font-bold">{votedata?.gettingwitnessFields && extractSiteName(votedata?.gettingwitnessFields)}</p>
+              <div className="pt-4 pl-14">
+                <p className="text-light-gray ">Most Votes Gained this round</p>
+                <p className="text-lg font-bold ">{votedata?.gettingwitnessFields && extractSiteName(votedata?.gettingwitnessFields)}</p>
               </div>
             </div>
 
           </div>
           <div>
-            222
+          {/* timestamp */}
           </div>
          </div>
 
@@ -162,7 +162,7 @@ const Votes = () => {
 
                 <>
                 <div className="flex flex-row justify-around p-5 border-b-2 border-text-bg-gray">
-                  <p className="w-[25%]">{voter?.url && extractSiteName(voter?.url)}  {voter?.poxaddress}</p>
+                  <p className="w-[25%]">{voter?.url && extractSiteName(voter?.url)} </p>
                   <p className="w-[10%] text-dark-blue"></p>
                   <p className="w-[10%]">{voter.brokerage}</p>
                   <p className="w-[10%]">{voter?.votePercentage.toFixed(2)}</p>

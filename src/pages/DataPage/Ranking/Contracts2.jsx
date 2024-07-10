@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { SearchBarExpand } from "../../../components";
 import { getRankingContractData } from "../../../utils/axios/Data";
+import { shortenString } from "../../../utils/shortenString";
 
 const CardForContracts2 = ({title,}) => {
 
@@ -39,7 +40,7 @@ const CardForContracts2 = ({title,}) => {
           <>
            <div className="flex flex-row justify-around p-5 border-b-2 border-b-lightest-gray">
                <p className="w-[20%]">1</p>
-               <p className="w-[60%]">{param?._id}</p>
+               <p className="w-[60%]">{param?._id && shortenString(param?._id, 10)}</p>
                <p className="w-[20%]">{param?.totalCount}</p>
                
            </div>

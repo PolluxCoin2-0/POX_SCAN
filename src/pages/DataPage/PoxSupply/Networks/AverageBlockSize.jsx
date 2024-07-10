@@ -4,7 +4,7 @@
 import { useEffect, useState } from "react";
 import { SearchBarExpand } from "../../../../components"
 import { getAvgBlockSizeTableData } from "../../../../utils/axios/Data";
-
+import BarChartNo from "../../../../components/BarChartNo";
 const AverageBlockSize = () => {
 
 
@@ -15,7 +15,7 @@ const AverageBlockSize = () => {
     const fetchData = async () => {
       try {
         const data = await getAvgBlockSizeTableData();
-      
+        
         setData(data?.message);
         
         
@@ -36,9 +36,9 @@ const AverageBlockSize = () => {
 
       <div >
         <p className=" text-xl font-bold">Average Block Size</p>
-        <div className="flex flex-row justify-between mt-8">
-          <div className="bg-white rounded-2xl w-[1300px]  h-[500px]  shadow-xl">
-            
+        <div className="flex flex-row justify-between mt-8 sapce-x-10">
+          <div className="bg-white rounded-2xl w-[1300px]  h-[500px]  mr-10 p-10 shadow-xl">
+            <BarChartNo value={data} xAxis="date" yAxis="value"/>
           </div>
 
           <div className="flex flex-col  ">

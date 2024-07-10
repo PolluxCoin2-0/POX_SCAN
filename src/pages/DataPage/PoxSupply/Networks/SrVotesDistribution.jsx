@@ -36,9 +36,9 @@ const SrVotesDistribution = () => {
       <div >
         <p className=" text-2xl font-bold">SR Votes Distribution</p>
         <div className="flex flex-row justify-between mt-8">
-          <div className="bg-white rounded-2xl w-[1300px]  h-[500px]  shadow-xl">
+          <div className="bg-white rounded-2xl w-[1300px]  h-[500px] mr-10 shadow-xl">
             <div className="h-[500px] p-8">
-            <VerticalComposedChart/>
+            <VerticalComposedChart value={data?.witnesses} xAxis="voteCount" yAxis="url"/>
             </div>
             
           </div>

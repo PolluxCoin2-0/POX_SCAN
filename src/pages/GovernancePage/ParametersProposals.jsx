@@ -37,8 +37,8 @@ const ParameterTable = () => {
  return (
     <div className="bg-white pt-2 pb-8">
     <div className="flex flex-row justify-between mt-7 ml-2 mr-2 rounded-xl bg-lightest-gray pt-3 pb-3 pl-5 pr-5">
-          <p className="w-[20%]">Number</p>
-          <p className="w-[60%]">Parameter</p>
+          <p className="w-[10%]">Number</p>
+          <p className="w-[70%]">Parameter</p>
           <p className="w-[20%]">Current Value</p>
         </div>
 
@@ -46,8 +46,8 @@ const ParameterTable = () => {
         return (
           <>
            <div className="flex flex-row justify-between p-5 border-b-2 border-b-lightest-gray">
-               <p className="w-[20%]">{parameter?.number}</p>
-               <p className="w-[60%]">{parameter?.description}</p>
+               <p className="w-[10%]">{parameter?.number}</p>
+               <p className="w-[70%]">{parameter?.description}</p>
                <p className="w-[20%]">{parameter?.value}</p>
            </div>
           </>
@@ -91,11 +91,11 @@ const CommitteProposalTable = () => {
   return (
   <div className="bg-white pt-2 pb-8">
     <div className="flex flex-row justify-evenly  mt-7 ml-2 mr-2 rounded-xl bg-lightest-gray pt-3 pb-3 pl-5 pr-5">
-      <p className="w-[14%]">No.</p>
+      <p className="w-[8%]">No.</p>
       <p className="w-[14%]">Content</p>
-      <p className="w-[14%]">Proposer</p>
-      <p className="w-[14%]">Created / Expire on (UTC)</p>
-      <p className="w-[14%]">Status</p>
+      <p className="w-[20%]">Proposer</p>
+      <p className="w-[16%]">Created / Expire on (UTC)</p>
+      <p className="w-[12%]">Status</p>
       <p className="w-[14%]">Upvotes / Total Votes</p>
       <p className="w-[14%]">Operation</p>
     </div>
@@ -104,11 +104,11 @@ const CommitteProposalTable = () => {
         return (
           <>
            <div className="flex flex-row justify-evenly p-5 border-b-2 border-b-lightest-gray">
-               <p className="w-[14%]">{param?.proposal_id}</p>
-               <p className="w-[14%]">{param?.parameters?.description }</p>
-               <p className="w-[14%]">{param?.proposer_address && shortenString(param?.proposer_address,10)}</p>
-               <p className="w-[14%]">{formatTimestamp(param?.create_time)}/ {formatTimestamp(param?.expiration_time)}</p>
-               <p className="w-[14%]">{param?.state}</p>
+               <p className="w-[8%]">{param?.proposal_id}</p>
+               <p className="w-[14%]">{param?.parameters?.description && param?.parameters?.description}</p>
+               <p className="w-[20%]">{param?.proposer_address && shortenString(param?.proposer_address,10)}</p>
+               <p className="w-[16%]">{formatTimestamp(param?.create_time)}/ {formatTimestamp(param?.expiration_time)}</p>
+               <p className="w-[12%]">{param?.state}</p>
                <p className="w-[14%]"></p>
                <p className="w-[14%]">View Details Committee Proposals </p>
            </div>

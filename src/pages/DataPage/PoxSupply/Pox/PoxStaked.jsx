@@ -11,7 +11,7 @@ const PoxStaked = () => {
     const fetchData = async () => {
       try {
         const data = await getPoxStakedTableData();
-        console.log(data);
+        
         setData(data);
         
         

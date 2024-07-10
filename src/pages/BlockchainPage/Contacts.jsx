@@ -16,7 +16,7 @@ const Contacts = () => {
 
   const [data, setData] = useState([]);
   const [data1, setData1] = useState([]);
-
+  const [piechartdata, setPieChartData] = useState([]);
   useEffect(() => {
     
     const fetchData = async () => {
@@ -24,8 +24,15 @@ const Contacts = () => {
         const data = await getContractTableData();
         setData(data);
         const data1 = await getAllContractTableData();
-        setData1(data1);
         
+        setData1(data1);
+
+        const contractAddresses = data1[0].map(contract => ({
+          contractAddress: contract.contractAddress,
+          noOfCalls: contract.noOfCalls
+      }));
+      setPieChartData(contractAddresses);
+
       } catch (error) {
         console.error('error', error);
       } 
@@ -115,7 +122,7 @@ const Contacts = () => {
 
             <div className="flex flex-col md:flex-row justify-between">
               <div className=" h-80 w-full md:w-[40%]">
-                <PieChartComp />
+                <PieChartComp value={piechartdata} xAxis="noOfCalls" yAxis="contractAddress"/>
               </div>
 
               <div className=" flex flex-row justify-between px-4 md:px-0">

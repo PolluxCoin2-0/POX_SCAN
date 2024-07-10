@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { SearchBarExpand } from "../../../../components";
 import BiaxialLineChart from "../../../../components/BiaxialLineChart";
 import { getTopContractTableData } from "../../../../utils/axios/Data";
+import VerticalComposedChart from "../../../../components/VerticalComposedChart";
 
 const TopContracts = () => {
    const [data, setData] = useState({});
@@ -31,9 +32,9 @@ const TopContracts = () => {
       <div >
         <p className=" text-xl font-bold pb-7">Top Contracts</p>
         <div className="flex flex-row justify-between">
-          <div className="bg-white rounded-2xl w-[1300px] p-20 h-[500px]  pt-28 shadow-xl">
+          <div className="bg-white rounded-2xl w-[1300px] p-10 h-[500px] pt-20 mr-10 shadow-xl">
           <div className="h-96 pb-10 ">
-            <BiaxialLineChart width="500"/>
+          <VerticalComposedChart value={data?.calls} xAxis="totalCount" yAxis="contractAddress"/>
             </div>
           </div>
 
@@ -60,7 +61,7 @@ const TopContracts = () => {
       <div >
         <p className=" text-2xl font-bold mt-14 mb-8">List</p>
         <div className="bg-white rounded-2xl  shadow-lg p-10">
-          <div className="flex flex-row justify-around bg-lightest-gray ml-8 mr-8 pt-2 pb-2 rounded-md text-light-gray">
+          <div className="flex flex-row justify-around pl-72 bg-lightest-gray ml-8 mr-8 pt-2 pb-2 rounded-md text-light-gray">
             <p className="w-[50%]">Address</p>
             <p className="w-[50%]">Count</p>
           </div>
@@ -69,7 +70,7 @@ const TopContracts = () => {
           {data?.calls?.map && data?.calls?.map((param, index) => {
         return (
           <>
-           <div className="flex flex-row justify-around p-5 border-b-2 border-b-lightest-gray">
+           <div className="flex flex-row justify-around  pl-72 p-5 border-b-2 border-b-lightest-gray">
                <p className="w-[50%]">{param?.contractAddress}</p>
                <p className="w-[50%]">{param?.totalCount}</p>
                

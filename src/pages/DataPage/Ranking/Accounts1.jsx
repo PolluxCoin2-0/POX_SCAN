@@ -39,8 +39,8 @@ const CardForAccounts1 = ({title, fromAddress }) => {
           <>
            <div className="flex flex-row justify-around p-5 border-b-2 border-b-lightest-gray">
                <p className="w-[10%]">1</p>
-               <p className="w-[35%]">{param?.fromAddress && shortenString(param?.fromAddress)}</p>
-               <p className="w-[30%]">{param?.totalAssetAmount}</p>
+               <p className="w-[40%]">{param?.fromAddress && shortenString(param?.fromAddress,10)}</p>
+               <p className="w-[25%]">{param?.totalAssetAmount}</p>
                <p className="w-[25%]">{param?.percentage.toFixed(2)}%</p>
                
            </div>

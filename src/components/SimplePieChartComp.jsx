@@ -9,7 +9,7 @@ const data02 = [
   { name: 'Group F', value: 4800 },
 ];
 
-const SimplePieChartComp = () => (
+const SimplePieChartComp = ({value, }) => (
   <ResponsiveContainer width="100%" height={400}>
     <PieChart>
       <Pie

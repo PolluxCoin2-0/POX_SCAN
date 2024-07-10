@@ -7,6 +7,7 @@ import {
 import { Footer, Navbar, Sidebar } from "./layout";
 import {
   Home,
+  TransactionDetailPage,
   Nodes,
   Blocks,
   Contacts,
@@ -63,6 +64,7 @@ import Usdx from "./pages/TokenPage/Usdx";
 const routesArray = [
   "/",
   "/home",
+  "/transaction/details",
   "/register",
   "/login",
   "/forgetpassword",
@@ -157,6 +159,7 @@ const AppRoutes = () => {
             ) : (
               <Sidebar>
                 <Routes>
+                <Route path="/transaction/details" element={<TransactionDetailPage />} />
                   {/* Blockchain Routes */}
                   <Route path="/blockchain">
                     <Route index element={<Nodes />} />
@@ -318,6 +321,8 @@ const AppRoutes = () => {
             <Route path="*" element={<Error />} />
           </Routes>
         )
+
+       
       }
       <Footer />
     </div>

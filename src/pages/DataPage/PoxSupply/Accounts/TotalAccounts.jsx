@@ -31,7 +31,7 @@ const TotalAccounts = () => {
       <div >
         <p className=" text-xl font-bold pb-7">Total Accounts</p>
         <div className="flex flex-row justify-between">
-          <div className="bg-white rounded-2xl w-[1300px] p-10 h-[500px]  shadow-xl">
+          <div className="bg-white rounded-2xl w-[1300px] p-10 h-[500px] mr-10 shadow-xl">
             <SimpleComposedChart />
           </div>
 

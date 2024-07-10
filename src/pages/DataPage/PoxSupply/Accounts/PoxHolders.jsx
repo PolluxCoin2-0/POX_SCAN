@@ -35,8 +35,8 @@ const PoxHolders = () => {
       <div >
         <p className=" text-xl font-bold pb-7">Pox Holders</p>
         <div className="flex flex-row justify-between">
-          <div className="bg-white rounded-2xl w-[1300px] p-20 h-[500px]  pt-28 shadow-xl">
-            <BarChartNo className="" />
+          <div className="bg-white rounded-2xl w-[1300px]  h-[500px] mr-10 p-10 shadow-xl">
+            <BarChartNo value={data} xAxis="_id" yAxis="count" />
           </div>
 
           <div className="flex flex-col  ">

@@ -54,7 +54,7 @@ const CardSuperRepresentative = () => {
         <div>
           <p className="text-lg font-bold">Votes</p>
           <p className="text-light-gray ">Total(Real-time)</p>
-          <p className="text-xl font-bold pt-3">12255201</p>
+          <p className="text-xl font-bold pt-3">12545854</p>
           <p className="pt-3 text-light-gray">
             Next Round:{" "}
             <span className="text-dark-green font-bold">1223.89%</span>
@@ -81,6 +81,7 @@ const SuperRepresentatives = () => {
         switch (isRender) {
           case "Super Representative":
             fetchDataFunction = getSuperTableData;
+            
             break;
           case "SR Partner":
             fetchDataFunction = getPartnersTableData;
@@ -92,7 +93,10 @@ const SuperRepresentatives = () => {
             fetchDataFunction = getSuperTableData;
         }
 
+        
+
         const result = await fetchDataFunction();
+      
         setData(result?.message || []);
       } catch (error) {
         console.log('Error fetching data:', error);

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { SearchBarExpand } from "../../../components";
 import { getRankingTokenData } from "../../../utils/axios/Data";
+import { shortenString } from "../../../utils/shortenString";
 
 
 
@@ -42,7 +43,7 @@ const CardForTokens2 = ({title}) => {
           <>
            <div className="flex flex-row justify-around p-5 border-b-2 border-b-lightest-gray">
                <p className="w-[15%]">1</p>
-               <p className="w-[60%]">{param?._id}</p>
+               <p className="w-[60%]">{param?._id && shortenString(param?._id,10)}</p>
                <p className="w-[25%]">{param?.holderCount}</p>
                
            </div>
@@ -96,7 +97,7 @@ const CardForAccounts1 = ({title}) => {
           <>
            <div className="flex flex-row justify-around p-5 border-b-2 border-b-lightest-gray">
                <p className="w-[10%]">1</p>
-               <p className="w-[60%]">{param?._id}</p>
+               <p className="w-[60%]">{param?._id && shortenString(param?._id, 10)}</p>
                <p className="w-[15%]">{param?. count}</p>
                <p className="w-[15%]">{param?.volume.toFixed(2)}%</p>
                

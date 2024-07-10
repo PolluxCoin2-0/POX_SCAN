@@ -11,7 +11,7 @@ import Pagination from "../../components/Pagination";
 import { useEffect, useState } from "react";
 import { getTransactionStatsData } from "../../utils/axios/Blockchain";
 
-const Transaction = () => {
+const Transaction = ({value}) => {
 
   const [data, setData] = useState({});
 
@@ -20,7 +20,7 @@ const Transaction = () => {
     const fetchData = async () => {
       try {
         const data = await getTransactionStatsData();
-        console.log(data);
+    
         
         setData(data?.message);
         
@@ -111,7 +111,7 @@ const Transaction = () => {
             </div>
 
             <div className="flex w-full h-80 flex-row justify-center items-center">
-                <SimplePieChartComp />
+                <SimplePieChartComp value={data?.Total_Volume}/>
             </div>
           </div>
         </div>
