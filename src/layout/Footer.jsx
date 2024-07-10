@@ -3,7 +3,7 @@ import { PiCopyright } from "react-icons/pi";
 
 const Footer = () => {
   return (
-    <div className="bg-black text-white py-12 px-4 flex flex-col md:flex-row items-start justify-between">
+    <div className="bg-black text-white py-12 px-4 flex flex-col md:flex-row items-start justify-evenly">
       {/* First column */}
       <div className="mb-8 md:mb-0">
         <img src={LogoWithText} alt="Logo" />
