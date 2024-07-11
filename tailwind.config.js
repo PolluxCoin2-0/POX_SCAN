@@ -34,6 +34,7 @@ export default {
       "light-sky-blue" : "#E6EEF5",
       "lightest-gray" : "#E6EEF5",
       "light-orange" : "#FAE4A6",
+      "top-gray": "f0f3f7",
       "light-brown" : "#a97607",
       "lightest-brown" : "#ecedf0",
       "light-mid-gray" : "#968d8d",

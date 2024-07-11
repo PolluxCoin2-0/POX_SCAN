@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { SearchBarExpand } from "../../components";
 import { getBlockchainNodeMapData } from "../../utils/axios/Blockchain";
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';

@@ -69,7 +69,7 @@ const TransactionContainer = () => {
             </div>
 
             <div>
-              <p className="font-semibold pb-3">{transaction?.fromAddress && transaction?.fromAddress}</p>
+            <p className="font-semibold pb-3">{transaction?.fromAddress && transaction?.fromAddress}</p>
               <p className="font-semibold">{transaction?.toAddress && transaction?.toAddress}</p>
             </div>
 
