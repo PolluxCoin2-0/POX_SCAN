@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { MdKeyboardArrowUp, MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { BsDot } from "react-icons/bs";
 import { NavbarOptions } from "../data/NavbarOptions";
@@ -10,6 +10,7 @@ const Sidebar = ({ children }) => {
   const [submenu, setSubmenu] = useState({});
   const [openSubmenus, setOpenSubmenus] = useState({});
   const location = useLocation();
+  const navigate = useNavigate();
 
   const capitalizeFirstLetter = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -34,11 +35,12 @@ const Sidebar = ({ children }) => {
     }
   }, [location, path]);
 
-  const toggleSubmenu = (key) => {
+  const toggleSubmenu = (key, path) => {
     setOpenSubmenus((prev) => ({
       ...prev,
       [key]: !prev[key],
     }));
+    navigate(path);
   };
 
   const getSubmenuList = (path) => {
@@ -74,7 +76,7 @@ const Sidebar = ({ children }) => {
             <li key={index}>
               <Link to={buildPath(parentPath, item)}>
                 <button
-                  onClick={() => toggleSubmenu(item)}
+                  onClick={() => toggleSubmenu(item, buildPath(parentPath, item))}
                   className={`flex items-center p-2  rounded-lg group font-semibold ${
                     isActiveRoute(buildPath(parentPath, item))
                       ? "bg-dark-yellow text-black px-4 my-2"
@@ -94,7 +96,7 @@ const Sidebar = ({ children }) => {
           {Object.entries(submenu).map(([key, value], index) => (
             <li key={index}>
               <button
-                onClick={() => toggleSubmenu(key)}
+                onClick={() => toggleSubmenu(key, buildPath(parentPath, key))}
                 className={`flex items-center p-2 text-white rounded-lg whitespace-nowrap hover:bg-white hover:text-black group
                  ${openSubmenus[key] ? "bg-dark-brown mb-2 list-disc" : ""}`}
               >
