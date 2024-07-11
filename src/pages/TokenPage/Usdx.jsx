@@ -208,9 +208,9 @@ const Usdx = () => {
       </div>
        
        <div className="flex flex-row space-x-8">
-       <p className="font-bold text-xl mb-6 mt-6 md:mt-0 md:mb-12 bg-dark-yellow px-8 py-2 rounded-lg"
+       <p className="cursor-pointer font-bold text-xl mb-6 mt-6 md:mt-0 md:mb-12 bg-dark-yellow px-8 py-2 rounded-lg"
        onClick={() => setIsRender("Token Transfer")}>Token Transfer</p>
-       <p className="font-bold text-xl mb-6 mt-6 md:mt-0 md:mb-12 bg-lightest-gray px-8 py-2 rounded-lg"
+       <p className="cursor-pointer font-bold text-xl mb-6 mt-6 md:mt-0 md:mb-12 bg-lightest-gray px-8 py-2 rounded-lg"
        onClick={() => setIsRender("Token Holders")}>Token Holders</p>
        </div>
       

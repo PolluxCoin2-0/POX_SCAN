@@ -10,6 +10,7 @@ import Pagination from "../../components/Pagination";
 import { useEffect, useState } from "react";
 import { getAllContractTableData, getContractTableData } from "../../utils/axios/Blockchain";
 import { PiWrenchLight } from "react-icons/pi";
+import { formatNumberWithCommas } from "../../utils/FormattingNumber";
 
 
 const Contacts = () => {
@@ -50,15 +51,11 @@ const Contacts = () => {
      setCurrentPage(page);
    };
 
-  
-
-
   return (
     <div className="px-4 md:px-12 pb-12">
       <div>
         <SearchBarExpand />
       </div>
-
       <div className="">
         <div className="flex flex-row justify-between items-center pb-10">
           <p className="text-lg md:text-2xl font-bold">Contacts</p>
@@ -68,7 +65,7 @@ const Contacts = () => {
         </div>
 
         <div className=" flex flex-col space-y-6 md:space-y-0 md:flex-row justify-between w-full">
-          <div className=" flex flex-col gap-10 w-full md:w-[48%]">
+          <div className=" flex flex-col gap-10 w-full md:w-[30%]">
             <div className="bg-white px-4 md:px-12  py-6 gap-9 rounded-2xl shadow-xl ">
               <div className="flex flex-row justify-between">
                 <p className=" text-xl font-bold pl-0">Contacts</p>
@@ -117,110 +114,36 @@ const Contacts = () => {
             </div>
           </div>
 
-          <div className="bg-white rounded-2xl shadow-xl w-full md:w-[48%] py-3">
+          <div className="bg-white rounded-2xl shadow-xl w-full md:w-[68%] py-3">
             <p className="font-bold text-xl pt-5 pl-8 ">24h Top Contracts</p>
 
             <div className="flex flex-col md:flex-row justify-between">
-              <div className=" h-80 w-full md:w-[40%]">
+              <div className=" h-80 w-full md:w-[55%] ">
                 <PieChartComp value={piechartdata} xAxis="noOfCalls" yAxis="contractAddress"/>
               </div>
 
-              <div className=" flex flex-row justify-between px-4 md:px-0">
-                <div className="pr-0 md:pr-20 space-y-5 ">
-                  <p className="">
-                    <span className="px-2 py-1 bg-lightest-gray rounded-md">
-                      {" "}
-                      SC
-                    </span>{" "}
-                    <span className="px-2 py-1 bg-lightest-gray text-dark-red rounded-md">
-                    USDT Token{" "}
-                    </span>
-                  </p>
-                  <p className="">
-                    <span className="px-2 py-1 bg-lightest-gray rounded-md">
-                      {" "}
-                      SC
-                    </span>{" "}
-                    <span className="px-2 py-1 bg-lightest-gray text-dark-red rounded-md">
-                      USDT Token{" "}
-                    </span>
-                  </p>
-                  <p>
-                    <span className="px-2 py-1 bg-lightest-gray rounded-md">
-                      {" "}
-                      SC
-                    </span>{" "}
-                    <span className="px-2 py-1 bg-lightest-gray text-dark-red rounded-md">
-                      USDT Token{" "}
-                    </span>
-                  </p>
-                  <p>
-                    <span className="px-2 py-1 bg-lightest-gray rounded-md">
-                      {" "}
-                      SC
-                    </span>{" "}
-                    <span className="px-2 py-1 bg-lightest-gray text-dark-red rounded-md">
-                      USDT Token{" "}
-                    </span>
-                  </p>
-                  <p>
-                    <span className="px-2 py-1 bg-lightest-gray rounded-md">
-                      {" "}
-                      SC
-                    </span>{" "}
-                    <span className="px-2 py-1 bg-lightest-gray text-dark-red rounded-md">
-                      USDT Token{" "}
-                    </span>
-                  </p>
-                  <p>
-                    <span className="px-2 py-1 bg-lightest-gray rounded-md">
-                      {" "}
-                      SC
-                    </span>{" "}
-                    <span className="px-2 py-1 bg-lightest-gray text-dark-red rounded-md">
-                      USDT Token{" "}
-                    </span>
-                  </p>
-                  <p>
-                    <span className="px-2 py-1 bg-lightest-gray rounded-md">
-                      {" "}
-                      SC
-                    </span>{" "}
-                    <span className="px-2 py-1 bg-lightest-gray text-dark-red rounded-md">
-                      USDT Token{" "}
-                    </span>
+              <div className=" px-4 md:px-0 w-full md:w-[55%] h-80 overflow-y-scroll">
+                    {piechartdata.map((data,idx)=>{
+                      return(
+                        <>
+                        <div className="flex justify-between space-x-8 md:space-x-0 items-center my-5" key={idx}>
+                        <div>
+                        <p>
+                    <span className="px-2 py-2 bg-lightest-gray rounded-md mr-2">SC</span>
+                        <span className="px-2 py-2 bg-lightest-gray text-dark-red rounded-md">
+                        {data?.contractAddress}
+                      </span>
                   </p>
                 </div>
-
-                <div className="pr-0 md:pr-10 space-y-5 text-right">
+                  <div className="pr-0 md:pr-5 text-right">
                   <p>
-                    2,035,198 calls{" "}
-                    <span className="text-light-gray">(99.03%)</span>
-                  </p>
-                  <p>
-                    6,035 calls{" "}
-                    <span className="text-light-gray">(88.05%)</span>
-                  </p>
-                  <p>
-                    7,987 calls{" "}
-                    <span className="text-light-gray">(88.75%)</span>
-                  </p>
-                  <p>
-                    8,345 calls <span className="text-light-gray">(77.5%)</span>
-                  </p>
-                  <p>
-                    2,305 calls{" "}
-                    <span className="text-light-gray">(75.66%)</span>
-                  </p>
-                  <p>
-                    1,234 calls{" "}
-                    <span className="text-light-gray">(75.66%)</span>
-                  </p>
-                  <p>
-                    5,098 calls{" "}
-                    <span className="text-light-gray">(65.54%)</span>
+                    {data?.noOfCalls && formatNumberWithCommas(data?.noOfCalls)}
                   </p>
                 </div>
+                </div>
+                      </>
+                      )
+                    })}
               </div>
             </div>
           </div>

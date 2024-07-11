@@ -66,7 +66,7 @@ export const getAllContractTableData =  async() => {
     }
 }
 
-export const getTransferTableData = async() => {
+export const getTransferTableDataOfPoxTransfer = async() => {
     try {
         const response = await axios.post("https://node.poxscan.io/api/transaction",
             {
@@ -74,6 +74,23 @@ export const getTransferTableData = async() => {
               "limit": 10, 
               "filter": "POX"
              }
+        );
+        return (response?.data);
+    } catch (error) {
+        console.log("error", error);
+    }
+}
+
+export const getTransferTableDataOfPRC20Transfer = async() => {
+    try {
+        const response = await axios.post("https://governance.poxscan.io/blockchain/getcontractdata",
+            {
+                "typefilter": "type",
+                "filter": "PRC20",
+                "pageLimit": 10,
+                "pageNos": 0,
+                "getStats": false
+            }
         );
         return (response?.data);
     } catch (error) {

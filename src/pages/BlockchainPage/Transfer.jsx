@@ -1,33 +1,25 @@
-// import React from 'react'
-
-import { ContactData } from "../../data/ContactData";
 import PieChartComp from "../../components/PieChartComp";
 import SearchBarExpand from "../../components/SearchBarExpand";
 import { IoSearch } from "react-icons/io5";
 import { PiArrowBendDownLeftBold } from "react-icons/pi";
 import { useEffect, useState } from "react";
 import Pagination from "../../components/Pagination";
-import { getTransferTableData } from "../../utils/axios/Blockchain";
+import { getTransferTableDataOfPoxTransfer, getTransferTableDataOfPRC20Transfer} from "../../utils/axios/Blockchain";
 import { secondsAgo } from "../../utils/secondAgo";
 import { shortenString } from "../../utils/shortenString";
+import { IoCheckmarkCircleOutline } from "react-icons/io5";
+import { RxCrossCircled } from "react-icons/rx";
+import { formatNumberWithCommas } from "../../utils/FormattingNumber";
 
 // For Tab Switching
-const TransferTable = () => {
-  
+const POXTransferTable = () => {
   // For API Integration
   const [data, setData] = useState({});
-
   useEffect(() => {
-    
     const fetchData = async () => {
       try {
-        const data = await getTransferTableData();
-
-        
-
+        const data = await getTransferTableDataOfPoxTransfer();
         setData(data?.message);
-        
-        
       } catch (error) {
         console.log('error', error);
       } 
@@ -72,14 +64,14 @@ const TransferTable = () => {
         </div>
 
         <div className="min-w-[1500px] flex flex-row justify-evenly items-center bg-lightest-gray p-2 m-3 rounded-xl">
-          <p className="w-[20%]">Token</p>
-          <p className="w-[10%]">Amount/Token TD</p>
-          <p className="w-[6%]">Result </p>
-          <p className="w-[10%]">Age </p>
-          <p className="w-[16%]">From</p>
-          <p className="w-[16%]">To</p>
           <p className="w-[16%]">Hash</p>
-          <p className="w-[10%]">Block</p>
+          <p className="w-[8%]">Block</p>
+          <p className="w-[12%]">Time</p>
+          <p className="w-[12%]">Transaction Type</p>
+          <p className="w-[15%]">From</p>
+          <p className="w-[16%]">To</p>
+          <p className="w-[12%]">Token</p>
+          <p className="w-[5%]">Result</p>
           
         </div>
 
@@ -87,26 +79,119 @@ const TransferTable = () => {
           return (
             <>
               <div className="min-w-[1500px] flex flex-row justify-evenly items-center p-5 border-b-2 border-lightest-gray  rounded-xl ">
-                <p className="whitespace-nowrap w-[20%]">
-                  <span className="px-3 py-1 bg-lightest-gray rounded-lg">
-                    SC
-                  </span>
+                <p className="whitespace-nowrap w-[16%]">
                   <span className="text-dark-red px-2">
-                    {" "}
-                    {contact.Account}{" "}
-                  </span>
-                  <span className="px-3 py-1 bg-lightest-gray rounded-lg">
-                    USDT Token
+                  {contact?.transactionId && shortenString(contact?.transactionId,8)}
                   </span>
                 </p>
-                <p className="w-[10%]">{contact?.ContractName}</p>
-                <p className="w-[6%]">{contact?.NumberOfCalls}</p>
-                <p className="w-[10%]">{contact?.POXBalance}</p>
-                <p className="w-[10%]">{contact?.timeStamp && secondsAgo(contact?.timeStamp)}</p>
-                <p className="w-[16%]">{contact?.fromAddress && shortenString(contact?.fromAddress,4)}</p>
-                <p className="w-[16%]">{contact?.toAddress && shortenString(contact?.toAddress,4)}</p>
-                <p className="w-[16%]">{contact?.blockHash && shortenString(contact?.blockHash,4)}</p>
-                <p className="w-[10%]">{contact?.blockNumber}</p>
+                <p className="w-[8%]">{contact?.blockNumber && formatNumberWithCommas(contact?.blockNumber)}</p>
+                <p className="w-[12%]">{contact?.timeStamp && secondsAgo(contact?.timeStamp)}</p>
+                <p className="w-[12%] text-dark-red">{contact?.assetName && contact?.assetName}</p>
+                <p className="w-[15%] text-dark-red">{contact?.fromAddress && shortenString(contact?.fromAddress,8)}</p>
+                <p className="w-[16%] text-dark-red">{contact?.toAddress && shortenString(contact?.toAddress,8)}</p>
+                <p className="w-[12%] text-dark-red">{Number(contact?.assetAmount/Math.pow(10,6)).toFixed(6)} {contact?.assetName && contact?.assetName}</p>
+                <p className="w-[5%] text-dark-red">{contact?.result && contact?.result==="SUCCESS"?<IoCheckmarkCircleOutline size={24} color="green" />:<RxCrossCircled size={24} color="red"/>}</p>
+              </div>
+            </>
+          );
+        })}
+
+        <div className="flex justify-start md:justify-end">
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={handlePageChange}
+          />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const PRC20TransferTable = ({ setPieChartData }) => {
+  // For API Integration
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getTransferTableDataOfPRC20Transfer();
+        setData(data?.filterTokens);
+        setPieChartData(data?.totalPage);
+      } catch (error) {
+        console.log('error', error);
+      } 
+    };
+    fetchData();
+  }, [])
+
+  // For Pagination
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = 10; // Example total pages
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
+  return (
+    <div>
+      <div className="bg-white rounded-2xl p-4 md:p-10 overflow-x-auto md:overflow-hidden">
+        <div className=" flex flex-row justify-between">
+          <div>
+            <p className="">
+              <span className="text-lg font-bold">36,045 </span>
+              <span className="font-bold text-light-gray">
+                contracts in total
+              </span>
+            </p>
+          </div>
+
+          <div className="hidden md:flex flex-row justify-between px-32 rounded-md  border-2 border-lightest-gray">
+            <IoSearch className=" text-xl pt-4 w-10 h-10 text-light-gray" />
+
+            <input
+              className="bg-white h-12 w-full  rounded-lg text-sm  focus:outline-none placeholder:text-light-gray placeholder:font-medium"
+              type="search"
+              name="search"
+              placeholder="Search by Contract Accounts/Name"
+            />
+
+            <PiArrowBendDownLeftBold className="w-10 h-10 pt-4  text-light-gray" />
+          </div>
+        </div>
+
+        <div className="min-w-[1500px] flex flex-row justify-evenly items-center bg-lightest-gray p-2 m-3 rounded-xl">
+          <p className="w-[16%]">Token</p>
+          <p className="w-[12%]">Amount/ID</p>
+          <p className="w-[8%]">Result</p>
+          <p className="w-[12%]">Time</p>
+          <p className="w-[12%]">From</p>
+          <p className="w-[12%]">To</p>
+          <p className="w-[16%]">Hash</p>
+          <p className="w-[8%] text-center">Block</p>
+          
+        </div>
+
+        {data && data.map((contact, index) => {
+          return (
+            <>
+              <div className="min-w-[1500px] flex flex-row justify-evenly items-center p-5 border-b-2 border-lightest-gray  rounded-xl ">
+                <div className="whitespace-nowrap w-[12%]">
+                  <div className="flex items-center space-x-4 mb-1">
+                 <p className="text-dark-red"> Pollux...({contact?.assetName && contact?.assetName})</p>
+                 <p className="px-2 py-[1px] rounded-md bg-light-red text-black"> {contact?.type && contact?.type}</p>
+                 </div>
+                  <span className="text-light-gray">
+                  {contact?.contractAddress && shortenString(contact?.contractAddress,10)}
+                  </span>
+                </div>
+                <p className="w-[16%] text-center">{contact?.asset && contact?.asset}</p>
+                <p className="w-[8%]">{contact?.result && contact?.result==="SUCCESS"?<IoCheckmarkCircleOutline size={24} color="green" />:<RxCrossCircled size={24} color="red"/>}</p>
+                <p className="w-[12%] ">{contact?.timeStamp && secondsAgo(contact?.timeStamp)}</p>
+                <p className="w-[12%] text-dark-red">{contact?.fromAddress && shortenString(contact?.fromAddress,8)}</p>
+                <p className="w-[12%] text-dark-red">{contact?.toAddress && shortenString(contact?.toAddress,8)}</p>
+                <p className="w-[16%] text-dark-red">{contact?.transactionId && shortenString(contact?.transactionId,10)}</p>
+                <p className="w-[8%] text-right text-dark-red">{contact?.blockNumber && formatNumberWithCommas(contact?.blockNumber)}</p>
               </div>
             </>
           );
@@ -125,23 +210,30 @@ const TransferTable = () => {
 };
 
 const Transfer = () => {
-
- 
-  const [isRender, setIsRender] = useState("POX20 Transfers");
+  const [isRender, setIsRender] = useState("PRC20 Transfers");
+  const [pieChartData, setPieChartData] = useState([]);
 
   const renderItemComponent = () => {
     switch (isRender) {
-      case "POX20 Transfers":
-        return <TransferTable />;
+      case "PRC20 Transfers":
+        return <PRC20TransferTable setPieChartData={setPieChartData}/> ;
 
       case "POX721 Transfers":
-        return <TransferTable />;
+        return (
+          <div className="bg-white rounded-2xl p-6">
+          <p className="font-bold text-xl">No data found</p>
+          </div>
+        );
 
       case "POX Transfers":
-        return <TransferTable />;
+        return <POXTransferTable />;
 
       case "POX1155 Transfers":
-        return <TransferTable />;
+        return (
+          <div className="bg-white rounded-2xl p-6">
+          <p className="font-bold text-xl">No data found</p>
+          </div>
+        );
     }
   };
 
@@ -208,40 +300,8 @@ const Transfer = () => {
             </p>
 
             <div className="flex flex-col space-y-6 md:space-y-0 md:flex-row justify-between">
-              <div className=" h-80 w-full md:w-[70%]">
-                <PieChartComp />
-              </div>
-
-              <div className=" flex flex-row justify-between px-4">
-                <div className="pr-0 md:pr-20 space-y-6">
-                  <p className="font-bold">TRX Transfer</p>
-                  <p className="font-bold">TRC 10 Transfers</p>
-                  <p className="font-bold">TRC 20 Transfers</p>
-                  <p className="font-bold">TRC721 Transfers</p>
-                  <p className="font-bold">TRC1155 Transfers</p>
-                </div>
-
-                <div className="pr-0 md:pr-10 space-y-6 text-right">
-                  <p className="font-bold">
-                    2,035,198 calls{" "}
-                    <span className="text-light-gray">(99.03%)</span>
-                  </p>
-                  <p className="font-bold">
-                    6,035 calls{" "}
-                    <span className="text-light-gray">(88.05%)</span>
-                  </p>
-                  <p className="font-bold">
-                    7,987 calls{" "}
-                    <span className="text-light-gray">(88.75%)</span>
-                  </p>
-                  <p className="font-bold">
-                    8,345 calls <span className="text-light-gray">(77.5%)</span>
-                  </p>
-                  <p className="font-bold">
-                    2,305 calls{" "}
-                    <span className="text-light-gray">(75.66%)</span>
-                  </p>
-                </div>
+              <div className="h-80 w-full md:w-[70%] border-2">
+                <PieChartComp value={pieChartData && pieChartData} xAxis={""} yAxis={""}/>
               </div>
             </div>
           </div>
@@ -251,18 +311,18 @@ const Transfer = () => {
       <div className="flex flex-row justify-start gap-8 pt-20 pb-10 overflow-x-auto">
         <button
           className={`cursor-pointer py-3 px-4 whitespace-nowrap  ${
-            isRender === "POX20 Transfers"
-              ? "bg-dark-yellow  shadow-lg rounded-lg"
+            isRender === "PRC20 Transfers"
+              ? "bg-dark-yellow font-semibold  shadow-lg rounded-lg"
               : "text-black bg-text-bg-gray shadow-md rounded-lg"
           }`}
-          onClick={() => setIsRender("POX20 Transfers")}
+          onClick={() => setIsRender("PRC20 Transfers")}
         >
-          POX20 Transfers
+          PRC20 Transfers
         </button>
         <button
           className={`cursor-pointer py-3 px-4 whitespace-nowrap ${
             isRender === "POX721 Transfers"
-              ? "bg-dark-yellow  shadow-lg rounded-lg"
+              ? "bg-dark-yellow font-semibold  shadow-lg rounded-lg"
               : "text-black bg-text-bg-gray shadow-md rounded-lg"
           }`}
           onClick={() => setIsRender("POX721 Transfers")}
@@ -273,7 +333,7 @@ const Transfer = () => {
         <button
           className={`cursor-pointer py-3 px-4 whitespace-nowrap ${
             isRender === "POX Transfers"
-              ? "bg-dark-yellow shadow-lg rounded-lg"
+              ? "bg-dark-yellow font-semibold shadow-lg rounded-lg"
               : "text-black bg-text-bg-gray shadow-md rounded-lg"
           }`}
           onClick={() => setIsRender("POX Transfers")}
@@ -284,7 +344,7 @@ const Transfer = () => {
         <button
           className={`cursor-pointer py-3 px-4 whitespace-nowrap ${
             isRender === "POX1155 Transfers"
-              ? "bg-dark-yellow shadow-lg rounded-lg"
+              ? "bg-dark-yellow font-semibold shadow-lg rounded-lg"
               : "text-black bg-text-bg-gray shadow-md rounded-lg"
           }`}
           onClick={() => setIsRender("POX1155 Transfers")}
