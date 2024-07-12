@@ -10,6 +10,7 @@ const Blocks = () => {
    
   const [data, setData] = useState({});
   const [data1, setData1] =useState({});
+  const [dataFromSearch, setDataFromSearch] = useState({});
 
   useEffect(()=>{
     const fetchData=async()=>{
@@ -35,12 +36,12 @@ const Blocks = () => {
     setCurrentPage(page);
   };
 
+  console.log("data coming from block comp",dataFromSearch)
 
-  const [onSearch, setOnSearch] = useState("");
   return (
     <div className="px-4 md:px-12 pb-12">
       <div>
-        <SearchBarExpand onSearch={setOnSearch} />
+        <SearchBarExpand setDataFromSearch={setDataFromSearch} />
       </div>
       <p className="font-bold text-2xl pb-8">Blocks</p>
       <div className=" flex flex-col space-y-6 md:space-y-0 md:flex-row justify-around ">

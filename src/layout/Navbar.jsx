@@ -159,13 +159,13 @@ const Navbar = () => {
     <>
 
     {/* Larger Scrren Navbar */}
-      <div className="hidden md:flex  bg-dark-skyblue py-2 h-16 text-lg items-center justify-between pl-8 relative w-full">
-        <div className="flex items-center space-x-10">
+      <div className="hidden md:flex  bg-dark-skyblue py-2 h-16 text-lg items-center justify-between  pl-8 relative w-full">
+        <div className="flex items-center md:space-x-0 lg:space-x-0 xl:space-x-10">
           <Link to="/">
             <img
               src={LogoWithText}
               alt="logo-poxscan"
-              className="cursor-pointer border-r-2 border-white pr-8"
+              className="cursor-pointer border-r-2 border-white md:pr-2 lg:pr-2  xl:pr-8"
             />
           </Link>
           {Object.keys(NavbarOptions).map((key, index) => {
@@ -179,7 +179,7 @@ const Navbar = () => {
               >
                 <Link to={`/${formattedKey}`}>
                   <p
-                    className={`cursor-pointer whitespace-nowrap font-semibold ${
+                    className={`cursor-pointer whitespace-nowrap font-semibold md:text-sm lg:text-sm xl:text-base ${
                       currentPath === `/${formattedKey}`
                         ? "text-black rounded-3xl bg-dark-yellow px-4 py-1"
                         : "text-white px-3"
@@ -198,11 +198,11 @@ const Navbar = () => {
           })}
         </div>
 
-        <div className="flex items-center justify-between space-x-6">
+        <div className="flex items-center justify-between md:space-x-2 lg:space-x-2 xl:space-x-6 md:text-sm lg:text-sm xl:text-base">
           <SearchBar />
           <Link to="/register">
             {" "}
-            <p className="text-white cursor-pointer border-r-2 pr-6">
+            <p className="text-white cursor-pointer border-r-2 md:pr-2 lg:pr-2 xl:pr-6">
               Register
             </p>{" "}
           </Link>
@@ -210,7 +210,7 @@ const Navbar = () => {
             <p className="text-white cursor-pointer">Login</p>{" "}
           </Link>
           <Link to="/connectwallet">
-            <button className="bg-dark-yellow py-1 px-3 rounded-xl text-black cursor-pointer">
+            <button className="bg-dark-yellow py-1 px-3 rounded-xl text-black cursor-pointer whitespace-nowrap">
               Connect Wallet
             </button>
           </Link>
