@@ -36,7 +36,7 @@ const TransactionContainer = () => {
       </div>
 
       <div className="w-full flex flex-col md:flex-row justify-between">
-      <div className="w-full md:w-[75%] overflow-x-auto">
+      <div className="w-full md:w-[70%] overflow-x-auto">
       <div className="min-w-[900px]"> {/* Adjust min-width as needed */}
     {data1?.transactions && data1?.transactions.slice(0, 5).map((transaction, idx) => {
       return (
@@ -104,7 +104,7 @@ const TransactionContainer = () => {
 
 
         {/* Charts */}
-        <div className="w-full md:w-[23%] mt-6 md:mt-0">
+        <div className="w-full md:w-[28%] mt-6 md:mt-0">
           <div className="shadow-lg bg-white rounded-xl p-4">
             <p className="font-semibold">Daily Txns (15 Days)</p>
             <AreaChartComp

@@ -75,7 +75,7 @@ const StableCoinContainer = () => {
       </div>
 
       <div className="flex flex-col md:flex-row justify-between  w-full">
-        <div className="w-full md:w-[75%]  overflow-x-auto">
+        <div className="w-full md:w-[70%]  overflow-x-auto">
           <div className="min-w-[800px]">
             {/* Adjust min-width as needed */}
             <div className="rounded-t-2xl flex justify-between items-center flex-row font-semibold h-[62px] text-lg bg-white px-4">
@@ -132,7 +132,7 @@ const StableCoinContainer = () => {
         {/* Protocol Revenue     (NEEDED API) */}  
 
         
-        <div className="w-full md:w-[23%] mt-6 md:mt-0">
+        <div className="w-full md:w-[28%] mt-6 md:mt-0">
           <div className="shadow-lg bg-white rounded-xl p-4 mb-4">
             <p className="font-semibold">Protocol Revenue</p>                                                      
             <AreaChartComp value={data} xDataKey="date" yDataKey="value" componentChartColor="#FFC300" />
