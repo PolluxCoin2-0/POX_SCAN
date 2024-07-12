@@ -68,7 +68,7 @@ const TrendingSearch = () => {
   return (
     <div className="flex flex-col md:flex-row justify-between py-6">
       {/* Left Side Trending Search */}
-      <div className="w-full md:w-[75%] ">
+      <div className="w-full md:w-[70%] ">
         <div className="flex justify-between space-x-4 pb-6">
           <div className="flex space-x-4 items-center">
             <p className="font-semibold text-xl whitespace-nowrap">Trending Search :</p>
@@ -157,7 +157,7 @@ const TrendingSearch = () => {
       </div>
 
       {/* Right Side Chart */}
-      <div className="w-full md:w-[23%] rounded-xl px-0 md:px-4  pb-6 mt-8 md:mt-0">
+      <div className="w-full md:w-[28%] rounded-xl px-0 md:px-4  pb-6 mt-8 md:mt-0">
         <div className="flex justify-between items-center mb-3">
           <p className="font-semibold text-lg">POX</p>
           <select
