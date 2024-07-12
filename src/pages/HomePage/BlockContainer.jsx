@@ -9,7 +9,7 @@ const BlockContainer = () => {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 3,
+    slidesToShow: 4,
     slidesToScroll: 4,
     responsive: [
       {
@@ -25,14 +25,18 @@ const BlockContainer = () => {
         breakpoint: 600,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 2
+          slidesToScroll: 2,
+          dots: true,
+          infinite: true,
         }
       },
       {
         breakpoint: 480,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1
+          slidesToScroll: 1,
+          dots: true,
+          infinite: true,
         }
       }
     ]
