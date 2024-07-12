@@ -146,10 +146,10 @@ const Blocks = () => {
                 <p className="text-dark-red w-[12%]">{stablecoin?.number}</p>
                 <p className=" w-[12%]">{stablecoin?.timestamp && secondsAgo(stablecoin?.timestamp)}</p>
                 <p className="text-dark-red  w-[12%]">{stablecoin?.witnessName}</p>
-                <p className=" w-[12%] text-center">{stablecoin?.nrOfTrx}</p>
+                <p className=" w-[12%] text-left indent-4">{stablecoin?.nrOfTrx}</p>
                 <p className=" w-[20%] text-center">{stablecoin?.energyUsage}</p>
                 <p className=" w-[8%]">{stablecoin?.BurnedPOX}</p>
-                <p className=" w-[12%] text-center">{stablecoin?.blockReward}</p>
+                <p className=" w-[12%] text-center indent-20">{stablecoin?.blockReward}</p>
                 <p className=" w-[8%]">{""}</p>
 
              </div>

@@ -300,7 +300,7 @@ const Transfer = () => {
             </p>
 
             <div className="flex flex-col space-y-6 md:space-y-0 md:flex-row justify-between">
-              <div className="h-80 w-full md:w-[70%] border-2">
+              <div className="h-80 w-full md:w-[70%]">
                 <PieChartComp value={pieChartData && pieChartData} xAxis={""} yAxis={""}/>
               </div>
             </div>
