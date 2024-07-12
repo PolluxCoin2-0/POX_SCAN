@@ -1,493 +1,397 @@
-import { Pagination, SearchBarExpand } from "../../components";
-import { BiSolidCopyAlt } from "react-icons/bi";
-import { RiQrCodeFill } from "react-icons/ri";
-import { LuArrowDownToLine } from "react-icons/lu";
-import { LuArrowUpToLine } from "react-icons/lu";
-import { IoIosArrowForward } from "react-icons/io";
-import { AiOutlineQuestion } from "react-icons/ai";
 import { useEffect, useState } from "react";
+import { SearchBarExpand } from "../../components"
+import { AiOutlineQuestion } from "react-icons/ai";
+import { FaRegCopy } from "react-icons/fa6";
 import PoxImg from "../../assets/PoxImg.png";
-import { IoMdEye } from "react-icons/io";
-import { getTransactionDetailsData, getTransferDetailData } from "../../utils/axios/TransactionDetails";
-import { IoIosCheckmarkCircleOutline } from "react-icons/io";
-import { RxCrossCircled } from "react-icons/rx";
-import { shortenString } from "../../utils/shortenString";
-import { secondsAgo } from "../../utils/secondAgo";
+import { getAccountDetailData } from "../../utils/axios/TransactionDetails";
+// import { TransactionDetailPage } from "..";
+
+const OverviewData = () => {
+  return (
+    <div className="bg-white p-10 rounded-xl shadow-lg">
+
+       <div className="flex flex-row space-x-48 pt-4 pb-4">
+        <div className="flex flex-row ">
+        <p className="bg-text-bg-gray pt-1  rounded-md px-1 "><AiOutlineQuestion /></p>
+        <p className="font-bold pl-2 ">Value</p>
+        </div>
+        
+        <div className="flex flex-row space-x-40 bg-text-bg-gray rounded-md pl-2 pr-2">
+        <p className="">100.20975143343034  </p>
+        <p className="pt-1"><FaRegCopy /></p>
+        </div>
+       
+       </div>
+
+       <div className="flex flex-row space-x-28 pt-4 pb-4">
+        <div className="flex flex-row ">
+        <p className="bg-text-bg-gray pt-1 rounded-md px-1 "><AiOutlineQuestion /></p>
+        <p className="font-bold pl-2">Contract Address</p>
+        </div>
+        
+        <div className="flex flex-row space-x-5 bg-text-bg-gray rounded-md pl-2 pr-2 py-0">
+        <p className="">PVX8hYDtjzna8CLwirccwmg2HbCtT9F2P</p>
+        <p className="pt-1"><FaRegCopy /></p>
+        </div>
+        
+       </div>
+
+       <div className="flex flex-row space-x-32 pt-4 pb-4">
+        <div className="flex flex-row ">
+        <p className="bg-text-bg-gray pt-1 rounded-md px-1 "><AiOutlineQuestion /></p>
+        <p className="font-bold pl-2">Method Calling </p>
+        </div>
+        
+        <div className="flex flex-row space-x-56 bg-text-bg-gray rounded-md pl-2 pr-2 py-0">
+        <p  className="">a399e04300</p>
+        <p className="pt-1"><FaRegCopy /></p>
+        </div>
+         
+       </div>
+
+       <div className="flex flex-row space-x-7 pt-4 pb-4">
+        <div className="flex flex-row ">
+        <p className="bg-text-bg-gray pt-1 rounded-md px-1 "><AiOutlineQuestion /></p>
+        <p className="font-bold pl-2">Trigger Smart Contract</p>
+        </div>
+        
+        <div className="flex flex-row space-x-2">
+        <p>From </p>
+        <div className="flex flex-row space-x-16 pl-2 pr-2 bg-text-bg-gray rounded-md">
+        <p>PV5NV1YPBdN6yxWhz5KoB8SZY</p>
+        <p className="pt-1"><FaRegCopy /></p>
+        </div>
+       
+        </div>
+       
+       <div className="flex flex-row space-x-2">
+       <p>TO</p> 
+       <div className="flex flex-row space-x-10 pl-2 pr-2 bg-text-bg-gray rounded-md">
+       <p >PV5NV1YPBdN6yxWhz5KoB8SZY</p>
+       <p className="pt-1"><FaRegCopy /></p>
+       </div>
+       
+       </div>
+        
+       </div>
+
+       <div className="flex flex-row space-x-3 pt-4 pb-4">
+        <div className="flex flex-row ">
+        <p className="bg-text-bg-gray pt-1 rounded-md px-1 "><AiOutlineQuestion /></p>
+        <p className="font-bold pl-2">All Transfer</p>
+        </div>
+        
+        <div className="flex flex-row space-x-2">
+        <p className="pl-24">From </p>
+        <div className="flex flex-row space-x-16 pl-2 pr-2 bg-text-bg-gray rounded-md">
+        <p>PV5NV1YPBdN6yxWhz5KoB8SZY</p>
+        <p className="pt-1"><FaRegCopy /></p>
+        </div>
+        
+        </div>
+
+        <div className="flex flex-row space-x-2">
+        <p className="pl-5">TO</p> 
+        <div className="flex flex-row space-x-9 pl-2 pr-2 bg-text-bg-gray rounded-md">
+        <p>PV5NV1YPBdN6yxWhz5KoB8SZY</p>
+        <p className="pt-1"><FaRegCopy /></p>
+        </div>
+       
+        </div>
+       
+       <div className="flex flex-row">
+        <p className="pl-6">Value:</p>
+        <p className="bg-text-bg-gray rounded-md pl-2 pr-2 ml-2"> 0.0000000001</p>
+        <p className="pl-2"> Name:</p>
+        <p className="bg-text-bg-gray rounded-md pl-2 pr-2 mr-2"> WPOX</p>
+        <img src={PoxImg}
+        alt=""
+        className="" />
+       </div>
+        
+       </div>
+
+       <div className="flex flex-row space-x-32 pt-4 pb-4">
+       <div className="flex flex-row space-x-2 pl-56">
+        <p >From </p>
+        <div className="flex flex-row space-x-28 pl-2 pr-2 bg-text-bg-gray rounded-md">
+          <div className="flex flex-row space-x-14 pl-2 pr-0 bg-text-bg-gray rounded-md">
+          <p>PV5NV1YPBdN6yxWhz5KoB8SZY</p>
+        <p className="pt-1"><FaRegCopy /></p>
+
+          </div>
+       
+        </div>
+
+        <div className="flex flex-row space-x-2">
+        <p className="pl-6">TO</p> 
+        <div className="flex flex-row space-x-9 pl-2 pr-2 bg-text-bg-gray rounded-md">
+        <p>PV5NV1YPBdN6yxWhz5KoB8SZY</p>
+        <p className="pt-1"><FaRegCopy /></p>
+        </div>
+       
+        </div>
+
+      
+        <div className="flex flex-row">
+        <p className="pl-6">Value:</p>
+        <p className="bg-text-bg-gray rounded-md pl-2 pr-2 ml-2"> 100.20975143333034065</p>
+        <p className="pl-2"> Name:</p>
+        <p className="bg-text-bg-gray rounded-md pl-2 pr-2 mr-2">USDX</p>
+        <img src={PoxImg}
+        alt=""
+        className="" />
+       </div>
+       </div>
+    </div>
+    </div>
+  )
+}
 
 
-const TransactionTable = () => {
-  // For Pagination
-  const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = 10; // Example total pages
+const EventLogData = () => {
+  return (
+    <div className="bg-white p-10 rounded-2xl shadow-lg">
+      <div className="flex flex-row space-x-10 w-full">
 
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
-  };
-    
+        <div className="flex flex-row space-x-2 w-[10%]">
+        <p className="bg-text-bg-gray px-1 pt-1 mb-72 rounded-md font-bold"><  AiOutlineQuestion/></p>
+        <p className="text-lg font-bold">All Logs</p>
+       
+        </div>
+       
+
+        <div className="bg-text-bg-gray p-4 rounded-md w-[90%]">
+
+          <div className="flex flex-row space-x-10" >
+            <p className="bg-mid-light-gray font-bold text-lg pl-3 pr-4 rounded-md">Loglist:</p>
+            <p className="font-bold bg-mid-light-gray pl-2 pr-2 rounded-full">0</p>
+          </div>
+
+          <div className="flex flex-row space-x-7 pt-4" >
+            <p className="bg-mid-light-gray font-bold text-lg pl-3 pr-3 rounded-md" >Address:</p>
+            <p className="text-lg text-dark-yellow">TM7WrfJtasPNevDKE279ANnwCfYKbdrYP7</p>
+          </div>
+
+          <div className="flex flex-row space-x-14 pt-4" >
+            <p className="bg-mid-light-gray font-bold text-lg pl-3 pr-3 rounded-md">Data:</p>
+            <p className="text-lg text-darker-blue">0000000000000000000000000000000000000000000efkfffoj</p>
+          </div>
+
+          <div className="pt-4" >
+            <p className="bg-mid-light-gray font-bold text-lg pl-2 mr-[1200px] rounded-md">Topics: </p>
+            <div>
+              <div className="flex flex-row space-x-5 pt-5">
+                <p className="bg-mid-light-gray px-3 rounded-md text-lg font-bold">0.</p>
+                <p>b6fd53efaa712245053b41c89209b2f829b5d49093afe7feeb0b1b45f222874f</p>
+              </div>
+
+              <div className="flex flex-row space-x-5 pt-2">
+                <p className="bg-mid-light-gray px-3 rounded-md text-lg font-bold">1.</p>
+                <p>b6fd53efaa712245053b41c89209b2f829b5d49093afe7feeb0b1b45f222874f</p>
+              </div>
+
+              <div className="flex flex-row space-x-5 pt-2">
+                <p className="bg-mid-light-gray px-3 rounded-md text-lg font-bold">2.</p>
+                <p>b6fd53efaa712245053b41c89209b2f829b5d49093afe7feeb0b1b45f222874f</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+
+const TransactionDetailPage= () => {
+
   const [data, setData] = useState({});
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await getTransactionDetailsData();
+        const data = await getAccountDetailData();
+        
         setData(data?.message);
       } catch (error) {
         console.log('error', error);
       }
     };
-
-    fetchData();
-  }, []);
-
-  return (
-    <div className="bg-white rounded-2xl p-4 md:p-10 overflow-x-auto md:overflow-hidden">
-      <div className="flex flex-row items-center justify-between">
-        <p className="font-bold text-light-gray">A total of 10 transaction(s)</p>
-      </div>
-
-      <div className="min-w-[1500px] flex flex-row justify-evenly text-center bg-lightest-gray p-4 m-3 rounded-xl">
-        <p className="w-[4%]"><IoMdEye /></p>
-        <p className="w-[16%]">Hash</p>
-        <p className="w-[10%]">Block</p>
-        <p className="w-[10%]">Time</p>
-        <p className="w-[14%]">Transaction Type</p>
-        <p className="w-[12%]">From</p>
-        <p className="w-[12%]">To</p>
-        <p className="w-[14%]">Token</p>
-        <p className="w-[8%]">Result</p>
-      </div>
-
-      {data?.transactions && data?.transactions.map((transaction, index) => (
-        <div key={index} className="min-w-[1500px] flex flex-row justify-evenly p-4 m-3 border-b-2 border-lightest-gray rounded-xl">
-          <p className="w-[4%]"><IoMdEye /></p>
-          <p className="w-[16%] text-center">{transaction?.transactionId && shortenString(transaction?.transactionId, 8)}</p>
-          <p className="w-[10%] text-center">{transaction?.blockNumber}</p>
-          <p className="w-[10%] text-center">{transaction?.timeStamp && secondsAgo(transaction?.timeStamp)}</p>
-          <p className="w-[14%] text-center">{transaction?.type && transaction?.type}</p>
-          <p className="w-[12%] text-center">{transaction?.fromAddress && shortenString(transaction?.fromAddress, 5)}</p>
-          <p className="w-[12%] text-center">{transaction?.toAddress && shortenString(transaction?.toAddress, 5)}</p>
-          <p className="w-[14%] text-center">{transaction?.type && transaction?.type}</p>
-          <p className="w-[8%] flex justify-center">{transaction?.result === "SUCCESS" ? <IoIosCheckmarkCircleOutline size={24} color="green"/> : <RxCrossCircled size={24} color="red"/>}</p>
-        </div>
-      ))}
-
-      <div className="flex justify-start md:justify-end">
-        <Pagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={handlePageChange}
-        />
-      </div>
-    </div>
-  );
-}
-
-
-const TransferTable = () => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = 10; // Example total pages
-
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
-  };
     
-  const [data1, setData1] = useState({});
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data1 = await getTransferDetailData();
-        setData1(data1?.message);
-      } catch (error) {
-        console.log('error', error);
-      }
-    };
-
     fetchData();
   }, []);
 
-  return (
-    <div className="bg-white rounded-2xl p-4 md:p-10 overflow-x-auto md:overflow-hidden">
-      <div className="flex flex-row items-center justify-between">
-        <p className="font-bold text-light-gray">A total of 484 PRC20 Transfers</p>
-      </div>
+  const [isRender, setIsRender] = useState("Overview");
 
-      <div className="min-w-[1500px] flex flex-row justify-evenly text-center bg-lightest-gray p-4 m-3 rounded-xl">
-        <p className="w-[22%]">Token</p>
-        <p className="w-[22%]">Amount/Function</p>
-        <p className="w-[5%]">Result	</p>
-        <p className="w-[10%]">Time</p>
-        <p className="w-[8%]">From</p>
-        <p className="w-[8%]">To</p>
-        <p className="w-[10%]">Hash</p>
-        <p className="w-[5%]">Block</p>
-        
-      </div>
+  const [inputValue, setInputValue] = useState('');
 
-       {data1?.transactions && data1?.transactions.map((transaction, index) => (
-        <div key={index} className="min-w-[1500px] flex flex-row justify-evenly p-4 m-3 border-b-2 border-lightest-gray rounded-xl">
-          <p className="w-[22%] text-center">{transaction?.multipleDecodedData?.decodedDataResult?.contractAddress && transaction?.multipleDecodedData?.decodedDataResult?.contractAddress ?
-          transaction?.multipleDecodedData?.decodedDataResult?.contractAddress :
-          transaction?.contractAddress}</p>
-
-          <p className="w-[22%] text-center">{transaction?.multipleDecodedData?.decodedDataResult?.value && transaction?.multipleDecodedData?.decodedDataResult?.value ?
-          transaction?.multipleDecodedData?.decodedDataResult?.value:
-          0}
-          /{transaction?.functionSelector}
-          </p>
-
-          <p className="w-[5%] text-center">
-            {transaction?.result === "SUCCESS" ? <IoIosCheckmarkCircleOutline size={24} color="green"/> : <RxCrossCircled size={24} color="red"/>} 
-          </p>
-
-          <p className="w-[10%] text-center">{transaction?.timeStamp && secondsAgo(transaction?.timeStamp)}</p>
-
-          <p className="w-[8%] text-center">{transaction?.multipleDecodedData?.decodedDataResult?.from && transaction?.multipleDecodedData?.decodedDataResult?.from ?
-          shortenString(transaction?.multipleDecodedData?.decodedDataResult?.from, 5) :
-          shortenString(transaction?.fromAddress, 5)}</p>
-
-          <p className="w-[8%] text-center">{transaction?.multipleDecodedData?.decodedDataResult?.to && transaction?.multipleDecodedData?.decodedDataResult?.to ?
-          shortenString(transaction?.multipleDecodedData?.decodedDataResult?.to, 5) :
-          shortenString(transaction?.toAddress, 5)}</p>
-
-          <p className="w-[10%] text-center">{transaction?.transactionId && shortenString(transaction?.transactionId, 8)}</p>
-
-          <p className="w-[5%] flex justify-center">{transaction?.blockNumber && transaction?.blockNumber}</p>
-        </div>
-      ))} 
-
-      <div className="flex justify-start md:justify-end">
-        <Pagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={handlePageChange}
-        />
-      </div>
-    </div>
-  );
-}
-
-
-const Wallet = () => {
-  return (
-    <div className="bg-white h-[600px] rounded-lg p-5">
-      <div>
-        <SearchBarExpand />
-      </div>
-
-      <div className="flex flex-row justify-between  p-7 border-b-[1px] border-text-bg-gray pt-4 pb-4">
-        <div className="flex flex-row ">
-          <img src={PoxImg} alt="pox image" className="" />
-          <p className="pl-2 font-bold">POX (POX )</p>
-        </div>
-
-        <p className="font-bold">966196.431313</p>
-      </div>
-
-      <div className="flex flex-row justify-between  p-7 border-b-[1px] border-text-bg-gray pt-4 pb-4">
-        <div className="flex flex-row">
-          <img src={PoxImg} alt="pox image" className="" />
-          <p className="pl-2 font-bold">Pollux USD (USDX)</p>
-        </div>
-
-        <p className="font-bold">10135081.72</p>
-      </div>
-
-      <div className="flex flex-row justify-center items-end pt-64">
-        <p className="text-dark-yellow">More</p>
-        <p className="text-dark-yellow pb-1">
-          <IoIosArrowForward />
-        </p>
-      </div>
-    </div>
-  );
-};
-
-const TransactionDetailPage = () => {
-  const [isShow, setIsShow] = useState("Transactions");
-
-  //  for tab switching in transactions and transfer
-  const showItemComponent = () => {
-    switch (isShow) {
-      case "Transactions":
-        return <TransactionTable />;
-
-      case "Transfers":
-        return <TransferTable />;
-    }
+  const handleChange = (event) => {
+      setInputValue(event.target.value);
   };
-
-  // For tab Switching in walllet
-  const [isRender, setIsRender] = useState("Wallet (1)");
 
   const renderItemComponent = () => {
     switch (isRender) {
-      case "Wallet (1)":
-        return <Wallet />;
-
-      case "Portfolio (0)":
-        return (
-          <div className="bg-white h-[600px] rounded-lg">
-            <p className="px-80 py-48">No Data Found</p>
-          </div>
-        );
-
-      case "Approval (0)":
-        return (
-          <div className="bg-white h-[600px] rounded-lg">
-            <p className="px-80 py-48">No Data Found</p>
-          </div>
-        );
+      case "Overview":
+        return <OverviewData />;
+      case "Event Logs":
+        return <EventLogData/>;
+      default:
+        return null; // or any fallback component or message
     }
   };
 
+  console.log(data?.transactions)
   return (
     <div className="px-12 pb-12">
+       {/* First Div */}
       <div>
         <SearchBarExpand />
       </div>
 
-      <div>
-        <p className="text-xl font-bold">Account</p>
+      {/* Second Div */}
+      <div className="bg-white rounded-2xl shadow-lg p-10">
 
-        <div className="flex flex-row justify-between">
-          <div className="flex flex-row space-x-5">
-            <p className="text-2xl font-bold pt-4 text-dark-red">
-              plkhdhsjdsiordbasdkkdowedwhhkjodokdfr
-            </p>
-            <p className=" pt-5 text-xl bg-white px-2 rounded-2xl">
-              <BiSolidCopyAlt />
-            </p>
-            <p className=" pt-5 text-xl bg-white px-2 rounded-2xl">
-              <RiQrCodeFill />
-            </p>
-          </div>
+        <p className="text-lg font-bold">Transaction Details</p>
 
-          <div className="flex flex-row space-x-10">
-            <div>
-              <div className="flex flex-row space-x-2">
-                <p className="bg-lightest-gray rounded-md pt-1 px-1">
-                  <AiOutlineQuestion />
-                </p>
-                <p className="text-light-gray"> Recent Activity (UTC)</p>
-              </div>
-
-              <p className="font-bold pt-1">2024-07-09 04:54:18</p>
-            </div>
-
-            <div>
-              <div className="flex flex-row space-x-2">
-                <p className="bg-lightest-gray rounded-md pt-1 px-1">
-                  <AiOutlineQuestion />
-                </p>
-                <p className="text-light-gray">Created on (UTC)</p>
-              </div>
-
-              <p className="font-bold pt-1">2024-07-06 15:20:45</p>
-            </div>
-          </div>
+        <div className="flex flex-row space-x-4 pt-3">
+          <p className=" font-bold ">Account</p>
+          <p className="text-dark-yellow font-bold">789 </p>
+           <p className="font-bold">KHHSDF</p>
+          <p className="font-bold bg-lightest-gray p-1 pl-2 pr-2 rounded-lg">HGDFS
+          </p> 
+          <p className="font-bold">to</p>
+          <p className="font-bold text-dark-yellow">098</p>
         </div>
 
-        <p className="pt-5">Add a Private name</p>
-
-        <div className="flex flex-row justify-between w-full space-x-5 pt-5">
-          {/* First Div */}
-          <div className="w-[50%] bg-white rounded-lg p-5">
-            <div className="flex flex-row justify-between">
-              <div className="">
-                <div className="flex flex-row space-x-2">
-                  <p className="text-lg font-bold">Total Assets</p>
-                  <p className="pt-2 text-dark-red bg-lightest-brown rounded-md px-1">
-                    <IoIosArrowForward />
-                  </p>
-                </div>
-
-                <p className="text-2xl pt-2 font-bold">$10,500,016.043</p>
-                <p className="text-light-gray pt-2">≈ 0.009312POX</p>
-              </div>
-
-              <div>
-                <div className="flex flex-row space-x-12">
-                  <p className="">Wallet</p>
-                  <p className="font-bold">100.00%</p>
-                </div>
-
-                <div className="flex flex-row space-x-8   pt-5">
-                  <p>Portfolio</p>
-                  <p className="font-bold">0%</p>
-                </div>
-              </div>
+        <div>
+          <div className="flex flex-row space-x-52 pt-10 pb-5  border-b-[1px] border-lightest-gray">
+            <div className="flex flex-row">
+            <p className="bg-lightest-gray pt-1 rounded-md px-1 "><AiOutlineQuestion /></p>
+            <p className="font-bold pl-2">Hash:</p>
             </div>
-
-            <div className="pt-10">
-              <div className="flex flex-row justify-between border-b-[1px] border-t-[1px] border-text-bg-gray pt-4 pb-4">
-                <div className="flex flex-row space-x-2 ">
-                  <p className="bg-lightest-gray rounded-md pt-1 px-1">
-                    <AiOutlineQuestion />
-                  </p>
-                  <p className=" font-bold ">POX Staked / Balance:</p>
-                </div>
-
-                <p className=" font-bold">
-                  {" "}
-                  <span className="text-dark-red">0POX</span> / 0.009 POX
-                </p>
-              </div>
-
-              <div className="flex flex-row justify-between border-b-[1px] border-text-bg-gray pt-4 pb-4">
-                <div className="flex flex-row space-x-2 ">
-                  <p className="bg-lightest-gray rounded-md pt-1 px-1">
-                    <AiOutlineQuestion />
-                  </p>
-                  <p className=" font-bold ">Transactions:</p>
-                </div>
-
-                <p className=" text-dark-red font-bold">589</p>
-              </div>
-
-              <div className="flex flex-row justify-between border-b-[1px] border-text-bg-gray pt-4 pb-4">
-                <div className="flex flex-row space-x-2 ">
-                  <p className="bg-lightest-gray rounded-md pt-1 px-1">
-                    <AiOutlineQuestion />
-                  </p>
-                  <p className=" font-bold">Transfers:</p>
-                </div>
-
-                <div className="flex flex-row text-lg font-bold">
-                  <p className="text-dark-red">589 </p> <p>(</p>{" "}
-                  <p className="pt-1 text-dark-green">
-                    <LuArrowDownToLine />
-                  </p>{" "}
-                  <p> 583 </p>{" "}
-                  <p className="pt-1 text-dark-red">
-                    <LuArrowUpToLine />
-                  </p>{" "}
-                  <p>)</p>{" "}
-                </div>
-              </div>
-
-              <div className="flex flex-row justify-between border-b-[1px] border-text-bg-gray pt-4 pb-4">
-                <div className="flex flex-row space-x-2 ">
-                  <p className="bg-lightest-gray rounded-md pt-1 px-1">
-                    <AiOutlineQuestion />
-                  </p>
-                  <p className=" font-bold">Bandwidth:</p>
-                </div>
-                <p className=" font-bold ">
-                  Available: 74 / <span className="text-dark-red">600</span>
-                </p>
-              </div>
-
-              <div className="flex flex-row justify-between border-b-[1px]  border-text-bg-gray pt-4 pb-4">
-                <div className="flex flex-row space-x-2 ">
-                  <p className="bg-lightest-gray rounded-md pt-1 px-1">
-                    <AiOutlineQuestion />
-                  </p>
-                  <p className=" font-bold">Energy:</p>
-                </div>
-                <p className=" font-bold">
-                  Available: 0 / <span className="text-dark-red">0</span>
-                </p>
-              </div>
-
-              <div className="flex flex-row justify-between border-b-[1px] border-text-bg-gray pt-4 pb-4">
-                <div className="flex flex-row space-x-2 ">
-                  <p className="bg-lightest-gray rounded-md pt-1 px-1">
-                    <AiOutlineQuestion />
-                  </p>
-                  <p className=" font-bold ">Votes:</p>
-                </div>
-
-                <p className=" font-bold">
-                  Voted: <span className="text-dark-red">0</span> / 0
-                </p>
-              </div>
-
-              <div className="flex flex-row justify-between  pt-4 ">
-                <div className="flex flex-row space-x-2 ">
-                  <p className="bg-lightest-gray rounded-md pt-1 px-1">
-                    <AiOutlineQuestion />
-                  </p>
-                  <p className=" font-bold">Claimable Voting Rewards:</p>
-                </div>
-
-                <p className=" font-bold">0 POX</p>
-              </div>
-            </div>
-
-            <div></div>
+           
+            <p className="font-bold">b6fd53efaa712245053b41c89209b2f829b5d49093afe7feeb0b1b45f222874f</p>
           </div>
 
-          {/* Second Div */}
-          <div className="w-[50%]  rounded-lg ">
-            <div className="flex flex-row justify-around space-x-1 rounded-lg ">
-              <p
-                className={`cursor-pointer py-3 px-24 whitespace-nowrap  ${
-                  isRender === "Wallet (1)"
-                    ? "bg-white rounded-t-lg"
-                    : "bg-lightest-gray text-black rounded-lg"
-                }`}
-                onClick={() => setIsRender("Wallet (1)")}
-              >
-                Wallet (1)
-              </p>
-
-              <p
-                className={`cursor-pointer py-3 px-20 whitespace-nowrap  ${
-                  isRender === "Portfolio (0)"
-                    ? "bg-white rounded-t-lg"
-                    : "bg-lightest-gray text-black rounded-lg"
-                }`}
-                onClick={() => setIsRender("Portfolio (0)")}
-              >
-                Portfolio (0)
-              </p>
-
-              <p
-                className={`cursor-pointer py-3 px-20 whitespace-nowrap  ${
-                  isRender === "Approval (0)"
-                    ? "bg-white rounded-t-lg"
-                    : "bg-lightest-gray text-black rounded-lg"
-                }`}
-                onClick={() => setIsRender("Approval (0)")}
-              >
-                Approval (0)
-              </p>
+          <div className="flex flex-row space-x-36 border-b-[1px] pb-5 pt-5 border-lightest-gray">
+            <div className="flex flex-row">
+            <p className="bg-lightest-gray pt-1 rounded-md px-1 "><AiOutlineQuestion /></p>
+            <p className="font-bold pl-2">Confirmed SRs:</p>
             </div>
+          
+            <div className="flex flex-row space-x-5">
+              <p>5</p>
+              <p>Chain Cloud</p>
+              <p>Valkyrie_Investments</p>
+              <p>Crypto Innovation Fund</p>
+              <p>Luganodes</p>
+            </div>
+          </div>
 
-            <div>{renderItemComponent()}</div>
+          <div className="flex flex-row space-x-52 border-b-[1px] pb-5 pt-5 border-lightest-gray">
+            <div className="flex flex-row">
+            <p className="bg-lightest-gray pt-1 rounded-md px-1 "><AiOutlineQuestion /></p>
+            <p className="font-bold pl-2">Result</p>
+            </div>
+         
+            <p className=" text-dark-green bg-light-green pl-2 pr-2 rounded-md">SUCCESSFULL</p>
+          </div>
+
+          <div className="flex flex-row space-x-52 border-b-[1px] pt-5 pb-5 border-lightest-gray">
+            <div className="flex flex-row">
+            <p className="bg-lightest-gray pt-1 rounded-md px-1 "><AiOutlineQuestion /></p>
+            <p className="font-bold pl-2">Block:</p>
+            </div>
+          
+            <p className="font-bold">63285460</p>
+          </div>
+
+          <div className="flex flex-row space-x-52 border-b-[1px] pt-5 pb-5 border-lightest-gray">
+            <div className="flex flex-row">
+            <p className="bg-lightest-gray pt-1 rounded-md px-1 "><AiOutlineQuestion /></p>
+            <p className="font-bold pl-2">Status:</p>
+            </div>
+          
+            <div className="flex flex-row space-x-8">
+              <p className="text-dark-orange bg-light-red pl-2 pr-2 rounded-md">UNCONFIRMED</p>
+              <p className="font-bold">Confirmed by 5 blocks</p>
+              <p></p>
+            </div>
+          </div>
+
+          <div className="flex flex-row space-x-52 border-b-[1px] pt-5 pb-5 border-lightest-gray">
+            <div className="flex flex-row">
+            <p className="bg-lightest-gray pt-1 rounded-md px-1 "><AiOutlineQuestion /></p>
+            <p className="font-bold pl-2">Time:</p>
+            </div>
+          
+            <p className="font-bold">18 secs ago | 2024-07-09 05:02:06 (UTC)</p>
+          </div>
+
+          <div className="flex flex-row space-x-12 border-b-[1px] pt-5  pb-5 border-lightest-gray">
+            <div className="flex flex-row">
+            <p className="bg-lightest-gray pt-1 rounded-md px-1 "><AiOutlineQuestion /></p>
+            <p className="font-bold">Resources Consumed & Fee:</p>
+            </div>
+          
+            <p className="font-bold  bg-lightest-gray pl-2 pr-2 rounded-md">265 Bandwidth </p>
           </div>
         </div>
       </div>
 
-      {/* For Table */}
-      <div className="flex flex-row justify-between md:justify-start gap-8 pt-20 pb-10">
-        <button
-          className={` py-2 md:py-3 px-3 md:px-9 font-bold text-base md:text-xl rounded-lg text-black cursor-pointer whitespace-nowrap ${
-            isShow === "Transactions"
-            ? "bg-dark-yellow shadow-lg"
-            : "bg-white"
-          }`}
-          onClick={() => setIsShow("Transactions")}
-        >
-          Transactions
-        </button>
-        <button
-         className={` py-2 md:py-3 px-5 md:px-9 font-bold text-base md:text-xl rounded-lg text-black cursor-pointer whitespace-nowrap ${
-          isShow === "Transfers"
-          ? "bg-dark-yellow shadow-lg"
-          : "bg-white"
-        }`}
-          onClick={() => setIsShow("Transfers")}
-        >
-          Transfers
-        </button>
+      {/* Third Div */}
+      <div className="pt-10">
+        <div className="flex flex-row">
+          <p  className={`cursor-pointer py-3 px-12 whitespace-nowrap  ${
+                  isRender === "Overview"
+                    ? "bg-white rounded-t-xl"
+                    : " text-black rounded-xl"
+                }`}
+            onClick={() => setIsRender("Overview")}>Overview</p>
+
+          <p  className={`cursor-pointer py-3 px-12 whitespace-nowrap  ${
+                  isRender === "Event Logs"
+                    ? "bg-white rounded-t-xl"
+                    : " text-black rounded-t-xl"
+                }`}
+          onClick={() => setIsRender("Event Logs")}>Event Logs</p>
+        </div>
+
+        <div>{renderItemComponent()}</div>
       </div>
 
-      <div>{showItemComponent()}</div>
-      <div></div>
+
+      {/* Fourth Div */}
+      <div className="bg-white mt-10 rounded-lg w-full flex flex-row pb-8">
+        <div className="flex flex-row w-[20%] p-10">
+          <p className="bg-mid-light-gray px-1 mb-28 rounded-md pt-1"><AiOutlineQuestion /></p>
+          <p className="pl-2">Private Note:</p>
+        </div>
+
+        <div className="w-[80%]">
+        <div className="pt-10">
+            <input 
+                type="text" 
+                rows={30}
+                cols={14}
+                value={inputValue} 
+                onChange={handleChange} 
+                placeholder="Enter the transaction note and press the Enter Key or click the blank space to save |"
+            />
+            <p>{inputValue}</p>
+        </div>
+          <div>
+          <button className="bg-dark-yellow py-2 px-8 font-bold rounded-lg  text-black cursor-pointer mt-14 " >Submit </button>
+          
+          </div>
+          <div className="pt-8">
+            <p>Although this is only viewable to you, do not store any sensitive data including your password, mnemonic, or private key here.</p>
+          </div>
+        </div>
+      </div>
     </div>
-  );
-};
+  )
+}
 
 export default TransactionDetailPage;
