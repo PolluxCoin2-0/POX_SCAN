@@ -210,7 +210,7 @@ const Navbar = () => {
             <p className="text-white cursor-pointer">Login</p>{" "}
           </Link>
           <Link to="/connectwallet">
-            <button className="bg-dark-yellow py-1 px-3 rounded-xl text-black cursor-pointer">
+            <button className="bg-dark-yellow py-1 px-3 rounded-xl text-black cursor-pointer whitespace-nowrap">
               Connect Wallet
             </button>
           </Link>
