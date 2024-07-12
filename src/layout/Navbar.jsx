@@ -160,7 +160,7 @@ const Navbar = () => {
 
     {/* Larger Scrren Navbar */}
       <div className="hidden md:flex  bg-dark-skyblue py-2 h-16 text-lg items-center justify-between pl-8 relative w-full">
-        <div className="flex items-center space-x-10">
+        <div className="flex items-center md:space-x-2 lg:space-x-2 xl:space-x-10 2xl:space-x-10">
           <Link to="/">
             <img
               src={LogoWithText}
