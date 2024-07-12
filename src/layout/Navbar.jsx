@@ -158,9 +158,9 @@ const Navbar = () => {
   return (
     <>
 
-    {/* Larger Screen Navbar */}
-    <div className="hidden lg:flex bg-dark-skyblue py-2 h-16 text-lg items-center justify-between pl-8 relative w-full">
-        <div className="flex items-center space-x-10">
+    {/* Larger Scrren Navbar */}
+      <div className="hidden md:flex  bg-dark-skyblue py-2 h-16 text-lg items-center justify-between pl-8 relative w-full">
+        <div className="flex items-center xl:space-x-2 2xl:space-x-10">
           <Link to="/">
             <img
               src={LogoWithText}
@@ -201,12 +201,13 @@ const Navbar = () => {
         <div className="flex items-center justify-between space-x-6">
           <SearchBar />
           <Link to="/register">
+            {" "}
             <p className="text-white cursor-pointer border-r-2 pr-6">
               Register
-            </p>
+            </p>{" "}
           </Link>
           <Link to="/login">
-            <p className="text-white cursor-pointer">Login</p>
+            <p className="text-white cursor-pointer">Login</p>{" "}
           </Link>
           <Link to="/connectwallet">
             <button className="bg-dark-yellow py-1 px-3 rounded-xl text-black cursor-pointer">
@@ -215,72 +216,6 @@ const Navbar = () => {
           </Link>
           <IoNotificationsCircleOutline
             size={36}
-            color="white"
-            className="cursor-pointer"
-          />
-          <div>
-            <img src={Logo} alt="logo-poxscan" className="cursor-pointer" />
-          </div>
-        </div>
-      </div>
-
-      {/* Medium Screen Navbar */}
-      <div className="hidden md:flex lg:hidden bg-dark-skyblue py-2 h-16 text-lg items-center justify-between pl-8 relative w-full">
-        <div className="flex items-center space-x-6">
-          <Link to="/">
-            <img
-              src={LogoWithText}
-              alt="logo-poxscan"
-              className="cursor-pointer border-r-2 border-white pr-4"
-            />
-          </Link>
-          {Object.keys(NavbarOptions).map((key, index) => {
-            const formattedKey = key.replace(/\s+/g, ""); // Remove all spaces from key
-            return (
-              <div
-                key={index}
-                onMouseEnter={() => setHoveredItem(formattedKey)}
-                //  onMouseLeave={() => setHoveredItem(null)}
-                className="relative"
-              >
-                <Link to={`/${formattedKey}`}>
-                  <p
-                    className={`cursor-pointer whitespace-nowrap font-semibold ${
-                      currentPath === `/${formattedKey}`
-                        ? "text-black rounded-3xl bg-dark-yellow px-4 py-1"
-                        : "text-white px-3"
-                    }`}
-                  >
-                    {key}
-                  </p>
-                </Link>
-                {hoveredItem === formattedKey && (
-                  <div className="absolute top-full left-0 mt-2 z-10 hover-menu">
-                    {renderHoverComponent()}
-                  </div>
-                )}
-              </div>
-            );
-          })}
-        </div>
-
-        <div className="flex items-center justify-between space-x-4">
-          <SearchBar />
-          <Link to="/register">
-            <p className="text-white cursor-pointer border-r-2 pr-4">
-              Register
-            </p>
-          </Link>
-          <Link to="/login">
-            <p className="text-white cursor-pointer">Login</p>
-          </Link>
-          <Link to="/connectwallet">
-            <button className="bg-dark-yellow py-1 px-2 rounded-xl text-black cursor-pointer">
-              Connect Wallet
-            </button>
-          </Link>
-          <IoNotificationsCircleOutline
-            size={32}
             color="white"
             className="cursor-pointer"
           />
