@@ -13,6 +13,24 @@ const BlockContainer = () => {
     slidesToScroll: 4,
     responsive: [
       {
+        breakpoint: 1440, // Large desktop screens
+        settings: {
+          slidesToShow: 5,
+          slidesToScroll: 5,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 1280, // Medium desktop screens
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 4,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
         breakpoint: 1024,
         settings: {
           slidesToShow: 3,
