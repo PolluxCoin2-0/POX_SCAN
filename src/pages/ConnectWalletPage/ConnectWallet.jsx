@@ -8,13 +8,13 @@ const ConnectWallet = () => {
         <p className="text-white font-semibold text-3xl">
           Select Connection Method
         </p>
-        <div className="flex justify-around py-12 w-3/5">
-          <div className="bg-white flex items-center space-x-4 rounded-lg px-8 py-3 cursor-pointer">
+        <div className="flex space-x-10 justify-around py-12 w-3/5">
+          <div className="bg-white flex items-center space-x-4 rounded-lg px-8 py-3 cursor-pointer min-w-fit">
             <img src={PolinkImg} alt="polink" className="w-12" />
-            <p className="font-semibold text-3xl">Pox Link</p>
+            <p className="font-semibold text-3xl whitespace-nowrap">Pox Link</p>
           </div>
 
-          <div className="bg-white flex items-center space-x-4 rounded-lg px-8 py-3 cursor-pointer">
+          <div className="bg-white flex items-center space-x-4 rounded-lg px-8 py-3 cursor-pointer min-w-fit">
             <img src={Ledger} alt="ledger" className="w-24" />
             <p className="font-semibold text-3xl">Ledger</p>
           </div>

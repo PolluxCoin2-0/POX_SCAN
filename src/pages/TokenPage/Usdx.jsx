@@ -28,15 +28,12 @@ const UsdxTable = () => {
     <div>
       <div className="min-w-[1500px]  flex flex-row justify-around p-2 bg-lightest-gray rounded-lg ">
           <p className=" w-[14%]">Amount</p>
-          <p className=" w-[14%]">Result</p>
+          <p className=" w-[8%]">Result</p>
           <p className=" w-[14%]">Time(UTC)</p>
-          <p className=" w-[14%]">From</p>
-          <p className=" w-[14%] whitespace-nowrap">
-            To
-          </p>
-          <p className=" w-[14%]">Hash</p>
-          <p className=" w-[14%]">Block</p>
-          
+          <p className=" w-[20%]">From</p>
+          <p className=" w-[17%] whitespace-nowrap">To</p>
+          <p className=" w-[17%]">Hash</p>
+          <p className=" w-[8%]">Block</p>
         </div>
 
         {data?.transactions  && data?.transactions.map((stablecoin, index) => {
@@ -44,12 +41,12 @@ const UsdxTable = () => {
             <>
               <div className="min-w-[1500px]  flex flex-row  justify-around border-b-2 p-3 border-text-bg-gray">
                 <p className="w-[14%] text-dark-red ">{Number(stablecoin?.asset).toFixed(6)}</p>
-                <p className=" w-[14%]">{stablecoin?.result}</p>
+                <p className=" w-[8%]">{stablecoin?.result}</p>
                 <p className="w-[14%] text-dark-red ">{secondsAgo(stablecoin?.timeStamp)}</p>
-                <p className="w-[14%] ">{stablecoin?.fromAddress && shortenString(stablecoin?.fromAddress,10)}</p>
-                <p className=" w-[14%]">{stablecoin?.toAddress && shortenString(stablecoin?.toAddress,10)}</p>
-                <p className=" w-[14%]">{stablecoin?.transactionId && shortenString(stablecoin?.transactionId,10)}</p>
-                <p className="w-[14%]">{stablecoin?.blockNumber}</p>
+                <p className="w-[20%] ">{stablecoin?.fromAddress && shortenString(stablecoin?.fromAddress,10)}</p>
+                <p className=" w-[17%]">{stablecoin?.toAddress && shortenString(stablecoin?.toAddress,10)}</p>
+                <p className=" w-[17%]">{stablecoin?.transactionId && shortenString(stablecoin?.transactionId,10)}</p>
+                <p className="w-[8%]">{stablecoin?.blockNumber}</p>
                 
               </div>
             </>
@@ -215,7 +212,7 @@ const Usdx = () => {
        </div>
       
       <div className="bg-white rounded-2xl p-4 md:p-7 ">
-      <div className="overflow-x-auto md:overflow-hidden">
+      <div className="overflow-x-auto">
         <p className="pb-5 font-medium text-light-gray">
           Only the first{" "}
           <span className="text-black font-semibold">10,000</span> records are

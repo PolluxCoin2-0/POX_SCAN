@@ -118,7 +118,7 @@ const Transaction = ({value}) => {
       </div>
 
       <div>
-        <div className="bg-white rounded-2xl p-4 md:p-10  overflow-x-auto md:overflow-hidden mt-16">
+        <div className="bg-white rounded-2xl p-4 md:p-10  overflow-x-auto mt-16">
           <div className=" flex flex-row justify-between">
             <div>
               <p className="">
@@ -172,13 +172,13 @@ const Transaction = ({value}) => {
                     </span>
                   </p>
                   <p className="w-[10%]">{contact.ContractName}</p>
-                  <p className="w-[10%]">{contact.NumberOfCalls}</p>
-                  <p className="w-[10%]">{contact.POXBalance}</p>
-                  <p className="w-[10%]">{contact.Version}</p>
-                  <p className="w-[10%]">{contact.Licence}</p>
-                  <p className="w-[10%]">{contact.CreatedOn}</p>
-                  <p className="w-[10%]">{contact.VerifiedOn}</p>
-                  <p className="w-[6%]">{contact.Settings}</p>
+                  <p className="w-[10%] indent-8">{contact.NumberOfCalls}</p>
+                  <p className="w-[10%] indent-8">{contact.POXBalance}</p>
+                  <p className="w-[10%] indent-6">{contact.Version}</p>
+                  <p className="w-[10%] indent-8">{contact.Licence}</p>
+                  <p className="w-[10%] indent-4">{contact.CreatedOn}</p>
+                  <p className="w-[10%] indent-4">{contact.VerifiedOn}</p>
+                  <p className="w-[6%] text-center">{contact.Settings}</p>
                 </div>
               </>
             );

@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import { getAllContractTableData, getContractTableData } from "../../utils/axios/Blockchain";
 import { PiWrenchLight } from "react-icons/pi";
 import { formatNumberWithCommas } from "../../utils/FormattingNumber";
+import { secondsAgo } from "../../utils/secondAgo";
 
 
 const Contacts = () => {
@@ -160,7 +161,7 @@ const Contacts = () => {
       </div>
 
        <div>
-        <div className="bg-white rounded-2xl p-4 md:p-10 overflow-x-auto md:overflow-hidden">
+        <div className="bg-white rounded-2xl p-4 md:p-10 overflow-x-auto">
           <div className=" flex flex-row items-center justify-between ">
             <div>
               <p className="">
@@ -217,11 +218,11 @@ const Contacts = () => {
                   <p className="w-[10%] text-center">{contact?.contractAddress && contact?.contractName}</p>
                   <p className="w-[10%] text-center">{contact?.noOfCalls && contact?.noOfCalls}</p>
                   
-                  <p className="w-[10%] text-center">{contact?.compiler && contact?.compiler}</p>
-                  <p className="w-[10%] text-center">{contact?.license && contact?.license}</p>
-                  <p className="w-[12%] text-center">{contact?.createdAt && contact.createdAt}</p>
-                  <p className="w-[12%] text-center">{contact?.updatedAt && contact?.updatedAt}</p>
-                  <p className="w-[6%] "><PiWrenchLight /></p>
+                  <p className="w-[10%] text-center indent-4">{contact?.compiler && contact?.compiler}</p>
+                  <p className="w-[10%] text-center indent-4">{contact?.license && contact?.license}</p>
+                  <p className="w-[12%] text-center indent-8">{contact?.createdAt && secondsAgo(contact.createdAt)}</p>
+                  <p className="w-[12%] text-center indent-8">{contact?.updatedAt && secondsAgo(contact?.updatedAt)}</p>
+                  <p className="w-[6%] flex justify-end"><PiWrenchLight /></p>
                 </div>
               </>
             );
