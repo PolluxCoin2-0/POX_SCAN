@@ -135,7 +135,7 @@ const PRC20TransferTable = ({ setPieChartData }) => {
 
   return (
     <div>
-      <div className="bg-white rounded-2xl p-4 md:p-10 overflow-x-auto md:overflow-hidden">
+      <div className="bg-white rounded-2xl p-4 md:p-10 overflow-x-auto">
         <div className=" flex flex-row justify-between">
           <div>
             <p className="">
