@@ -18,7 +18,7 @@ const ResourceCosts = () => {
             
           </div>
 
-          <div className="flex flex-col  ">
+          <div className="flex flex-col  ml-10">
             <div className="bg-white rounded-2xl shadow-2xl w-[450px] h-[180px] ">
             <p className="text-lg font-bold pt-7 pl-10 pr-8">About</p>
             <p className="pl-10 pt-1 text-light-gray leading-5 text-md">The Resource Costs chart shows the unit<br/> cost for obtaining Energy or Bandwidth<br/>

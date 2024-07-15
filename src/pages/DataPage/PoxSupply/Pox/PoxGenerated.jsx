@@ -86,16 +86,16 @@ const PoxGenerated = () => {
         <p className=" text-xl mb-10 font-bold">List</p>
         <div className="bg-white rounded-md  shadow-lg p-12">
           <div className="flex flex-row justify-around bg-lightest-gray  pt-2 pb-2 rounded-md text-light-gray">
-            <p>Date(UTC)</p>
-            <p>Pox Price</p>
+            <p className="w-[50%] text-center">Date(UTC)</p>
+            <p className="w-[50%] text-center">Pox Price</p>
           </div>
 
           {data?.map && data?.map ((param, index) => {
         return (
           <>
            <div className="flex flex-row justify-between p-5 border-b-2 border-b-lightest-gray">
-               <p className="w-[50%]">{param?.date}</p>
-               <p className="w-[50%]">{param?.value}</p>
+               <p className="w-[50%] text-center">{param?.date}</p>
+               <p className="w-[50%] text-center">{param?.value}</p>
                
            </div>
           </>

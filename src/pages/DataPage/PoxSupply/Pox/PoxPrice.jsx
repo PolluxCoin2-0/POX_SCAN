@@ -45,16 +45,16 @@ const PoxPrice = () => {
         <p className="text-2xl mb-10 mt-10 font-bold">List</p>
         <div className="bg-white rounded-xl shadow-xl p-10">
           <div className="flex flex-row  justify-between bg-lightest-gray ml-8 mr-8 pt-2 pb-2 rounded-md text-light-gray">
-            <p className="w-[50%] ">Date(UTC)</p>
-            <p className="w-[50%]">Pox Price</p>
+            <p className="w-[50%] text-center">Date(UTC)</p>
+            <p className="w-[50%] text-center">Pox Price</p>
           </div>
           
           {data?.map && data?.map ((param, index) => {
         return (
           <>
            <div className="flex flex-row justify-between p-5 border-b-2 border-b-lightest-gray">
-               <p className="w-[50%]">{param?.date}</p>
-               <p className="w-[50%]">{param?.value}</p>
+               <p className="w-[50%] text-center">{param?.date}</p>
+               <p className="w-[50%] text-center">{param?.value}</p>
                
            </div>
           </>

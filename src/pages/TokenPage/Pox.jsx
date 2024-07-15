@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { TokenData } from "../../data/Token";
 import SearchBarExpand from "../../components/SearchBarExpand";
 import Pagination from "../../components/Pagination";
 import { getHoldersData, getPoxData } from "../../utils/Token";
@@ -26,13 +25,13 @@ const TokenTransferTable = () => {
   return (
     <div>
       <div className="min-w-[1500px]  flex flex-row justify-around p-2 bg-lightest-gray rounded-lg ">
-        <p className=" w-[12%]">Hash</p>
-        <p className=" w-[12%]">Block</p>
-        <p className=" w-[8%]">Time</p>
+        <p className=" w-[16%]">Hash</p>
+        <p className=" w-[12%] ">Block</p>
+        <p className=" w-[12%]">Time</p>
         <p className=" w-[12%]">Transaction Type</p>
-        <p className=" w-[16%] whitespace-nowrap">From</p>
+        <p className=" w-[12%] whitespace-nowrap">From</p>
         <p className=" w-[12%]">To</p>
-        <p className=" w-[16%]">Token</p>
+        <p className=" w-[12%]">Token</p>
         <p className=" w-[8%]">Result</p>
       </div>
 
@@ -41,16 +40,16 @@ const TokenTransferTable = () => {
           return (
             <>
               <div className="min-w-[1500px]  flex flex-row  justify-around border-b-2 p-3 border-text-bg-gray">
-                <p className="text-dark-red  w-[12%]">
+                <p className="text-dark-red  w-[16%]">
                   {stablecoin?.transactionId &&
                     shortenString(stablecoin?.transactionId, 10)}
                 </p>
-                <p className=" w-[12%]">{stablecoin.blockNumber}</p>
-                <p className="text-dark-red  w-[8%]">
+                <p className=" w-[12%] ">{stablecoin.blockNumber}</p>
+                <p className="text-dark-red  w-[12%]">
                   {stablecoin.timeStamp && secondsAgo(stablecoin?.timeStamp)}
                 </p>
                 <p className=" w-[12%]">{stablecoin.PoxCount}</p>
-                <p className=" w-[16%]">
+                <p className=" w-[12%]">
                   {stablecoin.fromAddress &&
                     shortenString(stablecoin?.fromAddress, 5)}
                 </p>
@@ -58,7 +57,7 @@ const TokenTransferTable = () => {
                   {stablecoin.toAddress &&
                     shortenString(stablecoin?.toAddress, 5)}
                 </p>
-                <p className=" w-[16%]">
+                <p className=" w-[12%]">
                   {stablecoin?.assetAmount &&
                     (stablecoin.assetAmount / 1000000).toFixed(6)}{" "}
                   {stablecoin?.assetName}
@@ -111,7 +110,7 @@ const HoldersTable = () => {
                 <p className="w-[15%] text-dark-red ">{stablecoin?.balance}</p>
                 <p className="w-[15%] ">{stablecoin.PoxCount}</p>
                 <p className=" w-[15%]">{stablecoin?.percentage.toFixed(6)}%</p>
-                <p className=" w-[15%]"></p>
+                <p className=" w-[15%]">{stablecoin?.age && secondsAgo(stablecoin?.age)}</p>
               </div>
             </>
           );
@@ -219,16 +218,24 @@ const Pox = () => {
         </div>
       </div>
 
-      <div className="flex flex-row space-x-8">
+      <div className="flex flex-row space-x-8 pb-10">
         <p
-          className="cursor-pointer font-bold text-xl mb-6 mt-6 md:mt-0 md:mb-12 bg-dark-yellow rounded-md px-8 py-2"
+          className={`cursor-pointer py-3 px-4 whitespace-nowrap  ${
+            isRender === "Token Transfer"
+              ? "bg-dark-yellow font-semibold  shadow-lg rounded-lg"
+              : "text-black bg-text-bg-gray shadow-md rounded-lg"
+          }`}
           onClick={() => setIsRender("Token Transfer")}
         >
           Token Transfer
         </p>
 
         <p
-          className="cursor-pointer font-bold text-xl mb-6 mt-6 md:mt-0 md:mb-12 bg-lightest-gray rounded-md px-8 py-2"
+         className={`cursor-pointer py-3 px-4 whitespace-nowrap  ${
+          isRender === "Holders"
+            ? "bg-dark-yellow font-semibold  shadow-lg rounded-lg"
+            : "text-black bg-text-bg-gray shadow-md rounded-lg"
+        }`}
           onClick={() => setIsRender("Holders")}
         >
           Holders

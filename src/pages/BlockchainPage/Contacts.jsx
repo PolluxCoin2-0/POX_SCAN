@@ -11,30 +11,29 @@ import { useEffect, useState } from "react";
 import { getAllContractTableData, getContractTableData } from "../../utils/axios/Blockchain";
 import { PiWrenchLight } from "react-icons/pi";
 import { formatNumberWithCommas } from "../../utils/FormattingNumber";
-import { secondsAgo } from "../../utils/secondAgo";
+import { shortenString } from "../../utils/shortenString";
+
+const VerifiedContractTable = () => {
+  // For Pagination
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = 10; // Example total pages
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
 
 
-const Contacts = () => {
 
+  // for api integration
   const [data, setData] = useState([]);
-  const [data1, setData1] = useState([]);
-  const [piechartdata, setPieChartData] = useState([]);
+  
   useEffect(() => {
     
     const fetchData = async () => {
       try {
         const data = await getContractTableData();
         setData(data);
-        const data1 = await getAllContractTableData();
-        
-        setData1(data1);
-
-        const contractAddresses = data1[0].map(contract => ({
-          contractAddress: contract.contractAddress,
-          noOfCalls: contract.noOfCalls
-      }));
-      setPieChartData(contractAddresses);
-
+      
       } catch (error) {
         console.error('error', error);
       } 
@@ -44,6 +43,85 @@ const Contacts = () => {
   }, [])
 
 
+
+  return (
+    <div>
+    <div className="bg-white rounded-2xl p-4 md:p-10 overflow-x-auto">
+      <div className=" flex flex-row items-center justify-between ">
+        <div>
+          <p className="">
+            {" "}
+            <span className="text-lg font-bold">4 </span>{" "}
+            <span className="font-bold text-light-gray">
+              contracts in total
+            </span>
+          </p>
+        </div>
+
+        <div className="hidden md:flex flex-row justify-between px-32 rounded-md  border-2 border-lightest-gray">
+          <IoSearch className=" text-xl pt-4 w-10 h-10 text-light-gray" />
+
+          <input
+            className="bg-white h-12 w-full  rounded-lg text-sm  focus:outline-none placeholder:text-light-gray placeholder:font-medium"
+            type="search"
+            name="search"
+            placeholder="Search by Contract Accounts/Name"
+          />
+
+          <PiArrowBendDownLeftBold className="w-10 h-10 pt-4  text-light-gray" />
+        </div>
+      </div>
+
+      <div className="min-w-[1500px] flex flex-row justify-evenly text-center bg-lightest-gray p-2 m-3 rounded-xl ">
+        <p className="w-[7%] text-center ">Account</p>
+        <p className="w-[12%] text-center ">Contract Name</p>
+        <p className="w-[12%] text-center ">Number of Calls </p>
+        <p className=" w-[12%]  text-center text-nowrap">Contract Address</p>
+        <p className="w-[12%] text-center ">Version</p>
+        <p className="w-[12%] text-center ">License</p>
+        <p className="w-[12%] text-center ">Created On</p>
+        <p className="w-[12%] text-center ">Verified On</p>
+        <p className="w-[7%] text-center ">Setting</p>
+      </div>
+
+      {data[0] && data[0].map((contact, index) => {
+        return (
+          <>
+            <div className="min-w-[1500px]  flex flex-row justify-evenly p-5 border-b-2 border-lightest-gray  rounded-xl ">
+              <p className="whitespace-nowrap text-center w-[7%]">
+                <span className="px-3 py-1 bg-lightest-gray rounded-lg">
+                  SC
+              </span>
+              </p>
+              <p className="w-[12%] text-center">{contact?.contractName && contact?.contractName}</p>
+              <p className="w-[12%] text-center">{contact?.noOfCalls && contact?.noOfCalls}</p>
+              <p className="w-[12%] text-center">{contact?.contractAddress && shortenString(contact?.contractAddress, 10)} </p>
+              <p className="w-[12%] text-center indent-4">{contact?.compiler && contact?.compiler}</p>
+              <p className="w-[12%] text-center indent-4">{contact?.license && contact?.license}</p>
+              <p className="w-[12%] text-center indent-8">{contact?.createdAt && contact.createdAt}</p>
+              <p className="w-[12%] text-center indent-8">{contact?.updatedAt && contact?.updatedAt}</p>
+              <p className="w-[7%] flex justify-end"><PiWrenchLight /></p>
+            </div>
+          </>
+        );
+      })}
+
+<div className="flex justify-start md:justify-end ">
+    <Pagination
+    currentPage={currentPage}
+    totalPages={totalPages}
+    onPageChange={handlePageChange}
+  />
+    </div>
+    </div>
+   
+  </div>
+  )
+}
+
+
+const AllContractTable = () => {
+
    // For Pagination
    const [currentPage, setCurrentPage] = useState(1);
    const totalPages = 10; // Example total pages
@@ -52,6 +130,129 @@ const Contacts = () => {
      setCurrentPage(page);
    };
 
+  const [data1, setData1] = useState([]);
+  useEffect(() => {
+    
+    const fetchData = async () => {
+      try {
+        
+        const data1 = await getAllContractTableData();
+        console.log(data1);
+        setData1(data1);
+
+    } catch (error) {
+        console.error('error', error);
+      } 
+    };
+
+    fetchData();
+  }, [])
+
+  return (
+<div className="bg-white rounded-2xl p-4 md:p-10 overflow-x-auto">
+      <div className=" flex flex-row items-center justify-between ">
+        <div>
+          <p className="">
+            {" "}
+            <span className="text-lg font-bold">22 </span>{" "}
+            <span className="font-bold text-light-gray">
+              contracts in total
+            </span>
+          </p>
+        </div>
+
+      
+      </div>
+
+      <div className="min-w-[1500px] flex flex-row justify-evenly text-center bg-lightest-gray p-2 m-3 rounded-xl ">
+        <p className="w-[10%] text-center">Account</p>
+        <p className="w-[20%] text-center">Contract Address</p>
+        <p className="w-[20%] text-center">Number of Calls </p>
+        
+        <p className="w-[20%] text-center">Created On</p>
+        <p className="w-[20%] text-center">Verified On</p>
+        <p className="w-[10%] text-center">Settings</p>
+      
+      </div>
+
+      {data1[0] && data1[0].map((contact, index) => {
+        return (
+          <>
+            <div className="min-w-[1500px]  flex flex-row justify-evenly p-5 border-b-2 border-lightest-gray  rounded-xl ">
+              <p className="whitespace-nowrap w-[10%] text-center">
+                <span className="px-3 py-1 bg-lightest-gray rounded-lg">
+                  SC
+                </span>
+              </p>
+              <p className="w-[20%] text-center">{contact?.contractAddress && shortenString(contact?.contractAddress, 10)}</p>
+              <p className="w-[20%] text-center">{contact?.noOfCalls && contact?.noOfCalls ? contact?.noOfCalls : "--"}</p>
+              
+              <p className="w-[20%] text-center indent-4">{contact?.createdAt && contact?.createdAt}</p>
+              <p className="w-[20%] text-center indent-4">{contact?.updatedAt && contact?.updatedAt}</p>
+              <p className="w-[10%] flex justify-center"><PiWrenchLight /></p>
+            </div>
+          </>
+        );
+      })}
+
+<div className="flex justify-start md:justify-end ">
+    <Pagination
+    currentPage={currentPage}
+    totalPages={totalPages}
+    onPageChange={handlePageChange}
+  />
+    </div>
+    </div>
+  )
+}
+const Contacts = () => {
+
+  const [data, setData] = useState([]);
+  const [data1, setData1] = useState([]);
+  const [piechartdata, setPieChartData] = useState([]);
+  
+  useEffect(() => {
+    
+    const fetchData = async () => {
+      try {
+        const data = await getContractTableData();
+        setData(data);
+        const data1 = await getAllContractTableData();
+        setData1(data1);
+
+       const contractAddresses = data1[0].map(contract => ({
+        contractAddress: contract.contractAddress,
+         noOfCalls: contract.noOfCalls
+       }));
+       setPieChartData(contractAddresses);
+
+      } catch (error) {
+        console.error('error', error);
+      } 
+    };
+
+    fetchData();
+  }, [])
+
+ 
+
+  // for tab switching 
+  const [isShow, setIsShow] = useState("Verified Contract");
+
+  //  for tab switching in transactions and transfer
+  const showItemComponent = () => {
+    switch (isShow) {
+      case "Verified Contract":
+        return <VerifiedContractTable />;
+
+      case "All Contract":
+        return  <AllContractTable />;
+    }
+  };
+
+  
+   
+
   return (
     <div className="px-4 md:px-12 pb-12">
       <div>
@@ -59,7 +260,7 @@ const Contacts = () => {
       </div>
       <div className="">
         <div className="flex flex-row justify-between items-center pb-10">
-          <p className="text-lg md:text-2xl font-bold">Contacts</p>
+          <p className="text-lg md:text-2xl font-bold">Contracts</p>
           <button className="bg-dark-yellow py-2 px-4 md:px-16 font-bold text-base md:text-xl rounded-lg text-black cursor-pointer  ">
             Contracts Verification
           </button>
@@ -152,92 +353,29 @@ const Contacts = () => {
       </div>
 
       <div className="flex flex-row justify-between md:justify-start gap-8 pt-20 pb-10">
-        <button className="bg-dark-yellow shadow-lg py-3 md:py-5 px-3 md:px-9 font-bold text-base md:text-xl rounded-lg text-black cursor-pointer whitespace-nowrap">
+        <button 
+          className={`cursor-pointer py-3 px-4 whitespace-nowrap  ${
+            isShow === "Verified Contract"
+              ? "bg-dark-yellow font-semibold  shadow-lg rounded-lg"
+              : "text-black bg-text-bg-gray shadow-md rounded-lg"
+          }`}
+         onClick={() => setIsShow("Verified Contract")}>
           Verified Contract
         </button>
-        <button className="shadow-lg py-3 md:py-5 px-4 md:px-16 font-bold text-base md:text-xl rounded-lg bg-white text-black cursor-pointer whitespace-nowrap">
+
+        <button  className={`cursor-pointer py-3 px-4 whitespace-nowrap  ${
+            isShow === "All Contract"
+              ? "bg-dark-yellow font-semibold  shadow-lg rounded-lg"
+              : "text-black bg-text-bg-gray shadow-md rounded-lg"
+          }`}
+         onClick={() => setIsShow("All Contract")}>
           All Contract
         </button>
       </div>
 
-       <div>
-        <div className="bg-white rounded-2xl p-4 md:p-10 overflow-x-auto">
-          <div className=" flex flex-row items-center justify-between ">
-            <div>
-              <p className="">
-                {" "}
-                <span className="text-lg font-bold">36,045 </span>{" "}
-                <span className="font-bold text-light-gray">
-                  contracts in total
-                </span>
-              </p>
-            </div>
+      <div>{showItemComponent()}</div>
 
-            <div className="hidden md:flex flex-row justify-between px-32 rounded-md  border-2 border-lightest-gray">
-              <IoSearch className=" text-xl pt-4 w-10 h-10 text-light-gray" />
-
-              <input
-                className="bg-white h-12 w-full  rounded-lg text-sm  focus:outline-none placeholder:text-light-gray placeholder:font-medium"
-                type="search"
-                name="search"
-                placeholder="Search by Contract Accounts/Name"
-              />
-
-              <PiArrowBendDownLeftBold className="w-10 h-10 pt-4  text-light-gray" />
-            </div>
-          </div>
-
-          <div className="min-w-[1500px] flex flex-row justify-evenly text-center bg-lightest-gray p-2 m-3 rounded-xl ">
-            <p className="w-[30%]">Account</p>
-            <p className="w-[10%]">Contract Name</p>
-            <p className="w-[10%]">Number of Calls </p>
-            
-            <p className="w-[10%]">Version</p>
-            <p className="w-[10%]">License</p>
-            <p className="w-[12%]">Created On</p>
-            <p className="w-[12%]">Verified On</p>
-            <p className="w-[6%]">Setting</p>
-          </div>
-
-          {data[0] && data[0].map((contact, index) => {
-            return (
-              <>
-                <div className="min-w-[1500px]  flex flex-row justify-evenly p-5 border-b-2 border-lightest-gray  rounded-xl ">
-                  <p className="whitespace-nowrap w-[30%]">
-                    <span className="px-3 py-1 bg-lightest-gray rounded-lg">
-                      SC
-                    </span>
-                    <span className="text-dark-red px-2">
-                      {" "}
-                      {contact?.contractAddress}{" "}
-                    </span>
-                    {/* <span className="px-3 py-1 bg-lightest-gray rounded-lg">
-                      USDT Token
-                    </span> */}
-                  </p>
-                  <p className="w-[10%] text-center">{contact?.contractAddress && contact?.contractName}</p>
-                  <p className="w-[10%] text-center">{contact?.noOfCalls && contact?.noOfCalls}</p>
-                  
-                  <p className="w-[10%] text-center indent-4">{contact?.compiler && contact?.compiler}</p>
-                  <p className="w-[10%] text-center indent-4">{contact?.license && contact?.license}</p>
-                  <p className="w-[12%] text-center indent-8">{contact?.createdAt && secondsAgo(contact.createdAt)}</p>
-                  <p className="w-[12%] text-center indent-8">{contact?.updatedAt && secondsAgo(contact?.updatedAt)}</p>
-                  <p className="w-[6%] flex justify-end"><PiWrenchLight /></p>
-                </div>
-              </>
-            );
-          })}
-
-<div className="flex justify-start md:justify-end ">
-        <Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={handlePageChange}
-      />
-        </div>
-        </div>
-       
-      </div>
+    
     </div>
   );
 };

@@ -87,8 +87,8 @@ const POXTransferTable = () => {
                 <p className="w-[8%]">{contact?.blockNumber && formatNumberWithCommas(contact?.blockNumber)}</p>
                 <p className="w-[12%]">{contact?.timeStamp && secondsAgo(contact?.timeStamp)}</p>
                 <p className="w-[12%] text-dark-red">{contact?.assetName && contact?.assetName}</p>
-                <p className="w-[15%] text-dark-red">{contact?.fromAddress && shortenString(contact?.fromAddress,8)}</p>
-                <p className="w-[16%] text-dark-red">{contact?.toAddress && shortenString(contact?.toAddress,8)}</p>
+                <p className="w-[15%] text-dark-red">{contact?.fromAddress && shortenString(contact?.fromAddress,4)}</p>
+                <p className="w-[16%] text-dark-red">{contact?.toAddress && shortenString(contact?.toAddress,4)}</p>
                 <p className="w-[12%] text-dark-red">{Number(contact?.assetAmount/Math.pow(10,6)).toFixed(6)} {contact?.assetName && contact?.assetName}</p>
                 <p className="w-[5%] text-dark-red">{contact?.result && contact?.result==="SUCCESS"?<IoCheckmarkCircleOutline size={24} color="green" />:<RxCrossCircled size={24} color="red"/>}</p>
               </div>
@@ -161,14 +161,14 @@ const PRC20TransferTable = ({ setPieChartData }) => {
         </div>
 
         <div className="min-w-[1500px] flex flex-row justify-evenly items-center bg-lightest-gray p-2 m-3 rounded-xl">
-          <p className="w-[16%]">Token</p>
-          <p className="w-[12%]">Amount/ID</p>
-          <p className="w-[8%]">Result</p>
-          <p className="w-[12%]">Time</p>
-          <p className="w-[12%]">From</p>
-          <p className="w-[12%]">To</p>
-          <p className="w-[16%]">Hash</p>
-          <p className="w-[8%] text-center">Block</p>
+          <p className="w-[16%] text-left ">Token</p>
+          <p className="w-[12%] text-left ">Amount/ID</p>
+          <p className="w-[8%] text-left ">Result</p>
+          <p className="w-[12%] text-left ">Time</p>
+          <p className="w-[12%] text-left ">From</p>
+          <p className="w-[12%] text-left ">To</p>
+          <p className="w-[16%] text-left ">Hash</p>
+          <p className="w-[8%] text-left">Block</p>
           
         </div>
 
@@ -176,7 +176,7 @@ const PRC20TransferTable = ({ setPieChartData }) => {
           return (
             <>
               <div className="min-w-[1500px] flex flex-row justify-evenly items-center p-5 border-b-2 border-lightest-gray  rounded-xl ">
-                <div className="whitespace-nowrap w-[12%]">
+                <div className="whitespace-nowrap tex-center w-[12%]">
                   <div className="flex items-center space-x-4 mb-1">
                  <p className="text-dark-red"> Pollux...({contact?.assetName && contact?.assetName})</p>
                  <p className="px-2 py-[1px] rounded-md bg-light-red text-black"> {contact?.type && contact?.type}</p>
@@ -186,12 +186,12 @@ const PRC20TransferTable = ({ setPieChartData }) => {
                   </span>
                 </div>
                 <p className="w-[16%] text-center">{contact?.asset && contact?.asset}</p>
-                <p className="w-[8%]">{contact?.result && contact?.result==="SUCCESS"?<IoCheckmarkCircleOutline size={24} color="green" />:<RxCrossCircled size={24} color="red"/>}</p>
-                <p className="w-[12%] ">{contact?.timeStamp && secondsAgo(contact?.timeStamp)}</p>
-                <p className="w-[12%] text-dark-red">{contact?.fromAddress && shortenString(contact?.fromAddress,8)}</p>
-                <p className="w-[12%] text-dark-red">{contact?.toAddress && shortenString(contact?.toAddress,8)}</p>
-                <p className="w-[16%] text-dark-red">{contact?.transactionId && shortenString(contact?.transactionId,10)}</p>
-                <p className="w-[8%] text-right text-dark-red">{contact?.blockNumber && formatNumberWithCommas(contact?.blockNumber)}</p>
+                <p className="w-[8%] text-center">{contact?.result && contact?.result==="SUCCESS"?<IoCheckmarkCircleOutline size={24} color="green" />:<RxCrossCircled size={24} color="red"/>}</p>
+                <p className="w-[12%] text-center ">{contact?.timeStamp && secondsAgo(contact?.timeStamp)}</p>
+                <p className="w-[12%] text-center text-dark-red">{contact?.fromAddress && shortenString(contact?.fromAddress,4)}</p>
+                <p className="w-[12%] text-center text-dark-red">{contact?.toAddress && shortenString(contact?.toAddress,4)}</p>
+                <p className="w-[16%] text-center text-dark-red">{contact?.transactionId && shortenString(contact?.transactionId,5 )}</p>
+                <p className="w-[8%] text-center text-dark-red">{contact?.blockNumber && formatNumberWithCommas(contact?.blockNumber)}</p>
               </div>
             </>
           );

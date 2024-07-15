@@ -22,7 +22,7 @@ const RealtimeBlockProduction = () => {
             
           </div>
 
-          <div className="flex flex-col ">
+          <div className="flex flex-col ml-10">
             <div className="bg-white rounded-2xl shadow-2xl w-[450px] h-[180px] ">
             <p className="text-lg font-bold pt-7 pl-10 pr-8">About</p>
             <p className="pl-10 pt-1 text-light-gray leading-5 text-md">The real-time block production chart<br/>shows the block distribution of Super 
@@ -46,13 +46,13 @@ const RealtimeBlockProduction = () => {
         <p className=" text-xl font-bold mt-10">List</p>
         <div className="bg-white rounded-md shadow-lg p-10 mt-8">
           <div className="flex flex-row justify-around bg-lightest-gray ml-8 mr-8 pt-2 pb-2 rounded-md text-light-gray">
-            <p>Date(UTC)</p>
-            <p>Block</p>
+            <p className=" text-center">Date(UTC)</p>
+            <p className="text-center">Block</p>
           </div>
 
 
           <div className="flex flex-row justify-around ">
-            <div className="pt-8">
+            <div className="pt-8 text-center">
               
             <p className="pt-8 ">2024-05-11T00.07;8:35.519Z</p>
             <p className="pt-8">2024-05-11T00.07;8:35.519Z</p>
@@ -68,7 +68,7 @@ const RealtimeBlockProduction = () => {
             
             </div>
 
-            <div className="pt-8">
+            <div className="pt-8 text-center">
               
             <p className="pt-8">64230</p>
             <p className="pt-8">64230</p>
