@@ -64,6 +64,7 @@ import Usdx from "./pages/TokenPage/Usdx";
 const routesArray = [
   "/",
   "/home",
+  "/transactiondetails/*",
   "/transaction/details",
   "/register",
   "/login",
@@ -125,20 +126,29 @@ const routesArray = [
 
 const AppRoutes = () => {
   const location = useLocation();
-  const hideSidebar =
-    location.pathname === "/" ||
-    location.pathname === "/Home" ||
-    location.pathname === "/connectwallet" ||
-    location.pathname === "/connectwallet2" ||
-    location.pathname === "/login" ||
-    location.pathname === "/forgetpassword" ||
-    location.pathname === "/newpassword" ||
-    location.pathname === "/register" ||
-    location.pathname === "/error";
+  const hideSidebarRoutes = [
+    "/",
+    "/home",
+    "/transactiondetails/*",
+    "/connectwallet",
+    "/connectwallet2",
+    "/login",
+    "/forgetpassword",
+    "/newpassword",
+    "/register",
+    "/error",
+  ];
 
-  const isValidRoutes = routesArray
-    .map((route) => route.toLowerCase())
-    .includes(location.pathname.toLowerCase());
+  const isValidRoute = (route, pathname) => {
+    if (route.includes('*')) {
+      const regex = new RegExp('^' + route.replace('*', '.*') + '$');
+      return regex.test(pathname.toLowerCase());
+    }
+    return route.toLowerCase() === pathname.toLowerCase();
+  };
+
+  const hideSidebar = hideSidebarRoutes.some((route) => isValidRoute(route, location.pathname));
+  const isValidRoutes = routesArray.some((route) => isValidRoute(route, location.pathname));
 
   return (
     <div className="app-bg">
@@ -151,6 +161,7 @@ const AppRoutes = () => {
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/home" element={<Home />} />
+                <Route path="/transactiondetails/:id" element={<TransactionDetailPage/>} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/forgetpassword" element={<ForgetPassword />} />
@@ -160,7 +171,6 @@ const AppRoutes = () => {
             ) : (
               <Sidebar>
                 <Routes>
-                <Route path="/transaction/details" element={<TransactionDetailPage />} />
                   {/* Blockchain Routes */}
                   <Route path="/blockchain">
                     <Route index element={<Nodes />} />

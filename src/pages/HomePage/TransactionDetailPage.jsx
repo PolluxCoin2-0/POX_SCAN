@@ -13,6 +13,7 @@ import { IoIosCheckmarkCircleOutline } from "react-icons/io";
 import { RxCrossCircled } from "react-icons/rx";
 import { shortenString } from "../../utils/shortenString";
 import { secondsAgo } from "../../utils/secondAgo";
+import { useParams } from "react-router-dom";
 
 
 const TransactionTable = () => {
@@ -204,6 +205,8 @@ const Wallet = () => {
 };
 
 const TransactionDetailPage = () => {
+  const transactionId=useParams().id;
+  console.log(transactionId)
   const [isShow, setIsShow] = useState("Transactions");
 
   //  for tab switching in transactions and transfer
