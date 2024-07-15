@@ -71,8 +71,12 @@ const TransactionContainer = () => {
             </div>
 
             <div>
+              <Link to={`/accountdetails/${transaction?.fromAddress}`}>
             <p className="font-semibold pb-3">{transaction?.fromAddress && transaction?.fromAddress}</p>
+            </Link>
+            <Link to={`/accountdetails/${transaction?.toAddress}`}>
               <p className="font-semibold">{transaction?.toAddress && transaction?.toAddress}</p>
+              </Link>
             </div>
 
             <div className="flex items-center space-x-4 whitespace-nowrap">

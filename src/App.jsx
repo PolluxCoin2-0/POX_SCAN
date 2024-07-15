@@ -61,11 +61,14 @@ import {
   ConnectWallet,
 } from "./pages";
 import Usdx from "./pages/TokenPage/Usdx";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const routesArray = [
   "/",
   "/home",
   "/transactiondetails/*",
+  "/accountdetails/*",
   "/transaction/details",
   "/register",
   "/login",
@@ -110,6 +113,7 @@ const routesArray = [
   "/data/poxsupply/contracts",
   "/data/poxsupply/contracts/contractcalls",
   "/data/poxsupply/contracts/topcontracts",
+  "/data/ranking",
   "/data/ranking/accounts",
   "/data/ranking/tokens",
   "/data/ranking/contracts",
@@ -131,6 +135,7 @@ const AppRoutes = () => {
     "/",
     "/home",
     "/transactiondetails/*",
+  "/accountdetails/*",
     "/connectwallet",
     "/connectwallet2",
     "/login",
@@ -158,11 +163,20 @@ const AppRoutes = () => {
         // eslint-disable-next-line no-constant-condition
         isValidRoutes ? (
           <>
+            <ToastContainer 
+          position="top-right"
+          autoClose={3000} 
+          theme="dark" 
+          newestOnTop={true}
+          pauseOnFocusLoss
+           toastClassName="custom-toast"
+          />
             {hideSidebar ? (
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/home" element={<Home />} />
                 <Route path="/transactiondetails/:id" element={<TransactionDetailPage/>} />
+                <Route path="/accountdetails/:id" element={<AccountDetailPage/>} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/forgetpassword" element={<ForgetPassword />} />
