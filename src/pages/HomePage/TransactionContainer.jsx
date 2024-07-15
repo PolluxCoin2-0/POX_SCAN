@@ -4,6 +4,7 @@ import AreaChartComp from "../../components/AreaChart";
 import { useEffect, useState } from "react";
 import { getTransactionGraphData, getTransactionTableData } from "../../utils/axios/Home";
 import { secondsAgo } from "../../utils/secondAgo";
+import { Link } from "react-router-dom";
 
 const TransactionContainer = () => {
 
@@ -53,9 +54,10 @@ const TransactionContainer = () => {
         >
           {/* First column */}
           <div>
+            <Link to={`/transactiondetails/${transaction?.transactionId}`}>
             <p className="font-semibold pb-3 mr-6 md:mr-0">
               {transaction?.transactionId && transaction?.transactionId}
-            </p>
+            </p></Link>
             <p className="text-light-gray">
               {transaction?.timeStamp && secondsAgo(transaction?.timeStamp)} secs ago
             </p>
