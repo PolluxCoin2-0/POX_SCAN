@@ -39,7 +39,7 @@ const OnchainDataSize = () => {
             
           </div>
 
-          <div className="flex flex-col  ">
+          <div className="flex flex-col ml-10 ">
             <div className="bg-white rounded-2xl shadow-2xl w-[450px] h-[180px] ">
             <p className="text-lg font-bold pt-7 pl-10 pr-8">About</p>
             <p className="pl-10 pt-1 text-light-gray leading-5 text-md">The On-Chain data size chart shows the <br/>total size of data on TRON, in bytes. A<br/>
@@ -61,16 +61,16 @@ const OnchainDataSize = () => {
         <p className="text-xl font-bold mt-10">List</p>
         <div className="bg-white rounded-md  shadow-lg p-10 mt-8">
           <div className="flex flex-row justify-around bg-lightest-gray ml-8 mr-8 pt-2 pb-2 rounded-md text-light-gray">
-            <p className="w-[50%]">Date(UTC)</p>
-            <p className="w-[50%]">Chain</p>
+            <p className="w-[50%] text-center">Date(UTC)</p>
+            <p className="w-[50%] text-center">Chain</p>
           </div>
 
           {data?.map && data?.map ((param, index) => {
         return (
           <>
            <div className="flex flex-row justify-between p-5 border-b-2 border-b-lightest-gray">
-               <p className="w-[50%]">{param?.date}</p>
-               <p className="w-[50%]">{param?.value}</p>
+               <p className="w-[50%] text-center">{param?.date}</p>
+               <p className="w-[50%] text-center">{param?.value}</p>
                
            </div>
           </>

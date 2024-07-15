@@ -27,8 +27,8 @@ const Pox = () => {
         <div>
           <p className="text-2xl font-bold">POX Supply</p>
           <div className="bg-white rounded-2xl shadow-xl w-[880px] h-[400px] mt-5">
-          <div className="h-96 pt-12 w-[850px]">
-            <BarHashChart />
+          <div className=" pt-12 w-[850px]">
+            <BarHashChart width="500"/>
             </div>
           </div>
         </div>

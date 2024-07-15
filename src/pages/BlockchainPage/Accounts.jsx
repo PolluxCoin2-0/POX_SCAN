@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import SearchBarExpand from "../../components/SearchBarExpand";
-import { FaToggleOn } from "react-icons/fa";
+// import { FaToggleOn } from "react-icons/fa";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import Pagination from "../../components/Pagination";
 import { getAccountsData, getAccountTableData } from "../../utils/axios/Blockchain";
@@ -132,26 +132,26 @@ const Accounts = () => {
             The latest <span className="text-black font-semibold"> 10,000</span>
             records are shown, sorted by decreasing POX balance by default{" "}
           </p>
-          <p className="text-light-gray text-3xl ">
+          {/* <p className="text-light-gray text-3xl ">
             {" "}
             <FaToggleOn />{" "}
-          </p>
-          <p className="text-light-gray">Hide contract address</p>
-          <div className="bg-lightest-gray font-bold pl-2 rounded-md w-5 h-6">
+          </p> */}
+          {/* <p className="text-light-gray flex justify-end">Hide contract address</p> */}
+          {/* <div className="bg-lightest-gray font-bold pl-2 rounded-md w-5 h-6">
             ?
-          </div>
+          </div> */}
         </div>
 
         <div className="flex flex-row justify-around p-2 bg-lightest-gray rounded-lg min-w-[1500px] md:min-w-full">
-          <p className=" w-[8%]">#</p>
-          <p className=" w-[28%]">Account</p>
-          <p className=" w-[12%]">Pox Balance</p>
-          <p className=" w-[12%]">Percentage</p>
-          <p className=" w-[8%] whitespace-nowrap">
+          <p className=" w-[5%] text-center">#</p>
+          <p className=" w-[20%] text-center">Account</p>
+          <p className=" w-[18%] text-center">Pox Balance</p>
+          <p className=" w-[10%] text-center">Percentage</p>
+          <p className=" w-[10%] text-center whitespace-nowrap">
             POX Power
           </p>
-          <p className=" w-[8%]">Pox Count</p>
-          <p className=" w-[12%]">Age</p>
+          <p className=" w-[10%] text-center">Pox Count</p>
+          <p className=" w-[15%] text-center">Age</p>
           
         </div>
 
@@ -159,13 +159,13 @@ const Accounts = () => {
           return (
             <>
               <div className="flex flex-row  justify-around border-b-2 p-3 border-text-bg-gray min-w-[1500px] md:min-w-full" key={index}>
-                <p className="text-dark-red  w-[8%]">{stablecoin.Block}</p>
-                <p className=" w-[28%]">{shortenString(stablecoin?.address,8)}</p>
-                <p className="text-dark-red  w-[12%]">{Number(stablecoin?.balance).toFixed(6)}</p>
-                <p className=" w-[12%]">{Number(stablecoin?.percentage).toFixed(2)} %</p>
-                <p className=" w-[8%]">{stablecoin?.poxpower}</p>
-                <p className=" w-[8%]">{stablecoin?.txnCount}</p>
-                <p className=" w-[12%]">{stablecoin?.age && secondsAgo(stablecoin?.age)}</p>
+                <p className="text-dark-red text-center w-[5%]">{stablecoin?.Block && stablecoin?.Block}</p>
+                <p className=" w-[20%] text-center">{shortenString(stablecoin?.address && stablecoin?.address,10)}</p>
+                <p className="text-dark-red  w-[18%] text-center">{stablecoin?.balance && Number(stablecoin?.balance).toFixed(6)}</p>
+                <p className=" w-[10%] text-center">{stablecoin?.percentage && Number(stablecoin?.percentage).toFixed(2)} %</p>
+                <p className=" w-[10%] text-center">{stablecoin?.poxpower && stablecoin?.poxpower}</p>
+                <p className=" w-[10%] text-center">{stablecoin?.txnCount && stablecoin?.txnCount}</p>
+                <p className=" w-[15%] text-center">{stablecoin?.age && secondsAgo(stablecoin?.age)}</p>
                 
               </div>
             </>

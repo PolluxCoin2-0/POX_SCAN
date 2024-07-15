@@ -62,54 +62,23 @@ const AverageBlockSize = () => {
         <p className=" text-xl font-bold mt-10">List</p>
         <div className="bg-white rounded-md  shadow-lg p-10 mt-8">
           <div className="flex flex-row justify-around bg-lightest-gray ml-8 mr-8 pt-2 pb-2 rounded-md text-light-gray">
-            <p className="w-[50%]">Date(UTC)</p>
-            <p className="w-[50%]">Block</p>
+            <p className="w-[50%] text-center">Date(UTC)</p>
+            <p className="w-[50%] text-center">Block</p>
           </div>
          
           {data?.map && data?.map ((param, index) => {
         return (
           <>
            <div className="flex flex-row justify-between p-5 border-b-2 border-b-lightest-gray">
-               <p className="w-[50%]">{param?.date}</p>
-               <p className="w-[50%]">{param?.value}</p>
+               <p className="w-[50%] text-center">{param?.date}</p>
+               <p className="w-[50%] text-center">{param?.value}</p>
                
            </div>
           </>
         )
        })}
 
-          <div className="flex flex-row justify-around ">
-            <div className="pt-8">
-              
-            <p className="pt-8 ">2024-05-11T00.07;8:35.519Z</p>
-            <p className="pt-8">2024-05-11T00.07;8:35.519Z</p>
-            <p className="pt-8">2024-05-11T00.07;8:35.519Z</p>
-            <p className="pt-8">2024-05-11T00.07;8:35.519Z</p>
-            <p className="pt-8">2024-05-11T00.07;8:35.519Z</p>
-            <p className="pt-8">2024-05-11T00.07;8:35.519Z</p>
-            <p className="pt-8">2024-05-11T00.07;8:35.519Z</p>
-            <p className="pt-8">2024-05-11T00.07;8:35.519Z</p>
-            <p className="pt-8">2024-05-11T00.07;8:35.519Z</p>
-            <p className="pt-8">2024-05-11T00.07;8:35.519Z</p>
-            <p className="pt-8">2024-05-11T00.07;8:35.519Z</p>
-            
-            </div>
-
-            <div className="pt-8">
-              
-            <p className="pt-8">64230</p>
-            <p className="pt-8">64230</p>
-            <p className="pt-8">64230</p>
-            <p className="pt-8">64230</p>
-            <p className="pt-8">64230</p>
-            <p className="pt-8">64230</p>
-            <p className="pt-8">64230</p>
-            <p className="pt-8">64230</p>
-            <p className="pt-8">64230</p>
-            <p className="pt-8">64230</p> 
-            <p className="pt-8">64230</p>
-            </div>
-          </div>
+        
         </div>
       </div>
     </div>

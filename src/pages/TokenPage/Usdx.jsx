@@ -3,10 +3,11 @@ import { TokenData } from "../../data/Token";
 import SearchBarExpand from "../../components/SearchBarExpand";
 import Pagination from "../../components/Pagination";
 import { getUsdxData, getUsdxHolderData } from "../../utils/Token";
-import { IoShirtOutline } from "react-icons/io5";
+import { IoCheckmarkCircleOutline, IoShirtOutline } from "react-icons/io5";
 import { shortenString } from "../../utils/shortenString";
 import { GiSandsOfTime } from "react-icons/gi";
 import { secondsAgo } from "../../utils/secondAgo";
+import { RxCrossCircled } from "react-icons/rx";
 
 const UsdxTable = () => {
   const [data, setData] = useState({});
@@ -41,7 +42,7 @@ const UsdxTable = () => {
             <>
               <div className="min-w-[1500px]  flex flex-row  justify-around border-b-2 p-3 border-text-bg-gray">
                 <p className="w-[14%] text-dark-red ">{Number(stablecoin?.asset).toFixed(6)}</p>
-                <p className=" w-[8%]">{stablecoin?.result}</p>
+                <p className=" w-[8%]">{stablecoin?.result && stablecoin?.result ? <IoCheckmarkCircleOutline size={24} color="green" />:<RxCrossCircled size={24} color="red"/>}</p>
                 <p className="w-[14%] text-dark-red ">{secondsAgo(stablecoin?.timeStamp)}</p>
                 <p className="w-[20%] ">{stablecoin?.fromAddress && shortenString(stablecoin?.fromAddress,10)}</p>
                 <p className=" w-[17%]">{stablecoin?.toAddress && shortenString(stablecoin?.toAddress,10)}</p>
@@ -75,33 +76,33 @@ const TokenHolderTable = () => {
   }, [])
 
   return (
-    <div>
-       <div className="flex flex-row justify-evenly ">
-        <p  className="w-[8%]">#</p>
-        <p  className="w-[28%]">Account</p>
-        <p  className="w-[16%]">Amount</p>
-        <p  className="w-[16%]">Value</p>
-        <p className="w-[16%]">Percentage</p>
-        <p  className="w-[12%]">Latest TXN Time(Local)</p>
-       </div>
+    <div className="">
+  <div className="min-w-[1500px] flex flex-row justify-around p-2 bg-lightest-gray rounded-lg">
+    <p className="w-[8%]">#</p>
+    <p className="w-[28%]">Account</p>
+    <p className="w-[16%]">Amount</p>
+    <p className="w-[16%]">Value</p>
+    <p className="w-[16%]">Percentage</p>
+    <p className="w-[12%]">Latest TXN Time(Local)</p>
+  </div>
 
+  {holderdata?.holders?.map && holderdata?.holders?.map((stablecoin, index) => {
+    // Calculate the hash number (1, 2, 3, ...)
+    const hashNumber = index + 1;
 
-       {holderdata?.holders?.map && holderdata?.holders?.map((stablecoin, index) => {
-          return (
-            <>
-              <div className="min-w-[1500px]  flex flex-row  justify-around border-b-2 p-3 border-text-bg-gray">
-                <p className="w-[8%] text-dark-red "></p>
-                <p className=" w-[28%]">{stablecoin?.walletAddress}</p>
-                <p className="w-[16%] text-dark-red ">{stablecoin?.balance}</p>
-                <p className="w-[16%] ">{stablecoin?.balance}</p>
-                <p className=" w-[16%]">{stablecoin?.percentage}</p>
-                <p className=" w-[12%]"></p>
-                
-              </div>
-            </>
-          );
-        })}
-    </div>
+    return (
+      <div key={index} className="min-w-[1500px] flex flex-row justify-around border-b-2 p-3 border-text-bg-gray">
+        <p className="w-[8%] text-dark-red">{hashNumber}</p>
+        <p className="w-[28%]">{stablecoin?.walletAddress}</p>
+        <p className="w-[16%] text-dark-red">{stablecoin?.balance}</p>
+        <p className="w-[16%]">${Number(stablecoin?.balance).toFixed(2)}</p>
+        <p className="w-[16%]">{stablecoin?.percentage}%</p>
+        <p className="w-[12%]">{/* Render latest transaction time here */}</p>
+      </div>
+    );
+  })}
+</div>
+
   )
 }
 
@@ -204,10 +205,19 @@ const Usdx = () => {
         </div>
       </div>
        
-       <div className="flex flex-row space-x-8">
-       <p className="cursor-pointer font-bold text-xl mb-6 mt-6 md:mt-0 md:mb-12 bg-dark-yellow px-8 py-2 rounded-lg"
+       <div className="flex flex-row space-x-8 pb-10">
+       <p className={`cursor-pointer py-3 px-4 whitespace-nowrap  ${
+            isRender === "Token Transfer"
+              ? "bg-dark-yellow font-semibold  shadow-lg rounded-lg"
+              : "text-black bg-text-bg-gray shadow-md rounded-lg"
+          }`}
        onClick={() => setIsRender("Token Transfer")}>Token Transfer</p>
-       <p className="cursor-pointer font-bold text-xl mb-6 mt-6 md:mt-0 md:mb-12 bg-lightest-gray px-8 py-2 rounded-lg"
+
+       <p className={`cursor-pointer py-3 px-4 whitespace-nowrap  ${
+            isRender === "Token Holders"
+              ? "bg-dark-yellow font-semibold  shadow-lg rounded-lg"
+              : "text-black bg-text-bg-gray shadow-md rounded-lg"
+          }`}
        onClick={() => setIsRender("Token Holders")}>Token Holders</p>
        </div>
       

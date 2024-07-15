@@ -241,7 +241,7 @@ const TransactionDetailPage= () => {
     }
   };
 
-  console.log(data?.transactions)
+  // console.log(data?.transactions)
   return (
     <div className="px-12 pb-12">
        {/* First Div */}

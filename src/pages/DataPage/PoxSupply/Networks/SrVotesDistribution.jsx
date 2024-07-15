@@ -43,7 +43,7 @@ const SrVotesDistribution = () => {
             
           </div>
 
-          <div className="flex flex-col  ">
+          <div className="flex flex-col ">
             <div className="bg-white rounded-2xl shadow-2xl w-[450px] h-[180px] ">
             <p className="text-lg font-bold pt-7 pl-10 pr-8">About</p>
             <p className="pl-10 pt-1 text-light-gray leading-5 text-md">The SR Vote Distribution chart shows<br/>distribution votes on SRs in the latest
@@ -67,16 +67,16 @@ const SrVotesDistribution = () => {
         <p className=" text-xl font-bold mt-10">List</p>
         <div className="bg-white rounded-md shadow-lg p-10 mt-8">
           <div className="flex flex-row justify-around bg-lightest-gray ml-8 mr-8 pt-2 pb-2 rounded-md text-light-gray">
-            <p className="w-[50%]">Date(UTC)</p>
-            <p className="w-[50%]">Block</p>
+            <p className="w-[50%] text-center">Date(UTC)</p>
+            <p className="w-[50%] text-center">Block</p>
           </div>
           
           {data?.witnesses?.map && data?.witnesses?.map((param, index) => {
         return (
           <>
            <div className="flex flex-row justify-between p-5 border-b-2 border-b-lightest-gray">
-               <p className="w-[50%]">{param?.url && extractSiteName(param?.url)}</p>
-               <p className="w-[50%]">{param?.voteCount}</p>
+               <p className="w-[50%] text-center">{param?.url && extractSiteName(param?.url)}</p>
+               <p className="w-[50%] text-center">{param?.voteCount}</p>
                
            </div>
           </>

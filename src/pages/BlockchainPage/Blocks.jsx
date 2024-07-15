@@ -127,30 +127,30 @@ const Blocks = () => {
         </p>
  
         <div className="flex flex-row justify-around p-2 pb-3 bg-lightest-gray rounded-lg min-w-[1500px] md:min-w-full">
-          <p className=" w-[12%]  font-bold">Block</p>
-          <p className=" w-[12%] font-bold">Age</p>
-          <p className=" w-[12%] font-bold">Producer</p>
-          <p className=" w-[12%] font-bold whitespace-nowrap">Pox Count</p>
-          <p className=" w-[20%] font-bold whitespace-nowrap">
+          <p className=" w-[12%]  font-bold text-center">Block</p>
+          <p className=" w-[12%] font-bold text-center">Age</p>
+          <p className=" w-[12%] font-bold text-center">Producer</p>
+          <p className=" w-[12%] font-bold whitespace-nowrap text-center">Pox Count</p>
+          <p className=" w-[12%] font-bold whitespace-nowrap text-center">
             Consumed Energy/Bandwidth
           </p>
-          <p className=" w-[8%] font-bold whitespace-nowrap text-right">Burned POX</p>
-          <p className=" w-[12%] font-bold whitespace-nowrap text-right">Block Reward</p>
-          <p className=" w-[8%] font-bold whitespace-nowrap text-right">Status</p>
+          <p className=" w-[16%] font-bold whitespace-nowrap text-center">Burned POX</p>
+          <p className=" w-[12%] font-bold whitespace-nowrap text-center">Block Reward</p>
+          <p className=" w-[12%] font-bold whitespace-nowrap  text-center">Status</p>
         </div>
 
         {data?.apiResult && data?.apiResult.map((stablecoin, index) => {
           return (
             <>
               <div className="flex flex-row justify-around border-b-2 p-3 border-text-bg-gray min-w-[1500px] md:min-w-full" key={index}>
-                <p className="text-dark-red w-[12%]">{stablecoin?.number}</p>
-                <p className=" w-[12%]">{stablecoin?.timestamp && secondsAgo(stablecoin?.timestamp)}</p>
-                <p className="text-dark-red  w-[12%]">{stablecoin?.witnessName}</p>
-                <p className=" w-[12%] text-left indent-4">{stablecoin?.nrOfTrx}</p>
-                <p className=" w-[20%] text-center">{stablecoin?.energyUsage}</p>
-                <p className=" w-[8%]">{stablecoin?.BurnedPOX}</p>
-                <p className=" w-[12%] text-center indent-20">{stablecoin?.blockReward}</p>
-                <p className=" w-[8%]">{""}</p>
+                <p className="text-dark-red w-[12%] text-center">{stablecoin?.number && stablecoin?.number}</p>
+                <p className=" w-[12%] text-center">{stablecoin?.timestamp && secondsAgo(stablecoin?.timestamp && stablecoin?.timestamp)}</p>
+                <p className="text-dark-red  w-[12%] text-center">{stablecoin?.witnessName && stablecoin?.witnessName}</p>
+                <p className=" w-[12%] text-center indent-4">{stablecoin?.nrOfTrx && stablecoin?.nrOfTrx}</p>
+                <p className=" w-[12%] text-center">{stablecoin?.energyUsage && stablecoin?.energyUsage}</p>
+                <p className=" w-[16%] text-center">{stablecoin?.netUsage && stablecoin?.netUsage}</p>
+                <p className=" w-[12%] text-center">{stablecoin?.blockReward && stablecoin?.blockReward} POX</p>
+                <p className=" w-[12%] text-center">{stablecoin?.confirmed && stablecoin?.confirmed ? "CONFIRMED" : "UNCONFIRMED"}</p>
 
              </div>
             </>

@@ -110,6 +110,7 @@ const routesArray = [
   "/data/poxsupply/contracts",
   "/data/poxsupply/contracts/contractcalls",
   "/data/poxsupply/contracts/topcontracts",
+  "/data/ranking",
   "/data/ranking/accounts",
   "/data/ranking/tokens",
   "/data/ranking/contracts",
