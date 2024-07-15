@@ -29,3 +29,16 @@ export const getTransferDetailData = async() => {
         console.log("error", error);
     }
 }
+
+export const getAccountDetailData = async() => {
+    try {
+        const response = await axios.post("https://node.poxscan.io/api/transaction", 
+            {
+                "hash": "e0dc64d335e8a60096a649a9bfe67ba93e59eb9c5bbf9f769d0a5e02888281c8"
+                }
+        )
+        return (response?.data);
+    } catch (error) {
+        console.log("error", error);
+    }
+}

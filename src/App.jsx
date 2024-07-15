@@ -7,6 +7,7 @@ import {
 import { Footer, Navbar, Sidebar } from "./layout";
 import {
   Home,
+  AccountDetailPage,
   TransactionDetailPage,
   Nodes,
   Blocks,

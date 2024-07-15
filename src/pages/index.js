@@ -1,4 +1,5 @@
 import Home from "./HomePage/Home";
+import AccountDetailPage from "./HomePage/AccountDetailPage";
 import TransactionDetailPage from "./HomePage/TransactionDetailPage";
 import Blockchain from "./BlockchainPage/Blockchain";
 import Nodes from "./BlockchainPage/Nodes";
@@ -62,6 +63,7 @@ import Error from "../pages/ErrorPage/Error";
 import ConnectWallet from "./ConnectWalletPage/ConnectWallet";
 export {
     Home,
+    AccountDetailPage,
     TransactionDetailPage,
     Blockchain,
     Nodes,
