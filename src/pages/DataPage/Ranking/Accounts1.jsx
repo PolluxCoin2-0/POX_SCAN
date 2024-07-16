@@ -1,6 +1,7 @@
 import {  useState } from "react";
 import { SearchBarExpand } from "../../../components";
 import AccountDay1 from "./AccountDay1";
+import AccountDay3 from "./AccountDay3";
 
 
 
@@ -16,7 +17,7 @@ const Accounts = () => {
         return <AccountDay1 />;
 
       case "3 Day":
-        return  "No Data Found";
+        return  <AccountDay3 />;
 
       case "7 Day":
         return "No data found";
@@ -30,13 +31,25 @@ const Accounts = () => {
       </div>
         
         <div className="flex flex-row space-x-8">
-          <p className="bg-light-mid-gray px-6 py-1 rounded-lg"
+          <p  className={`cursor-pointer py-3 px-4 whitespace-nowrap  ${
+            isRender === "PRC20 Transfers"
+              ? "bg-dark-yellow font-semibold  shadow-lg rounded-lg"
+              : "text-black bg-text-bg-gray shadow-md rounded-lg"
+          }`}
            onClick={() => setIsShow("1 Day")}>1 Day </p>
 
-          <p className="bg-light-mid-gray px-6 py-1 rounded-lg"
+          <p  className={`cursor-pointer py-3 px-4 whitespace-nowrap  ${
+            isRender === "PRC20 Transfers"
+              ? "bg-dark-yellow font-semibold  shadow-lg rounded-lg"
+              : "text-black bg-text-bg-gray shadow-md rounded-lg"
+          }`}
            onClick={() => setIsShow("3 Day")}> 3 Day </p>
 
-          <p className="bg-light-mid-gray px-6 py-1 rounded-lg"
+          <p  className={`cursor-pointer py-3 px-4 whitespace-nowrap  ${
+            isRender === "PRC20 Transfers"
+              ? "bg-dark-yellow font-semibold  shadow-lg rounded-lg"
+              : "text-black bg-text-bg-gray shadow-md rounded-lg"
+          }`}
            onClick={() => setIsShow("7 Day")}>7 Day</p>
         </div>
 
