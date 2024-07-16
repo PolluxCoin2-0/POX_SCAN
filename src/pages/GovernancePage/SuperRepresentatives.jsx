@@ -9,59 +9,60 @@ import { extractSiteName } from "../../utils/extractSiteName";
 const Table1 = ({data}) => {
   return (
     <div className="bg-white pt-2">
-      <div className="flex flex-row justify-evenly bg-light-orange p-3 rounded-lg m-4">
-        <p className="w-[5%]">Ranks</p>
-        <p className="w-[10%]">Name</p>
-        <p className="w-[9%]">Current Version</p>
-        <p className="w-[6%]">Status</p>
-        <p className="w-[8%]">Last Block</p>
-        <p className="w-[8%]">Block Produced</p>
-        <p className="w-[8%]">Block Missed</p>
-        <p className="w-[8%]">Productivity</p>
-        <p className="w-[8%]">Current Vote</p>
-        <p className="w-[8%]">Vote Weightage</p>
-        <p className="w-[10%]">Reward Distribution</p>
-        <p className="w-[6%]">APR</p>
-      </div>
-
-      {data?.witnesses && data?.witnesses.map((representative, index) => (
-        <div
-          key={index}
-          className="flex flex-row justify-evenly p-3 border-b-2 border-lightest-gray "
-        >
-          <p className="w-[5%]">{representative.Rank}</p>
-          <p className="w-[10%]">{representative?.url && extractSiteName(representative?.url)}</p>
-          <p className="w-[9%]">{representative.CurrentVersion}</p>
-          <p className="w-[6%]">{representative.Status}</p> 
-          <p className="w-[9%]">{representative.latestBlockNum}</p>
-          <p className="w-[9%]">{representative.totalProduced}</p>
-          <p className="w-[8%]">{representative.totalMissed}</p>
-          <p className="w-[8%]">{representative.productivity.toFixed(8)}</p>
-          <p className="w-[8%]">{representative.voteCount}</p>
-          <p className="w-[8%]">{representative.voteWeightage.toFixed(8)}%</p>
-          <p className="w-[10%]">{representative.RewardDistribution}</p>
-          <p className="w-[6%]">{representative.apr}%</p>
-        </div>
-      ))}
+    <div className="flex flex-row justify-evenly bg-light-orange p-3 rounded-lg m-4">
+      <p className="w-[5%]">Rank</p>
+      <p className="w-[10%]">Name</p>
+      <p className="w-[9%]">Current Version</p>
+      <p className="w-[6%]">Status</p>
+      <p className="w-[8%]">Last Block</p>
+      <p className="w-[8%]">Block Produced</p>
+      <p className="w-[8%]">Block Missed</p>
+      <p className="w-[8%]">Productivity</p>
+      <p className="w-[8%]">Current Vote</p>
+      <p className="w-[8%]">Vote Weightage</p>
+      <p className="w-[10%]">Reward Distribution</p>
+      <p className="w-[6%]">APR</p>
     </div>
+  
+    {data?.witnesses && data?.witnesses.map((representative, index) => (
+      <div
+        key={index}
+        className="flex flex-row justify-evenly p-3 border-b-2 border-lightest-gray"
+      >
+        <p className="w-[5%]">{index + 1}</p>
+        <p className="w-[10%]">{representative?.url && extractSiteName(representative?.url)}</p>
+        <p className="w-[9%]">{representative.CurrentVersion}</p>
+        <p className="w-[6%]">{representative?.isJobs && representative?.isJobs}</p> 
+        <p className="w-[9%]">{representative.latestBlockNum && representative?.latestBlockNum ? representative?.latestBlockNum : 0}</p>
+        <p className="w-[9%]">{representative.totalProduced && representative?.totalProduced ? representative?.totalProduced : 0}</p>
+        <p className="w-[8%]">{representative.totalMissed && representative?.totalMissed ? representative?.totalMissed : 0}</p>
+        <p className="w-[8%]">{representative.productivity.toFixed(8)}</p>
+        <p className="w-[8%]">{representative.voteCount}</p>
+        <p className="w-[8%]">{representative.voteWeightage.toFixed(8)}%</p>
+        <p className="w-[10%]">{representative.RewardDistribution}</p>
+        <p className="w-[6%]">{representative.apr}%</p>
+      </div>
+    ))}
+  </div>
+  
   );
 };
 
-const CardSuperRepresentative = () => {
+const CardSuperRepresentative = ({title, leftSubTitle, totalCount, rightSubTitle, totalvalues}) => {
   return (
     <>
       <div className="pb-3 flex flex-row">
         <div>
-          <p className="text-lg font-bold">Votes</p>
-          <p className="text-light-gray ">Total(Real-time)</p>
-          <p className="text-xl font-bold pt-3">12545854</p>
+          <p className="text-lg font-bold">{title}</p>
+          <p className="text-light-gray pt-4">{leftSubTitle} </p>
+          <p className="text-xl font-bold pt-0">{totalCount}</p>
           <p className="pt-3 text-light-gray">
-            Next Round:{" "}
-            <span className="text-dark-green font-bold">1223.89%</span>
+            {rightSubTitle}:{" "}
+            <span className="text-dark-green font-bold">{totalvalues}</span>
           </p>
         </div>
 
-        <div className="w-[60%] pr-8">
+        <div className="w-[40%] pl-6 pr-0">
           <TinyChartComp />
         </div>
       </div>
@@ -134,20 +135,37 @@ const SuperRepresentatives = () => {
 
         <div className="flex flex-row mt-10 w-[50%]">
           <div className="w-full mr-3">
-            <div className="bg-white  mb-3 rounded-tl-2xl pl-10 pt-5">
-              <CardSuperRepresentative />
+            <div className="bg-white  mb-3 rounded-tl-2xl pl-5 pt-5">
+              <CardSuperRepresentative 
+              title="Votes"
+              leftSubTitle="Total (Real Time)"
+              totalCount={data?.totalVotes}
+              rightSubTitle="Next Round"/>
             </div>
-            <div className="bg-white rounded-bl-2xl  pl-10 pt-5">
-              <CardSuperRepresentative />
+            <div className="bg-white rounded-bl-2xl  pl-5 pt-5">
+              <CardSuperRepresentative 
+              title="Super Representatives" 
+              className="text-nowrap"
+              leftSubTitle="Total"
+              totalCount={data?.totalSr}
+              rightSubTitle="Last 30 days"
+              totalvalues={data?.pageNosr}/>
             </div>
           </div>
 
           <div className="w-full">
-            <div className="bg-white  mb-3 rounded-tr-2xl pl-10 pt-5">
-              <CardSuperRepresentative />
+            <div className="bg-white  mb-3 rounded-tr-2xl pl-5 pt-5">
+              <CardSuperRepresentative 
+              title="Blocks Produced"
+              leftSubTitle="Max. Sendbox"
+              rightSubTitle="Min. inbox"
+              />
             </div>
-            <div className="bg-white rounded-br-2xl pl-10 pt-5">
-              <CardSuperRepresentative />
+            <div className="bg-white rounded-br-2xl pl-5 pt-5">
+              <CardSuperRepresentative 
+              title="Productivity"
+              leftSubTitle="Highest Sendbox"
+              rightSubTitle="Lowest inbox"/>
             </div>
           </div>
         </div>

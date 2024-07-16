@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getRankingAccountDayThreeData } from "../../../utils/axios/Data";
+import { getRankingAccountDaySevenData, getRankingAccountDayThreeData } from "../../../utils/axios/Data";
 import { shortenString } from "../../../utils/shortenString";
 
 const AmountTable = ({ title, amountTableData }) => {
@@ -8,7 +8,7 @@ const AmountTable = ({ title, amountTableData }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await getRankingAccountDayThreeData();
+        const data = await getRankingAccountDaySevenData();
         setData(data?.message);
       } catch (error) {
         console.log("error", error);
@@ -57,7 +57,7 @@ const TransactionTable = ({
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await getRankingAccountDayThreeData();
+        const data = await getRankingAccountDaySevenData();
 
         setData(data?.message);
       } catch (error) {
@@ -95,13 +95,13 @@ const TransactionTable = ({
   );
 };
 
-const AccountDay3 = () => {
+const AccountDay7 = () => {
   const [data, setData] = useState({});
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await getRankingAccountDayThreeData();
+        const data = await getRankingAccountDaySevenData();
 
         setData(data?.message);
       } catch (error) {
@@ -143,4 +143,4 @@ const AccountDay3 = () => {
   );
 };
 
-export default AccountDay3;
+export default AccountDay7;
