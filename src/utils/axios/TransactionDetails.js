@@ -42,3 +42,12 @@ export const getAccountDetailData = async(hashId) => {
         console.log("error", error);
     }
 }
+
+export const getAccountDetailsPageData = async(address) => {
+    try {
+        const response = await axios.get(`https://node.poxscan.io/api/account/detail?address=${address}`);
+        return (response?.data);
+    } catch (error) {
+        console.log("error", error);
+    }
+}
