@@ -11,36 +11,30 @@ import Pagination from "../../components/Pagination";
 import { useEffect, useState } from "react";
 import { getTransactionStatsData } from "../../utils/axios/Blockchain";
 
-const Transaction = ({value}) => {
-
+const Transaction = ({ value }) => {
   const [data, setData] = useState({});
 
   useEffect(() => {
-    
     const fetchData = async () => {
       try {
         const data = await getTransactionStatsData();
-    
-        
+
         setData(data?.message);
-        
-        
       } catch (error) {
-        console.log('error', error);
-      } 
+        console.log("error", error);
+      }
     };
 
     fetchData();
-  }, [])
+  }, []);
 
+  // For Pagination
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = 10; // Example total pages
 
-   // For Pagination
-   const [currentPage, setCurrentPage] = useState(1);
-   const totalPages = 10; // Example total pages
- 
-   const handlePageChange = (page) => {
-     setCurrentPage(page);
-   };
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
 
   return (
     <div className="px-4 md:px-12 pb-12">
@@ -62,7 +56,9 @@ const Transaction = ({value}) => {
 
               <div className=" flex flex-row justify-between gap-20 py-5">
                 <div className="">
-                  <p className="text-xl font-bold">{data?.Total_Transactions}</p>
+                  <p className="text-xl font-bold">
+                    {data?.Total_Transactions}
+                  </p>
                   <p className="text-light-gray  pt-5">Total</p>
                 </div>
 
@@ -83,14 +79,16 @@ const Transaction = ({value}) => {
 
               <div className=" flex flex-row justify-between gap-20 rounded-lg pt-6 pb-4">
                 <div>
-                  <p className="text-xl font-bold ">{(data?.Total_Volume / Math.pow(10,6)).toFixed(2)} POX</p>
+                  <p className="text-xl font-bold ">
+                    {(data?.Total_Volume / Math.pow(10, 6)).toFixed(2)} POX
+                  </p>
                   <p className="font-bold">=$18, 294.13b</p>
                   <p className="text-light-gray pt-5">Total</p>
                 </div>
 
                 <div>
                   <p className="text-xl font-bold text-dark-green ">
-                    +{(data?.Yesterday_Volume / Math.pow(10,6)).toFixed(2)} POX
+                    +{(data?.Yesterday_Volume / Math.pow(10, 6)).toFixed(2)} POX
                   </p>
                   <p className="font-bold">=$15.85b</p>
                   <p className="text-light-gray pt-5">Yesterday</p>
@@ -101,9 +99,7 @@ const Transaction = ({value}) => {
 
           <div className="bg-white rounded-2xl shadow-xl w-full md:w-[48%] py-3">
             <div className="flex flex-row items-center justify-between pt-4 px-6">
-              <p className="font-bold text-xl">
-                Daily Tnx Distribution
-              </p>
+              <p className="font-bold text-xl">Daily Tnx Distribution</p>
               <div className="flex flex-row">
                 <p>More</p>
                 <MdKeyboardArrowRight className="mt-1 text-xl" />
@@ -111,7 +107,7 @@ const Transaction = ({value}) => {
             </div>
 
             <div className="flex w-full h-80 flex-row justify-center items-center">
-                <SimplePieChartComp value={data?.Total_Volume}/>
+              <SimplePieChartComp value={data?.Total_Volume} />
             </div>
           </div>
         </div>
@@ -184,14 +180,13 @@ const Transaction = ({value}) => {
             );
           })}
 
-           <div className="flex justify-start md:justify-end">
-           <Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={handlePageChange}
-      />
-
-           </div>
+          <div className="flex justify-start md:justify-end">
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={handlePageChange}
+            />
+          </div>
         </div>
       </div>
     </div>

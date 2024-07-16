@@ -117,7 +117,8 @@ const PRC20TransferTable = ({ setPieChartData }) => {
       try {
         const data = await getTransferTableDataOfPRC20Transfer();
         setData(data?.filterTokens);
-        setPieChartData(data?.totalPage);
+        const pieChartData = [{ PRC20: data?.totalPage }];
+        setPieChartData(pieChartData);
       } catch (error) {
         console.log('error', error);
       } 
@@ -296,13 +297,31 @@ const Transfer = () => {
 
           <div className="bg-white rounded-2xl shadow-xl w-full md:w-[48%] py-3">
             <p className="font-bold text-xl pt-5 pl-8 ">
-              Transfer Type Distribution
+            Daily Txn Distribution (Total 4.75b Transfer)
             </p>
 
-            <div className="flex flex-col space-y-6 md:space-y-0 md:flex-row justify-between">
-              <div className="h-80 w-full md:w-[70%]">
-                <PieChartComp value={pieChartData && pieChartData} xAxis={""} yAxis={""}/>
+            <div className="flex flex-col space-y-6 md:space-y-0 md:flex-row md:items-center md:justify-evenly justify-between">
+              <div className="h-80 w-[70%]">
+                <PieChartComp value={pieChartData} xAxis="PRC20" yAxis=""/>
               </div>
+            <div className="w-[30%]">
+              <div className="flex flex-row items-center space-x-2 whitespace-nowrap">
+              <span className="bg-dark-yellow px-2 py-2 rounded-lg"></span>
+              <p className="pb-2 font-semibold">PRC20</p>
+              </div>
+              <div  className="flex flex-row items-center space-x-2 whitespace-nowrap">
+              <span className="bg-[#E66262] px-2 py-2 rounded-lg"></span>
+              <p className="pb-2 font-semibold">PRC721</p>
+              </div>
+              <div  className="flex flex-row items-center space-x-2 whitespace-nowrap">
+              <span className="bg-[#35CA7B] px-2 py-2 rounded-lg"></span>
+              <p className="pb-1 font-semibold">PRC1155</p>
+              </div>
+              <div  className="flex flex-row items-center space-x-2 whitespace-nowrap">
+              <span className="bg-[#869BFE] px-2 py-2 rounded-lg"></span>
+              <p className="font-semibold">Other Smart Contracts</p>
+              </div>
+            </div>
             </div>
           </div>
         </div>

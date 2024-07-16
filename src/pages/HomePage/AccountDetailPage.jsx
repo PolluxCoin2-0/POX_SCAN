@@ -239,7 +239,7 @@ const TransferTable = () => {
   );
 };
 
-const Wallet = ({value1, value2, value3}) => {
+const Wallet = ({value1, value2}) => {
   return (
     <div className="bg-white h-auto rounded-lg p-5">
       <div>
@@ -264,10 +264,10 @@ const Wallet = ({value1, value2, value3}) => {
           <p className="pl-2 font-bold">Pollux USD (USDX)</p>
           <p className=" ml-2 px-2 py-1 text-light-mid-gray bg-text-bg-gray rounded-lg">PRC20</p>
         </div>
-        <p className="pl-10 font-semibold">{value3}sdggfgsdgjhgsjgjsgjgsgfjhgjh</p>
+        <p className="pl-10 font-semibold">PSTv3ZweeCRHd5cmxoL3dTTbSKGgtYZ5cm</p>
         </div>
 
-        <p className="font-bold">10135081.72</p>
+        <p className="font-bold">8007.22</p>
       </div>
 
       <div className="flex flex-row items-center justify-center py-2 rounded-lg bg-text-bg-gray">
