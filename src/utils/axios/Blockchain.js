@@ -116,3 +116,16 @@ export const getTransactionStatsData = async() => {
     }
 }
 
+export const getTransactionTableData = async()=>{
+    try {
+        const response = await axios.post("https://node.poxscan.io/api/transaction",{
+                "end_timestamp": 1721125787352,
+                "page": 0,
+                "limit": 10
+        })
+        return (response?.data);
+    } catch (error) {
+        console.log("error", error);
+    }
+}
+

@@ -1,7 +1,3 @@
-// import React from 'react'
-
-import { ContactData } from "../../data/ContactData";
-import PieChartComp from "../../components/PieChartComp";
 import SimplePieChartComp from "../../components/SimplePieChartComp";
 import SearchBarExpand from "../../components/SearchBarExpand";
 import { IoSearch } from "react-icons/io5";
@@ -9,17 +5,25 @@ import { PiArrowBendDownLeftBold } from "react-icons/pi";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import Pagination from "../../components/Pagination";
 import { useEffect, useState } from "react";
-import { getTransactionStatsData } from "../../utils/axios/Blockchain";
+import { getTransactionStatsData, getTransactionTableData } from "../../utils/axios/Blockchain";
+import { shortenString } from "../../utils/shortenString";
+import { secondsAgo } from "../../utils/secondAgo";
 
-const Transaction = ({ value }) => {
+const Transaction = () => {
   const [data, setData] = useState({});
+  const [transactionTableData, setTransactionTableData] = useState({});
+  const [pieChartData, setPieChartData] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await getTransactionStatsData();
+        const dataObj = await getTransactionStatsData();
+        setData(dataObj?.message);
+        const pieChartDataArr = [{ name: 'Total Volume', value: dataObj?.message?.Total_Volume },];
+setPieChartData(pieChartDataArr);
 
-        setData(data?.message);
+        const data1 = await getTransactionTableData();
+        setTransactionTableData(data1?.message);
       } catch (error) {
         console.log("error", error);
       }
@@ -107,8 +111,28 @@ const Transaction = ({ value }) => {
             </div>
 
             <div className="flex w-full h-80 flex-row justify-center items-center">
-              <SimplePieChartComp value={data?.Total_Volume} />
+            <SimplePieChartComp value={pieChartData} />
+
+            <div className="">
+              <div className="flex flex-row items-center space-x-2 whitespace-nowrap">
+              <span className="bg-dark-yellow px-2 py-2 rounded-lg"></span>
+              <p className="pb-2 font-semibold">Total Transactions</p>
+              </div>
+              <div  className="flex flex-row items-center space-x-2 whitespace-nowrap">
+              <span className="bg-[#E66262] px-2 py-2 rounded-lg"></span>
+              <p className="pb-2 font-semibold">Yesterday Transactions</p>
+              </div>
+              <div  className="flex flex-row items-center space-x-2 whitespace-nowrap">
+              <span className="bg-[#1A5BA1] px-2 py-2 rounded-lg"></span>
+              <p className="font-semibold">Total Volume</p>
+              </div>
+              <div  className="flex flex-row items-center space-x-2 whitespace-nowrap">
+              <span className="bg-[#35CA7B] px-2 py-2 rounded-lg"></span>
+              <p className="pb-1 font-semibold">Yesterday Volume</p>
+              </div>
             </div>
+            </div>
+            
           </div>
         </div>
       </div>
@@ -139,42 +163,33 @@ const Transaction = ({ value }) => {
             </div>
           </div>
 
-          <div className="min-w-[1500px] flex flex-row justify-evenly bg-lightest-gray p-2 m-3 rounded-xl">
-            <p className="w-[24%]">Account</p>
-            <p className="w-[10%]">Contract</p>
-            <p className="w-[10%]">Number of Calls </p>
-            <p className="w-[10%]">POX Balance </p>
-            <p className="w-[10%]">Version</p>
-            <p className="w-[10%]">License</p>
-            <p className="w-[10%]">Created On</p>
-            <p className="w-[10%]">Verified On</p>
-            <p className="w-[6%]">Setting</p>
+          <div className="min-w-[1300px] flex flex-row justify-evenly bg-lightest-gray p-2 m-3 rounded-xl">
+            <p className="w-[18%]">Hash</p>
+            <p className="w-[10%]">Block</p>
+            <p className="w-[10%]">Time</p>
+            <p className="w-[16%]">Transaction Type</p>
+            <p className="w-[10%]">From</p>
+            <p className="w-[10%] text-center">To</p>
+            <p className="w-[16%] text-center">Token</p>
+            <p className="w-[10%] text-center">Result</p>
           </div>
 
-          {ContactData.map((contact, index) => {
+          {transactionTableData?.transactions?.map((transaction, index) => {
             return (
               <>
-                <div className="min-w-[1500px] flex flex-row justify-evenly p-5 border-b-2 border-lightest-gray  rounded-xl ">
-                  <p className="whitespace-nowrap w-[24%]">
-                    <span className="px-3 py-1 bg-lightest-gray rounded-lg">
-                      SC
-                    </span>
+                <div className="min-w-[1300px] flex flex-row justify-evenly p-5 border-b-2 border-lightest-gray  rounded-xl" key={index}>
+                  <p className="whitespace-nowrap w-[18%]">
                     <span className="text-dark-red px-2">
-                      {" "}
-                      {contact.Account}{" "}
-                    </span>
-                    <span className="px-3 py-1 bg-lightest-gray rounded-lg">
-                      USDT Token
+                      {transaction?.transactionId && shortenString(transaction?.transactionId,10)}
                     </span>
                   </p>
-                  <p className="w-[10%]">{contact.ContractName}</p>
-                  <p className="w-[10%] indent-8">{contact.NumberOfCalls}</p>
-                  <p className="w-[10%] indent-8">{contact.POXBalance}</p>
-                  <p className="w-[10%] indent-6">{contact.Version}</p>
-                  <p className="w-[10%] indent-8">{contact.Licence}</p>
-                  <p className="w-[10%] indent-4">{contact.CreatedOn}</p>
-                  <p className="w-[10%] indent-4">{contact.VerifiedOn}</p>
-                  <p className="w-[6%] text-center">{contact.Settings}</p>
+                  <p className="w-[10%]">{transaction?.blockNumber}</p>
+                  <p className="w-[10%]">{transaction?.timeStamp && secondsAgo(transaction.timeStamp)}</p>
+                  <p className="w-[16%] ">{transaction.type}</p>
+                  <p className="w-[10%] ">{shortenString(transaction.fromAddress,5)}</p>
+                  <p className="w-[10%] text-center">{shortenString(transaction.toAddress,5)}</p>
+                  <p className="w-[16%] text-center">{transaction.assetAmount/Math.pow(10,6)}</p>
+                  <p className="w-[10%] text-center indent-4">{transaction.result}</p>
                 </div>
               </>
             );
