@@ -6,10 +6,11 @@ import {
 } from "../../utils/axios/Governance";
 import { shortenString } from "../../utils/shortenString";
 import { formatTimestamp } from "../../utils/formatTimestamp ";
+import CommitteeProposalPage from "./CommitteeProposalPage";
 
 const ParameterTable = () => {
   const [data, setData] = useState({});
-
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -69,6 +70,8 @@ const ParameterTable = () => {
 
 const CommitteProposalTable = () => {
   const [data1, setData1] = useState({});
+  const [isShowModal, setIsShowModal] = useState(false);
+  const [modalData, setModalData] = useState({});
 
   useEffect(() => {
     const fetchData = async () => {
@@ -83,6 +86,24 @@ const CommitteProposalTable = () => {
 
     fetchData();
   }, []);
+
+  // function to render the committee proposal on the basis of proposal id
+
+function getProposalById (proposal_id) {
+  let array = data1;
+  for(let i=0; i< array.length; i++){
+    if(array[i].proposal_id === proposal_id)
+      return (array[i]);
+  }
+  return null;
+}
+
+const handleModal =(id)=>{
+  const data = getProposalById(id);
+  setModalData(data);
+  setIsShowModal(!isShowModal);
+}
+
 
   return (
     <div className="bg-white pt-2 pb-8">
@@ -116,11 +137,14 @@ const CommitteProposalTable = () => {
                 </p>
                 <p className="w-[12%]">{param?.state}</p>
                 <p className="w-[14%]"></p>
-                <p className="w-[14%]">View Details Committee Proposals </p>
+                <p className="w-[14%] cursor-pointer" onClick={()=>handleModal(param?.proposal_id)}>View Details Committee Proposals </p>
               </div>
             </>
           );
         })}
+          {
+          isShowModal && <CommitteeProposalPage value={modalData}/>
+        }
     </div>
   );
 };

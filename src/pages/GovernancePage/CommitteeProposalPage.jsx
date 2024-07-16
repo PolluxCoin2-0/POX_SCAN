@@ -1,40 +1,6 @@
-import { useEffect, useState } from "react";
 import { RxCross1 } from "react-icons/rx";
-import { getCommitteeProposalData } from "../../utils/axios/Governance";
 
-const CommitteeProposalPage = () => {
-
-  const [data1, setData1] = useState({});
-  const [modalData, setModalData] = useState({});
-
-  useEffect(() => {
-    
-    const fetchData = async () => {
-      try {
-        const data1 = await getCommitteeProposalData();
-        console.log(data1);
-        setData1(data1?.message);
-        
-        
-      } catch (error) {
-        console.log('error', error);
-      } 
-    };
-
-    fetchData();
-  }, []);
-
-
-  // function to render the committee proposal on the basis of proposal id
-
-// function getProposalById (proposal_id) {
-//   let array = data1;
-//   for(let i=0; i< array.length; i++){
-//     if(array[i].proposal_id === proposal_id)
-//       setModalData(array[i]);
-//   }
-//   return null;
-// }
+const CommitteeProposalPage = ({value}) => {
 
   return (
     <div className=" bg-white rounded-lg shadow-lg px-96 py-36 ">
