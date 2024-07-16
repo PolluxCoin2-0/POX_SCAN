@@ -35,6 +35,10 @@ body{
     background-blend-mode: overlay;
 }
 
+.custom-toast {
+    top: 4rem;
+  }
+
 
 
 

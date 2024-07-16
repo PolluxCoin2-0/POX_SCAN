@@ -30,11 +30,11 @@ export const getTransferDetailData = async() => {
     }
 }
 
-export const getAccountDetailData = async() => {
+export const getAccountDetailData = async(hashId) => {
     try {
         const response = await axios.post("https://node.poxscan.io/api/transaction", 
             {
-                "hash": "e0dc64d335e8a60096a649a9bfe67ba93e59eb9c5bbf9f769d0a5e02888281c8"
+                "hash": hashId, 
                 }
         )
         return (response?.data);
