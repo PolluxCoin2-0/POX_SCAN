@@ -32,6 +32,7 @@ import Governance from "./GovernancePage/Governance";
 import SuperRepresentatives from "./GovernancePage/SuperRepresentatives";
 import PoxStakingGovernance from "./GovernancePage/PoxStakingGovernance";
 import ParametersProposals from "./GovernancePage/ParametersProposals";
+import CommitteeProposalPage from "./GovernancePage/CommitteeProposalPage";
 
 import Account from "./DataPage/PoxSupply/Accounts/Account";
 import TotalAccounts from "./DataPage/PoxSupply/Accounts/TotalAccounts";
@@ -100,6 +101,7 @@ export {
     Votes,
     PoxStakingGovernance,
     ParametersProposals,
+    CommitteeProposalPage,
     ContractsDeployment,
     ContractsVerification,
     BroadcastTransaction,

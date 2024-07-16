@@ -1,59 +1,30 @@
-import { useEffect, useState } from "react";
+
+import { useState } from "react";
 import { SearchBarExpand } from "../../../components";
-import { getRankingContractData } from "../../../utils/axios/Data";
-import { shortenString } from "../../../utils/shortenString";
+import ContractDay1 from "./ContractDay1";
+import ContractDay3 from "./ContractDay3";
+import ContractDay7 from "./ContractDay7";
 
-const CardForContracts2 = ({title,}) => {
 
-  const [data, setData] = useState({});
 
-  useEffect(() => {
-    
-    const fetchData = async () => {
-      try {
-        const data = await getRankingContractData();
-        console.log(data);
-        setData(data);
-        
-        
-      } catch (error) {
-        console.log('error', error);
-      } 
-    };
-
-    fetchData();
-  }, []);
-
-  return (
-      <>
-      <p className="text-2xl font-bold pb-8 pt-8">{title}</p>
-      <div className="bg-white rounded-xl pt-6 pl-10 pr-10 pb-10">
-        <div className="flex flex-row justify-around bg-lightest-gray p-2 rounded-lg">
-          <p className="text-light-gray w-[20%]">Rank</p>
-          <p className="text-light-gray w-[60%]">Account</p>
-          <p className="text-light-gray w-[20%]">Total Count</p>
-          
-        </div>
-
-        {data?.calling?.map && data?.calling?.map((param, index) => {
-        return (
-          <>
-           <div className="flex flex-row justify-around p-5 border-b-2 border-b-lightest-gray">
-               <p className="w-[20%]">1</p>
-               <p className="w-[60%]">{param?._id && shortenString(param?._id, 10)}</p>
-               <p className="w-[20%]">{param?.totalCount}</p>
-               
-           </div>
-          </>
-        )
-       })}
-      
-      </div>
-    </>
-  )
-}
 
 const Contracts2= () => {
+  // for tab switching 
+  const [isShow, setIsShow] = useState("1 Day");
+
+  //  for tab switching in transactions and transfer
+  const showItemComponent = () => {
+    switch (isShow) {
+      case "1 Day":
+        return <ContractDay1 />;
+
+      case "3 Day":
+        return  <ContractDay3 />;
+
+      case "7 Day":
+        return <ContractDay7 />;
+    }
+  };
   return (
     <div className="px-12 pb-80">
 
@@ -62,22 +33,34 @@ const Contracts2= () => {
       </div>
         
       <div className="flex flex-row space-x-8">
-          <p className="bg-light-mid-gray px-6 py-1 rounded-lg">1 Day </p>
-          <p className="bg-light-mid-gray px-6 py-1 rounded-lg"> 3 Day </p>
-          <p className="bg-light-mid-gray px-6 py-1 rounded-lg">7 Day</p>
+          <p 
+          className={`cursor-pointer py-2 px-8 whitespace-nowrap  ${
+            isShow === "1 Day"
+              ? "bg-dark-yellow font-semibold  shadow-lg rounded-lg"
+              : "text-black bg-text-bg-gray shadow-md rounded-lg"
+          }`}
+           onClick={() => setIsShow("1 Day")}>1 Day </p>
+
+
+          <p 
+          className={`cursor-pointer py-2 px-8 whitespace-nowrap  ${
+            isShow === "3 Day"
+              ? "bg-dark-yellow font-semibold  shadow-lg rounded-lg"
+              : "text-black bg-text-bg-gray shadow-md rounded-lg"
+          }`}
+           onClick={() => setIsShow("3 Day")}> 3 Day </p>
+
+
+          <p 
+          className={`cursor-pointer py-2 px-8 whitespace-nowrap  ${
+            isShow === "7 Day"
+              ? "bg-dark-yellow font-semibold  shadow-lg rounded-lg"
+              : "text-black bg-text-bg-gray shadow-md rounded-lg"
+          }`}
+           onClick={() => setIsShow("7 Day")}>7 Day</p>
         </div>
         
-      <div className="flex felx-row justify-between w-full">
-        <div className="w-[49%]">
-          <CardForContracts2 
-          title="Top Contacts by Calls"/>
-        </div>
-
-        <div className="w-[49%] ">
-          <CardForContracts2
-          title="Top Contracts by Calling Accounts"/>
-        </div>
-      </div>
+      <div>{showItemComponent()}</div>
 
 
 

@@ -59,6 +59,7 @@ import {
   Error,
   NewPassword,
   ConnectWallet,
+  CommitteeProposalPage,
 } from "./pages";
 import Usdx from "./pages/TokenPage/Usdx";
 import { ToastContainer } from 'react-toastify';
@@ -120,6 +121,7 @@ const routesArray = [
   "/governance",
   "/governance/superrepresentatives",
   "/governance/parametersproposals",
+  "/governance/parameters",
   "/governance/poxstakinggovernance",
   "/governance/votes",
   "/poxecosystem",
@@ -143,6 +145,7 @@ const AppRoutes = () => {
     "/newpassword",
     "/register",
     "/error",
+    "/governance/parameters"
   ];
 
   const isValidRoute = (route, pathname) => {
@@ -181,7 +184,8 @@ const AppRoutes = () => {
                 <Route path="/login" element={<Login />} />
                 <Route path="/forgetpassword" element={<ForgetPassword />} />
                 <Route path="/newpassword" element={<NewPassword />} />
-                <Route path="/connectwallet" element={<ConnectWallet />} />
+                    <Route path="/governance/parameters" element={<CommitteeProposalPage />} />
+                    <Route path="/connectwallet" element={<ConnectWallet />} />
               </Routes>
             ) : (
               <Sidebar>

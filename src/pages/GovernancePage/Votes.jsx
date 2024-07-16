@@ -144,52 +144,45 @@ const Votes = () => {
 
          <button className="bg-lightest-gray px-4 py-1 rounded-md">Vote</button>
         </div>
-         <div className="bg-[#FAFAFA] px-6">
-            <div className="flex flex-row justify-around p-5 bg-text-bg-gray rounded-lg">
-            <p className="w-[25%]">Name</p>
-            <p className="w-[10%]">Ranking</p>
-            <p className="w-[10%]">Real-time Votes</p>
-            <p className="w-[10%]">Percentage</p>
-            <p className="w-[10%]">Productivity</p>
-            <p className="w-[11%]">Reward Distribution</p>
-            <p className="w-[10%]">APR</p>
-            <p className="w-[10%]">My Votes</p>
-            </div>
+        <div className="bg-[#FAFAFA] px-6">
+  <div className="flex flex-row justify-around p-5 bg-text-bg-gray rounded-lg">
+    <p className="w-[25%]">Name</p>
+    <p className="w-[10%]">Ranking</p>
+    <p className="w-[10%]">Real-time Votes</p>
+    <p className="w-[10%]">Percentage</p>
+    <p className="w-[10%]">Productivity</p>
+    <p className="w-[11%]">Reward Distribution</p>
+    <p className="w-[10%]">APR</p>
+    <p className="w-[10%]">My Votes</p>
+  </div>
 
-            
-            {data?.result && data?.result.map ((voter, index) => {
-              return (
+  {data?.result && data?.result.map((voter, index) => {
+    // Calculate rank dynamically starting from 2
+    const rank = index + 2;
 
-                <>
-                <div className="flex flex-row justify-around p-5 border-b-2 border-text-bg-gray">
-                  <p className="w-[25%]">{voter?.url && extractSiteName(voter?.url)} </p>
-                  <p className="w-[10%] text-dark-blue"></p>
-                  <p className="w-[10%]">{voter.brokerage}</p>
-                  <p className="w-[10%]">{voter?.votePercentage.toFixed(2)}</p>
-                  <p className="w-[10%]">{voter.productivity.toFixed(2)}</p>
-                  <p className="w-[11%]">{voter?.brokerage}%</p>
-                  <p className="w-[10%]">{voter?.apr}</p>
-                  <p className="w-[10%]">{voter.MyVotes}</p>
-                
-            
-            
-            </div>
-            
-            </>
-         
-              )
-            })}
+    return (
+      <div key={index} className="flex flex-row justify-around p-5 border-b-2 border-text-bg-gray">
+        <p className="w-[25%]">{voter?.url && extractSiteName(voter?.url)}</p>
+        <p className="w-[10%] ">{rank}</p>
+        <p className="w-[10%]">{voter.brokerage}</p>
+        <p className="w-[10%]">{voter?.votePercentage.toFixed(2)}</p>
+        <p className="w-[10%]">{voter.productivity.toFixed(2)}</p>
+        <p className="w-[11%]">{voter?.brokerage}%</p>
+        <p className="w-[10%]">{voter?.apr}</p>
+        <p className="w-[10%]">{voter.MyVotes}</p>
+      </div>
+    );
+  })}
 
-            <div className="flex justify-end">
-            <Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={handlePageChange}
-      />
-            </div>
-        
-         
-         </div>
+  <div className="flex justify-end">
+    <Pagination
+      currentPage={currentPage}
+      totalPages={totalPages}
+      onPageChange={handlePageChange}
+    />
+  </div>
+</div>
+
       
       </div>
     

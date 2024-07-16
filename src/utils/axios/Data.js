@@ -175,7 +175,7 @@ export const getTopContractTableData = async() => {
     }
 }
 
-export const getRankingAccountData = async() => {
+export const getRankingAccountDayOneData = async() => {
     try {
         const response = await axios.get("https://node.poxscan.io/data/TopAccounts?day=1");
         return (response?.data);
@@ -184,7 +184,26 @@ export const getRankingAccountData = async() => {
     }
 }
 
-export const getRankingTokenData = async() => {
+
+export const getRankingAccountDayThreeData = async() => {
+    try {
+        const response = await axios.get("https://node.poxscan.io/data/TopAccounts?day=3");
+        return (response?.data);
+    } catch (error) {
+        console.log("error", error);
+    }
+}
+
+export const getRankingAccountDaySevenData = async() => {
+    try {
+        const response = await axios.get("https://node.poxscan.io/data/TopAccounts?day=7");
+        return (response?.data);
+    } catch (error) {
+        console.log("error", error);
+    }
+}
+
+export const getRankingTokenDayOneData = async() => {
     try {
         const response = await axios.get("https://governance.poxscan.io/token/toptokens?day=1");
         return (response?.data);
@@ -193,9 +212,44 @@ export const getRankingTokenData = async() => {
     }
 }
 
-export const getRankingContractData = async() => {
+export const getRankingTokenDayThreeData = async() => {
+    try {
+        const response = await axios.get("https://governance.poxscan.io/token/toptokens?day=3");
+        return (response?.data);
+    } catch (error) {
+        console.log("error", error);
+    }
+}
+
+export const getRankingTokenDaySevenData = async() => {
+    try {
+        const response = await axios.get("https://governance.poxscan.io/token/toptokens?day=7");
+        return (response?.data);
+    } catch (error) {
+        console.log("error", error);
+    }
+}
+export const getRankingContractDayOneData = async() => {
     try {
         const response = await axios.get("https://governance.poxscan.io/token/topcontractbycalls?day=1");
+        return (response?.data);
+    } catch (error) {
+        console.log("error", error);
+    }
+}
+
+export const getRankingContractDayThreeData = async() => {
+    try {
+        const response = await axios.get("https://governance.poxscan.io/token/topcontractbycalls?day=3");
+        return (response?.data);
+    } catch (error) {
+        console.log("error", error);
+    }
+}
+
+export const getRankingContractDaySevenData = async() => {
+    try {
+        const response = await axios.get("https://governance.poxscan.io/token/topcontractbycalls?day=7");
         return (response?.data);
     } catch (error) {
         console.log("error", error);
