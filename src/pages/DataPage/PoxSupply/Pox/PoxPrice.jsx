@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { SearchBarExpand } from "../../../../components"
-import BiaxialLineChart from "../../../../components/BiaxialLineChart";
 import { getPoxPriceTableData } from "../../../../utils/axios/Data";
+import AreaChartComp from "../../../../components/AreaChart";
 
 
 const PoxPrice = () => {
@@ -12,7 +12,7 @@ const PoxPrice = () => {
     const fetchData = async () => {
       try {
         const data = await getPoxPriceTableData();
-        
+        console.log(data);
         setData(data?.message);
         
         
@@ -33,10 +33,14 @@ const PoxPrice = () => {
 
       <div className="text-xl font-bold">
         <p>POX Price</p>
-        <div className="bg-white rounded-xl   mt-8 px-12 py-6 shadow-xl">
+        <div className="bg-white rounded-xl   mt-8 h-[500px]  shadow-xl">
 
-        <div className="h-96 pt-6">
-            <BiaxialLineChart  width="1000"/>
+        <div className="w-[1200px] h-[400px] ml-32 pt-10">
+            <AreaChartComp 
+            value={data}  
+            xDataKey="date"
+            yDataKey="value"
+            componentChartColor="#C23631"/>
             </div>
         </div>
       </div>

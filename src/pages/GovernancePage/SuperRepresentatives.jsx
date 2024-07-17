@@ -8,8 +8,8 @@ import { extractSiteName } from "../../utils/extractSiteName";
 
 const Table1 = ({data}) => {
   return (
-    <div className="bg-white pt-2">
-    <div className="flex flex-row justify-evenly bg-light-orange p-3 rounded-lg m-4">
+    <div className="bg-white pt-2  rounded-tl-none rounded-2xl">
+    <div className="flex flex-row items-center justify-evenly bg-light-orange p-3 rounded-tl-none rounded-2xl m-4">
       <p className="w-[5%]">Rank</p>
       <p className="w-[10%]">Name</p>
       <p className="w-[9%]">Current Version</p>
@@ -192,7 +192,7 @@ const SuperRepresentatives = () => {
       </p>
 
       <div className=" mt-10 rounded-2xl ">
-        <div className="flex flex-row space-x-12  rounded-xl">
+        <div className="flex flex-row items-center space-x-12  rounded-xl">
           <p
             className={`cursor-pointer py-3 px-4 ${isRender === "Super Representative" ? "bg-white  rounded-t-2xl" : "text-black"}`}
             onClick={() => setIsRender("Super Representative")}

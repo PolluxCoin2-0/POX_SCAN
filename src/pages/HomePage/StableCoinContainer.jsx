@@ -134,8 +134,11 @@ const StableCoinContainer = () => {
         
         <div className="w-full md:w-[28%] mt-6 md:mt-0">
           <div className="shadow-lg bg-white rounded-xl p-4 mb-4">
-            <p className="font-semibold">Protocol Revenue</p>                                                      
+            <p className="font-semibold">Protocol Revenue</p>    
+            <div className="h-[170px]">
             <AreaChartComp value={data} xDataKey="date" yDataKey="value" componentChartColor="#FFC300" />
+              </div>                                                  
+           
           </div>
 
           {/* New Accounts/ Active Accounts/ Total Accounts */}
@@ -149,13 +152,18 @@ const StableCoinContainer = () => {
               <button onClick={() => setSelectedAccountType('TotalAccount')} className={`font-semibold px-4 py-2 rounded cursor-pointer 
                 ${selectedAccountType === 'TotalAccount' ? 'text-light-mid-gray' : 'text-black'}`}>Total Accounts</button>
             </div>
-            <AreaChartComp value={getAccountData()} xDataKey="_id" yDataKey={getYAxisType()} componentChartColor="#964B00" />
+            <div className="h-[170px]">
+            <AreaChartComp value={getAccountData()} xDataKey="_id" yDataKey={getYAxisType()} componentChartColor="#964B00" /></div>
           </div>
 
           {/* Volume(24hr) */}
           <div className="shadow-lg bg-white rounded-xl p-4">
             <p className="font-semibold">Volume(24hr)</p>
+
+            <div className="h-[170px]">
             <AreaChartComp value={data} xDataKey="date" yDataKey="value" componentChartColor="#ff0000" />
+            </div>
+           
           </div>
         </div>
         

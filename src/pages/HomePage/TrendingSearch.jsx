@@ -177,9 +177,10 @@ const TrendingSearch = () => {
           </div>
 
           {/* Charts Library */}
-          <div className="">
-            <div>
+          <div >
+            <div className="h-[170px]">
                 <AreaChartComp
+               height="150"
                 value={data5}
                 xDataKey="date"
                 yDataKey="value"

@@ -69,11 +69,11 @@ const VerticalComposedChart= ({value, xAxis, yAxis}) => {
       >
         <CartesianGrid stroke="#f5f5f5" />
         <XAxis type="number" />
-        <YAxis dataKey={yAxis} type="category" scale="band" />
+        <YAxis dataKey={xAxis} type="category" scale="band" />
         <Tooltip />
         <Legend />
         {/* <Area dataKey="amt" fill="#8884d8" stroke="#8884d8" /> */}
-        <Bar dataKey={xAxis} barSize={20} fill="#F3BB1C" />
+        <Bar dataKey={yAxis} barSize={20} fill="#F3BB1C" />
         {/* <Line dataKey="uv" stroke="#ff7300" /> */}
       </ComposedChart>
     </ResponsiveContainer>

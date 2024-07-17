@@ -4,6 +4,7 @@
 import { useEffect, useState } from "react";
 import { SearchBarExpand } from "../../../../components"
 import { getOnChainSizeTableData } from "../../../../utils/axios/Data";
+import LineChart from "../../../../components/LineChart";
 
 const OnchainDataSize = () => {
   const [data, setData] = useState({});
@@ -34,19 +35,25 @@ const OnchainDataSize = () => {
 
       <div >
         <p className=" text-xl font-bold">On-Chain Data Size</p>
-        <div className="flex flex-row justify-between mt-8">
-          <div className="bg-white rounded-2xl w-[1300px]  h-[500px]  shadow-xl">
-            
+        <div className="flex flex-row justify-between  mt-8 w-full">
+          <div className="bg-white rounded-2xl  mr-10 p-10 shadow-xl w-[70%]">
+          <div className=" w-[1200px] h-[300px] pl-5 pt-12 ">
+          <LineChart 
+          value={data} 
+          xAxis="date"
+          yAxis="value"
+          componentChartColor="#3A5AFE"/>
+          </div>
           </div>
 
-          <div className="flex flex-col ml-10 ">
-            <div className="bg-white rounded-2xl shadow-2xl w-[450px] h-[180px] ">
+          <div className="flex flex-col w-[30%]">
+            <div className="bg-white rounded-2xl shadow-2xl w-[420px] h-[180px] ">
             <p className="text-lg font-bold pt-7 pl-10 pr-8">About</p>
             <p className="pl-10 pt-1 text-light-gray leading-5 text-md">The On-Chain data size chart shows the <br/>total size of data on TRON, in bytes. A<br/>
             higher on-chain data size requires a <br/> a higher node storgae volume.</p>
             </div>
 
-            <div className="bg-white rounded-2xl w-[450px] h-[280px] mt-10 shadow-xl">
+            <div className="bg-white rounded-2xl w-[420px] h-[280px] mt-10 shadow-xl">
               <p className="pt-8 pl-10 text-lg font-bold p-2">Highlights</p>
               <p className="pl-10 pt-1 text-light-gray text-md">The current data size is 1.90t bytes.</p>
               <p className="pl-10 pt-14 text-lg font-bold">You may be interested in</p>
@@ -59,7 +66,7 @@ const OnchainDataSize = () => {
       
       <div >
         <p className="text-xl font-bold mt-10">List</p>
-        <div className="bg-white rounded-md  shadow-lg p-10 mt-8">
+        <div className="bg-white rounded-2xl  shadow-lg p-10 mt-8">
           <div className="flex flex-row justify-around bg-lightest-gray ml-8 mr-8 pt-2 pb-2 rounded-md text-light-gray">
             <p className="w-[50%] text-center">Date(UTC)</p>
             <p className="w-[50%] text-center">Chain</p>

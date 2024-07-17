@@ -6,6 +6,7 @@ import { SearchBarExpand } from "../../../../components";
 import VerticalComposedChart from "../../../../components/VerticalComposedChart";
 import { getSrVoteTableData } from "../../../../utils/axios/Data";
 import {extractSiteName} from "../../../../utils/extractSiteName";
+
 const SrVotesDistribution = () => {
   const [data, setData] = useState({});
 
@@ -26,6 +27,11 @@ const SrVotesDistribution = () => {
     fetchData();
   }, []);
 
+  
+// const extractUrl = ({item}) => {
+//   return extractSiteName(item.url);
+// }
+
   return (
     <div className="px-12 pb-12">
 
@@ -37,8 +43,12 @@ const SrVotesDistribution = () => {
         <p className=" text-2xl font-bold">SR Votes Distribution</p>
         <div className="flex flex-row justify-between mt-8">
           <div className="bg-white rounded-2xl w-[1300px]  h-[500px] mr-10 shadow-xl">
-            <div className="h-[500px] p-8">
-            <VerticalComposedChart value={data?.witnesses} xAxis="voteCount" yAxis="url"/>
+            <div className=" p-14  h-[550px]">
+            <VerticalComposedChart 
+            width="1000"
+            value={data?.witnesses} 
+            xAxis="url"
+            yAxis="voteCount"/>
             </div>
             
           </div>

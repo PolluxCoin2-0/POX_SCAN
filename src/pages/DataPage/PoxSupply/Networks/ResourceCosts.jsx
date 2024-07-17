@@ -2,6 +2,7 @@
 
 
 import { SearchBarExpand } from "../../../../components"
+import AreaChartComp from "../../../../components/AreaChart";
 
 const ResourceCosts = () => {
   return (
@@ -15,7 +16,7 @@ const ResourceCosts = () => {
         <p className="text-xl font-bold">Resource Costs</p>
         <div className="flex flex-row justify-between mt-8">
           <div className="bg-white rounded-2xl w-[1300px]  h-[500px]  shadow-xl">
-            
+        
           </div>
 
           <div className="flex flex-col  ml-10">
@@ -42,7 +43,7 @@ const ResourceCosts = () => {
         <div className="bg-white rounded-md  shadow-lg p-10 mt-8">
           <div className="flex flex-row justify-around bg-lightest-gray  pt-2 pb-2 rounded-md text-light-gray">
             <p>Date(UTC)</p>
-            <p>Pox Price</p>
+            <p>Costs</p>
           </div>
 
 

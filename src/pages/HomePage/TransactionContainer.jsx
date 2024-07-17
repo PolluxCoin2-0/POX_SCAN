@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { getTransactionGraphData, getTransactionTableData } from "../../utils/axios/Home";
 import { secondsAgo } from "../../utils/secondAgo";
 import { Link } from "react-router-dom";
+import { shortenString } from "../../utils/shortenString";
 
 const TransactionContainer = () => {
 
@@ -53,18 +54,18 @@ const TransactionContainer = () => {
           key={idx}
         >
           {/* First column */}
-          <div>
+          <div className="w-[40%]">
             <Link to={`/transactiondetails/${transaction?.transactionId}`}>
-            <p className="font-semibold pb-3 mr-6 md:mr-0">
-              {transaction?.transactionId && transaction?.transactionId}
+            <p className="font-semibold pb-3 mr-6 md:mr-0 text-dark-red">
+              {transaction?.transactionId && shortenString(transaction?.transactionId, 16)}
             </p></Link>
             <p className="text-light-gray">
-              {transaction?.timeStamp && secondsAgo(transaction?.timeStamp)} secs ago
+              {transaction?.timeStamp && secondsAgo(transaction?.timeStamp)} 
             </p>
           </div>
 
           {/* Second column */}
-          <div className="flex space-x-8">
+          <div className="flex space-x-8 w-[40%]">
             <div>
               <p className="text-light-gray pb-3">From</p>
               <p className="text-light-gray">To</p>
@@ -96,8 +97,8 @@ const TransactionContainer = () => {
           </div>
 
           {/* Third column */}
-          <div className="ml-6 text-right md:ml-0">
-            <p className="pb-3 font-semibold">{transaction?.assetAmount && transaction?.assetAmount} {transaction?.assetName && transaction?.assetName}</p>
+          <div className="ml-6 text-right md:ml-0 w-[20%]">
+            <p className="pb-3 font-semibold">{transaction?.assetAmount && Number(transaction?.assetAmount).toFixed(6)} {transaction?.assetName && transaction?.assetName}</p>
             <span className="bg-green text-dark-green font-medium px-2 py-1 rounded-md">
               Transfer
             </span>
@@ -113,11 +114,14 @@ const TransactionContainer = () => {
         <div className="w-full md:w-[28%] mt-6 md:mt-0">
           <div className="shadow-lg bg-white rounded-xl p-4">
             <p className="font-semibold">Daily Txns (15 Days)</p>
+            <div className="h-[200px]">
             <AreaChartComp
             value={data}
             xDataKey="date"
             yDataKey="count"
             componentChartColor="#5D3FD3"/>
+            </div>
+          
           </div>
         
         </div>

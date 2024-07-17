@@ -72,12 +72,15 @@ const TvlContainer = () => {
         <div className="w-full md:w-[28%] mt-6 md:mt-0">
           <div className="shadow-lg bg-white rounded-xl p-4">
             <p className="font-semibold">TVL</p>
+            <div className="h-[170px]">
             <AreaChartComp
               value={data?.tvlGraph}
               xDataKey="date"
               yDataKey="count"
               componentChartColor="#c2a3fd"
             />
+            </div>
+           
           </div>
         </div>
       </div>

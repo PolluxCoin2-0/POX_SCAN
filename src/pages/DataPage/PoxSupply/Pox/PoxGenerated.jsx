@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { SearchBarExpand } from "../../../../components"
-import CustomPieChart from "../../../../components/CustomPieChart";
+import AreaChartComp from "../../../../components/AreaChart";
 import { getPoxGeneratedTableData } from "../../../../utils/axios/Data";
 
 
@@ -12,7 +12,7 @@ const PoxGenerated = () => {
     const fetchData = async () => {
       try {
         const data = await getPoxGeneratedTableData();
-        console.log(data);
+        
         setData(data?.message);
         
         
@@ -36,25 +36,29 @@ const PoxGenerated = () => {
 
         <div className="flex flex-row justify-between mt-8 mb-8 gap-5">
           <div className="bg-white flex flex-row  justify-around rounded-xl shadow-lg w-[70%] h-auto">
-            <div className="text-lg font-bold space-y-12 pt-14 pl-36">
+            {/* <div className="text-lg font-bold space-y-12 pt-14 pl-36">
               <p>0.552219</p>
               <p>0.552219</p>
               <p>0.552219</p>
               <p>0.552219</p>
             
-            </div>
+            </div> */}
 
-           <div className=" h-80 w-[50%]">
-           <CustomPieChart />
+           <div className=" h-[300px] w-[800px] pt-10">
+           <AreaChartComp 
+           value={data}
+           xDataKey="date"
+           yDataKey="value"
+           componentChartColor="#493808"/>
            </div>
-
+{/* 
            <div className="text-lg font-bold space-y-12  pt-14 pr-36">
               <p>2024</p>
               <p>2023</p>
               <p>2022</p>
               <p>2021</p>
             
-            </div>
+            </div> */}
             
           </div>
 

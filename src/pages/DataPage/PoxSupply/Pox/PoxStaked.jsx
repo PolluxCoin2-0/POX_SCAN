@@ -31,7 +31,7 @@ const PoxStaked = () => {
       </div>
 
       <div className="text-xl font-bold">
-        <p>POX Supply</p>
+        <p>POX Staked</p>
         <div className="bg-white mt-8 rounded-2xl pl-40 py-14 shadow-lg">
         <div className="h-96 pl-5 pt-12 w-[1050px]">
         <BarHashChart1 value={data?.tvlGraph} xAxis="date" yAxis="count"/>

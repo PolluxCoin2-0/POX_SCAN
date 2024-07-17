@@ -9,10 +9,10 @@ const formatXAxis = (value) => {
 };
 
 // eslint-disable-next-line react/prop-types
-const AreaChartComp = ({ value, xDataKey, yDataKey, componentChartColor }) => {
-
+const AreaChartComp = ({ value, xDataKey, yDataKey, componentChartColor}) => {
+console.log( value, xDataKey, yDataKey,)
   return (
-    <div style={{ width: '100%', height: 150, margin: "16px 0px" }}> {/* Set a specific height */}
+    <div style={{ width: '100%', height: '100%', margin: "16px 0px" }}> {/* Set a specific height */}
       <ResponsiveContainer>
         <AreaChart
           data={value}

@@ -36,12 +36,15 @@ const AverageBlockSize = () => {
 
       <div >
         <p className=" text-xl font-bold">Average Block Size</p>
-        <div className="flex flex-row justify-between mt-8 sapce-x-10">
-          <div className="bg-white rounded-2xl w-[1300px]  h-[500px]  mr-10 p-10 shadow-xl">
+        <div className="flex flex-row justify-between mt-8  w-full">
+          <div className="bg-white rounded-2xl  mr-10 p-10 shadow-xl w-[70%]">
+            <div className="w-[1000px] h-[400px] pt-5">
             <BarChartNo value={data} xAxis="date" yAxis="value"/>
+            </div>
+           
           </div>
 
-          <div className="flex flex-col  ">
+          <div className="flex flex-col w-[30%] ">
             <div className="bg-white rounded-2xl shadow-2xl w-[450px] h-[180px] ">
             <p className="text-lg font-bold pt-7 pl-10 pr-8">About</p>
             <p className="pl-10 pt-1 text-light-gray leading-5 text-md">The average Block size chart shows the <br/>average size of blocks on TRON, in bytes.</p>

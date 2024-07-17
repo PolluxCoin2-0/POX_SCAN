@@ -101,20 +101,23 @@ function getProposalById (proposal_id) {
 const handleModal =(id)=>{
   const data = getProposalById(id);
   setModalData(data);
+  handleShowModal();
+}
+
+const handleShowModal =()=>{
   setIsShowModal(!isShowModal);
 }
 
-
   return (
-    <div className="bg-white pt-2 pb-8">
+    <div className="bg-white pt-2 pb-8 ">
       <div className="flex flex-row justify-evenly  mt-7 ml-2 mr-2 rounded-xl bg-lightest-gray pt-3 pb-3 pl-5 pr-5">
-        <p className="w-[8%]">No.</p>
-        <p className="w-[14%]">Content</p>
-        <p className="w-[20%]">Proposer</p>
+        <p className="w-[5%] ">Number</p>
+        <p className="w-[17%] ">Content</p>
+        <p className="w-[20%] ">Proposer</p>
         <p className="w-[16%]">Created / Expire on (UTC)</p>
-        <p className="w-[12%]">Status</p>
-        <p className="w-[14%]">Upvotes / Total Votes</p>
-        <p className="w-[14%]">Operation</p>
+        <p className="w-[12%] ">Status</p>
+        <p className="w-[12%]">Upvotes / Total Votes</p>
+        <p className="w-[16%] ">Operation</p>
       </div>
 
       {data1?.map &&
@@ -122,28 +125,28 @@ const handleModal =(id)=>{
           return (
             <>
               <div className="flex flex-row justify-evenly p-5 border-b-2 border-b-lightest-gray">
-                <p className="w-[8%]">{param?.proposal_id}</p>
-                <p className="w-[14%] text-overflow: ellipsis">
+                <p className="w-[5%] items-center ">#{param?.proposal_id}</p>
+                <p className="w-[17%]  truncate items-center ">
                   {param?.parameters?.[0]?.description &&
                     param?.parameters?.[0]?.description}
                 </p>
-                <p className="w-[20%]">
+                <p className="w-[20%] items-center ">
                   {param?.proposer_address &&
                     shortenString(param?.proposer_address, 10)}
                 </p>
-                <p className="w-[16%]">
-                  {formatTimestamp(param?.create_time)}/{" "}
+                <p className="w-[16%] items-center ">
+                  {formatTimestamp(param?.create_time)} {" "}
                   {formatTimestamp(param?.expiration_time)}
                 </p>
-                <p className="w-[12%]">{param?.state}</p>
-                <p className="w-[14%]"></p>
-                <p className="w-[14%] cursor-pointer" onClick={()=>handleModal(param?.proposal_id)}>View Details Committee Proposals </p>
+                <p className="w-[12%]  items-center text-dark-green ">{param?.state}</p>
+                <p className="w-[12%] items-center "></p>
+                <p className="w-[16%] items-center cursor-pointer text-dark-red underline text-nowrap " onClick={()=>handleModal(param?.proposal_id)}>View Details Committee Proposals </p>
               </div>
             </>
           );
         })}
           {
-          isShowModal && <CommitteeProposalPage value={modalData}/>
+          isShowModal && <CommitteeProposalPage value={modalData} isShowModal={isShowModal} handleShowModal={handleShowModal}/>
         }
     </div>
   );

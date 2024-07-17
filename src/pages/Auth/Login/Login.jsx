@@ -52,9 +52,7 @@ const [isModalOpen, setIsModalOpen] = useState(false);
        <RxCross2 onClick={handleClose}  size={24}/>
        </div>
           <div className=" w-[700px] h-[570px] pl-16 pr-16 bg-white rounded-2xl shadow-md">
-          
-    
-         
+
             <h2 className="mb-8 text-3xl font-semibold text-center text-black">Email</h2>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div >

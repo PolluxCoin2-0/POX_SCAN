@@ -31,10 +31,13 @@ const PoxMarketCap = () => {
       </div>
 
       <div className=" text-xl font-bold">
-        <p>POX Supply</p>
+        <p>POX Market Cap</p>
         <div className="bg-white rounded-md mt-5 px-12 py-6 mb-12 shadow-lg">
         <div className="pt-5 pl-14 pr-20  h-[550px]">
-            <VerticalComposedChart  width="1000"/>
+            <VerticalComposedChart  width="1000"
+            value={data}
+            xAxis="_id"
+            yAxis="marketCap"/>
             </div>
         </div>
       </div>

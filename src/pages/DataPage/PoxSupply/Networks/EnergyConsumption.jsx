@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react"
 import { SearchBarExpand } from "../../../../components"
 import { getEnergyConsumptionTableData } from "../../../../utils/axios/Data";
+import AreaChartComp from "../../../../components/AreaChart";
+import BarHashChart from "../../../../components/BarHashChart";
 
 const EnergyConsumption = () => {
   const [data, setData] = useState({});
@@ -31,7 +33,13 @@ const EnergyConsumption = () => {
         <p className=" text-xl font-bold">Energy Consumption</p>
         <div className="flex flex-row mt-8 justify-between">
           <div className="bg-white rounded-2xl w-[1300px]  h-[500px]  shadow-xl">
-            
+          <div className="w-[1000px]  pl-20 pb-5 pt-20">
+          <BarHashChart  
+            value={data}
+            xAxis="_id"
+            yAxis="energy"/>
+          </div>
+         
           </div>
 
           <div className="flex flex-col ml-10">
@@ -58,7 +66,7 @@ const EnergyConsumption = () => {
         <div className="bg-white rounded-md  mt-8 shadow-lg p-10">
           <div className="flex flex-row justify-around bg-lightest-gray ml-8 mr-8 pt-2 pb-2 rounded-md text-light-gray">
             <p className="w-[50%] text-center">Date(UTC)</p>
-            <p className="w-[50%] text-center">Pox Price</p>
+            <p className="w-[50%] text-center">Energy Consumption</p>
           </div>
  
           {data?.map && data?.map ((param, index) => {

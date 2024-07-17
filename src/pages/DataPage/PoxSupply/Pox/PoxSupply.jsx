@@ -33,8 +33,14 @@ const PoxSupply = () => {
       <div className="text-xl font-bold pb-12">
         <p className="pb-6">POX Supply</p>
         <div className="bg-white rounded-2xl  px-12 py-2 shadow-lg">
-        <div className="h-auto pt-14">
-            <BarHashChart  width="1000"/>
+        <div className="h-auto pt-14 ">
+          <div className="w-[1300px] pl-20 pb-5">
+          <BarHashChart  
+            value={data}
+            xAxis="_id"
+            yAxis="supply"/>
+          </div>
+         
             </div>
         </div>
       </div>

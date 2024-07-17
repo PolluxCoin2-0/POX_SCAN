@@ -46,11 +46,11 @@ const data = [
   },
 ];
 
-const LineChartComp = () => {
+const LineChartComp = ({value, xAxis, yAxis}) => {
   return (
-    <ResponsiveContainer width="80%" height={200}>
+    <ResponsiveContainer width="80%" height={350}>
       <LineChart
-        data={data}
+        data={value}
         margin={{
           top: 5,
           right: 30,
@@ -59,11 +59,11 @@ const LineChartComp = () => {
         }}
       >
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
+        <XAxis dataKey={xAxis} />
         <YAxis />
         <Tooltip />
         <Legend />
-        <Line type="monotone" dataKey="pv" stroke="#8884d8" activeDot={{ r: 8 }} />
+        <Line type="monotone" dataKey={yAxis} stroke="#8884d8" activeDot={{ r: 8 }} />
       </LineChart>
     </ResponsiveContainer>
   );

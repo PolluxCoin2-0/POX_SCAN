@@ -14,21 +14,21 @@ const Network = () => {
         <SearchBarExpand />
       </div>
 
-      <div className="flex flex-row justify-between w-full ">
-        <div>
+      <div className="flex flex-row w-full space-x-10">
+        <div className="w-[50%]">
           <p className="text-2xl font-bold">Protocol Revenue</p>
-          <div className="bg-white rounded-2xl shadow-xl mt-5">
-            <div className="h-96  pt-12 w-[850px]">
+          <div className="bg-white rounded-2xl shadow-xl h-[400px] mt-5">
+            <div className="w-[600px] h-[300px] ml-16 pt-10">
             <BiaxialLineChart width="500"/>
             </div>
           
           </div>
         </div>
 
-        <div>
+        <div className="w-[50%]">
           <p className="text-2xl font-bold">Energy Consumption</p>
-          <div className="bg-white rounded-2xl shadow-xl mt-5 ">
-          <div className="h-96 pt-12 w-[850px]">
+          <div className="bg-white rounded-2xl shadow-xl h-[400px] mt-5 ">
+          <div className="w-[600px] h-[300px] ml-16 pt-10">
             <BarHashChart />
             </div>
           </div>
@@ -37,21 +37,21 @@ const Network = () => {
 
 
       
-      <div className="flex flex-row justify-between ">
-        <div>
+      <div className="flex flex-row w-full space-x-10">
+        <div className="w-[50%]">
           <p className="text-2xl font-bold">Bandwidth Consumption</p>
-          <div className="bg-white rounded-2xl shadow-xl w-[880px] h-[400px] mt-5">
+          <div className="bg-white rounded-2xl shadow-xl  h-[400px] mt-5">
 
-          <div className="h-96 pl-5 pt-12 w-[850px]">
+          <div className=" w-[600px] h-[300px] ml-16 pt-10">
             <VerticalComposedChart/>
             </div>
           </div>
         </div>
 
-        <div>
+        <div className="w-[50%]">
           <p className="text-2xl font-bold">Resource Cost</p>
-          <div className="bg-white rounded-2xl shadow-xl w-[880px] h-[400px] mt-5">
-          <div className="h-96 pl-5 pt-12 ">
+          <div className="bg-white rounded-2xl shadow-xl  h-[400px] mt-5">
+          <div className="w-[600px] h-[300px] ml-16 pt-10">
             < CustomPieChart/>
             </div>
           </div>
@@ -59,21 +59,21 @@ const Network = () => {
       </div>
 
 
-      <div className="flex flex-row justify-between ">
-      <div>
+      <div className="flex flex-row w-full space-x-10 ">
+      <div className="w-[50%]">
         <p className="text-2xl font-bold">Average Block Size</p>
-        <div className="bg-white rounded-2xl shadow-xl w-[880px] h-[400px] mt-5">
+        <div className="bg-white rounded-2xl shadow-xl h-[400px] mt-5">
 
-        <div className="h-96 pl-5 pt-12 w-[850px]">
+        <div className="w-[600px] h-[300px] ml-16 pt-10">
           <BarChartNo color=""/>
           </div>
         </div>
       </div>
 
-      <div>
+      <div className="w-[50%]">
         <p className="text-2xl font-bold">On-Chain Data Size</p>
         <div className="bg-white rounded-2xl shadow-xl w-[880px] h-[400px] mt-5">
-        <div className="h-96 pl-5 pt-12 ">
+        <div className="w-[600px] h-[300px] ml-16 pt-10 ">
           <LineChart />
           </div>
         </div>
@@ -81,8 +81,8 @@ const Network = () => {
     </div>
 
 
-    <div className="flex flex-row justify-between ">
-        <div>
+    <div className="flex flex-row w-full space-x-10">
+        <div className="w-[50%]">
           <p className="text-2xl font-bold">Real-Time Block Distribution</p>
           <div className="bg-white rounded-2xl shadow-xl w-[880px] h-[400px] mt-5">
 
@@ -92,7 +92,7 @@ const Network = () => {
           </div>
         </div>
 
-        <div>
+        <div className="w-[50%]">
           <p className="text-2xl font-bold">SR Votes Distribution</p>
           <div className="bg-white rounded-2xl shadow-xl w-[880px] h-[400px] mt-5">
           <div className="h-96 pl-5 pt-12 ">
