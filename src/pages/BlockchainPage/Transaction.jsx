@@ -113,7 +113,7 @@ setPieChartData(pieChartDataArr);
             <div className="flex w-full h-80 flex-row justify-center items-center">
             <SimplePieChartComp value={pieChartData} />
 
-            <div className="">
+            <div className=" w-4/5">
               <div className="flex flex-row items-center space-x-2 whitespace-nowrap">
               <span className="bg-dark-yellow px-2 py-2 rounded-lg"></span>
               <p className="pb-2 font-semibold">Total Transactions</p>
