@@ -37,7 +37,7 @@ const Nodes = () => {
 
         {/* Map Integration */}
         <div className="bg-white shadow-lg rounded-2xl overflow-x-auto">
-          <MapContainer center={[12.8996, 80.2209]} zoom={3} scrollWheelZoom={false} style={{ height: '600px', width: '100%' }}>
+          <MapContainer center={[12.8996, 80.2209]} zoom={3} scrollWheelZoom={false} style={{ height: '600px', width: '100%',zIndex:10 }}>
             <TileLayer
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

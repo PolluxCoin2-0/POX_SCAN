@@ -77,7 +77,7 @@ const Sidebar = ({ children }) => {
               <Link to={buildPath(parentPath, item)}>
                 <button
                   onClick={() => toggleSubmenu(item, buildPath(parentPath, item))}
-                  className={`flex items-center p-2  rounded-lg group font-semibold ${
+                  className={`flex justify-center items-center p-2 rounded-lg group font-semibold w-full ${
                     isActiveRoute(buildPath(parentPath, item))
                       ? "bg-dark-yellow text-black px-4 my-2"
                       : "hover:bg-white hover:text-black hover:px-4"
@@ -97,7 +97,7 @@ const Sidebar = ({ children }) => {
             <li key={index}>
               <button
                 onClick={() => toggleSubmenu(key, buildPath(parentPath, key))}
-                className={`flex items-center p-2 text-white rounded-lg whitespace-nowrap hover:bg-white hover:text-black group
+                className={`flex justify-center items-center p-2 text-white rounded-lg whitespace-nowrap hover:bg-white hover:text-black group w-full
                  ${openSubmenus[key] ? "bg-dark-brown mb-2 list-disc" : ""}`}
               >
                 {openSubmenus[key] && <BsDot size={28} className="mt-1 " />}
@@ -109,7 +109,7 @@ const Sidebar = ({ children }) => {
                 )}
               </button>
               {openSubmenus[key] && (
-                <ul className="pl-4 whitespace-nowrap font-semibold">
+                <ul className="pl-4 whitespace-nowrap font-semibold w-full text-center">
                   {renderSubmenu(value, buildPath(parentPath, key))}
                 </ul>
               )}
@@ -124,7 +124,7 @@ const Sidebar = ({ children }) => {
   return (
     <div className="flex h-screen">
       <aside className="hidden md:flex w-64 bg-black text-white">
-        <div className="h-full px-3 py-4 overflow-y-auto">
+        <div className="h-full px-3 py-4 overflow-y-auto w-full">
           <ul className="space-y-2 font-medium text-center">
             {renderSubmenu(submenu, `/${path}`)}
           </ul>

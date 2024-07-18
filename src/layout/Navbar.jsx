@@ -124,7 +124,7 @@ const Navbar = () => {
   const currentPath = location.pathname;
   const [hoveredItem, setHoveredItem] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
-
+  const [showNetOptions, setShowNetOptions] = useState(false);
   const renderHoverComponent = () => {
     switch (hoveredItem) {
       case "Blockchain":
@@ -198,7 +198,7 @@ const Navbar = () => {
           })}
         </div>
 
-        <div className="flex items-center justify-between space-x-6">
+        <div className="flex items-center justify-between space-x-6 relative">
           <SearchBar />
           <Link to="/register">
             {" "}
@@ -219,15 +219,21 @@ const Navbar = () => {
             color="white"
             className="cursor-pointer"
           />
-          <div>
+          <div onClick={()=>setShowNetOptions(!showNetOptions)}>
             <img src={Logo} alt="logo-poxscan" className="cursor-pointer" />
           </div>
+          { showNetOptions && (
+            <div className="absolute top-12 right-2 font-medium bg-white px-6 py-2 shadow-lg rounded-lg z-20">
+              <p className="cursor-pointer">Testnet</p>
+              <p className="cursor-pointer">Mainnet</p>
+            </div>
+          )
+          }
         </div>
       </div>
 
-
       {/* Mobile Screen Navbar */}
-      <div className="sm:block md:hidden lg:hidden xl:hidden 2xl:hidden bg-dark-skyblue flex justify-between items-center p-4">
+      <div className="sm:block md:hidden lg:hidden xl:hidden 2xl:hidden bg-dark-skyblue flex justify-between items-center p-4 z-50">
         <Link to="/">
           <img
             src={LogoWithText}
