@@ -2,20 +2,26 @@
 
 import { useEffect, useState } from "react";
 import { SearchBarExpand } from "../../../../components"
-import SimpleAreaChart from "../../../../components/SimpleAreaChart";
 import { getContractCallTableData } from "../../../../utils/axios/Data";
+import { getTvlPriceData } from "../../../../utils/axios/Home";
+import StackedAreaChart from "../../../../components/StackedAreaChart"
 
 const ContractCalls = () => {
 
-  const [data, setData] = useState([]);
+  
 
+  const [tabledata, setTableData] = useState([]);
+  const [graphdata, setGraphData] = useState({});
   useEffect(() => {
     
     const fetchData = async () => {
       try {
-        const data = await getContractCallTableData();
-        
-        setData(data);
+        const tabledata = await getContractCallTableData();
+        setTableData(tabledata);
+
+        const graphdata = await getTvlPriceData();
+        console.log(graphdata)
+        setGraphData(graphdata);
         
         
       } catch (error) {
@@ -33,8 +39,15 @@ const ContractCalls = () => {
       <div >
         <p className=" text-xl font-bold pb-7">Contract Call</p>
         <div className="flex flex-row justify-between">
-          <div className="bg-white rounded-2xl w-[1300px] p-20 h-[500px]  pt-28 shadow-xl">
-            <SimpleAreaChart className="" />
+          <div className="bg-white rounded-2xl w-[1300px] h-[500px] shadow-xl">
+          <div className=" w-[950px] h-[400px] pt-20 pl-20">
+            <StackedAreaChart 
+            value={graphdata?.tvlGraph }
+            xAxis="date"
+            yAxis="count"
+            
+            componentChartColor="#C23631"/>
+            </div>
           </div>
 
           <div className="flex flex-col ml-10">
@@ -64,7 +77,7 @@ const ContractCalls = () => {
             <p className="w-[50%] text-center">Count</p>
           </div>
            
-          {data?.map && data?.map((param, index) => {
+          {tabledata?.map && tabledata?.map((param, index) => {
         return (
           <>
            <div className="flex flex-row justify-around p-5 border-b-2 border-b-lightest-gray">

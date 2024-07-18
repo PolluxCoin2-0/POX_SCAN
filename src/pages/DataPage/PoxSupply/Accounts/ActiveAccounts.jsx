@@ -32,10 +32,16 @@ const ActiveAccounts = () => {
       <div><SearchBarExpand/> </div>
 
       <div >
-        <p className=" text-xl font-bold pb-7">Total Accounts</p>
+        <p className=" text-xl font-bold pb-7">Active Accounts</p>
         <div className="flex flex-row justify-between">
           <div className="bg-white rounded-2xl w-[1300px] p-10 h-[500px]  shadow-xl">
-            <MixBarChart />
+            <div className="w-[1000px] h-[400px]">
+            <MixBarChart 
+            value={data?.activeAccounts}
+            xAxis="_id"
+            yAxis="activeaddress"/>
+            </div>
+           
           </div>
 
           <div className="flex flex-col ml-10">
@@ -63,7 +69,7 @@ const ActiveAccounts = () => {
         <div className="bg-white rounded-md  shadow-lg p-10">
           <div className="flex flex-row justify-around bg-lightest-gray ml-8 mr-8 pt-2 pb-2 rounded-md text-light-gray">
             <p className="w-[50%] text-center">Date(UTC)</p>
-            <p className="w-[50%] text-center">Pox Price</p>
+            <p className="w-[50%] text-center">Active Accounts</p>
           </div>
            
           {data?.activeAccounts?.map && data?.activeAccounts?.map((param, index) => {
@@ -79,38 +85,7 @@ const ActiveAccounts = () => {
        })}
 
 
-          <div className="flex flex-row justify-around  border-b-2 border-b-lightest-gray">
-            <div className="pt-8">
-              
-            <p className="pt-8 ">2024-05-11T00.07;8:35.519Z</p>
-            <p className="pt-8">2024-05-11T00.07;8:35.519Z</p>
-            <p className="pt-8">2024-05-11T00.07;8:35.519Z</p>
-            <p className="pt-8">2024-05-11T00.07;8:35.519Z</p>
-            <p className="pt-8">2024-05-11T00.07;8:35.519Z</p>
-            <p className="pt-8">2024-05-11T00.07;8:35.519Z</p>
-            <p className="pt-8">2024-05-11T00.07;8:35.519Z</p>
-            <p className="pt-8">2024-05-11T00.07;8:35.519Z</p>
-            <p className="pt-8">2024-05-11T00.07;8:35.519Z</p>
-            <p className="pt-8">2024-05-11T00.07;8:35.519Z</p>
-            <p className="pt-8">2024-05-11T00.07;8:35.519Z</p>
-            
-            </div>
-
-            <div className="pt-8">
-              
-            <p className="pt-8">0.21365437442842399</p>
-            <p className="pt-8">0.21365437442842399</p>
-            <p className="pt-8">0.21365437442842399</p>
-            <p className="pt-8">0.21365437442842399</p>
-            <p className="pt-8">0.21365437442842399</p>
-            <p className="pt-8">0.21365437442842399</p>
-            <p className="pt-8">0.21365437442842399</p>
-            <p className="pt-8">0.21365437442842399</p>
-            <p className="pt-8">0.21365437442842399</p>
-            <p className="pt-8">0.21365437442842399</p> 
-            <p className="pt-8">0.21365437442842399</p>
-            </div>
-          </div>
+         
         </div>
       </div>
     </div>

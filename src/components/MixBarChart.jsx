@@ -46,13 +46,13 @@ const data = [
   },
 ];
 
-const MixBarChart= () => {
+const MixBarChart= ({value, xAxis, yAxis}) => {
   return (
     <ResponsiveContainer width="100%" height="100%">
       <BarChart
         width={500}
         height={300}
-        data={data}
+        data={value}
         margin={{
           top: 20,
           right: 30,
@@ -61,13 +61,12 @@ const MixBarChart= () => {
         }}
       >
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
+        <XAxis dataKey={xAxis} />
         <YAxis />
         <Tooltip />
         <Legend />
-        <Bar dataKey="pv" stackId="a" fill="#3A5AFE" />
-        <Bar dataKey="amt" stackId="a" fill="#000000" />
-        <Bar dataKey="uv" fill="#ffc658" />
+      
+        <Bar dataKey={yAxis} fill="#ffc658" />
       </BarChart>
     </ResponsiveContainer>
   );

@@ -46,12 +46,12 @@ const data = [
   },
 ];
 
-const SimpleBarChart= () => (
-  <ResponsiveContainer width="100%" height={300}>
+const SimpleBarChart= ({value, xAxis, yAxis}) => (
+  <ResponsiveContainer width="100%" height="100%">
     <BarChart
       width={500}
       height={300}
-      data={data}
+      data={value}
       margin={{
         top: 5,
         right: 30,
@@ -60,12 +60,12 @@ const SimpleBarChart= () => (
       }}
     >
       <CartesianGrid strokeDasharray="3 3" />
-      <XAxis dataKey="name" />
+      <XAxis dataKey={xAxis} />
       <YAxis />
       <Tooltip />
       <Legend />
-      <Bar dataKey="pv" fill="#493808" background={{ fill: '#eee' }} />
-      <Bar dataKey="uv" fill="#F3BB1C" />
+      <Bar dataKey={yAxis} fill="#493808" background={{ fill: '#eee' }} />
+      {/* <Bar dataKey="uv" fill="#F3BB1C" /> */}
     </BarChart>
   </ResponsiveContainer>
 );

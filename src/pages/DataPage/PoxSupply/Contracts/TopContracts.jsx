@@ -13,7 +13,6 @@ const TopContracts = () => {
     const fetchData = async () => {
       try {
         const data = await getTopContractTableData();
-        console.log(data);
         setData(data);
         
         
@@ -32,9 +31,12 @@ const TopContracts = () => {
       <div >
         <p className=" text-xl font-bold pb-7">Top Contracts</p>
         <div className="flex flex-row justify-between">
-          <div className="bg-white rounded-2xl w-[1300px] p-10 h-[500px] pt-20 mr-10 shadow-xl">
-          <div className="h-96 pb-10 ">
-          <VerticalComposedChart value={data?.calls} xAxis="totalCount" yAxis="contractAddress"/>
+          <div className="bg-white rounded-2xl w-[1300px] h-[500px]  mr-10 shadow-xl">
+          <div className="w-[900px] h-[450px] pl-20 pt-16">
+          <VerticalComposedChart 
+          value={data?.calls} 
+          yAxis="totalCount" 
+          xAxis="contractAddress"/>
             </div>
           </div>
 
@@ -63,7 +65,7 @@ const TopContracts = () => {
         <div className="bg-white rounded-2xl  shadow-lg p-10">
           <div className="flex flex-row justify-around pl-72 bg-lightest-gray ml-8 mr-8 pt-2 pb-2 rounded-md text-light-gray">
             <p className="w-[50%]">Address</p>
-            <p className="w-[50%]">Count</p>
+            <p className="w-[50%]">Total Count</p>
           </div>
            
              

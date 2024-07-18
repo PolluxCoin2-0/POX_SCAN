@@ -166,6 +166,8 @@ export const getContractCallTableData = async() => {
     }
 }
 
+
+
 export const getTopContractTableData = async() => {
     try {
         const response = await axios.get("https://governance.poxscan.io/token/topcontractbycalls");

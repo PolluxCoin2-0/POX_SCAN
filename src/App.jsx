@@ -11,6 +11,7 @@ import {
   TransactionDetailPage,
   Nodes,
   Blocks,
+  BlockDetailPage,
   Contacts,
   Accounts,
   Transaction,
@@ -79,6 +80,7 @@ const routesArray = [
   "/blockchain",
   "/blockchain/nodes",
   "/blockchain/blocks",
+  "/blockdetailpage",
   "/blockchain/contacts",
   "/blockchain/accounts",
   "/blockchain/transactions",
@@ -138,6 +140,7 @@ const AppRoutes = () => {
     "/home",
     "/transactiondetails/*",
   "/accountdetails/*",
+  "/blockdetailpage",
     "/connectwallet",
     "/connectwallet2",
     "/login",
@@ -186,6 +189,8 @@ const AppRoutes = () => {
                 <Route path="/newpassword" element={<NewPassword />} />
                     <Route path="/governance/parameters" element={<CommitteeProposalPage />} />
                     <Route path="/connectwallet" element={<ConnectWallet />} />
+
+                    <Route path="/blockdetailpage" element={<BlockDetailPage />} />
               </Routes>
             ) : (
               <Sidebar>

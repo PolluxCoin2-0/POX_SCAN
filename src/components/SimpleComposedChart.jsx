@@ -50,13 +50,13 @@ const data = [
   },
 ];
 
-const SimpleComposedChart = () => {
+const SimpleComposedChart = ({value, xAxis, yAxis}) => {
   return (
     <ResponsiveContainer width="100%" height="100%">
       <ComposedChart
         width={500}
         height={400}
-        data={data}
+        data={value}
         margin={{
           top: 20,
           right: 20,
@@ -65,12 +65,12 @@ const SimpleComposedChart = () => {
         }}
       >
         <CartesianGrid stroke="#f5f5f5" />
-        <XAxis dataKey="name" scale="band" />
+        <XAxis dataKey={xAxis} scale="band" />
         <YAxis />
         <Tooltip />
         <Legend />
-        <Bar  dataKey="uv" barSize={20} fill="#F3BB1C" />
-        <Line type="monotone" dataKey="uv" stroke="#F3BB1C" />
+        <Bar  dataKey={yAxis} barSize={20} fill="#F3BB1C" />
+        {/* <Line type="monotone" dataKey="uv" stroke="#F3BB1C" /> */}
       </ComposedChart>
     </ResponsiveContainer>
   );

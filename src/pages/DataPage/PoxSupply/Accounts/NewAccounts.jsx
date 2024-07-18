@@ -34,8 +34,14 @@ const NewAccounts = () => {
       <div >
         <p className=" text-xl font-bold pb-7">New Accounts</p>
         <div className="flex flex-row justify-between">
-          <div className="bg-white rounded-2xl w-[1300px] p-20 h-[500px]  pt-28 shadow-xl">
-            <SimpleBarChart className="" />
+          <div className="bg-white rounded-2xl w-[1300px]  h-[500px] shadow-xl">
+            <div className="w-[1000px] h-[450px] pt-20 pl-4">
+            <SimpleBarChart 
+            value={data?.NewAccounts}
+            xAxis="_id"
+            yAxis="newaddress"/>
+            </div>
+           
           </div>
 
           <div className="flex flex-col ml-10 ">
@@ -62,7 +68,7 @@ const NewAccounts = () => {
         <div className="bg-white rounded-md  shadow-lg p-10">
           <div className="flex flex-row justify-around bg-lightest-gray ml-8 mr-8 pt-2 pb-2 rounded-md text-light-gray">
             <p className="w-[50%] text-center">Date(UTC)</p>
-            <p className="w-[50%] text-center">Pox Price</p>
+            <p className="w-[50%] text-center">New Account</p>
           </div>
 
           {data?.NewAccounts?.map && data?.NewAccounts?.map((param, index) => {

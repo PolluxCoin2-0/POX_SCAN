@@ -35,8 +35,14 @@ const PoxHolders = () => {
       <div >
         <p className=" text-xl font-bold pb-7">Pox Holders</p>
         <div className="flex flex-row justify-between">
-          <div className="bg-white rounded-2xl w-[1300px]  h-[500px] mr-10 p-10 shadow-xl">
-            <BarChartNo value={data} xAxis="_id" yAxis="count" />
+          <div className="bg-white rounded-2xl w-[1300px]  h-[500px] mr-10 shadow-xl">
+            <div className="w-[1000px] h-[450px] pt-20 pl-5">
+            <BarChartNo 
+            value={data} 
+            xAxis="_id" 
+            yAxis="count" />
+            </div>
+            
           </div>
 
           <div className="flex flex-col  ">
@@ -63,7 +69,7 @@ const PoxHolders = () => {
         <div className="bg-white rounded-md  shadow-lg p-10">
           <div className="flex flex-row justify-around bg-lightest-gray ml-8 mr-8 pt-2 pb-2 rounded-md text-light-gray">
             <p className="w-[50%] text-center">Date(UTC)</p>
-            <p className="w-[50%] text-center">Pox Price</p>
+            <p className="w-[50%] text-center">Pox Holders</p>
           </div>
 
           {data?.map && data?.map((param, index) => {

@@ -32,7 +32,13 @@ const TotalAccounts = () => {
         <p className=" text-xl font-bold pb-7">Total Accounts</p>
         <div className="flex flex-row justify-between">
           <div className="bg-white rounded-2xl w-[1300px] p-10 h-[500px] mr-10 shadow-xl">
-            <SimpleComposedChart />
+            <div className="w-[1000px] h-[400px] pt-5 pr-4">
+            <SimpleComposedChart
+            value={data?.TotalAccount} 
+            xAxis="date"
+            yAxis="totalaccount"/>
+            </div>
+          
           </div>
 
           <div className="flex flex-col  ">
@@ -59,7 +65,7 @@ const TotalAccounts = () => {
         <div className="bg-white rounded-md  shadow-lg p-10">
           <div className="flex flex-row justify-around bg-lightest-gray ml-8 mr-8 pt-2 pb-2 rounded-md text-light-gray">
             <p className="w-[50%] text-center">Date(UTC)</p>
-            <p className="w-[50%] text-center">Pox Price</p>
+            <p className="w-[50%] text-center">Total Accounts</p>
           </div>
 
           {data?.TotalAccount?.map && data?.TotalAccount?.map((param, index) => {

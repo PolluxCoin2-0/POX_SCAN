@@ -34,8 +34,15 @@ const TransactionTrend = () => {
       <div >
         <p className=" text-xl font-bold pb-7">Transaction Trend</p>
         <div className="flex flex-row justify-between">
-          <div className="bg-white rounded-2xl w-[1300px] p-20 h-[500px]  pt-28 shadow-xl">
-            <SimpleAreaChart className="" />
+          <div className="bg-white rounded-2xl w-[1300px] h-[500px] shadow-xl">
+            <div className="w-[1000px] h-[430px] pt-12 pl-8">
+            <SimpleAreaChart 
+            value={data}
+            xAxis="_id"
+            yAxis="count"
+            componentChartColor="#8884d8"/>
+            </div>
+           
           </div>
 
           <div className="flex flex-col ml-10 ">
@@ -63,7 +70,7 @@ const TransactionTrend = () => {
         <div className="bg-white rounded-2xl  shadow-lg p-10">
           <div className="flex flex-row justify-around bg-lightest-gray ml-8 mr-8 pt-2 pb-2 rounded-md text-light-gray">
             <p className="w-[50%] text-center">Date(UTC)</p>
-            <p className="w-[50%] text-center">Pox Price</p>
+            <p className="w-[50%] text-center">Transaction Trend</p>
           </div>
           
           {data?.map && data?.map((param, index) => {
