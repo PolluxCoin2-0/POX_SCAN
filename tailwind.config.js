@@ -25,6 +25,7 @@ export default {
       "light-yellow": "#FEF9E9",
       "dark-red": "#C23631",
       "light-red": "#EBDBE1",
+      "light-mid-red" : "#ecc1c0",
       "dark-brown": "#493808",
       "dark-skyblue": "#065BA1",
       "dark-blue": "#3A5AFE",
@@ -42,6 +43,7 @@ export default {
       "lightest-brown" : "#ecedf0",
       "light-mid-gray" : "#968d8d",
       "darker-blue" :"#1A5BA1",
+      "dark-purple" : "#D36FF9",
     },
     backgroundImage: {
       'purple-gradient': 'linear-gradient(to bottom, #B1B9F8 0%, #ADB7F9 100%)',

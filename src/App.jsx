@@ -12,6 +12,7 @@ import {
   Nodes,
   Blocks,
   BlockDetailPage,
+  ProducerDetailPage,
   Contacts,
   Accounts,
   Transaction,
@@ -61,6 +62,7 @@ import {
   NewPassword,
   ConnectWallet,
   CommitteeProposalPage,
+  TokenDetailPage,
 } from "./pages";
 import Usdx from "./pages/TokenPage/Usdx";
 import { ToastContainer } from 'react-toastify';
@@ -81,6 +83,8 @@ const routesArray = [
   "/blockchain/nodes",
   "/blockchain/blocks",
   "/blockdetailpage",
+  "/producerdetailpage",
+  "/tokendetailpage",
   "/blockchain/contacts",
   "/blockchain/accounts",
   "/blockchain/transactions",
@@ -141,6 +145,8 @@ const AppRoutes = () => {
     "/transactiondetails/*",
   "/accountdetails/*",
   "/blockdetailpage",
+  "/producerdetailpage",
+  "/tokendetailpage",
     "/connectwallet",
     "/connectwallet2",
     "/login",
@@ -191,6 +197,8 @@ const AppRoutes = () => {
                     <Route path="/connectwallet" element={<ConnectWallet />} />
 
                     <Route path="/blockdetailpage" element={<BlockDetailPage />} />
+                    <Route path="/producerdetailpage"  element={<ProducerDetailPage/>} />
+                    <Route path="/tokendetailpage"  element={<TokenDetailPage />} />
               </Routes>
             ) : (
               <Sidebar>

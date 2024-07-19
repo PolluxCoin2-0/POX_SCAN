@@ -129,3 +129,12 @@ export const getTransactionTableData = async()=>{
     }
 }
 
+export const getBlockDetailPageData = async() => {
+    try {
+        const response = await axios.get("https://node.poxscan.io/api/block?block=2802522");
+        return (response?.data);
+    } catch (error) {
+        console.log("error", error);
+    }
+}
+

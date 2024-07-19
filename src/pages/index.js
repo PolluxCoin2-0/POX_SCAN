@@ -4,7 +4,9 @@ import TransactionDetailPage from "./HomePage/TransactionDetailPage";
 import Blockchain from "./BlockchainPage/Blockchain";
 import Nodes from "./BlockchainPage/Nodes";
 import Blocks from "./BlockchainPage/Blocks";
-import BlockDetailPage from "./BlockchainPage/BlockDetailPage"
+import BlockDetailPage from "./BlockchainPage/BlockDetailPage";
+import ProducerDetailPage from "./BlockchainPage/ProducerDetailPage";
+import TokenDetailPage from "./BlockchainPage/TokenDetailPage";
 import Accounts from "./BlockchainPage/Accounts";
 import Contacts from "./BlockchainPage/Contacts";
 import Transaction from "./BlockchainPage/Transaction";
@@ -67,10 +69,12 @@ export {
     Home,
     AccountDetailPage,
     TransactionDetailPage,
+    TokenDetailPage,
     Blockchain,
     Nodes,
     Blocks,
     BlockDetailPage,
+    ProducerDetailPage,
     Accounts,
     Contacts,
     Transaction,

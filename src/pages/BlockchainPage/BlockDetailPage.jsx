@@ -1,16 +1,107 @@
-import { SearchBarExpand } from "../../components"
+import { Pagination, SearchBarExpand } from "../../components"
 import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
 import { AiOutlineQuestion } from "react-icons/ai";
 import { MdContentCopy } from "react-icons/md";
+import { FaEye } from "react-icons/fa";
+import { useEffect, useState } from "react";
+import { getBlockDetailPageData } from "../../utils/axios/Blockchain";
+
+const TransactionTable = () => {
+
+   
+  // For Pagination
+    const [currentPage, setCurrentPage] = useState(1);
+    const totalPages = 10; // Example total pages
+  
+    const handlePageChange = (page) => {
+      setCurrentPage(page);
+    };
+  
+    return (
+      <div>
+        <div className="bg-white rounded-2xl mt-8 pt-5 pb-5 overflow-x-auto md:overflow-hidden">
+          <div className=" flex flex-row justify-between">
+            <div>
+              <p className="pl-5 font-bold">
+              A total of 10000 transaction(s)
+              </p>
+            </div>
+  </div>
+  
+          <div className="min-w-[1500px] flex flex-row justify-evenly items-center bg-lightest-gray pl-24 p-2 m-5  rounded-xl">
+            <p className="w-[11%]"><FaEye /></p>
+            <p className="w-[12%]">Hash</p>
+            <p className="w-[11%]">Block</p>
+            <p className="w-[11%]">Time</p>
+            <p className="w-[11%]">Transaction Type</p>
+            <p className="w-[11%]">From</p>
+            <p className="w-[11%]">To</p>
+            <p className="w-[11%]">Token</p>
+            <p className="w-[11%]">Result</p>
+            
+          </div>
+  
+           <div className="text-center">No Data Found</div>
+  
+          <div className="flex justify-start md:justify-end">
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={handlePageChange}
+            />
+          </div>
+        </div>
+      </div>
+    );
+  };
+
 const BlockDetailPage = () => {
+
+     // API INTEGRATION
+    //  const [blockdata, setBlockData] = useState({});
+    
+    //  useEffect(() => {
+    //      const fetchData = async () => {
+    //        try {
+    //          const blockdata = await getBlockDetailPageData();
+    //          console.log(blockdata);
+    //          setBlockData(blockdata?.message);
+            
+    //        } catch (error) {
+    //          console.log('error', error);
+    //        } 
+    //      };
+    //      fetchData();
+    //    }, [])
+
+    const [isRender, setIsRender] = useState("Transactions");
+    
+  
+    const renderItemComponent = () => {
+      switch (isRender) {
+        case "Transactions":
+          return <TransactionTable /> ;
+  
+        case "Transfers":
+          return <TransactionTable />;
+
+        case "Internal Txns":
+          return <TransactionTable />;
+  
+        
+      }
+    };
+  
   return (
     <div className="px-12 pb-12">
-
+      
+      {/* Search Bar */}
       <div>
         <SearchBarExpand />
       </div>
-
+      
+      {/* Block Detail  */}
       <div>
         <p className="text-xl font-bold">Block Details</p>
         
@@ -133,15 +224,22 @@ const BlockDetailPage = () => {
 
                     <div>
                         <div className="border-b-[1px] border-lightest-gray pt-2 pb-4 ">
-                            <div className="flex flex-row">
-                                <p className=" ">0</p>
-                                <div className=""></div>
+                            <div className="flex flex-row w-full">
+                                <p className="w-[10%] font-semibold text-lg">1</p>
+                                <div className=" w-[90%] h-[2px] flex flex-row justify-end pt-2">
+                                    <p className="w-[30%] border-2 text-dark-red"></p>
+                                    <p className="w-[27%] border-2 text-dark-orange"></p>
+                                    <p className="w-[10%] border-2 text-dark-skyblue"></p>
+                                    <p className="w-[10%] border-2 text-dark-green"></p>
+                                    <p className="w-[10%] border-2 text-dark-purple"></p>
+                                    <p className="w-[3%] border-2 text-light-brown"></p>
+                                </div>
                             </div>
 
                             <div className="flex flex-row justify-between pt-2">
                                 <div className="flex flex-row space-x-2">
                                 <p className="bg-lightest-gray rounded-md pt-1 px-1"><AiOutlineQuestion /> </p>
-                                <p className="">Transactions</p>
+                                <p className="font-medium">Transactions</p>
                                 </div>
                            
                                 <p className="">(Failed:0)</p>
@@ -149,8 +247,13 @@ const BlockDetailPage = () => {
                         </div>
 
                         <div className="border-b-[1px] border-lightest-gray pt-2 pb-4">
-                            <div>
-                                <p>0</p>
+                        <div className="flex flex-row w-full">
+                                <p className="w-[10%] font-semibold text-lg">0</p>
+                                <div className=" w-[90%] h-[2px] flex flex-row justify-end pt-2">
+                                    <p className="w-[45%] border-2 text-dark-green"></p>
+                                    <p className="w-[45%] border-2 text-dark-orange"></p>
+                                   
+                                </div>
                             </div>
                             <div className="flex flex-row space-x-2 pt-2">
                             <p className="bg-lightest-gray rounded-md pt-1 px-1"><AiOutlineQuestion /> </p>
@@ -161,7 +264,7 @@ const BlockDetailPage = () => {
 
                         <div className="pt-2 pb-4" >
                             <div className="flex flex-row space-x-3">
-                                <p>0</p>
+                                <p className=" font-semibold text-lg">0</p>
                                <p>(from 0 parent Txns)</p>
                             </div>
                             <div className="flex flex-row space-x-2 pt-3">
@@ -192,7 +295,7 @@ const BlockDetailPage = () => {
                             <p>Bandwidth</p>
                             </div>
                        
-                            <p>0</p>
+                            <p>267</p>
                         </div>
 
                         <div className="flex flex-row justify-between border-b-[1px] border-lightest-gray pt-2 pb-2">
@@ -208,6 +311,36 @@ const BlockDetailPage = () => {
             </div>
         </div>
       </div>
+
+      {/* Table */}
+
+      <div className="flex flex-row space-x-10 mt-10">
+        <p  
+        className={`cursor-pointer py-3 px-6 whitespace-nowrap ${
+            isRender === "Transactions"
+              ? "bg-dark-yellow font-semibold  shadow-lg rounded-lg"
+              : "text-black bg-text-bg-gray shadow-md rounded-lg"
+          }`}
+         onClick={() => setIsRender("Transactions")}>Transactions</p>
+
+        <p 
+         className={`cursor-pointer py-3 px-10 whitespace-nowrap ${
+            isRender === "Transfers"
+              ? "bg-dark-yellow font-semibold  shadow-lg rounded-lg"
+              : "text-black bg-text-bg-gray shadow-md rounded-lg"
+          }`}
+         onClick={() => setIsRender("Transfers")}>Transfers</p>
+
+        <p 
+         className={`cursor-pointer py-3 px-6 whitespace-nowrap ${
+            isRender === "Internal Txns"
+              ? "bg-dark-yellow font-semibold  shadow-lg rounded-lg"
+              : "text-black bg-text-bg-gray shadow-md rounded-lg"
+          }`}
+         onClick={() => setIsRender("Internal Txns")}>Internal Txns</p>
+      </div>
+
+      <div>{renderItemComponent()}</div>
     </div>
   )
 }
