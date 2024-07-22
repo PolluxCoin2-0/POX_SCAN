@@ -10,6 +10,7 @@ import { shortenString } from "../../utils/shortenString";
 import { IoCheckmarkCircleOutline } from "react-icons/io5";
 import { RxCrossCircled } from "react-icons/rx";
 import { formatNumberWithCommas } from "../../utils/FormattingNumber";
+import { Link } from "react-router-dom";
 
 // For Tab Switching
 const POXTransferTable = () => {
@@ -49,18 +50,7 @@ const POXTransferTable = () => {
             </p>
           </div>
 
-          <div className="hidden md:flex flex-row justify-between px-32 rounded-md  border-2 border-lightest-gray">
-            <IoSearch className=" text-xl pt-4 w-10 h-10 text-light-gray" />
-
-            <input
-              className="bg-white h-12 w-full  rounded-lg text-sm  focus:outline-none placeholder:text-light-gray placeholder:font-medium"
-              type="search"
-              name="search"
-              placeholder="Search by Contract Accounts/Name"
-            />
-
-            <PiArrowBendDownLeftBold className="w-10 h-10 pt-4  text-light-gray" />
-          </div>
+       
         </div>
 
         <div className="min-w-[1500px] flex flex-row justify-evenly items-center bg-lightest-gray p-2 m-3 rounded-xl">
@@ -147,18 +137,7 @@ const PRC20TransferTable = ({ setPieChartData }) => {
             </p>
           </div>
 
-          <div className="hidden md:flex flex-row justify-between px-32 rounded-md  border-2 border-lightest-gray">
-            <IoSearch className=" text-xl pt-4 w-10 h-10 text-light-gray" />
-
-            <input
-              className="bg-white h-12 w-full  rounded-lg text-sm  focus:outline-none placeholder:text-light-gray placeholder:font-medium"
-              type="search"
-              name="search"
-              placeholder="Search by Contract Accounts/Name"
-            />
-
-            <PiArrowBendDownLeftBold className="w-10 h-10 pt-4  text-light-gray" />
-          </div>
+        
         </div>
 
         <div className="min-w-[1500px] flex flex-row justify-evenly items-center bg-lightest-gray p-2 m-3 rounded-xl">
@@ -182,9 +161,13 @@ const PRC20TransferTable = ({ setPieChartData }) => {
                  <p className="text-dark-red"> Pollux...({contact?.assetName && contact?.assetName})</p>
                  <p className="px-2 py-[1px] rounded-md bg-light-red text-black"> {contact?.type && contact?.type}</p>
                  </div>
-                  <span className="text-light-gray">
+
+                 <Link to={`/tokendetailpage/${contact?.contractAddress}`}>
+                 <span className="text-light-gray">
                   {contact?.contractAddress && shortenString(contact?.contractAddress,10)}
                   </span>
+                 </Link>
+                 
                 </div>
                 <p className="w-[16%] text-center">{contact?.asset && contact?.asset}</p>
                 <p className="w-[8%] text-center">{contact?.result && contact?.result==="SUCCESS"?<IoCheckmarkCircleOutline size={24} color="green" />:<RxCrossCircled size={24} color="red"/>}</p>

@@ -6,6 +6,8 @@ import { MdContentCopy } from "react-icons/md";
 import { FaEye } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { getBlockDetailPageData } from "../../utils/axios/Blockchain";
+import { useParams } from "react-router-dom";
+import { secondsAgo } from "../../utils/secondAgo";
 
 const TransactionTable = () => {
 
@@ -57,23 +59,24 @@ const TransactionTable = () => {
   };
 
 const BlockDetailPage = () => {
+  const number = useParams().id;
 
      // API INTEGRATION
-    //  const [blockdata, setBlockData] = useState({});
+      const [blockdata, setBlockData] = useState({});
     
-    //  useEffect(() => {
-    //      const fetchData = async () => {
-    //        try {
-    //          const blockdata = await getBlockDetailPageData();
-    //          console.log(blockdata);
-    //          setBlockData(blockdata?.message);
+     useEffect(() => {
+         const fetchData = async () => {
+           try {
+             const blockdata = await getBlockDetailPageData(number);
+             console.log(blockdata);
+             setBlockData(blockdata?.message);
             
-    //        } catch (error) {
-    //          console.log('error', error);
-    //        } 
-    //      };
-    //      fetchData();
-    //    }, [])
+           } catch (error) {
+             console.log('error', error);
+           } 
+         };
+         fetchData();
+       }, [])
 
     const [isRender, setIsRender] = useState("Transactions");
     
@@ -109,8 +112,8 @@ const BlockDetailPage = () => {
             {/* First Div */}
             <div className="w-[65%] bg-white rounded-xl shadow-lg p-8 ">
                 <div className="flex flex-row space-x-5 border-b-[1px] border-text-bg-gray pb-4">
-                    <p className="text-lg font-semibold">Block #2778424</p>
-                    <p className="text-sm bg-text-bg-gray px-2 rounded-md pt-1"> Producer: Poxchain786</p>
+                    <p className="text-lg font-semibold">Block #{blockdata?.blocknumber}</p>
+                    <p className="text-sm bg-text-bg-gray px-2 rounded-md pt-1"> Producer: {blockdata?.witness?.[0]}</p>
                     <p className="bg-text-bg-gray rounded-2xl px-1 pt-1"><IoIosArrowBack /></p>
                     <p className="bg-text-bg-gray rounded-2xl px-1 pt-1"><IoIosArrowForward /></p>
                 </div>
@@ -124,7 +127,7 @@ const BlockDetailPage = () => {
                         </div>
                          
                          <div className="flex flex-row space-x-4">
-                            <p>00000000002a6538f68e1cd2e5346fe5b5a6b3d48f0455efa210c1dfaa6da878</p>
+                            <p>{blockdata?.blockHash}</p>
                          <p className="pt-1"><MdContentCopy /></p></div>
                         
                     </div>
@@ -136,7 +139,7 @@ const BlockDetailPage = () => {
                         </div>
 
                     <div className="flex flex-row space-x-4">
-                    <p>1 minutes ago</p>    
+                    <p>{blockdata?.timestamp && secondsAgo(blockdata?.timestamp)}</p>    
                     <p className="text-light-gray">Thu Jul 18 2024</p>
                     </div>
                   
@@ -150,7 +153,7 @@ const BlockDetailPage = () => {
                         </div>
                    
                         <div className="flex flex-row space-x-5">
-                        <p>2510 Bytes </p>
+                        <p>{blockdata?.size} Bytes </p>
                         <p className="text-light-gray">(Upper Limit: 2,000,000 Bytes)</p>
                        </div>
                    
@@ -200,7 +203,7 @@ const BlockDetailPage = () => {
                         <p>Parent Block Hash:</p>
                         </div>
                    <div className="flex flex-row space-x-4">
-                   <p>00000000002a6538f68e1cd2e5346fe5b5a6b3d48f0455efa210c1dfaa6da878</p>
+                   <p>{blockdata?.parenthash}</p>
                    <p className="pt-1"><MdContentCopy /></p>
                    </div>
                     

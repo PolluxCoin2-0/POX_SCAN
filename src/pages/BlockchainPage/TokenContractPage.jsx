@@ -2,7 +2,7 @@ import { useState } from "react";
 import { BsCopy } from "react-icons/bs";
 import { IoCopy } from "react-icons/io5";
 import { LuShrink } from "react-icons/lu";
-import { IoIosArrowDropdownCircle } from "react-icons/io";
+import { IoIosArrowDropdownCircle, IoIosArrowDropupCircle } from "react-icons/io";
 
 const CodeTable = () => {
   return (
@@ -51,7 +51,10 @@ const CodeTable = () => {
        </div>
 
        <div className="bg-text-bg-gray mt-8 rounded-sm w-[1100px] h-[800px]" >
-         CODE 
+         <pre>
+         <code>
+         
+         </code></pre>
        </div>
        </div>
     </div>
@@ -59,162 +62,377 @@ const CodeTable = () => {
 }
 
 const ReadContractTable = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [isView, setIsView] = useState(false);
+  const [inputValue, setInputValue] = useState("");
+  const handleToggle = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const handleView = () => {
+    setIsView(!isView);
+  }
+
+
+  const handleChange = (event) => {
+    setInputValue(event.target.value);
+  };
+
   return (
     <div className="bg-white rounded-bl-xl rounded-br-xl shadow-xl p-10 ">
-       <div className="border-[1px] border-mid-light-gray rounded-tl-lg rounded-tr-lg">
-          <div className="flex flex-row justify-between p-5 bg-text-bg-gray  ">
-          <p className="text-lg">1. DOMAIN_SEPARATOR</p>
-          <p className="text-2xl"><IoIosArrowDropdownCircle /></p>
-           </div>
+    <div className="border-[1px] border-mid-light-gray rounded-tl-lg rounded-tr-lg">
+    <div className="flex flex-row justify-between p-5 bg-text-bg-gray">
+      <p className="text-lg">1. DOMAIN_SEPARATOR</p>
+      <p className="text-2xl" onClick={handleToggle} style={{ cursor: 'pointer' }}>
+      {isOpen ? <IoIosArrowDropupCircle /> : <IoIosArrowDropdownCircle />}
+      </p>
+    </div>
 
-          <div className="flex justify-end pr-5 pt-4 pb-4 space-x-5">
-           <p className="text-xl"><BsCopy /></p>
-           <p className="text-xl"><IoCopy /></p>
-          </div>
-       </div>
+    
+        <div className="flex justify-end pr-5 pt-4 pb-4 space-x-5">
+          <p className="text-xl"><BsCopy /></p>
+          <p className="text-xl"><IoCopy /></p>
+        </div>
+
+        {isOpen && (
+          <div className="flex flex-row space-x-8">
+          <p className="border-[1px] border-light-gray bg-text-bg-gray rounded-md px-0 py-1 w-[70px] pl-4 ml-5 mb-7"
+          onClick={handleView} style={{cursor: 'pointer'}}>View </p>
+          
+          { isView && (
+            <p className="mt-1 text-lg font-bold">2sXa4yLs8RwUg7qhxuuBgMpEhb2FMQrgjY7PMmSJyE8ukWf8vZ9</p>
+          )}
+         
+        </div>
+      
+    )}
+
+
+  </div>
 
 
         <div className="border-[1px] border-mid-light-gray mt-8">
           <div className="flex flex-row justify-between p-5 bg-text-bg-gray  ">
           <p className="text-lg">2. allowance</p>
-          <p className="text-2xl"><IoIosArrowDropdownCircle /></p>
+          <p className="text-2xl" onClick={handleToggle} style={{ cursor: 'pointer' }}>
+          {isOpen ? <IoIosArrowDropupCircle /> : <IoIosArrowDropdownCircle />}
+          </p>
            </div>
 
           <div className="flex justify-end pr-5 pt-4 pb-4 space-x-5">
            <p className="text-xl"><BsCopy /></p>
            <p className="text-xl"><IoCopy /></p>
           </div>
+          
+          {isOpen && (
+            <div>
+            <div>
+            <p className="text-lg pl-6">owner_address<span className="text-dark-red text-xl">*</span></p>
+            <input
+            type="text"
+            value={inputValue}
+            onChange={handleChange}
+            placeholder="ownner_address"
+            className="w-[1460px] my-4 p-2  focus:bg-white  bg-text-bg-gray rounded-md outline-[1px]  outline-light-mid-gray ml-6 mt-2"
+            />
+            </div>
+  
+            <div>
+            <p className="text-lg pl-6">spender_address<span className="text-dark-red text-xl">*</span></p>
+            <input
+            type="text"
+            value={inputValue}
+            onChange={handleChange}
+            placeholder="spender_address"
+            className="w-[1460px] my-4 p-2  focus:bg-white  bg-text-bg-gray rounded-md outline-[1px]  outline-light-mid-gray ml-6 mt-2"
+            />
+            </div>
+  
+            <p className="border-[1px] border-light-gray bg-text-bg-gray rounded-md px-0 py-1 w-[70px] pl-4 ml-5 mb-7">Send</p>
+            
+            </div>
+          )}
+         
        </div>
 
        <div className="border-[1px] border-mid-light-gray mt-8">
           <div className="flex flex-row justify-between p-5 bg-text-bg-gray  ">
           <p className="text-lg">3. auth</p>
-          <p className="text-2xl"><IoIosArrowDropdownCircle /></p>
+          <p className="text-2xl" onClick={handleToggle} style={{ cursor: 'pointer' }}>
+          {isOpen ? <IoIosArrowDropupCircle /> : <IoIosArrowDropdownCircle />}</p>
            </div>
-
+ 
           <div className="flex justify-end pr-5 pt-4 pb-4 space-x-5">
            <p className="text-xl"><BsCopy /></p>
            <p className="text-xl"><IoCopy /></p>
           </div>
+
+          {isOpen && (
+            <div className="flex flex-row space-x-8">
+            <p className="border-[1px] border-light-gray bg-text-bg-gray rounded-md px-0 py-1 w-[70px] pl-4 ml-5 mb-7"
+            onClick={handleView} style={{cursor: 'pointer'}}>View </p>
+            
+            { isView && (
+              <p className="mt-1 text-lg font-bold">2sXa4yLs8RwUg7qhxuuBgMpEhb2FMQrgjY7PMmSJyE8ukWf8vZ9</p>
+            )}
+           
+          </div>
+        
+      )}
        </div>
 
        <div className="border-[1px] border-mid-light-gray mt-8">
           <div className="flex flex-row justify-between p-5 bg-text-bg-gray  ">
           <p className="text-lg">4. balanceOf</p>
-          <p className="text-2xl"><IoIosArrowDropdownCircle /></p>
+          <p className="text-2xl"  onClick={handleToggle} style={{ cursor: 'pointer' }}><IoIosArrowDropdownCircle /></p>
            </div>
 
           <div className="flex justify-end pr-5 pt-4 pb-4 space-x-5">
            <p className="text-xl"><BsCopy /></p>
            <p className="text-xl"><IoCopy /></p>
           </div>
+          
+          {isOpen && (
+            <div>
+            <div>
+              <p className="text-lg pl-6">account_address*<span className="text-dark-red text-xl">*</span></p>
+              <input
+              type="text"
+              value={inputValue}
+              onChange={handleChange}
+              placeholder="account_address*"
+              className="w-[1460px] my-4 p-2  focus:bg-white  bg-text-bg-gray rounded-md outline-[1px]  outline-light-mid-gray ml-6 mt-2"
+              />
+              </div>
+              
+              <p className="border-[1px] border-light-gray bg-text-bg-gray rounded-md px-0 py-1 w-[70px] pl-4 ml-5 mb-7">Send</p>
+            </div>
+          )}
+        
        </div>
 
 
         <div className="border-[1px] border-mid-light-gray mt-8">
           <div className="flex flex-row justify-between p-5 bg-text-bg-gray  ">
           <p className="text-lg">5. decimals</p>
-          <p className="text-2xl"><IoIosArrowDropdownCircle /></p>
+          <p className="text-2xl" onClick={handleToggle} style={{ cursor: 'pointer' }}>
+          {isOpen ? <IoIosArrowDropupCircle /> : <IoIosArrowDropdownCircle />}</p>
            </div>
 
           <div className="flex justify-end pr-5 pt-4 pb-4 space-x-5">
            <p className="text-xl"><BsCopy /></p>
            <p className="text-xl"><IoCopy /></p>
           </div>
+
+
+          {isOpen && (
+            <div className="flex flex-row space-x-8">
+            <p className="border-[1px] border-light-gray bg-text-bg-gray rounded-md px-0 py-1 w-[70px] pl-4 ml-5 mb-7"
+            onClick={handleView} style={{cursor: 'pointer'}}>View </p>
+            
+            { isView && (
+              <p className="mt-1 text-lg font-bold">2sXa4yLs8RwUg7qhxuuBgMpEhb2FMQrgjY7PMmSJyE8ukWf8vZ9</p>
+            )}
+           
+          </div>
+        
+      )}
        </div>
 
 
         <div className="border-[1px] border-mid-light-gray mt-8">
           <div className="flex flex-row justify-between p-5 bg-text-bg-gray  ">
           <p className="text-lg">6. eip712Domain</p>
-          <p className="text-2xl"><IoIosArrowDropdownCircle /></p>
+          <p className="text-2xl" onClick={handleToggle} style={{ cursor: 'pointer' }}>
+          {isOpen ? <IoIosArrowDropupCircle /> : <IoIosArrowDropdownCircle />}</p>
            </div>
 
           <div className="flex justify-end pr-5 pt-4 pb-4 space-x-5">
            <p className="text-xl"><BsCopy /></p>
            <p className="text-xl"><IoCopy /></p>
           </div>
+
+          {isOpen && (
+            <div className="flex flex-row space-x-8">
+            <p className="border-[1px] border-light-gray bg-text-bg-gray rounded-md px-0 py-1 w-[70px] pl-4 ml-5 mb-7"
+            onClick={handleView} style={{cursor: 'pointer'}}>View </p>
+            
+            { isView && (
+              <p className="mt-1 text-lg font-bold">2sXa4yLs8RwUg7qhxuuBgMpEhb2FMQrgjY7PMmSJyE8ukWf8vZ9</p>
+            )}
+           
+          </div>
+        
+      )}
        </div>
 
         <div className="border-[1px] border-mid-light-gray mt-8">
           <div className="flex flex-row justify-between p-5 bg-text-bg-gray  ">
           <p className="text-lg">7. name</p>
-          <p className="text-2xl"><IoIosArrowDropdownCircle /></p>
+          <p className="text-2xl" onClick={handleToggle} style={{ cursor: 'pointer' }}>
+          {isOpen ? <IoIosArrowDropupCircle /> : <IoIosArrowDropdownCircle />}</p>
            </div>
 
           <div className="flex justify-end pr-5 pt-4 pb-4 space-x-5">
            <p className="text-xl"><BsCopy /></p>
            <p className="text-xl"><IoCopy /></p>
           </div>
+
+          {isOpen && (
+            <div className="flex flex-row space-x-8">
+            <p className="border-[1px] border-light-gray bg-text-bg-gray rounded-md px-0 py-1 w-[70px] pl-4 ml-5 mb-7"
+            onClick={handleView} style={{cursor: 'pointer'}}>View </p>
+            
+            { isView && (
+              <p className="mt-1 text-lg font-bold">2sXa4yLs8RwUg7qhxuuBgMpEhb2FMQrgjY7PMmSJyE8ukWf8vZ9</p>
+            )}
+           
+          </div>
+        
+      )}
        </div>
 
 
         <div className="border-[1px] border-mid-light-gray mt-8">
           <div className="flex flex-row justify-between p-5 bg-text-bg-gray  ">
           <p className="text-lg">8. nonces</p>
-          <p className="text-2xl"><IoIosArrowDropdownCircle /></p>
+          <p className="text-2xl" onClick={handleToggle} style={{ cursor: 'pointer' }}>
+          {isOpen ? <IoIosArrowDropupCircle /> : <IoIosArrowDropdownCircle />}</p>
            </div>
 
           <div className="flex justify-end pr-5 pt-4 pb-4 space-x-5">
            <p className="text-xl"><BsCopy /></p>
            <p className="text-xl"><IoCopy /></p>
           </div>
+
+          {isOpen && (
+            <div>
+            <div>
+              <p className="text-lg pl-6">owner_address<span className="text-dark-red text-xl">*</span></p>
+              <input
+              type="text"
+              value={inputValue}
+              onChange={handleChange}
+              placeholder="owner_address"
+              className="w-[1460px] my-4 p-2  focus:bg-white  bg-text-bg-gray rounded-md outline-[1px]  outline-light-mid-gray ml-6 mt-2"
+              />
+              </div>
+              
+              <p className="border-[1px] border-light-gray bg-text-bg-gray rounded-md px-0 py-1 w-[70px] pl-4 ml-5 mb-7">Send</p>
+            </div>
+          )}
        </div>
 
 
         <div className="border-[1px] border-mid-light-gray mt-8">
           <div className="flex flex-row justify-between p-5 bg-text-bg-gray  ">
           <p className="text-lg">9. owner</p>
-          <p className="text-2xl"><IoIosArrowDropdownCircle /></p>
+          <p className="text-2xl"  onClick={handleToggle} style={{ cursor: 'pointer' }}>
+          {isOpen ? <IoIosArrowDropupCircle /> : <IoIosArrowDropdownCircle />}</p>
            </div>
 
           <div className="flex justify-end pr-5 pt-4 pb-4 space-x-5">
            <p className="text-xl"><BsCopy /></p>
            <p className="text-xl"><IoCopy /></p>
           </div>
+          {isOpen && (
+            <div className="flex flex-row space-x-8">
+            <p className="border-[1px] border-light-gray bg-text-bg-gray rounded-md px-0 py-1 w-[70px] pl-4 ml-5 mb-7"
+            onClick={handleView} style={{cursor: 'pointer'}}>View </p>
+            
+            { isView && (
+              <p className="mt-1 text-lg font-bold">2sXa4yLs8RwUg7qhxuuBgMpEhb2FMQrgjY7PMmSJyE8ukWf8vZ9</p>
+            )}
+           
+          </div>
+        
+      )}
        </div>
 
 
         <div className="border-[1px] border-mid-light-gray mt-8">
           <div className="flex flex-row justify-between p-5 bg-text-bg-gray  ">
           <p className="text-lg">10. paused</p>
-          <p className="text-2xl"><IoIosArrowDropdownCircle /></p>
+          <p className="text-2xl" onClick={handleToggle} style={{ cursor: 'pointer' }}> 
+          {isOpen ? <IoIosArrowDropupCircle /> : <IoIosArrowDropdownCircle />}</p>
            </div>
 
           <div className="flex justify-end pr-5 pt-4 pb-4 space-x-5">
            <p className="text-xl"><BsCopy /></p>
            <p className="text-xl"><IoCopy /></p>
           </div>
+          {isOpen && (
+            <div className="flex flex-row space-x-8">
+            <p className="border-[1px] border-light-gray bg-text-bg-gray rounded-md px-0 py-1 w-[70px] pl-4 ml-5 mb-7"
+            onClick={handleView} style={{cursor: 'pointer'}}>View </p>
+            
+            { isView && (
+              <p className="mt-1 text-lg font-bold">2sXa4yLs8RwUg7qhxuuBgMpEhb2FMQrgjY7PMmSJyE8ukWf8vZ9</p>
+            )}
+           
+          </div>
+        
+      )}
        </div>
 
 
         <div className="border-[1px] border-mid-light-gray mt-8">
           <div className="flex flex-row justify-between p-5 bg-text-bg-gray  ">
           <p className="text-lg">11. symbol</p>
-          <p className="text-2xl"><IoIosArrowDropdownCircle /></p>
+          <p className="text-2xl" onClick={handleToggle} style={{ cursor: 'pointer' }}>
+          {isOpen ? <IoIosArrowDropupCircle /> : <IoIosArrowDropdownCircle />}</p>
            </div>
 
           <div className="flex justify-end pr-5 pt-4 pb-4 space-x-5">
            <p className="text-xl"><BsCopy /></p>
            <p className="text-xl"><IoCopy /></p>
           </div>
+
+          {isOpen && (
+            <div className="flex flex-row space-x-8">
+            <p className="border-[1px] border-light-gray bg-text-bg-gray rounded-md px-0 py-1 w-[70px] pl-4 ml-5 mb-7"
+            onClick={handleView} style={{cursor: 'pointer'}}>View </p>
+            
+            { isView && (
+              <p className="mt-1 text-lg font-bold">2sXa4yLs8RwUg7qhxuuBgMpEhb2FMQrgjY7PMmSJyE8ukWf8vZ9</p>
+            )}
+           
+          </div>
+        
+      )}
+
+
        </div>
 
 
         <div className="border-[1px] border-mid-light-gray rounded-bl-lg rounded-br-lg mt-8">
           <div className="flex flex-row justify-between p-5 bg-text-bg-gray  ">
           <p className="text-lg">12. totalSupply</p>
-          <p className="text-2xl"><IoIosArrowDropdownCircle /></p>
+          <p className="text-2xl" onClick={handleToggle} style={{ cursor: 'pointer' }}>
+          {isOpen ? <IoIosArrowDropupCircle /> : <IoIosArrowDropdownCircle />}</p>
            </div>
 
           <div className="flex justify-end pr-5 pt-4 pb-4 space-x-5">
            <p className="text-xl"><BsCopy /></p>
            <p className="text-xl"><IoCopy /></p>
           </div>
+
+          {isOpen && (
+            <div className="flex flex-row space-x-8">
+            <p className="border-[1px] border-light-gray bg-text-bg-gray rounded-md px-0 py-1 w-[70px] pl-4 ml-5 mb-7"
+            onClick={handleView} style={{cursor: 'pointer'}}>View </p>
+            
+            { isView && (
+              <p className="mt-1 text-lg font-bold">2sXa4yLs8RwUg7qhxuuBgMpEhb2FMQrgjY7PMmSJyE8ukWf8vZ9</p>
+            )}
+           
+          </div>
+        
+      )}
        </div>
     </div>
   )
-}
+} 
 
 const WriteContractTable = () => {
   return (

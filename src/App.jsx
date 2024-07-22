@@ -84,7 +84,7 @@ const routesArray = [
   "/blockchain/blocks",
   "/blockdetailpage",
   "/producerdetailpage",
-  "/tokendetailpage",
+  "/tokendetailpage/*",
   "/blockchain/contacts",
   "/blockchain/accounts",
   "/blockchain/transactions",
@@ -144,6 +144,7 @@ const AppRoutes = () => {
     "/home",
     "/transactiondetails/*",
   "/accountdetails/*",
+  "/tokendetailpage/*",
   "/blockdetailpage",
   "/producerdetailpage",
   "/tokendetailpage",
@@ -196,9 +197,9 @@ const AppRoutes = () => {
                     <Route path="/governance/parameters" element={<CommitteeProposalPage />} />
                     <Route path="/connectwallet" element={<ConnectWallet />} />
 
-                    <Route path="/blockdetailpage" element={<BlockDetailPage />} />
-                    <Route path="/producerdetailpage"  element={<ProducerDetailPage/>} />
-                    <Route path="/tokendetailpage"  element={<TokenDetailPage />} />
+                    <Route path="/blockdetailpage/:id" element={<BlockDetailPage />} />
+                    <Route path="/producerdetailpage/:id"  element={<ProducerDetailPage/>} />
+                    <Route path="/tokendetailpage/:id"  element={<TokenDetailPage />} />
               </Routes>
             ) : (
               <Sidebar>

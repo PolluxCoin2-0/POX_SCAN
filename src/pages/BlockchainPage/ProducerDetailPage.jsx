@@ -7,15 +7,17 @@ import { useEffect, useState } from "react";
 import { getPoxPriceTableData } from "../../utils/axios/Data";
 import { IoMdArrowUp } from "react-icons/io";
 import { IoMdArrowDown } from "react-icons/io";
+import { useParams } from "react-router-dom";
 
 const ProducerDetailPage = () => {
+  const witnessAddress = useParams.id();
   const [data, setData] = useState({});
 
   useEffect(() => {
     
     const fetchData = async () => {
       try {
-        const data = await getPoxPriceTableData ();
+        const data = await getPoxPriceTableData (witnessAddress);
         console.log(data);
         setData(data?.message);
         
