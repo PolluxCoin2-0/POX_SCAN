@@ -3,6 +3,7 @@ import { BsCopy } from "react-icons/bs";
 import { IoCopy } from "react-icons/io5";
 import { LuShrink } from "react-icons/lu";
 import { IoIosArrowDropdownCircle } from "react-icons/io";
+import CodeSnippet from "./codeSnippet";
 
 const CodeTable = () => {
   return (
@@ -45,13 +46,10 @@ const CodeTable = () => {
        <div className="bg-mid-light-gray rounded-xl mt-5 pt-5 pb-5  pr-10 pl-10">
        <p className="text-lg font-semibold">PolluxUsd</p>
 
-       <div className="flex flex-row space-x-4 mt-4">
-       <p className="text-2xl text-dark-skyblue"><BsCopy /></p>
-       <p className="text-2xl text-dark-skyblue"><LuShrink /></p>
-       </div>
+      
 
-       <div className="bg-text-bg-gray mt-8 rounded-sm w-[1100px] h-[800px]" >
-         CODE 
+       <div className="bg-text-bg-gray mt-8 rounded-sm w-full h-[600px]" >
+        <CodeSnippet/>
        </div>
        </div>
     </div>
