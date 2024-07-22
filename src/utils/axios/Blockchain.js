@@ -138,3 +138,36 @@ export const getBlockDetailPageData = async() => {
     }
 }
 
+export const getTokenTransactionsDetailData = async() => {
+    try {
+        const response = await axios.post("https://node.poxscan.io/api/transaction",
+            {
+                "page": 0, 
+                "limit": 10, 
+                "address": "PSTv3ZweeCRHd5cmxoL3dTTbSKGgtYZ5cm"
+            }
+        )
+        return (response?.data);
+    } catch (error) {
+        console.log("error", error);
+    }
+}
+
+export const getTokenDetailData = async() => {
+    try {
+        const response = await axios.get("https://node.poxscan.io/api/account/detail?address=PSTv3ZweeCRHd5cmxoL3dTTbSKGgtYZ5cm");
+        return (response?.data);
+    } catch (error) {
+        console.log("error", error);
+    }
+}
+
+export const getContractDetailData = async() => {
+    try {
+        const response = await axios.get("https://governance.poxscan.io/blockchain/contractpage?contractAddress=PSTv3ZweeCRHd5cmxoL3dTTbSKGgtYZ5cm");
+        return (response?.data);
+    } catch (error) {
+        console.log("error", error);
+    }
+}
+
