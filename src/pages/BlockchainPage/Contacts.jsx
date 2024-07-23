@@ -15,6 +15,7 @@ import { PiWrenchLight } from "react-icons/pi";
 import { formatNumberWithCommas } from "../../utils/FormattingNumber";
 import { shortenString } from "../../utils/shortenString";
 import { formatTimestampOnlyDate } from "../../utils/formatTimestamponlyDate";
+import { Link } from "react-router-dom";
 
 const VerifiedContractTable = () => {
   // For Pagination
@@ -97,10 +98,14 @@ const VerifiedContractTable = () => {
                   <p className="w-[12%] text-center">
                     {contact?.noOfCalls && contact?.noOfCalls}
                   </p>
-                  <p className="w-[12%] text-center">
-                    {contact?.contractAddress &&
-                      shortenString(contact?.contractAddress, 10)}{" "}
-                  </p>
+
+                  <Link to={`/accountdetails/${contact?.contractAddress}`}>
+                  <p className="w-[12%] text-center text-dark-red">
+                  {contact?.contractAddress &&
+                    shortenString(contact?.contractAddress, 10)}{" "}
+                </p>
+                  </Link>
+                 
                   <p className="w-[12%] text-center indent-4">
                     {contact?.compiler && contact?.compiler}
                   </p>
@@ -191,6 +196,7 @@ const AllContractTable = () => {
                     SC
                   </span>
                 </p>
+                
                 <p className="w-[20%] text-center">
                   {contact?.contractAddress &&
                     shortenString(contact?.contractAddress, 10)}

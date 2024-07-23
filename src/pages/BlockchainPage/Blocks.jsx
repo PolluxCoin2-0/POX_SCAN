@@ -5,6 +5,7 @@ import Pagination from "../../components/Pagination";
 import { getBlockData,  getBlockTableData } from "../../utils/axios/Blockchain";
 import { secondsAgo } from "../../utils/secondAgo";
 import { formatNumberWithCommas } from "../../utils/FormattingNumber";
+import { Link } from "react-router-dom";
 
 const Blocks = () => {
    
@@ -143,9 +144,18 @@ const Blocks = () => {
           return (
             <>
               <div className="flex flex-row justify-around border-b-2 p-3 border-text-bg-gray min-w-[1500px] md:min-w-full" key={index}>
-                <p className="text-dark-red w-[12%] text-center">{stablecoin?.number && stablecoin?.number}</p>
+                <Link to={`/blockdetailpage/${stablecoin?.number}`}>
+                <p className="text-dark-red w-[12%] text-center">
+                {stablecoin?.number && stablecoin?.number}
+                </p>
+                </Link>
+             
                 <p className=" w-[12%] text-center">{stablecoin?.timestamp && secondsAgo(stablecoin?.timestamp && stablecoin?.timestamp)}</p>
-                <p className="text-dark-red  w-[12%] text-center">{stablecoin?.witnessName && stablecoin?.witnessName}</p>
+                
+                <Link to={`/producerdetailpage/${stablecoin?.witnessAddress}`}>
+                 <p className="text-dark-red  w-[12%] text-center">{stablecoin?.witnessName && stablecoin?.witnessName}</p>
+                </Link>
+               
                 <p className=" w-[12%] text-center indent-4">{stablecoin?.nrOfTrx && stablecoin?.nrOfTrx}</p>
                 <p className=" w-[12%] text-center">{stablecoin?.energyUsage && stablecoin?.energyUsage}</p>
                 <p className=" w-[16%] text-center">{stablecoin?.netUsage && stablecoin?.netUsage}</p>

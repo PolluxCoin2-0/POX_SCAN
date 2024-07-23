@@ -11,6 +11,7 @@ import { secondsAgo } from "../../utils/secondAgo";
 import { RxCrossCircled } from "react-icons/rx";
 import { toast } from "react-toastify";
 import TokenContractPage from "./TokenContractPage";
+import { useParams } from "react-router-dom";
 
 const TransactionsTable = () => {
     // For API Integration
@@ -138,6 +139,7 @@ const TransactionsTable = () => {
 
 
 const TokenDetailPage = () => {
+   const contractAddress = useParams().id;
 
      const handleCopy = (address) => {
     navigator.clipboard.writeText(address);
@@ -151,8 +153,8 @@ const TokenDetailPage = () => {
      useEffect(() => {
       const fetchData = async () => {
         try {
-          const tokendata = await getTokenDetailData();
-          const contractdata = await getContractDetailData();
+          const tokendata = await getTokenDetailData(contractAddress);
+          const contractdata = await getContractDetailData(contractAddress);
           console.log(contractdata);
 
           setTokenData(tokendata?.message);
@@ -165,7 +167,7 @@ const TokenDetailPage = () => {
       fetchData();
     }, [])
 
-    
+
     const [isRender, setIsRender] = useState("Transactions");
     const renderItemComponent = () => {
     switch (isRender) {

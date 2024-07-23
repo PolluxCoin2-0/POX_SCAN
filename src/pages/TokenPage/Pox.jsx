@@ -5,6 +5,7 @@ import { getHoldersData, getPoxData } from "../../utils/Token";
 import { IoCheckmarkCircleOutline } from "react-icons/io5";
 import { shortenString } from "../../utils/shortenString";
 import { secondsAgo } from "../../utils/secondAgo";
+import { Link } from "react-router-dom";
 
 const TokenTransferTable = () => {
   const [data, setData] = useState({});
@@ -40,10 +41,15 @@ const TokenTransferTable = () => {
           return (
             <>
               <div className="min-w-[1500px]  flex flex-row  justify-around border-b-2 p-3 border-text-bg-gray">
-                <p className="text-dark-red  w-[16%]">
-                  {stablecoin?.transactionId &&
-                    shortenString(stablecoin?.transactionId, 10)}
-                </p>
+
+              <Link to={`/transactiondetails/${stablecoin?.transactionId}`}>
+              <p className="text-dark-red  w-[16%]">
+              {stablecoin?.transactionId &&
+                shortenString(stablecoin?.transactionId, 10)}
+              </p>
+              </Link>
+                
+              
                 <p className=" w-[12%] ">{stablecoin.blockNumber}</p>
                 <p className="text-dark-red  w-[12%]">
                   {stablecoin.timeStamp && secondsAgo(stablecoin?.timeStamp)}
