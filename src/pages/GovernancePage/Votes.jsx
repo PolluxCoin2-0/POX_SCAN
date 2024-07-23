@@ -8,6 +8,7 @@ import { IoIosArrowForward } from "react-icons/io"
 import { getVotesData, getVotesTableData } from "../../utils/axios/Governance";
 import { extractSiteName } from "../../utils/extractSiteName";
 import HollowCircleTimer from "./HollowCircleTimer";
+import { Link } from "react-router-dom";
 
 const Votes = () => {
 
