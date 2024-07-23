@@ -3,6 +3,8 @@ import { BsCopy } from "react-icons/bs";
 import { IoCopy } from "react-icons/io5";
 import { LuShrink } from "react-icons/lu";
 import { IoIosArrowDropdownCircle } from "react-icons/io";
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
 const CodeTable = () => {
   return (
@@ -51,7 +53,9 @@ const CodeTable = () => {
        </div>
 
        <div className="bg-text-bg-gray mt-8 rounded-sm w-[1100px] h-[800px]" >
-         CODE 
+       <SyntaxHighlighter language="solidity" style={docco}>
+      
+    </SyntaxHighlighter>
        </div>
        </div>
     </div>
