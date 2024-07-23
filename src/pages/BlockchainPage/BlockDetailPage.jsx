@@ -60,14 +60,13 @@ const TransactionTable = () => {
 
 const BlockDetailPage = () => {
   const number = useParams().id;
-  const blockNumber = useParams().id;
      // API INTEGRATION
       const [blockdata, setBlockData] = useState({});
     
      useEffect(() => {
          const fetchData = async () => {
            try {
-             const blockdata = await getBlockDetailPageData({number, blockNumber});
+             const blockdata = await getBlockDetailPageData(number);
              console.log(blockdata);
              setBlockData(blockdata?.message);
             
