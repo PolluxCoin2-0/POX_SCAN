@@ -175,7 +175,13 @@ const PRC20TransferTable = ({ setPieChartData }) => {
                 <p className="w-[12%] text-center text-dark-red">{contact?.fromAddress && shortenString(contact?.fromAddress,4)}</p>
                 <p className="w-[12%] text-center text-dark-red">{contact?.toAddress && shortenString(contact?.toAddress,4)}</p>
                 <p className="w-[16%] text-center text-dark-red">{contact?.transactionId && shortenString(contact?.transactionId,5 )}</p>
-                <p className="w-[8%] text-center text-dark-red">{contact?.blockNumber && formatNumberWithCommas(contact?.blockNumber)}</p>
+                
+                <Link to={`/blockdetailpage/${contact?.blockNumber}`}>
+                 <p className="w-[8%] text-center text-dark-red">
+                {contact?.blockNumber && formatNumberWithCommas(contact?.blockNumber)}
+                </p>
+                </Link>
+               
               </div>
             </>
           );

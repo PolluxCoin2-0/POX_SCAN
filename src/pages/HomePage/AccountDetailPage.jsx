@@ -282,6 +282,8 @@ const Wallet = ({value1, value2}) => {
 
 const AccountDetailPage = () => {
   const addressId = useParams().id;
+  const fromAddress = useParams().id;
+  const contractAddress= useParams().id;
   const [isShow, setIsShow] = useState("Transactions");
   const [accountData, setAccountData] = useState({});
   const [poxPrice, setPoxPrice] = useState(0);
@@ -291,7 +293,7 @@ const AccountDetailPage = () => {
       try {
         const poxPrice = await getTrendingSearchGraphData();
         setPoxPrice(poxPrice?.price);
-        const accountDataObj = await getAccountDetailsPageData(addressId);
+        const accountDataObj = await getAccountDetailsPageData({addressId, fromAddress, contractAddress});
         setAccountData(accountDataObj?.message);
       } catch (error) {
         console.log("error", error);

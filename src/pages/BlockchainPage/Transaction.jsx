@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { getTransactionStatsData, getTransactionTableData } from "../../utils/axios/Blockchain";
 import { shortenString } from "../../utils/shortenString";
 import { secondsAgo } from "../../utils/secondAgo";
+import { Link } from "react-router-dom";
 
 const Transaction = () => {
   const [data, setData] = useState({});
@@ -178,15 +179,25 @@ setPieChartData(pieChartDataArr);
             return (
               <>
                 <div className="min-w-[1300px] flex flex-row justify-evenly p-5 border-b-2 border-lightest-gray  rounded-xl" key={index}>
+                  <Link to={`/transactiondetails/${transaction?.transactionId}`}> 
                   <p className="whitespace-nowrap w-[18%]">
-                    <span className="text-dark-red px-2">
-                      {transaction?.transactionId && shortenString(transaction?.transactionId,10)}
-                    </span>
-                  </p>
-                  <p className="w-[10%]">{transaction?.blockNumber}</p>
+                  <span className="text-dark-red px-2">
+                    {transaction?.transactionId && shortenString(transaction?.transactionId,10)}
+                  </span>
+                </p>
+                  </Link>
+              
+                  <Link to={`/blockdetailpage/${transaction?.blockNumber}`}>
+                  <p className="w-[10%] text-dark-red">{transaction?.blockNumber}</p>
+                  </Link>
+                  
                   <p className="w-[10%]">{transaction?.timeStamp && secondsAgo(transaction.timeStamp)}</p>
                   <p className="w-[16%] ">{transaction.type}</p>
+
+                  <Link to={`/accountdetailpage/${transaction.fromAddress}`}>
                   <p className="w-[10%] ">{shortenString(transaction.fromAddress,5)}</p>
+                  </Link>
+                  
                   <p className="w-[10%] text-center">{shortenString(transaction.toAddress,5)}</p>
                   <p className="w-[16%] text-center">{transaction.assetAmount/Math.pow(10,6)}</p>
                   <p className="w-[10%] text-center indent-4">{transaction.result}</p>

@@ -8,16 +8,18 @@ import { getPoxPriceTableData } from "../../utils/axios/Data";
 import { IoMdArrowUp } from "react-icons/io";
 import { IoMdArrowDown } from "react-icons/io";
 import { useParams } from "react-router-dom";
+import { getProducerDetailData } from "../../utils/axios/Blockchain";
+import { extractSiteName } from "../../utils/extractSiteName";
 
 const ProducerDetailPage = () => {
-  const witnessAddress = useParams.id();
+  const witnessAddress = useParams().id;
   const [data, setData] = useState({});
 
   useEffect(() => {
     
     const fetchData = async () => {
       try {
-        const data = await getPoxPriceTableData (witnessAddress);
+        const data = await getProducerDetailData (witnessAddress);
         console.log(data);
         setData(data?.message);
         
@@ -49,7 +51,7 @@ const ProducerDetailPage = () => {
             <p className="text-xl font-bold">Account</p>
 
             <div className="flex flex-row space-x-4">
-                <p className="text-lg font-semibold pt-3">PNJ1EiG6AW8emmRbuzrWMPL7f9n77M8U7E</p>
+                <p className="text-lg font-semibold pt-3"></p>{data?.address}
                 <p className="text-xl p-2 bg-white rounded-full cursor-pointer ">
               <BiSolidCopyAlt
                 // onClick={() => handleCopy(accountData?.address)}
@@ -96,7 +98,7 @@ const ProducerDetailPage = () => {
                 <p className="bg-lightest-gray rounded-md font-bold pt-1 px-1"><AiOutlineQuestion /></p>
                 <p className="font-bold">Name</p>
                 </div>
-                <p>Mthweb3</p>
+                <p>{data?.checkSR?.url && extractSiteName(data?.checkSR?.url)}</p>
                </div>
 
                <div className="flex flex-row justify-between border-b-[1px] border-text-bg-gray pt-4 pb-4">
@@ -104,7 +106,7 @@ const ProducerDetailPage = () => {
                 <p className="bg-lightest-gray rounded-md font-bold pt-1 px-1"><AiOutlineQuestion /></p>
                 <p className="font-bold">Website</p>
                 </div>
-                <p>url....</p>
+                <p>{data?.checkSR?.url}</p>
                </div>
 
                <div className="flex flex-row justify-between border-b-[1px] border-text-bg-gray pt-4 pb-4">
@@ -112,7 +114,7 @@ const ProducerDetailPage = () => {
                 <p className="bg-lightest-gray rounded-md font-bold pt-1 px-1"><AiOutlineQuestion /></p>
                 <p className="font-bold">Block Count/Efficiency：</p>
                 </div>
-                <p> <span className="text-dark-skyblue"> 98194 </span>/ /99.18</p>
+                <p> <span className="text-dark-skyblue"> {data?.checkSR?.totalProduced} </span>/ /99.18</p>
                </div>
 
                <div className="flex flex-row justify-between pt-4 pb-2">
@@ -121,7 +123,7 @@ const ProducerDetailPage = () => {
                 <p className="font-bold">Round Ranking/Votes：
                 </p>
                 </div>
-                <p>17/356540</p>
+                <p>{data?.checkSR?.ranking}/ {data?.checkSR?.voteCount}</p>
                </div>
         </div>
 
@@ -133,7 +135,7 @@ const ProducerDetailPage = () => {
                 <p className="font-bold"> Current Ranking</p>
               </div>
 
-              <p className="text-xl font-semibold pt-3">17</p>
+              <p className="text-xl font-semibold pt-3">{data?.checkSR?.ranking}</p>
 
               <div className="pt-10 flex justify-end">
               <img src="https://poxscan.io/images/cup.svg" alt="cup-image" />
@@ -158,7 +160,7 @@ const ProducerDetailPage = () => {
                 <p className="font-bold">Current Votes</p>
               </div>
 
-              <p className="text-xl font-semibold pt-3">356540</p>
+              <p className="text-xl font-semibold pt-3">{data?.checkSR?.voteCount}</p>
 
               <div className="w-[250px] h-[120px] pt-5">
             <AreaChartComp 
