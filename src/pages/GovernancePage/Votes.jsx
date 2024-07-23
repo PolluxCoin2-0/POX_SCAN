@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { IoIosArrowForward } from "react-icons/io"
 import { getVotesData, getVotesTableData } from "../../utils/axios/Governance";
 import { extractSiteName } from "../../utils/extractSiteName";
+import HollowCircleTimer from "./HollowCircleTimer";
 
 const Votes = () => {
 
@@ -60,23 +61,23 @@ const Votes = () => {
       </div>
       
       <div className=" flex flex-row space-x-5 w-full">
-         <div className="w-[50%] rounded-xl bg-white shadow-xl flex flex-row justify-between pb-10 h-64">
-          <div className=" pl-20 p-10">
-            <div className="flex flex-row justify-between">
-              <div>
+         <div className="w-[50%] rounded-xl bg-white shadow-xl flex flex-row justify-around items-center pb-6">
+          <div className="pl-0 p-10">
+            <div className="flex flex-row space-x-14">
+              <div className="">
                 <img src={VoteTotal} 
                 alt="vote-add" 
                 className=""
                 />
               </div>
-              <div className="pl-14 pb-4">
+              <div className="pb-4">
                 <p className="text-light-gray">Real-time Votes this round</p>
                 <p className="text-lg font-bold">{votedata?.realTimeTotalVotes} <span className="text-sm font-bold text-dark-green">(+)</span></p>
               </div>
             </div>
 
               <div className="border-b-2 border-text-bg-gray border-dashed w-[100%] ">
-                 
+                
               </div>
 
               <div className="flex flex-row justify-between">
@@ -94,7 +95,7 @@ const Votes = () => {
 
           </div>
           <div>
-          {/* timestamp */}
+          <HollowCircleTimer/>
           </div>
          </div>
 
