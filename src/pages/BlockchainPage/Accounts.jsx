@@ -160,6 +160,7 @@ const Accounts = () => {
             <>
               <div className="flex flex-row  justify-around border-b-2 p-3 border-text-bg-gray min-w-[1500px] md:min-w-full" key={index}>
                 <p className="text-dark-red text-center w-[5%]">{stablecoin?.Block && stablecoin?.Block}</p>
+                
                 <p className=" w-[20%] text-center">{shortenString(stablecoin?.address && stablecoin?.address,10)}</p>
                 <p className="text-dark-red  w-[18%] text-center">{stablecoin?.balance && Number(stablecoin?.balance).toFixed(6)}</p>
                 <p className=" w-[10%] text-center">{stablecoin?.percentage && Number(stablecoin?.percentage).toFixed(2)} %</p>
