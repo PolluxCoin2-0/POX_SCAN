@@ -8,6 +8,7 @@ import { shortenString } from "../../utils/shortenString";
 import { GiSandsOfTime } from "react-icons/gi";
 import { secondsAgo } from "../../utils/secondAgo";
 import { RxCrossCircled } from "react-icons/rx";
+import { Link } from "react-router-dom";
 
 const UsdxTable = () => {
   const [data, setData] = useState({});
@@ -28,26 +29,39 @@ const UsdxTable = () => {
   return (
     <div>
       <div className="min-w-[1500px]  flex flex-row justify-around p-2 bg-lightest-gray rounded-lg ">
-          <p className=" w-[14%]">Amount</p>
-          <p className=" w-[8%]">Result</p>
-          <p className=" w-[14%]">Time(UTC)</p>
-          <p className=" w-[20%]">From</p>
-          <p className=" w-[17%] whitespace-nowrap">To</p>
-          <p className=" w-[17%]">Hash</p>
-          <p className=" w-[8%]">Block</p>
+          <p className=" w-[12%] font-bold text-center ">Amount</p>
+          <p className=" w-[8%] font-bold text-center ">Result</p>
+          <p className=" w-[14%] font-bold text-center ">Time(UTC)</p>
+          <p className=" w-[19%] font-bold text-center ">From</p>
+          <p className=" w-[19%] font-bold text-center whitespace-nowrap">To</p>
+          <p className=" w-[20%] font-bold text-center ">Hash</p>
+          <p className=" w-[8%] font-bold text-center ">Block</p>
         </div>
 
         {data?.transactions  && data?.transactions.map((stablecoin, index) => {
           return (
             <>
               <div className="min-w-[1500px]  flex flex-row  justify-around border-b-2 p-3 border-text-bg-gray">
-                <p className="w-[14%] text-dark-red ">{Number(stablecoin?.asset).toFixed(6)}</p>
-                <p className=" w-[8%]">{stablecoin?.result && stablecoin?.result ? <IoCheckmarkCircleOutline size={24} color="green" />:<RxCrossCircled size={24} color="red"/>}</p>
-                <p className="w-[14%] text-dark-red ">{secondsAgo(stablecoin?.timeStamp)}</p>
-                <p className="w-[20%] ">{stablecoin?.fromAddress && shortenString(stablecoin?.fromAddress,10)}</p>
-                <p className=" w-[17%]">{stablecoin?.toAddress && shortenString(stablecoin?.toAddress,10)}</p>
-                <p className=" w-[17%]">{stablecoin?.transactionId && shortenString(stablecoin?.transactionId,10)}</p>
-                <p className="w-[8%]">{stablecoin?.blockNumber}</p>
+                <p className="w-[12%]  text-center ">{Number(stablecoin?.asset).toFixed(6)}</p>
+                <p className=" w-[8%] flex justify-center">{stablecoin?.result && stablecoin?.result ? <IoCheckmarkCircleOutline size={24} color="green" />:<RxCrossCircled size={24} color="red"/>}</p>
+                <p className="w-[14%] text-center ">{secondsAgo(stablecoin?.timeStamp)}</p>
+
+                <Link to={`/accountdetails/${stablecoin?.fromAddress}`}  className="w-[19%] text-center text-dark-red ">
+                <p>{stablecoin?.fromAddress && shortenString(stablecoin?.fromAddress,8)}</p>
+                </Link>
+                
+                <Link to={`/accountdetails/${stablecoin?.fromAddress}`} className=" w-[19%] text-center text-dark-red">
+                <p >{stablecoin?.toAddress && shortenString(stablecoin?.toAddress,8)}</p>
+                </Link>
+               
+               <Link to={`/transactiondetails/${stablecoin?.transactionId}`} className=" w-[20%] text-center text-dark-red">
+               <p >{stablecoin?.transactionId && shortenString(stablecoin?.transactionId,10)}</p>
+               </Link>
+               
+               <Link to={`/blockdetailpage/${stablecoin?.blockNumber}`} className="w-[8%] text-center  text-dark-red">
+               <p >{stablecoin?.blockNumber}</p>
+               </Link>
+                
                 
               </div>
             </>
@@ -77,27 +91,30 @@ const TokenHolderTable = () => {
 
   return (
     <div className="">
-  <div className="min-w-[1500px] flex flex-row justify-around p-2 bg-lightest-gray rounded-lg">
-    <p className="w-[8%]">#</p>
-    <p className="w-[28%]">Account</p>
-    <p className="w-[16%]">Amount</p>
-    <p className="w-[16%]">Value</p>
-    <p className="w-[16%]">Percentage</p>
-    <p className="w-[12%]">Latest TXN Time(Local)</p>
+  <div className="min-w-[1500px] flex flex-row justify-around p-2 bg-lightest-gray rounded-lg rounded-tr-lg rounded-br-lg">
+    <p className="w-[8%] font-bold text-center ">#</p>
+    <p className="w-[28%] font-bold text-center ">Account</p>
+    <p className="w-[20%] font-bold text-center  ">Amount</p>
+    <p className="w-[16%] font-bold text-center ">Value</p>
+    <p className="w-[12%] font-bold text-center">Percentage</p>
+    <p className="w-[16%] font-bold text-center ">Latest TXN Time(Local)</p>
   </div>
 
   {holderdata?.holders?.map && holderdata?.holders?.map((stablecoin, index) => {
-    // Calculate the hash number (1, 2, 3, ...)
-    const hashNumber = index + 1;
+    
 
     return (
       <div key={index} className="min-w-[1500px] flex flex-row justify-around border-b-2 p-3 border-text-bg-gray">
-        <p className="w-[8%] text-dark-red">{hashNumber}</p>
-        <p className="w-[28%]">{stablecoin?.walletAddress}</p>
-        <p className="w-[16%] text-dark-red">{stablecoin?.balance}</p>
-        <p className="w-[16%]">${Number(stablecoin?.balance).toFixed(2)}</p>
-        <p className="w-[16%]">{stablecoin?.percentage}%</p>
-        <p className="w-[12%]">{/* Render latest transaction time here */}</p>
+        <p className="w-[8%] text-center ">{index+1}</p>
+
+        <Link to={`/accountdetails/${stablecoin?.walletAddress}`} className="w-[28%]   text-center  text-dark-red" text-center >
+        <p >{stablecoin?.walletAddress}</p>
+        </Link>
+       
+        <p className="w-[20%]  text-center    font-bold  ">{stablecoin?.balance}</p>
+        <p className="w-[16%]  text-center  ">${Number(stablecoin?.balance).toFixed(2)}</p>
+        <p className="w-[12%]   text-center ">{stablecoin?.percentage}%</p>
+        <p className="w-[16%]  text-center ">{/* Render latest transaction time here */}</p>
       </div>
     );
   })}
@@ -135,7 +152,7 @@ const Usdx = () => {
       <div>
         <SearchBarExpand onSearch={setOnSearch} />
       </div>
-      <p className="font-bold text-2xl">Blocks</p>
+      <p className="font-bold text-2xl">Pollux (USDX)</p>
       <div className=" flex flex-col  md:flex-row justify-between">
         {/* Number of Blocks */}
         <div className="w-full md:w-[32%]  bg-white shadow-lg rounded-2xl p-5 my-6 md:my-12">

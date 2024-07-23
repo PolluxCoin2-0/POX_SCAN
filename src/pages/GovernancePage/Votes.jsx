@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { IoIosArrowForward } from "react-icons/io"
 import { getVotesData, getVotesTableData } from "../../utils/axios/Governance";
 import { extractSiteName } from "../../utils/extractSiteName";
+import { Link } from "react-router-dom";
 
 const Votes = () => {
 
@@ -162,7 +163,10 @@ const Votes = () => {
 
     return (
       <div key={index} className="flex flex-row justify-around p-5 border-b-2 border-text-bg-gray">
-        <p className="w-[25%]">{voter?.url && extractSiteName(voter?.url)}</p>
+        <Link to={`/accountdetails/${voter?.address}`}>
+        <p className="w-[25%] text-dark-red">{voter?.url && extractSiteName(voter?.url)}</p>
+        </Link>
+       
         <p className="w-[10%] ">{rank}</p>
         <p className="w-[10%]">{voter.brokerage}</p>
         <p className="w-[10%]">{voter?.votePercentage.toFixed(2)}</p>

@@ -13,6 +13,7 @@ import svg from "../../assets/SVG.png";
 import { HiArrowUpRight } from "react-icons/hi2";
 import { IoIosArrowForward } from "react-icons/io";
 import { FaArrowRightLong } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 
 const PoxStakingGovernance = () => {
   return (
@@ -33,10 +34,13 @@ const PoxStakingGovernance = () => {
           </p>
           <div></div>
           <div className="flex items-center pt-20 space-x-16 font-semibold">
+            <Link to="/connectwallet">
             <div className="flex items-center space-x-4 bg-dark-yellow py-3 px-6 rounded-xl cursor-pointer">
               <button>Connect Wallet</button>
               <FaArrowRightLong />
             </div>
+            </Link>
+           
             <div className="flex items-center space-x-4 bg-dark-yellow py-3 px-6 rounded-xl cursor-pointer">
               <button>Stake</button>
               <FaArrowRightLong />

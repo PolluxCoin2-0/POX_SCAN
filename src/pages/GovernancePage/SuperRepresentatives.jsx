@@ -4,6 +4,7 @@ import CustomPieChart from "../../components/CustomPieChart";
 import TinyChartComp from "../../components/TinyChartComp";
 import { getPartnersTableData, getSuperTableData } from "../../utils/axios/Governance";
 import { extractSiteName } from "../../utils/extractSiteName";
+import { Link } from "react-router-dom";
 
 
 const Table1 = ({data}) => {
@@ -30,7 +31,10 @@ const Table1 = ({data}) => {
         className="flex flex-row justify-evenly p-3 border-b-2 border-lightest-gray"
       >
         <p className="w-[5%]">{index + 1}</p>
-        <p className="w-[10%]">{representative?.url && extractSiteName(representative?.url)}</p>
+        <Link to={`/producerdetailpage/${representative?.poxaddress}`}>
+        <p className="w-[10%] text-dark-red">{representative?.url && extractSiteName(representative?.url)}</p>
+        </Link>
+        
         <p className="w-[9%]">{representative.CurrentVersion}</p>
         <p className="w-[6%]">{representative?.isJobs && representative?.isJobs}</p> 
         <p className="w-[9%]">{representative.latestBlockNum && representative?.latestBlockNum ? representative?.latestBlockNum : 0}</p>

@@ -1,14 +1,15 @@
 import SimplePieChartComp from "../../components/SimplePieChartComp";
 import SearchBarExpand from "../../components/SearchBarExpand";
-import { IoSearch } from "react-icons/io5";
+import { IoCheckmarkCircleOutline, IoSearch } from "react-icons/io5";
 import { PiArrowBendDownLeftBold } from "react-icons/pi";
-import { MdKeyboardArrowRight } from "react-icons/md";
+import { MdKeyboardArrowRight, MdOutlineKeyboardArrowRight } from "react-icons/md";
 import Pagination from "../../components/Pagination";
 import { useEffect, useState } from "react";
 import { getTransactionStatsData, getTransactionTableData } from "../../utils/axios/Blockchain";
 import { shortenString } from "../../utils/shortenString";
 import { secondsAgo } from "../../utils/secondAgo";
 import { Link } from "react-router-dom";
+import { RxCrossCircled } from "react-icons/rx";
 
 const Transaction = () => {
   const [data, setData] = useState({});
@@ -57,6 +58,15 @@ setPieChartData(pieChartDataArr);
             <div className="bg-white px-4 md:px-12 py-6 gap-9 rounded-2xl shadow-xl ">
               <div className="flex flex-row justify-between">
                 <p className=" text-xl font-bold">Tnx Counts</p>
+
+                <Link to="/tokens/pox">
+                <div className="flex flex-row space-x-0">
+                <p className="font-semibold text-dark-red">More</p>
+                <p className="pt-1 text-dark-red"><MdOutlineKeyboardArrowRight size={20}/></p>
+                </div>
+                </Link>
+               
+               
               </div>
 
               <div className=" flex flex-row justify-between gap-20 py-5">
@@ -80,6 +90,14 @@ setPieChartData(pieChartDataArr);
             <div className="bg-white px-4 md:px-12 py-6 gap-9 rounded-2xl shadow-xl">
               <div className="flex flex-row justify-between ">
                 <p className=" text-xl font-bold "> Trading Volume</p>
+
+                <Link to="/tokens/pox">
+                <div className="flex flex-row space-x-0">
+                <p className="font-semibold text-dark-red">More</p>
+                <p className="pt-1 text-dark-red"><MdOutlineKeyboardArrowRight size={20}/></p>
+                </div>
+                </Link>
+             
               </div>
 
               <div className=" flex flex-row justify-between gap-20 rounded-lg pt-6 pb-4">
@@ -105,10 +123,7 @@ setPieChartData(pieChartDataArr);
           <div className="bg-white rounded-2xl shadow-xl w-full md:w-[48%] py-3">
             <div className="flex flex-row items-center justify-between pt-4 px-6">
               <p className="font-bold text-xl">Daily Tnx Distribution</p>
-              <div className="flex flex-row">
-                <p>More</p>
-                <MdKeyboardArrowRight className="mt-1 text-xl" />
-              </div>
+              
             </div>
 
             <div className="flex w-full h-80 flex-row justify-center items-center">
@@ -165,42 +180,45 @@ setPieChartData(pieChartDataArr);
           </div>
 
           <div className="min-w-[1300px] flex flex-row justify-evenly bg-lightest-gray p-2 m-3 rounded-xl">
-            <p className="w-[18%]">Hash</p>
-            <p className="w-[10%]">Block</p>
-            <p className="w-[10%]">Time</p>
-            <p className="w-[16%]">Transaction Type</p>
-            <p className="w-[10%]">From</p>
-            <p className="w-[10%] text-center">To</p>
-            <p className="w-[16%] text-center">Token</p>
-            <p className="w-[10%] text-center">Result</p>
+            <p className="w-[16%] font-bold  text-center">Hash</p>
+            <p className="w-[10%] font-bold  text-center">Block</p>
+            <p className="w-[10%] font-bold  text-center">Time</p>
+            <p className="w-[16%] font-bold  text-center">Transaction Type</p>
+            <p className="w-[12%] font-bold  text-center">From</p>
+            <p className="w-[12%] font-bold  text-center">To</p>
+            <p className="w-[16%] font-bold  text-center">Token</p>
+            <p className="w-[10%] font-bold text-center">Result</p>
           </div>
 
           {transactionTableData?.transactions?.map((transaction, index) => {
             return (
               <>
                 <div className="min-w-[1300px] flex flex-row justify-evenly p-5 border-b-2 border-lightest-gray  rounded-xl" key={index}>
-                  <Link to={`/transactiondetails/${transaction?.transactionId}`}> 
-                  <p className="whitespace-nowrap w-[18%]">
+                  <Link to={`/transactiondetails/${transaction?.transactionId}`} className="whitespace-nowrap w-[16%] text-center "> 
+                  <p >
                   <span className="text-dark-red px-2">
                     {transaction?.transactionId && shortenString(transaction?.transactionId,10)}
                   </span>
                 </p>
                   </Link>
               
-                  <Link to={`/blockdetailpage/${transaction?.blockNumber}`}>
-                  <p className="w-[10%] text-dark-red">{transaction?.blockNumber}</p>
+                  <Link to={`/blockdetailpage/${transaction?.blockNumber}`} className="w-[10%] text-dark-red text-center ">
+                  <p >{transaction?.blockNumber && transaction?.blockNumber}</p>
                   </Link>
                   
-                  <p className="w-[10%]">{transaction?.timeStamp && secondsAgo(transaction.timeStamp)}</p>
-                  <p className="w-[16%] ">{transaction.type}</p>
+                  <p className="w-[10%] text-center "  >{transaction?.timeStamp && secondsAgo(transaction?.timeStamp)}</p>
+                  <p className="w-[16%] text-center  ">{transaction.type}</p>
 
-                  <Link to={`/accountdetailpage/${transaction.fromAddress}`}>
-                  <p className="w-[10%] ">{shortenString(transaction.fromAddress,5)}</p>
+                  <Link to={`/accountdetails/${transaction.fromAddress}`} className="w-[12%] text-dark-red text-center ">
+                  <p >{transaction?.fromAddress && shortenString(transaction?.fromAddress,5)}</p>
                   </Link>
                   
-                  <p className="w-[10%] text-center">{shortenString(transaction.toAddress,5)}</p>
-                  <p className="w-[16%] text-center">{transaction.assetAmount/Math.pow(10,6)}</p>
-                  <p className="w-[10%] text-center indent-4">{transaction.result}</p>
+                  <Link to={`/tokendetailpage/${transaction?.toAddress}`} className="w-[12%] text-dark-red text-center ">
+                  <p >{transaction?.toAddress && shortenString(transaction?.toAddress,5)}</p>
+                  </Link>
+                 
+                  <p className="w-[16%]  text-center">{transaction?.assetAmount/Math.pow(10,6)}</p>
+                  <p className="w-[10%]  flex justify-center indent-4">{transaction?.result && transaction?.result==="SUCCESS"?<IoCheckmarkCircleOutline size={24} color="green" />:<RxCrossCircled size={24} color="red"/>}</p>
                 </div>
               </>
             );

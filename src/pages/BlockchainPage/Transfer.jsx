@@ -1,7 +1,5 @@
 import PieChartComp from "../../components/PieChartComp";
 import SearchBarExpand from "../../components/SearchBarExpand";
-import { IoSearch } from "react-icons/io5";
-import { PiArrowBendDownLeftBold } from "react-icons/pi";
 import { useEffect, useState } from "react";
 import Pagination from "../../components/Pagination";
 import { getTransferTableDataOfPoxTransfer, getTransferTableDataOfPRC20Transfer} from "../../utils/axios/Blockchain";
@@ -9,8 +7,8 @@ import { secondsAgo } from "../../utils/secondAgo";
 import { shortenString } from "../../utils/shortenString";
 import { IoCheckmarkCircleOutline } from "react-icons/io5";
 import { RxCrossCircled } from "react-icons/rx";
-import { formatNumberWithCommas } from "../../utils/FormattingNumber";
 import { Link } from "react-router-dom";
+
 
 // For Tab Switching
 const POXTransferTable = () => {
@@ -53,34 +51,47 @@ const POXTransferTable = () => {
        
         </div>
 
-        <div className="min-w-[1500px] flex flex-row justify-evenly items-center bg-lightest-gray p-2 m-3 rounded-xl">
-          <p className="w-[16%]">Hash</p>
-          <p className="w-[8%]">Block</p>
-          <p className="w-[12%]">Time</p>
-          <p className="w-[12%]">Transaction Type</p>
-          <p className="w-[15%]">From</p>
-          <p className="w-[16%]">To</p>
-          <p className="w-[12%]">Token</p>
-          <p className="w-[5%]">Result</p>
+        <div className="min-w-[1300px] flex flex-row justify-evenly items-center bg-lightest-gray p-2 m-3 rounded-xl">
+          <p className="w-[18%] text-center  font-bold ">Hash</p>
+          <p className="w-[8%] text-center  font-bold">Block</p>
+          <p className="w-[12%] text-center  font-bold">Time</p>
+          <p className="w-[12%] text-center  font-bold">Transaction Type</p>
+          <p className="w-[14%] text-center  font-bold">From</p>
+          <p className="w-[14%] text-center  font-bold">To</p>
+          <p className="w-[12%] text-center font-bold">Token</p>
+          <p className="w-[6%] text-center  font-bold">Result</p>
           
         </div>
 
         {data?.transactions && data?.transactions.map((contact, index) => {
           return (
             <>
-              <div className="min-w-[1500px] flex flex-row justify-evenly items-center p-5 border-b-2 border-lightest-gray  rounded-xl ">
-                <p className="whitespace-nowrap w-[16%]">
+              <div className="min-w-[1300px] flex flex-row justify-evenly items-center p-5 border-b-2 border-lightest-gray  rounded-xl pr-0">
+                <Link to={`/transactiondetails/${contact?.transactionId}`} className="whitespace-nowrap w-[18%] text-center ">
+                <p >
                   <span className="text-dark-red px-2">
-                  {contact?.transactionId && shortenString(contact?.transactionId,8)}
+                  {contact?.transactionId && shortenString(contact?.transactionId,10)}
                   </span>
                 </p>
-                <p className="w-[8%]">{contact?.blockNumber && formatNumberWithCommas(contact?.blockNumber)}</p>
-                <p className="w-[12%]">{contact?.timeStamp && secondsAgo(contact?.timeStamp)}</p>
-                <p className="w-[12%] text-dark-red">{contact?.assetName && contact?.assetName}</p>
-                <p className="w-[15%] text-dark-red">{contact?.fromAddress && shortenString(contact?.fromAddress,4)}</p>
-                <p className="w-[16%] text-dark-red">{contact?.toAddress && shortenString(contact?.toAddress,4)}</p>
-                <p className="w-[12%] text-dark-red">{Number(contact?.assetAmount/Math.pow(10,6)).toFixed(6)} {contact?.assetName && contact?.assetName}</p>
-                <p className="w-[5%] text-dark-red">{contact?.result && contact?.result==="SUCCESS"?<IoCheckmarkCircleOutline size={24} color="green" />:<RxCrossCircled size={24} color="red"/>}</p>
+                </Link>
+               
+               <Link to={`/blockdetailpage/${contact?.blockNumber}`} className="w-[8%] text-dark-red text-center">
+               <p >{contact?.blockNumber && contact?.blockNumber}</p>
+               </Link>
+                
+                <p className="w-[12%]  text-center  ">{contact?.timeStamp && secondsAgo(contact?.timeStamp)}</p>
+                <p className="w-[12%]  text-center  ">{contact?.assetName && contact?.assetName}</p>
+
+                <Link to={`/accountdetails/${contact?.fromAddress}`} className="w-[14%] text-center text-dark-red">
+                <p >{contact?.fromAddress && shortenString(contact?.fromAddress,5)}</p>
+                </Link>
+               
+               <Link to={`/tokendetailpage/${contact?.toAddress}`} className="w-[14%] text-center text-dark-red">
+               <p >{contact?.toAddress && shortenString(contact?.toAddress,5)}</p>
+               </Link>
+                
+                <p className="w-[12%] text-center  ">{Number(contact?.assetAmount/Math.pow(10,6)).toFixed(6)} {contact?.assetName && contact?.assetName}</p>
+                <p className="w-[6%]  flex justify-center ">{contact?.result && contact?.result==="SUCCESS"?<IoCheckmarkCircleOutline size={24} color="green" />:<RxCrossCircled size={24} color="red"/>}</p>
               </div>
             </>
           );
@@ -140,45 +151,55 @@ const PRC20TransferTable = ({ setPieChartData }) => {
         
         </div>
 
-        <div className="min-w-[1500px] flex flex-row justify-evenly items-center bg-lightest-gray p-2 m-3 rounded-xl">
-          <p className="w-[16%] text-left ">Token</p>
-          <p className="w-[12%] text-left ">Amount/ID</p>
-          <p className="w-[8%] text-left ">Result</p>
-          <p className="w-[12%] text-left ">Time</p>
-          <p className="w-[12%] text-left ">From</p>
-          <p className="w-[12%] text-left ">To</p>
-          <p className="w-[16%] text-left ">Hash</p>
-          <p className="w-[8%] text-left">Block</p>
+        <div className="min-w-[1300px] flex flex-row justify-evenly items-center bg-lightest-gray p-2 m-3 rounded-xl pl-0">
+          <p className="w-[16%] text-center font-bold ">Token</p>
+          <p className="w-[12%] text-center font-bold ">Amount/ID</p>
+          <p className="w-[8%] text-center  font-bold">Result</p>
+          <p className="w-[12%] text-center font-bold ">Time</p>
+          <p className="w-[12%] text-center font-bold ">From</p>
+          <p className="w-[12%] text-center font-bold ">To</p>
+          <p className="w-[16%] text-center font-bold">Hash</p>
+          <p className="w-[8%] text-center font-bold">Block</p>
           
         </div>
 
         {data && data.map((contact, index) => {
           return (
             <>
-              <div className="min-w-[1500px] flex flex-row justify-evenly items-center p-5 border-b-2 border-lightest-gray  rounded-xl ">
-                <div className="whitespace-nowrap tex-center w-[12%]">
-                  <div className="flex items-center space-x-4 mb-1">
-                 <p className="text-dark-red"> Pollux...({contact?.assetName && contact?.assetName})</p>
-                 <p className="px-2 py-[1px] rounded-md bg-light-red text-black"> {contact?.type && contact?.type}</p>
+              <div className="min-w-[1300px] flex flex-row justify-evenly items-center p-5 border-b-2 border-lightest-gray  rounded-xl pr-0">
+                <div className="whitespace-nowrap text-center w-[16%] ">
+                  <div className="flex justify-center space-x-4 mb-1">
+                 <p className="text-dark-red "> Pollux...({contact?.assetName && contact?.assetName})</p>
+                 <p className="px-2 py-[1px] t rounded-md bg-light-red text-black"> {contact?.type && contact?.type}</p>
                  </div>
 
-                 <Link to={`/tokendetailpage/${contact?.contractAddress}`}>
-                 <span className="text-light-gray">
+                 <Link to={`/tokendetailpage/${contact?.contractAddress}`} className="text-light-gray ">
+                 <span >
                   {contact?.contractAddress && shortenString(contact?.contractAddress,10)}
                   </span>
                  </Link>
                  
                 </div>
-                <p className="w-[16%] text-center">{contact?.asset && contact?.asset}</p>
-                <p className="w-[8%] text-center">{contact?.result && contact?.result==="SUCCESS"?<IoCheckmarkCircleOutline size={24} color="green" />:<RxCrossCircled size={24} color="red"/>}</p>
-                <p className="w-[12%] text-center ">{contact?.timeStamp && secondsAgo(contact?.timeStamp)}</p>
-                <p className="w-[12%] text-center text-dark-red">{contact?.fromAddress && shortenString(contact?.fromAddress,4)}</p>
-                <p className="w-[12%] text-center text-dark-red">{contact?.toAddress && shortenString(contact?.toAddress,4)}</p>
-                <p className="w-[16%] text-center text-dark-red">{contact?.transactionId && shortenString(contact?.transactionId,5 )}</p>
+                <p className="w-[12%] text-center  ">{contact?.asset && contact?.asset}</p>
+                <p className="w-[8%] flex justify-center  ">{contact?.result && contact?.result==="SUCCESS"?<IoCheckmarkCircleOutline size={24} color="green" />:<RxCrossCircled size={24} color="red"/>}</p>
+                <p className="w-[12%] text-center">{contact?.timeStamp && secondsAgo(contact?.timeStamp)}</p>
+
+                <Link to={`/accountdetails/${contact?.fromAddress}`} className="w-[12%] text-center  text-dark-red">
+                <p >{contact?.fromAddress && shortenString(contact?.fromAddress,4)}</p>
+                </Link>
                 
-                <Link to={`/blockdetailpage/${contact?.blockNumber}`}>
-                 <p className="w-[8%] text-center text-dark-red">
-                {contact?.blockNumber && formatNumberWithCommas(contact?.blockNumber)}
+                <Link to={`/tokendetailpage/${contact?.toAddress}`} className="w-[12%] text-center  text-dark-red">
+                <p >{contact?.toAddress && shortenString(contact?.toAddress,4)}</p>
+                </Link>
+                
+                <Link to={`/transactiondetails/${contact?.transactionId}`} className="w-[16%] text-center  text-dark-red">
+                <p >{contact?.transactionId && shortenString(contact?.transactionId,5 )}</p>
+                </Link>
+              
+                
+                <Link to={`/blockdetailpage/${contact?.blockNumber}`} className="w-[8%] text-center  text-dark-red">
+                 <p >
+                {contact?.blockNumber && contact?.blockNumber}
                 </p>
                 </Link>
                

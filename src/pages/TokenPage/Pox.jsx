@@ -8,6 +8,7 @@ import { secondsAgo } from "../../utils/secondAgo";
 import { Link } from "react-router-dom";
 
 const TokenTransferTable = () => {
+  
   const [data, setData] = useState({});
 
   useEffect(() => {
@@ -26,14 +27,16 @@ const TokenTransferTable = () => {
   return (
     <div>
       <div className="min-w-[1500px]  flex flex-row justify-around p-2 bg-lightest-gray rounded-lg ">
-        <p className=" w-[16%]">Hash</p>
-        <p className=" w-[12%] ">Block</p>
-        <p className=" w-[12%]">Time</p>
-        <p className=" w-[12%]">Transaction Type</p>
-        <p className=" w-[12%] whitespace-nowrap">From</p>
-        <p className=" w-[12%]">To</p>
-        <p className=" w-[12%]">Token</p>
-        <p className=" w-[8%]">Result</p>
+        <p className=" w-[18%] text-center font-bold">Hash</p>
+        <p className=" w-[10%] text-center font-bold ">Block</p>
+        <p className=" w-[12%] text-center font-bold">Time</p>
+        <p className=" w-[12%] text-center font-bold">Transaction Type</p>
+        <p className=" w-[13%] text-center font-bold whitespace-nowrap">
+          From
+        </p>
+        <p className=" w-[13%] text-center font-bold">To</p>
+        <p className=" w-[12%] text-center font-bold ">Token</p>
+        <p className=" w-[10%] text-center font-bold">Result</p>
       </div>
 
       {data?.transactions?.map &&
@@ -41,34 +44,56 @@ const TokenTransferTable = () => {
           return (
             <>
               <div className="min-w-[1500px]  flex flex-row  justify-around border-b-2 p-3 border-text-bg-gray">
+                <Link
+                  to={`/transactiondetails/${stablecoin?.transactionId}`}
+                  className="text-dark-red  text-center  w-[18%]  "
+                >
+                  <p>
+                    {stablecoin?.transactionId &&
+                      shortenString(stablecoin?.transactionId, 10)}
+                  </p>
+                </Link>
 
-              <Link to={`/transactiondetails/${stablecoin?.transactionId}`}>
-              <p className="text-dark-red  w-[16%]">
-              {stablecoin?.transactionId &&
-                shortenString(stablecoin?.transactionId, 10)}
-              </p>
-              </Link>
-                
-              
-                <p className=" w-[12%] ">{stablecoin.blockNumber}</p>
-                <p className="text-dark-red  w-[12%]">
+                <Link
+                  to={`/blockdetailpage/${stablecoin.blockNumber}`}
+                  className=" w-[10%] text-center  text-dark-red "
+                >
+                  <p>{stablecoin.blockNumber}</p>
+                </Link>
+
+                <p className="  w-[12%] text-center ">
                   {stablecoin.timeStamp && secondsAgo(stablecoin?.timeStamp)}
                 </p>
-                <p className=" w-[12%]">{stablecoin.PoxCount}</p>
-                <p className=" w-[12%]">
-                  {stablecoin.fromAddress &&
-                    shortenString(stablecoin?.fromAddress, 5)}
+                <p className=" w-[12%] text-center">
+                  {stablecoin.PoxCount}
                 </p>
-                <p className=" w-[12%]">
-                  {stablecoin.toAddress &&
-                    shortenString(stablecoin?.toAddress, 5)}
-                </p>
-                <p className=" w-[12%]">
+
+                <Link
+                  to={`/accountdetails/${stablecoin.fromAddress}`}
+                  className=" w-[13%] text-center text-dark-red"
+                >
+                  <p>
+                    {stablecoin.fromAddress &&
+                      shortenString(stablecoin?.fromAddress, 5)}
+                  </p>
+                </Link>
+
+                <Link
+                  to={`/accountdetails/${stablecoin.fromAddress}`}
+                  className=" w-[13%] text-center text-dark-red"
+                >
+                  <p>
+                    {stablecoin.toAddress &&
+                      shortenString(stablecoin?.toAddress, 5)}
+                  </p>
+                </Link>
+
+                <p className=" w-[12%]  text-center ">
                   {stablecoin?.assetAmount &&
                     (stablecoin.assetAmount / 1000000).toFixed(6)}{" "}
                   {stablecoin?.assetName}
                 </p>
-                <p className=" w-[8%] text-dark-green text-xl">
+                <p className=" w-[10%] flex justify-center text-dark-green text-xl">
                   <IoCheckmarkCircleOutline />
                 </p>
               </div>
@@ -79,7 +104,7 @@ const TokenTransferTable = () => {
   );
 };
 
-const HoldersTable = () => {
+const HoldersTable = () => {  
   const [holderdata, setHolderData] = useState({});
 
   useEffect(() => {
@@ -98,12 +123,12 @@ const HoldersTable = () => {
   return (
     <div>
       <div className="flex flex-row justify-evenly p-2 bg-lightest-gray rounded-lg ">
-        <p className="w-[8%]">#</p>
-        <p className="w-[32%]">Account</p>
-        <p className="w-[15%]">Amount</p>
-        <p className="w-[15%]">Value</p>
-        <p className="w-[15%]">Percentage</p>
-        <p className="w-[15%]">Latest TXN Time(Local)</p>
+        <p className="w-[8%]  text-center font-bold ">#</p>
+        <p className="w-[32%] text-center font-bold ">Account</p>
+        <p className="w-[15%] text-center font-bold ">Amount</p>
+        <p className="w-[15%] text-center font-bold ">Value</p>
+        <p className="w-[15%] text-center font-bold ">Percentage</p>
+        <p className="w-[15%] text-center font-bold ">Latest TXN Time(Local)</p>
       </div>
 
       {holderdata?.apiResult?.map &&
@@ -111,12 +136,23 @@ const HoldersTable = () => {
           return (
             <>
               <div className="min-w-[1500px]  flex flex-row  justify-around border-b-2 p-3 border-text-bg-gray">
-                <p className="w-[8%] text-dark-red "></p>
-                <p className=" w-[32%]">{stablecoin?.address}</p>
-                <p className="w-[15%] text-dark-red ">{stablecoin?.balance}</p>
-                <p className="w-[15%] ">{stablecoin.PoxCount}</p>
-                <p className=" w-[15%]">{stablecoin?.percentage.toFixed(6)}%</p>
-                <p className=" w-[15%]">{stablecoin?.age && secondsAgo(stablecoin?.age)}</p>
+                <p className="w-[8%]  text-center  ">{index + 1}</p>
+
+                <Link
+                  to={`/tokendetailpage/${stablecoin?.address}`}
+                  className=" w-[32%] text-dark-red text-center "
+                >
+                  <p>{stablecoin?.address && stablecoin?.address}</p>
+                </Link>
+
+                <p className="w-[15%]  text-center ">{stablecoin?.balance}</p>
+                <p className="w-[15%] text-center ">{stablecoin.PoxCount}</p>
+                <p className=" w-[15%]  text-center ">
+                  {stablecoin?.percentage.toFixed(6)}%
+                </p>
+                <p className=" w-[15%]  text-center ">
+                  {stablecoin?.age && secondsAgo(stablecoin?.age)}
+                </p>
               </div>
             </>
           );
@@ -154,7 +190,7 @@ const Pox = () => {
       <div>
         <SearchBarExpand onSearch={setOnSearch} />
       </div>
-      <p className="font-bold text-2xl">Blocks</p>
+      <p className="font-bold text-2xl">Pollux (POX)</p>
       <div className=" flex flex-col  md:flex-row justify-between">
         {/* Number of Blocks */}
         <div className="w-full md:w-[32%]  bg-white shadow-lg rounded-2xl p-5 my-6 md:my-12">
@@ -237,11 +273,11 @@ const Pox = () => {
         </p>
 
         <p
-         className={`cursor-pointer py-3 px-4 whitespace-nowrap  ${
-          isRender === "Holders"
-            ? "bg-dark-yellow font-semibold  shadow-lg rounded-lg"
-            : "text-black bg-text-bg-gray shadow-md rounded-lg"
-        }`}
+          className={`cursor-pointer py-3 px-4 whitespace-nowrap  ${
+            isRender === "Holders"
+              ? "bg-dark-yellow font-semibold  shadow-lg rounded-lg"
+              : "text-black bg-text-bg-gray shadow-md rounded-lg"
+          }`}
           onClick={() => setIsRender("Holders")}
         >
           Holders

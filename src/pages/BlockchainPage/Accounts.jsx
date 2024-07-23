@@ -6,6 +6,7 @@ import Pagination from "../../components/Pagination";
 import { getAccountsData, getAccountTableData } from "../../utils/axios/Blockchain";
 import { shortenString } from "../../utils/shortenString";
 import { secondsAgo } from "../../utils/secondAgo";
+import { Link } from "react-router-dom";
 
 
 
@@ -129,7 +130,7 @@ const Accounts = () => {
       <div className="bg-white  rounded-2xl p-2 md:p-7  overflow-x-auto mt-8 md:mt-16">
         <div className="flex flex-row justify-start gap-5 min-w-[1500px] md:min-w-full">
           <p className="pb-5 font-medium text-light-gray">
-            The latest <span className="text-black font-semibold"> 10,000</span>
+            The latest <span className="text-black font-semibold"> 10,000 </span>
             records are shown, sorted by decreasing POX balance by default{" "}
           </p>
           {/* <p className="text-light-gray text-3xl ">
@@ -143,29 +144,32 @@ const Accounts = () => {
         </div>
 
         <div className="flex flex-row justify-around p-2 bg-lightest-gray rounded-lg min-w-[1500px] md:min-w-full">
-          <p className=" w-[5%] text-center">#</p>
-          <p className=" w-[20%] text-center">Account</p>
-          <p className=" w-[18%] text-center">Pox Balance</p>
-          <p className=" w-[10%] text-center">Percentage</p>
-          <p className=" w-[10%] text-center whitespace-nowrap">
+          <p className=" w-[5%] text-center  ">#</p>
+          <p className=" w-[20%] text-center  ">Account</p>
+          <p className=" w-[18%] text-center ">Pox Balance</p>
+          <p className=" w-[10%] text-center  ">Percentage</p>
+          <p className=" w-[10%] text-center   whitespace-nowrap">
             POX Power
           </p>
-          <p className=" w-[10%] text-center">Pox Count</p>
-          <p className=" w-[15%] text-center">Age</p>
+          <p className=" w-[10%] text-center ">Pox Count</p>
+          <p className=" w-[15%] text-center  ">Age</p>
           
         </div>
 
         {data1?.apiResult && data1?.apiResult.map((stablecoin, index) => {
           return (
             <>
-              <div className="flex flex-row  justify-around border-b-2 p-3 border-text-bg-gray min-w-[1500px] md:min-w-full" key={index}>
-                <p className="text-dark-red text-center w-[5%]">{stablecoin?.Block && stablecoin?.Block}</p>
-                <p className=" w-[20%] text-center">{shortenString(stablecoin?.address && stablecoin?.address,10)}</p>
-                <p className="text-dark-red  w-[18%] text-center">{stablecoin?.balance && Number(stablecoin?.balance).toFixed(6)}</p>
-                <p className=" w-[10%] text-center">{stablecoin?.percentage && Number(stablecoin?.percentage).toFixed(2)} %</p>
-                <p className=" w-[10%] text-center">{stablecoin?.poxpower && stablecoin?.poxpower}</p>
-                <p className=" w-[10%] text-center">{stablecoin?.txnCount && stablecoin?.txnCount}</p>
-                <p className=" w-[15%] text-center">{stablecoin?.age && secondsAgo(stablecoin?.age)}</p>
+              <div className="flex flex-row  justify-around border-b-2 p-2 border-text-bg-gray min-w-[1500px] md:min-w-full" key={index}>
+                <p className=" text-center w-[5%]">{index+1}</p>
+                <Link to={`/tokendetailpage/${stablecoin?.address}`} className=" w-[20%] text-center  text-dark-red">
+                <p >{shortenString(stablecoin?.address && stablecoin?.address,10)}</p>
+                </Link>
+               
+                <p className="  w-[18%] text-center ">{stablecoin?.balance && Number(stablecoin?.balance).toFixed(6)}</p>
+                <p className=" w-[10%] text-center ">{stablecoin?.percentage && Number(stablecoin?.percentage).toFixed(2)} %</p>
+                <p className=" w-[10%] text-center ">{stablecoin?.poxpower && stablecoin?.poxpower}</p>
+                <p className=" w-[10%] text-center ">{stablecoin?.txnCount && stablecoin?.txnCount}</p>
+                <p className=" w-[15%] text-center ">{stablecoin?.age && secondsAgo(stablecoin?.age)}</p>
                 
               </div>
             </>
