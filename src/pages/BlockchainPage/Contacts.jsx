@@ -71,54 +71,54 @@ const VerifiedContractTable = () => {
         </div>
 
         <div className="min-w-[1500px] flex flex-row justify-evenly text-center bg-lightest-gray p-2 m-3 rounded-xl ">
-          <p className="w-[7%] text-center ">Account</p>
-          <p className="w-[12%] text-center ">Contract Name</p>
-          <p className="w-[12%] text-center ">Number of Calls </p>
-          <p className=" w-[12%]  text-center text-nowrap">Contract Address</p>
-          <p className="w-[12%] text-center ">Version</p>
-          <p className="w-[12%] text-center ">License</p>
-          <p className="w-[12%] text-center ">Created On</p>
-          <p className="w-[12%] text-center ">Verified On</p>
-          <p className="w-[7%] text-center ">Setting</p>
+          <p className="w-[6%] text-center font-bold  ">Account</p>
+          <p className="w-[12%] text-center font-bold ">Contract Name</p>
+          <p className="w-[12%] text-center font-bold ">Number of Calls </p>
+          <p className=" w-[20%]  text-center font-bold text-nowrap">Contract Address</p>
+          <p className="w-[12%] text-center font-bold ">Version</p>
+          <p className="w-[9%] text-center font-bold ">License</p>
+          <p className="w-[12%] text-center font-bold ">Created On</p>
+          <p className="w-[12%] text-center font-bold ">Verified On</p>
+          <p className="w-[5%] text-center font-bold">Setting</p>
         </div>
-
+  
         {data[0] &&
           data[0].map((contact, index) => {
             return (
               <>
-                <div className="min-w-[1500px]  flex flex-row justify-evenly p-5 border-b-2 border-lightest-gray  rounded-xl ">
-                  <p className="whitespace-nowrap text-center w-[7%]">
+                <div className="min-w-[1500px]  flex flex-row justify-evenly p-5 border-b-2 border-lightest-gray  rounded-xl pr-0">
+                  <p className="whitespace-nowrap text-center  w-[6%]">
                     <span className="px-3 py-1 bg-lightest-gray rounded-lg">
                       SC
                     </span>
                   </p>
-                  <p className="w-[12%] text-center">
+                  <p className="w-[12%] text-center ">
                     {contact?.contractName && contact?.contractName}
                   </p>
-                  <p className="w-[12%] text-center">
+                  <p className="w-[12%] text-center ">
                     {contact?.noOfCalls && contact?.noOfCalls}
                   </p>
 
-                  <Link to={`/accountdetails/${contact?.contractAddress}`}>
-                  <p className="w-[12%] text-center text-dark-red">
+                  <Link to={`/tokendetailpage/${contact?.contractAddress}`}  className="w-[20%] text-center text-dark-red">
+                  <p>
                   {contact?.contractAddress &&
                     shortenString(contact?.contractAddress, 10)}{" "}
                 </p>
                   </Link>
                  
-                  <p className="w-[12%] text-center indent-4">
+                  <p className="w-[12%] text-center  indent-4">
                     {contact?.compiler && contact?.compiler}
                   </p>
-                  <p className="w-[12%] text-center indent-4">
+                  <p className="w-[9%] text-center  indent-4">
                     {contact?.license && contact?.license}
                   </p>
-                  <p className="w-[12%] text-center indent-8">
+                  <p className="w-[12%] text-center  indent-8">
                     {contact?.createdAt && formatTimestampOnlyDate(contact.createdAt)}
                   </p>
-                  <p className="w-[12%] text-center indent-8">
+                  <p className="w-[12%] text-center  indent-8">
                     {contact?.updatedAt && formatTimestampOnlyDate(contact?.updatedAt)}
                   </p>
-                  <p className="w-[7%] flex justify-end">
+                  <p className="w-[5%]  flex justify-center ">
                     <PiWrenchLight />
                   </p>
                 </div>
@@ -177,43 +177,46 @@ const AllContractTable = () => {
       </div>
 
       <div className="min-w-[1500px] flex flex-row justify-evenly text-center bg-lightest-gray p-2 m-3 rounded-xl ">
-        <p className="w-[10%] text-center">Account</p>
-        <p className="w-[20%] text-center">Contract Address</p>
-        <p className="w-[20%] text-center">Number of Calls </p>
-
-        <p className="w-[20%] text-center">Created On</p>
-        <p className="w-[20%] text-center">Verified On</p>
-        <p className="w-[10%] text-center">Settings</p>
+        <p className="w-[10%] text-center  font-bold ">Account</p>
+        <p className="w-[30%] text-center  font-bold ">Contract Address</p>
+        <p className="w-[20%] text-center  font-bold ">Number of Calls </p>
+ 
+        <p className="w-[15%] text-center font-bold  ">Created On</p>
+        <p className="w-[15%] text-center font-bold  ">Verified On</p>
+        <p className="w-[10%] text-center  font-bold ">Settings</p>
       </div>
 
       {data1[0] &&
         data1[0].map((contact, index) => {
           return (
             <>
-              <div className="min-w-[1500px]  flex flex-row justify-evenly p-5 border-b-2 border-lightest-gray  rounded-xl ">
-                <p className="whitespace-nowrap w-[10%] text-center">
+              <div className="min-w-[1500px]  flex flex-row justify-evenly p-5 border-b-2 border-lightest-gray  rounded-xl pr-0 ">
+                <p className="whitespace-nowrap w-[10%] text-center  ">
                   <span className="px-3 py-1 bg-lightest-gray rounded-lg">
                     SC
                   </span>
                 </p>
                 
-                <p className="w-[20%] text-center">
+                <Link  to={`/tokendetailpage/${contact?.contractAddress}`}  className="w-[30%] text-center text-dark-red ">
+                <p>
                   {contact?.contractAddress &&
-                    shortenString(contact?.contractAddress, 10)}
+                    shortenString(contact?.contractAddress, 14)}
                 </p>
-                <p className="w-[20%] text-center">
+                </Link>
+             
+                <p className="w-[20%] text-center  ">
                   {contact?.noOfCalls && contact?.noOfCalls
                     ? contact?.noOfCalls
                     : "--"}
                 </p>
 
-                <p className="w-[20%] text-center indent-4">
+                <p className="w-[15%] text-center   indent-4">
                   {contact?.createdAt && formatTimestampOnlyDate(contact?.createdAt)}
                 </p>
-                <p className="w-[20%] text-center indent-4">
+                <p className="w-[15%] text-center   indent-4">
                   {contact?.updatedAt && formatTimestampOnlyDate(contact?.updatedAt)}
                 </p>
-                <p className="w-[10%] flex justify-center">
+                <p className="w-[10%] flex  justify-center">
                   <PiWrenchLight />
                 </p>
               </div>

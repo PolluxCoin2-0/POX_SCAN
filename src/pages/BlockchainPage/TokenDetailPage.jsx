@@ -70,11 +70,11 @@ const TransactionsTable = () => {
                   </p>
                   <p className="w-[8%]">{transactions?.blockNumber && formatNumberWithCommas(transactions?.blockNumber)}</p>
                   <p className="w-[12%]">{transactions?.timeStamp && secondsAgo(transactions?.timeStamp)}</p>
-                  <p className="w-[12%] text-dark-red">{transactions?.type && transactions?.type}</p>
+                  <p className="w-[12%] ">{transactions?.type && transactions?.type}</p>
                   <p className="w-[15%] text-dark-red">{transactions?.fromAddress && shortenString(transactions?.fromAddress,4)}</p>
                   <p className="w-[16%] text-dark-red">{transactions?.toAddress && shortenString(transactions?.toAddress,4)}</p>
-                  <p className="w-[12%] text-dark-red">{transactions?.assetAmount && transactions?.assetAmount} {transactions?.type && transactions?.type} </p>
-                  <p className="w-[5%] text-dark-red">{transactions?.result && transactions?.result==="SUCCESS"?<IoCheckmarkCircleOutline size={24} color="green" />:<RxCrossCircled size={24} color="red"/>}</p>
+                  <p className="w-[12%] ">{transactions?.assetAmount && transactions?.assetAmount} {transactions?.type && transactions?.type} </p>
+                  <p className="w-[5%] ">{transactions?.result && transactions?.result==="SUCCESS"?<IoCheckmarkCircleOutline size={24} color="green" />:<RxCrossCircled size={24} color="red"/>}</p>
                 </div>
               </>
             );

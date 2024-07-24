@@ -217,7 +217,7 @@ const EventLogData = ({ data }) => {
 
 const TransactionDetailPage = () => {
   const transActionId = useParams().id;
-  const transactionId = useParams().id;
+  
   const [data, setData] = useState({});
   const [isRender, setIsRender] = useState("Overview");
   const [inputValue, setInputValue] = useState("");
@@ -227,7 +227,7 @@ const TransactionDetailPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await getAccountDetailData({transActionId, transactionId});
+        const data = await getAccountDetailData(transActionId);
         setData(data?.message);
       } catch (error) {
         console.log("error", error);

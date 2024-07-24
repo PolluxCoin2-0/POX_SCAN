@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 import { IoIosArrowForward } from "react-icons/io"
 import { getVotesData, getVotesTableData } from "../../utils/axios/Governance";
 import { extractSiteName } from "../../utils/extractSiteName";
+import HollowCircleTimer from "./HollowCircleTimer";
+import { Link } from "react-router-dom";
 
 const Votes = () => {
 
@@ -60,23 +62,23 @@ const Votes = () => {
       </div>
       
       <div className=" flex flex-row space-x-5 w-full">
-         <div className="w-[50%] rounded-xl bg-white shadow-xl flex flex-row justify-between pb-10 h-64">
-          <div className=" pl-20 p-10">
-            <div className="flex flex-row justify-between">
-              <div>
+         <div className="w-[50%] rounded-xl bg-white shadow-xl flex flex-row justify-around items-center pb-6">
+          <div className="pl-0 p-10">
+            <div className="flex flex-row space-x-14">
+              <div className="">
                 <img src={VoteTotal} 
                 alt="vote-add" 
                 className=""
                 />
               </div>
-              <div className="pl-14 pb-4">
+              <div className="pb-4">
                 <p className="text-light-gray">Real-time Votes this round</p>
                 <p className="text-lg font-bold">{votedata?.realTimeTotalVotes} <span className="text-sm font-bold text-dark-green">(+)</span></p>
               </div>
             </div>
 
               <div className="border-b-2 border-text-bg-gray border-dashed w-[100%] ">
-                 
+                
               </div>
 
               <div className="flex flex-row justify-between">
@@ -94,7 +96,7 @@ const Votes = () => {
 
           </div>
           <div>
-          {/* timestamp */}
+          <HollowCircleTimer/>
           </div>
          </div>
 
@@ -162,7 +164,10 @@ const Votes = () => {
 
     return (
       <div key={index} className="flex flex-row justify-around p-5 border-b-2 border-text-bg-gray">
-        <p className="w-[25%]">{voter?.url && extractSiteName(voter?.url)}</p>
+        <Link to={`/accountdetails/${voter?.address}`}>
+        <p className="w-[25%] text-dark-red">{voter?.url && extractSiteName(voter?.url)}</p>
+        </Link>
+       
         <p className="w-[10%] ">{rank}</p>
         <p className="w-[10%]">{voter.brokerage}</p>
         <p className="w-[10%]">{voter?.votePercentage.toFixed(2)}</p>

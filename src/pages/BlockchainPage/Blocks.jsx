@@ -69,10 +69,7 @@ const Blocks = () => {
         <div className="w-full md:w-[32%]  rounded-2xl p-5 bg-white shadow-md ">
           <div className=" flex flex-row pt-1 justify-between">
             <p className="font-bold">Block Rewards</p>
-            <div className="flex flex-row">
-              <p>More</p>
-              <MdKeyboardArrowRight className="mt-1 text-xl" />
-            </div>
+            
           </div>
 
           <div className=" w-full flex flex-row justify-between pt-9 pl-1">
@@ -95,10 +92,7 @@ const Blocks = () => {
         <div className="w-full md:w-[32%] rounded-2xl p-5 bg-white shadow-md ">
           <div className=" flex flex-row justify-between pt-1">
             <p className="font-bold">Stats on Burned POX</p>
-            <div className="flex flex-row">
-              <p>More</p>
-              <MdKeyboardArrowRight className="mt-1 text-xl" />
-            </div>
+            
           </div>
 
           <div className=" w-full flex flex-row justify-between pt-9 pl-1">
@@ -127,40 +121,38 @@ const Blocks = () => {
           displayed
         </p>
  
-        <div className="flex flex-row justify-around p-2 pb-3 bg-lightest-gray rounded-lg min-w-[1500px] md:min-w-full">
-          <p className=" w-[12%]  font-bold text-center">Block</p>
-          <p className=" w-[12%] font-bold text-center">Age</p>
-          <p className=" w-[12%] font-bold text-center">Producer</p>
-          <p className=" w-[12%] font-bold whitespace-nowrap text-center">Pox Count</p>
-          <p className=" w-[12%] font-bold whitespace-nowrap text-center">
-            Consumed Energy/Bandwidth
-          </p>
-          <p className=" w-[16%] font-bold whitespace-nowrap text-center">Burned POX</p>
-          <p className=" w-[12%] font-bold whitespace-nowrap text-center">Block Reward</p>
-          <p className=" w-[12%] font-bold whitespace-nowrap  text-center">Status</p>
+        <div className="flex flex-row justify-evenly  p-2 pb-3 bg-lightest-gray rounded-lg min-w-[1500px] md:min-w-full">
+          <p className=" w-[12%] font-bold text-center  ">Block</p>
+          <p className=" w-[10%] font-bold text-center  ">Age</p>
+          <p className=" w-[12%] font-bold text-center ">Producer</p>
+          <p className=" w-[12%] font-bold text-center ">Pox Count</p>
+          <p className=" w-[16%] font-bold text-center  whitespace-nowrap "> Consumed Energy/Bandwidth</p>
+          <p className=" w-[12%] font-bold text-center  ">Burned POX</p>
+          <p className=" w-[12%] font-bold text-center  ">Block Reward</p>
+          <p className=" w-[14%] font-bold text-center  ">Status</p>
         </div>
 
         {data?.apiResult && data?.apiResult.map((stablecoin, index) => {
           return (
             <>
-              <div className="flex flex-row justify-around border-b-2 p-3 border-text-bg-gray min-w-[1500px] md:min-w-full" key={index}>
-                <Link to={`/blockdetailpage/${stablecoin?.number}`}>
-                <p className="text-dark-red w-[12%] text-center">
+              <div className="flex flex-row justify-between border-b-2 p-4 border-text-bg-gray min-w-[1500px] md:min-w-full" key={index}>
+                <Link to={`/blockdetailpage/${stablecoin?.number}`} className="w-[12%] text-dark-red pl-6 ">
+                <p >
                 {stablecoin?.number && stablecoin?.number}
                 </p>
                 </Link>
              
-                <p className=" w-[12%] text-center">{stablecoin?.timestamp && secondsAgo(stablecoin?.timestamp && stablecoin?.timestamp)}</p>
+                <p className="w-[10%] text-center">{stablecoin?.timestamp && secondsAgo(stablecoin?.timestamp && stablecoin?.timestamp)}</p>
                 
-                <Link to={`/producerdetailpage/${stablecoin?.witnessAddress}`}>
-                 <p className="text-dark-red  w-[12%] text-center">{stablecoin?.witnessName && stablecoin?.witnessName}</p>
+                <Link to={`/producerdetailpage/${stablecoin?.witnessAddress}`} className="w-[12%] text-center text-dark-red">
+                 <p >{stablecoin?.witnessName && stablecoin?.witnessName}</p>
                 </Link>
                
-                <p className=" w-[12%] text-center indent-4">{stablecoin?.nrOfTrx && stablecoin?.nrOfTrx}</p>
-                <p className=" w-[12%] text-center">{stablecoin?.energyUsage && stablecoin?.energyUsage}</p>
-                <p className=" w-[16%] text-center">{stablecoin?.netUsage && stablecoin?.netUsage}</p>
-                <p className=" w-[12%] text-center">{stablecoin?.blockReward && stablecoin?.blockReward} POX</p>
-                <p className=" w-[12%] text-center">{stablecoin?.confirmed && stablecoin?.confirmed ? "CONFIRMED" : "UNCONFIRMED"}</p>
+                <p className="w-[12%] text-center">{stablecoin?.nrOfTrx && stablecoin?.nrOfTrx}</p>
+                <p className="w-[16%] text-center ">{stablecoin?.energyUsage && stablecoin?.energyUsage}</p>
+                <p className="w-[12%] text-center ">{stablecoin?.netUsage && stablecoin?.netUsage}</p>
+                <p className="w-[12%] text-center  ">{stablecoin?.blockReward && stablecoin?.blockReward} POX</p>
+                <p className="w-[14%] text-center ">{stablecoin?.confirmed && stablecoin?.confirmed ? "CONFIRMED" : "UNCONFIRMED"}</p>
 
              </div>
             </>

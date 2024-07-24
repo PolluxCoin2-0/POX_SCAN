@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getRankingTokenDayOneData, getRankingTokenDaySevenData } from "../../../utils/axios/Data";
 import { shortenString } from "../../../utils/shortenString";
+import { Link } from "react-router-dom";
 
 const HolderTable= ({title}) => {
     const [data, setData] = useState({});
@@ -25,9 +26,9 @@ const HolderTable= ({title}) => {
         <p className="text-2xl font-bold pb-8 pt-8">{title}</p>
         <div className="bg-white rounded-xl py-8 pl-10 pr-10 pb-10">
           <div className="flex flex-row justify-around bg-lightest-gray p-2 rounded-lg">
-            <p className="text-light-gray w-[25%]">Rank</p>
-            <p className="text-light-gray w-[50%]">Account</p>
-            <p className="text-light-gray w-[25%]">Holder Count</p>
+            <p className="text-light-gray  text-center w-[15%]">Rank</p>
+            <p className="text-light-gray text-center  w-[60%]">Account</p>
+            <p className="text-light-gray  text-center w-[25%]">Holder Count</p>
           </div>
       
           {data?.tokenHolders?.map && data?.tokenHolders?.map((param, index) => {
@@ -36,9 +37,12 @@ const HolderTable= ({title}) => {
       
             return (
               <div key={index} className="flex flex-row justify-around p-5 border-b-2 border-b-lightest-gray">
-                <p className="w-[15%]">{rank}</p>
-                <p className="w-[60%]">{param?._id && shortenString(param?._id, 10)}</p>
-                <p className="w-[25%]">{param?.holderCount}</p>
+                <p className="w-[15%] text-center pr-5">{rank}</p>
+                <Link to={`/accountdetails/${param?._id}`} className="w-[60%] text-dark-red text-center ">
+                <p >{param?._id && shortenString(param?._id, 10)}</p>
+                </Link>
+                
+                <p className="w-[25%] text-center ">{param?.holderCount}</p>
               </div>
             );
           })}
@@ -49,7 +53,7 @@ const HolderTable= ({title}) => {
   }
 
 
-  const TransactionTable= ({title}) => {
+  const TransactionTable= ({title}) => {  
     const [data, setData] = useState({});
     useEffect(() => {
       
@@ -72,9 +76,9 @@ const HolderTable= ({title}) => {
         <p className="text-2xl font-bold pb-8 pt-8">{title}</p>
         <div className="bg-white rounded-xl py-8 pl-10 pr-10 pb-10">
           <div className="flex flex-row justify-around bg-lightest-gray p-2 rounded-lg">
-            <p className="text-light-gray w-[25%]">Rank</p>
-            <p className="text-light-gray w-[50%]">Account</p>
-            <p className="text-light-gray w-[25%]">Txn Count</p>
+            <p className="text-light-gray text-center w-[15%]">Rank</p>
+            <p className="text-light-gray text-center w-[60%]">Account</p>
+            <p className="text-light-gray text-center w-[25%]">Txn Count</p>
           </div>
       
           {data?.topTokensByTxnAccounts?.map && data?.topTokensByTxnAccounts?.map((param, index) => {
@@ -83,9 +87,12 @@ const HolderTable= ({title}) => {
       
             return (
               <div key={index} className="flex flex-row justify-around p-5 border-b-2 border-b-lightest-gray">
-                <p className="w-[15%]">{rank}</p>
-                <p className="w-[60%]">{param?._id && shortenString(param?._id, 10)}</p>
-                <p className="w-[25%]">{param?.txnAccountCount}</p>
+                <p className="w-[15%] text-center ">{rank}</p>
+                <Link to={`/accountdetails/${param?._id}`} className="w-[60%] text-center text-dark-red">
+                <p >{param?._id && shortenString(param?._id, 10)}</p>
+                </Link>
+               
+                <p className="w-[25%] text-center">{param?.txnAccountCount}</p>
               </div>
             );
           })}
@@ -123,10 +130,10 @@ const HolderTable= ({title}) => {
         <p className="text-2xl font-bold pb-8 pt-8">{title}</p>
         <div className="bg-white rounded-xl pt-6 pl-10 pr-10 pb-10">
           <div className="flex flex-row justify-around bg-lightest-gray p-2 rounded-lg">
-            <p className="text-light-gray w-[10%]">Rank</p>
-            <p className="text-light-gray w-[60%]">Account</p>
-            <p className="text-light-gray w-[15%]">Count</p>
-            <p className="text-light-gray w-[15%]">Volume</p>
+            <p className="text-light-gray  text-center w-[10%]">Rank</p>
+            <p className="text-light-gray  text-center w-[60%]">Account</p>
+            <p className="text-light-gray  text-center w-[15%]">Count</p>
+            <p className="text-light-gray text-center  w-[15%]">Volume</p>
           </div>
       
           {data1?.topTokensbyVol?.map && data1?.topTokensbyVol?.map((param, index) => {
@@ -136,7 +143,10 @@ const HolderTable= ({title}) => {
             return (
               <div key={index} className="flex flex-row justify-around p-5 border-b-2 border-b-lightest-gray">
                 <p className="w-[10%]">{rank}</p>
-                <p className="w-[60%]">{param?._id && shortenString(param?._id, 10)}</p>
+                <Link to={`/accountdetails/${param?._id}`} className="w-[60%] text-center text-dark-red">
+                <p >{param?._id && shortenString(param?._id, 10)}</p>
+                </Link>
+               
                 <p className="w-[15%]">{param?.count}</p>
                 <p className="w-[15%]">{param?.volume.toFixed(2)}%</p>
               </div>
@@ -144,7 +154,7 @@ const HolderTable= ({title}) => {
           })}
         </div>
       </>
-      
+     
     )
   }
 const TokenDay7 = ({title}) => {
