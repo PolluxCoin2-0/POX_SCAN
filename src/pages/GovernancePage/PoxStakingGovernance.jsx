@@ -22,7 +22,7 @@ const PoxStakingGovernance = () => {
         <SearchBarExapnd />
       </div>
 
-      <div className="flex flex-row justify-around  bg-white rounded-2xl ">
+      <div className="flex flex-row justify-around  bg-white rounded-2xl shadow-2xl">
         <div className="w-[40%] pt-10">
           <p className="text-4xl font-bold mt-10 ">POX STAKING GOVERNANCE</p>
 
@@ -57,25 +57,25 @@ const PoxStakingGovernance = () => {
         </div>
       </div>
 
-      <div className=" flex flex-row space-x-12 justify-evenly w-full py-12">
-        <div className="bg-white py-7 px-20  w-[25%] rounded-2xl ">
+      <div className=" flex flex-row space-x-8 justify-evenly w-full py-12">
+        <div className="bg-white py-7 px-20  w-[25%] rounded-2xl shadow-xl">
           <p className=" text-md text-light-gray">Total POX staked</p>
           <p className="text-2xl font-bold pt-3">6,2345,7853,009</p>
         </div>
 
-        <div className="bg-white py-7 px-20 w-[25%] rounded-2xl ">
+        <div className="bg-white py-7 px-20 w-[25%] rounded-2xl shadow-xl">
           <p className=" text-md text-light-gray">POX Staking Rate</p>
           <p className="text-2xl font-bold pt-3">52.52%</p>
         </div>
 
-        <div className="bg-white py-7 px-20  w-[25%] rounded-2xl ">
+        <div className="bg-white py-7 px-20  w-[25%] rounded-2xl shadow-xl">
           <p className=" text-md text-light-gray">
             Total POX Reward Distribution
           </p>
           <p className="text-2xl font-bold pt-3">6,2345,7853,00</p>
         </div>
 
-        <div className="bg-white py-7 px-20 w-[25%] rounded-2xl ">
+        <div className="bg-white py-7 px-20 w-[25%] rounded-2xl shadow-xl ">
           <p className=" text-md text-light-gray">Highest APY</p>
           <p className="text-2xl font-bold pt-3">4.15%</p>
         </div>
@@ -140,7 +140,7 @@ const PoxStakingGovernance = () => {
         </p>
 
         <div className="flex flex-row justify-between w-full">
-          <div className=" bg-white px-10 pt-10 rounded-2xl w-[60%]">
+          <div className=" bg-white px-10 pt-10 rounded-2xl shadow-xl w-[60%]">
             <p className="font-bold text-xl">Get Pox for Governance</p>
             <p className="text-light-gray">
               By staking pox, you can obtain POX power which can be used to vote
@@ -178,7 +178,7 @@ const PoxStakingGovernance = () => {
             </div>
           </div>
 
-          <div className="flex flex-row  bg-white justify-evenly ml-5 rounded-2xl px-5 w-[40%]">
+          <div className="flex flex-row  bg-white justify-evenly ml-5 rounded-2xl shadow-xl px-5 w-[40%]">
             <div className="w-[40%] ">
               <p className=" pt-10 text-xl font-bold">
                 Get resources for free Transaction
@@ -217,7 +217,7 @@ const PoxStakingGovernance = () => {
           Calculate your Staking Rewards
         </p>
 
-        <div className=" bg-white rounded-2xl">
+        <div className=" bg-white rounded-2xl shadow-xl">
           <div className="flex flex-row justify-between p-10 ">
             <div className="flex flex-col justify-start ">
               <p className=" font-bold text-xl "> I want to stake</p>
@@ -261,7 +261,7 @@ const PoxStakingGovernance = () => {
         </div>
       </div>
 
-      <div className="bg-white rounded-2xl flex flex-row justify-between">
+      <div className="bg-white rounded-2xl shadow-xl flex flex-row justify-between">
         <div className="p-16">
           <p className="font-bold text-xl">Stake POX on JustLend DAO</p>
           <p className="pt-5 ">

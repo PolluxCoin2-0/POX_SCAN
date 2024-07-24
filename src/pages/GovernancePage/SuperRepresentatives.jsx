@@ -11,18 +11,18 @@ const Table1 = ({data}) => {
   return (
     <div className="bg-white pt-2  rounded-tl-none rounded-2xl">
     <div className="flex flex-row items-center justify-evenly bg-light-orange p-3 rounded-tl-none rounded-2xl m-4">
-      <p className="w-[5%]">Rank</p>
-      <p className="w-[10%]">Name</p>
-      <p className="w-[9%]">Current Version</p>
-      <p className="w-[6%]">Status</p>
-      <p className="w-[8%]">Last Block</p>
-      <p className="w-[8%]">Block Produced</p>
-      <p className="w-[8%]">Block Missed</p>
-      <p className="w-[8%]">Productivity</p>
-      <p className="w-[8%]">Current Vote</p>
-      <p className="w-[8%]">Vote Weightage</p>
-      <p className="w-[10%]">Reward Distribution</p>
-      <p className="w-[6%]">APR</p>
+      <p className="w-[5%] text-center   font-bold ">Rank</p>
+      <p className="w-[10%] text-center  font-bold  ">Name</p>
+      <p className="w-[9%] text-center  font-bold ">Current Version</p>
+      <p className="w-[6%] text-center  font-bold  ">Status</p>
+      <p className="w-[8%] text-center  font-bold  ">Last Block</p>
+      <p className="w-[10%] text-center font-bold   ">Block Produced</p>
+      <p className="w-[8%] text-center font-bold   ">Block Missed</p>
+      <p className="w-[8%] text-center font-bold   ">Productivity</p>
+      <p className="w-[8%] text-center  font-bold  ">Current Vote</p>
+      <p className="w-[10%] text-center font-bold  ">Vote Weightage</p>
+      <p className="w-[10%]  text-center font-bold  ">Reward Distribution</p>
+      <p className="w-[8%] text-center  font-bold  ">APR</p>
     </div>
   
     {data?.witnesses && data?.witnesses.map((representative, index) => (
@@ -30,28 +30,28 @@ const Table1 = ({data}) => {
         key={index}
         className="flex flex-row justify-evenly p-3 border-b-2 border-lightest-gray"
       >
-        <p className="w-[5%]">{index + 1}</p>
-        <Link to={`/producerdetailpage/${representative?.poxaddress}`}>
-        <p className="w-[10%] text-dark-red">{representative?.url && extractSiteName(representative?.url)}</p>
-        </Link>
+        <p className="w-[5%]  text-center ">{index + 1}</p>
+        <Link to={`/producerdetailpage/${representative?.poxaddress}`} className="w-[10%] text-dark-red text-center ">
+        <p >{representative?.url && extractSiteName(representative?.url)}</p>
+        </Link> 
         
-        <p className="w-[9%]">{representative.CurrentVersion}</p>
-        <p className="w-[6%]">{representative?.isJobs && representative?.isJobs}</p> 
-        <p className="w-[9%]">{representative.latestBlockNum && representative?.latestBlockNum ? representative?.latestBlockNum : 0}</p>
-        <p className="w-[9%]">{representative.totalProduced && representative?.totalProduced ? representative?.totalProduced : 0}</p>
-        <p className="w-[8%]">{representative.totalMissed && representative?.totalMissed ? representative?.totalMissed : 0}</p>
-        <p className="w-[8%]">{representative.productivity.toFixed(8)}</p>
-        <p className="w-[8%]">{representative.voteCount}</p>
-        <p className="w-[8%]">{representative.voteWeightage.toFixed(8)}%</p>
-        <p className="w-[10%]">{representative.RewardDistribution}</p>
-        <p className="w-[6%]">{representative.apr}%</p>
+        <p className="w-[9%]  text-center">{representative.CurrentVersion}</p>
+        <p className="w-[6%]  text-center">{representative?.isJobs && representative?.isJobs}</p> 
+        <p className="w-[8%] text-center">{representative.latestBlockNum && representative?.latestBlockNum ? representative?.latestBlockNum : 0}</p>
+        <p className="w-[10%]  text-center">{representative.totalProduced && representative?.totalProduced ? representative?.totalProduced : 0}</p>
+        <p className="w-[8%]  text-center">{representative.totalMissed && representative?.totalMissed ? representative?.totalMissed : 0}</p>
+        <p className="w-[8%]  text-center">{representative.productivity.toFixed(8)}</p>
+        <p className="w-[8%]  text-center">{representative.voteCount}</p>
+        <p className="w-[10%]  text-center">{representative.voteWeightage.toFixed(8)}%</p>
+        <p className="w-[10%]  text-center">{representative.RewardDistribution}</p>
+        <p className="w-[8%]  text-center">{representative.apr}%</p>
       </div>
     ))}
   </div>
   
   );
 };
-
+ 
 const CardSuperRepresentative = ({title, leftSubTitle, totalCount, rightSubTitle, totalvalues}) => {
   return (
     <>

@@ -52,7 +52,7 @@ const RealtimeBlockProduction = () => {
 
 
           <div className="flex flex-row justify-around items-center">
-            <div className="pt-8 text-center">
+            <div className=" text-center">
               
             <p className="pt-8 ">2024-05-11T00.07;8:35.519Z</p>
             <p className="pt-8">2024-05-11T00.07;8:35.519Z</p>
@@ -68,7 +68,7 @@ const RealtimeBlockProduction = () => {
             
             </div>
 
-            <div className="pt-8  text-center">
+            <div className="  text-center">
               
             <p className="pt-8">64230</p>
             <p className="pt-8">64230</p>

@@ -6,6 +6,17 @@ import { IoCheckmarkCircleOutline } from "react-icons/io5";
 import { shortenString } from "../../utils/shortenString";
 import { secondsAgo } from "../../utils/secondAgo";
 import { Link } from "react-router-dom";
+import PoxImg from "../../assets/PoxImg.png";
+import { IoEllipsisVertical } from "react-icons/io5";
+import { RiFileCopy2Fill } from "react-icons/ri";
+import { PiTwitterLogoLight } from "react-icons/pi";
+import { PiFacebookLogoLight } from "react-icons/pi";
+import { PiInstagramLogoLight } from "react-icons/pi";
+import { LiaTelegram } from "react-icons/lia";
+import { PiYoutubeLogoLight } from "react-icons/pi";
+import { TbTrendingUp } from "react-icons/tb";
+import { getPoxOverviewData } from "../../utils/axios/Data";
+import { formatNumberWithCommas } from "../../utils/FormattingNumber";
 
 const TokenTransferTable = () => {
   
@@ -145,7 +156,7 @@ const HoldersTable = () => {
                   <p>{stablecoin?.address && stablecoin?.address}</p>
                 </Link>
 
-                <p className="w-[15%]  text-center ">{stablecoin?.balance}</p>
+                <p className="w-[15%]  text-center ">{Number(stablecoin?.balance).toFixed(6)}</p>
                 <p className="w-[15%] text-center ">{stablecoin.PoxCount}</p>
                 <p className=" w-[15%]  text-center ">
                   {stablecoin?.percentage.toFixed(6)}%
@@ -162,6 +173,22 @@ const HoldersTable = () => {
 };
 
 const Pox = () => {
+ 
+  const [poxData, setPoxData] = useState({});
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const poxData = await getPoxOverviewData();
+        console.log(poxData);
+        setPoxData(poxData);
+      } catch (error) {
+        console.log("error", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   const [isRender, setIsRender] = useState("Token Transfer");
   const renderItemComponent = () => {
     switch (isRender) {
@@ -190,72 +217,150 @@ const Pox = () => {
       <div>
         <SearchBarExpand onSearch={setOnSearch} />
       </div>
-      <p className="font-bold text-2xl">Pollux (POX)</p>
-      <div className=" flex flex-col  md:flex-row justify-between">
+      
+      <div className="flex flex-row space-x-4">
+        <div>
+          <img src={PoxImg}
+          alt="pox image"
+          className="w-[60px] "
+          /></div>
+        <div>
+        <p className="font-bold text-xl">Pollux (POX)</p>
+        <p className="pt-1">Pollux is the official token issued by pollux network on the POX chain.</p>
+        </div>
+      </div>
+     
+      <div className=" flex flex-col space-x-5 md:flex-row justify-between">
         {/* Number of Blocks */}
-        <div className="w-full md:w-[32%]  bg-white shadow-lg rounded-2xl p-5 my-6 md:my-12">
-          <div className="pt-1">
-            <p className="font-bold">Number of Blocks</p>
+        <div className="w-full md:w-[30%]  bg-white shadow-lg rounded-2xl p-5 my-6 md:my-12">
+          <div className="pt-1 flex flex-row justify-between">
+            <p className=" text-xl font-bold">Overview</p>
+            <p className="text-dark-green bg-light-green rounded-md px-6 font-bold ">Reputation: {poxData?.Rep && poxData?.Rep}</p>
           </div>
 
-          <div className=" w-full flex flex-row justify-between pt-9 pl-1 ">
-            <div>
-              <p className="text-dark-red font-bold text-xl">60754103</p>
-              <p className="pt-4 text-sm text-light-gray">Latest</p>
-            </div>
-
-            <div>
-              <p className="text-xl font-bold">+28,793</p>
-              <p className="pt-4 text-sm text-light-gray flex justify-end">
-                Yesterday
-              </p>
-            </div>
+          <div className="flex flex-row space-x-2 pt-3">
+            <p className="font-semibold">{poxData?.price && Number(poxData?.price).toFixed(4)} POX</p>
+            <p className="font-semibold text-dark-green">(+0.02%)</p>
           </div>
+
+          <div className="flex flex-row justify-between pt-6 pb-4 border-b-[1px] border-text-bg-gray">
+            <p className="font-semibold">Total Supply</p>
+            <p>{poxData?.totalsupply && formatNumberWithCommas(Number(poxData?.totalsupply).toFixed(3))}</p>
+          </div>
+
+          <div  className="flex flex-row justify-between pt-4 pb-4 border-b-[1px] border-text-bg-gray">
+            <p className="font-semibold">Max Supply</p>
+            <p>{poxData?.maxSupply && formatNumberWithCommas(Number(poxData?.maxSupply).toFixed(0))}</p>
+          </div>
+
+          <div  className="flex flex-row justify-between pt-4 pb-4 border-b-[1px] border-text-bg-gray">
+            <p className="font-semibold">Circulating Supply</p>
+            <p>{poxData?.circsupply && formatNumberWithCommas(poxData?.circsupply)}</p>
+          </div>
+
+          <div  className="flex flex-row justify-between pt-4 pb-4 border-b-[1px] border-text-bg-gray">
+            <p className="font-semibold">Total Market Cap</p>
+            <p>{poxData?.totalmatket && formatNumberWithCommas(Number(poxData?.totalmatket).toFixed(3))}</p>
+          </div>
+
+          <div  className="flex flex-row justify-between pt-4 pb-4">
+            <p className="font-semibold">Circulating Market Cap</p>
+            <p>{poxData?.circmarket && formatNumberWithCommas(Number(poxData?.circmarket).toFixed(3))}</p>
+          </div>
+
         </div>
 
         {/* Block Rewards */}
-        <div className="w-full md:w-[32%]  rounded-2xl p-5 bg-white shadow-md my-3 md:my-12">
-          <div className="pt-1">
-            <p className="font-bold">Block Rewards</p>
+        <div className="w-full md:w-[40%]  rounded-2xl p-5 bg-white shadow-md my-3 md:my-12">
+          <div className="pt-1 flex flex-row justify-between">
+            <p className="font-bold text-xl">Basic Info</p>
+            <p><IoEllipsisVertical size={24}/></p>
           </div>
 
-          <div className=" w-full flex flex-row justify-between pt-9 pl-1">
-            <div>
-              <p className="text-xl font-bold">8.87b POX</p>
-              <p className="text-xs flex justify-end ">=$1,078,347,147.3</p>
-              <p className="pt-4 text-sm text-light-gray">Total</p>
-            </div>
+        <div className="flex flex-row justify-between pt-14 pb-4 border-b-[1px] border-text-bg-gray">
+          <p className="font-semibold">Issuing Time:</p>
+          <div className="flex flex-row space-x-1">
+          <p>{poxData?.issueTime && poxData?.issueTime}</p>
+          <p className="pt-1"><RiFileCopy2Fill /></p>
+          </div>
+          
+        </div>
 
-            <div>
-              <p className="text-xl font-bold">5067,392 TRX</p>
-              <p className="text-xs flex justify-end">=$615,954.9</p>
-              <p className="pt-4 text-sm text-light-gray flex justify-end">
-                Yesterday
-              </p>
-            </div>
+        <div className="flex flex-row justify-between pt-4 pb-4 border-b-[1px] border-text-bg-gray">
+          <p className="font-semibold">Decimal:</p>
+
+          <div className="flex flex-row space-x-1">
+          <p>{poxData?.Decimal && poxData?.Decimal}</p>
+          <p className="pt-1"><RiFileCopy2Fill /></p>
+          </div>
+         
+          
+        </div>
+
+        <div className="flex flex-row justify-between  pt-4 pb-4 border-b-[1px] border-text-bg-gray">
+          <p className="font-semibold">Official Website:</p>
+          <p className="text-dark-red underline">{poxData?.Web && poxData?.Web} </p>
+        </div>
+
+        <div className="flex flex-row justify-between  pt-4 pb-4 border-b-[1px] border-text-bg-gray">
+          <p className="font-semibold">White Paper:</p>
+          <p className="text-dark-red underline">{poxData?.Whitepaper && poxData?.Whitepaper}</p>
+        </div>
+
+        <div className="flex flex-row justify-between  pt-4 pb-4 ">
+          <p className="font-semibold">Social Profiles:</p>
+          <div className="flex flex-row space-x-3">
+           <Link to={poxData?.social?.twitter}>
+           <p><PiTwitterLogoLight size={20} color="#C23631"/></p>
+           </Link> 
+
+           <Link to={poxData?.social?.fb}>
+           <p><PiFacebookLogoLight   size={20} color="#C23631"/></p>
+           </Link>
+           
+           <Link to={poxData?.social?.insta}>
+           <p><PiInstagramLogoLight  size={20} color="#C23631" /></p>
+           </Link>
+           
+           <Link to={poxData?.social?.tele}>
+           <p><LiaTelegram  size={20} color="#C23631"/></p>
+           </Link>
+           
+           <Link to={poxData?.social?.yt}>
+           <p><PiYoutubeLogoLight  size={20} color="#C23631"/></p>
+           </Link>
+           
           </div>
         </div>
 
+        </div>
+
         {/* Stats on Burned Pox */}
-        <div className="w-full md:w-[32%] rounded-2xl p-5 bg-white shadow-md my-3 md:my-12">
-          <div className="pt-1">
-            <p className="font-bold">Stats on Burned POX</p>
+        <div className="w-full md:w-[30%] rounded-2xl p-5 bg-white shadow-md my-3 md:my-12">
+          <div className="pt-1 flex flex-row justify-between items-center">
+            <p className="font-bold text-xl">More</p>
+            <p className="border-2 rounded-lg p-1 "><TbTrendingUp  size={16}/></p>
           </div>
 
-          <div className=" w-full flex flex-row justify-between pt-9 pl-1">
-            <div>
-              <p className="text-xl font-bold">11.21b POX</p>
-              <p className=" text-xs">=$1,363,166,000.31</p>
-              <p className="pt-4 text-sm text-light-gray flex ">Total</p>
-            </div>
+          <div className="flex flex-row justify-between pt-14 pb-4 border-b-[1px] border-text-bg-gray">
+            <p className="font-semibold">Holders</p>
+            <p>{poxData?.holders && formatNumberWithCommas(poxData?.holders)} </p>
+          </div>
 
-            <div>
-              <p className="text-xl font-bold">11,220,752 TRX</p>
-              <p className="text-xs flex justify-end">=$1,363,912.13</p>
-              <p className="pt-4 text-sm text-light-gray flex justify-end">
-                Yesterday
-              </p>
-            </div>
+          <div className="flex flex-row justify-between pt-4 pb-4 border-b-[1px] border-text-bg-gray">
+            <p className="font-semibold">Total Transfer Count</p>
+            <p>{poxData?.totaltransfer && formatNumberWithCommas(poxData?.totaltransfer)}</p>
+          </div>
+
+          <div className="flex flex-row justify-between pt-4 pb-4 border-b-[1px] border-text-bg-gray">
+            <p className="font-semibold">Transfer (24h)</p>
+            <p>{poxData?.last24transfer && formatNumberWithCommas(poxData?.last24transfer )} </p>
+          </div>
+
+          <div className="flex flex-row justify-between pt-4 pb-4">
+            <p className="font-semibold">Trading Volume (24h)</p>
+            <p>${poxData?.tradingvol && formatNumberWithCommas(Number(poxData?.tradingvol).toFixed(2))}</p>
+
           </div>
         </div>
       </div>

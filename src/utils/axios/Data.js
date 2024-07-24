@@ -257,3 +257,25 @@ export const getRankingContractDaySevenData = async() => {
         console.log("error", error);
     }
 }
+
+export const getPoxOverviewData = async() => {
+   try {
+    const response = await axios.get("https://node.poxscan.io/api/token0");
+    return (response?.data);
+   } catch (error) {
+    console.log("error", error);
+   }
+}
+
+export const getUsdxOverviewData = async() => {
+    try {
+        const response = await axios.post("https://governance.poxscan.io/token/gettoken",
+            {
+                "contractAddress": "PSTv3ZweeCRHd5cmxoL3dTTbSKGgtYZ5cm"
+             }
+        )
+        return (response?.data);
+    } catch (error) {
+        console.log("error", error);
+    }
+}

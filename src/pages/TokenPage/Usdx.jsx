@@ -3,13 +3,20 @@ import { TokenData } from "../../data/Token";
 import SearchBarExpand from "../../components/SearchBarExpand";
 import Pagination from "../../components/Pagination";
 import { getUsdxData, getUsdxHolderData } from "../../utils/Token";
-import { IoCheckmarkCircleOutline, IoShirtOutline } from "react-icons/io5";
+import { IoCheckmarkCircleOutline, IoEllipsisVertical, IoShirtOutline } from "react-icons/io5";
 import { shortenString } from "../../utils/shortenString";
 import { GiSandsOfTime } from "react-icons/gi";
 import { secondsAgo } from "../../utils/secondAgo";
 import { RxCrossCircled } from "react-icons/rx";
 import { Link } from "react-router-dom";
-
+import { RiFileCopy2Fill } from "react-icons/ri";
+import { PiFacebookLogoLight, PiInstagramLogoLight, PiTwitterLogoLight, PiYoutubeLogoLight } from "react-icons/pi";
+import { LiaTelegram } from "react-icons/lia";
+import { TbTrendingUp } from "react-icons/tb";
+import UsdxImg from "../../assets/UsdxImg.png";
+import { FaArrowRightLong } from "react-icons/fa6";
+import { getUsdxOverviewData } from "../../utils/axios/Data";
+import { formatNumberWithCommas } from "../../utils/FormattingNumber";
 const UsdxTable = () => {
   const [data, setData] = useState({});
 
@@ -111,7 +118,7 @@ const TokenHolderTable = () => {
         <p >{stablecoin?.walletAddress}</p>
         </Link>
        
-        <p className="w-[20%]  text-center    font-bold  ">{stablecoin?.balance}</p>
+        <p className="w-[20%]  text-center    font-bold  ">{Number(stablecoin?.balance).toFixed(6)}</p>
         <p className="w-[16%]  text-center  ">${Number(stablecoin?.balance).toFixed(2)}</p>
         <p className="w-[12%]   text-center ">{stablecoin?.percentage}%</p>
         <p className="w-[16%]  text-center ">{/* Render latest transaction time here */}</p>
@@ -124,6 +131,21 @@ const TokenHolderTable = () => {
 }
 
 const Usdx = () => {
+
+  const [usdxData, setUsdxData] = useState({});
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const usdxData = await getUsdxOverviewData();
+        console.log(usdxData);
+        setUsdxData(usdxData);
+      } catch (error) {
+        console.log("error", error);
+      }
+    };
+
+    fetchData();
+  }, []);
   const [isRender, setIsRender] = useState("Token Transfer");
   const renderItemComponent = () => {
     switch (isRender) {
@@ -152,72 +174,146 @@ const Usdx = () => {
       <div>
         <SearchBarExpand onSearch={setOnSearch} />
       </div>
-      <p className="font-bold text-2xl">Pollux (USDX)</p>
-      <div className=" flex flex-col  md:flex-row justify-between">
+      <div className="flex flex-row justify-between ">
+        <div className="flex flex-row space-x-4">
+        <div className="mt-2">
+          <img src={UsdxImg}
+          alt="pox image"
+          className="w-[70px] "
+          /></div>
+        <div className="flex flex-col items-start ">
+        <p className="font-bold text-xl">Pollux USD (USDX)</p>
+        <p className="text-light-mid-gray text-sm border-[1px] border-light-mid-gray rounded-2xl  px-2 mt-1">PRC 20</p>
+        <p className="pt-1">USDX is the official stablecoin issued by pollux on the POX network.</p>
+        </div>
+        </div>
+
+        <div className="flex flex-row space-x-5 items-center">
+        <div className="flex items-center space-x-4 font-bold bg-dark-yellow py-2 px-6 rounded-lg cursor-pointer">
+          <button>Stake USDX to Get Rewards</button></div>
+        
+        <div className="flex items-center font-bold space-x-4 bg-dark-yellow py-2  px-8 rounded-lg cursor-pointer">
+          <button>Trade</button></div>
+        </div>
+       
+      </div>
+     
+      <div className=" flex flex-col space-x-5 md:flex-row justify-between">
         {/* Number of Blocks */}
-        <div className="w-full md:w-[32%]  bg-white shadow-lg rounded-2xl p-5 my-6 md:my-12">
-          <div className="pt-1">
-            <p className="font-bold">Number of Blocks</p>
+        <div className="w-full md:w-[30%]  bg-white shadow-lg rounded-2xl p-5 my-6 md:my-12">
+          <div className="pt-1 flex flex-row justify-between">
+            <p className=" text-xl font-bold">Overview</p>
+            <p className="text-dark-green bg-light-green rounded-md px-6 font-bold ">Reputation: OK </p>
           </div>
 
-          <div className=" w-full flex flex-row justify-between pt-9 pl-1 ">
-            <div>
-              <p className="text-dark-red font-bold text-xl">60754103</p>
-              <p className="pt-4 text-sm text-light-gray">Latest</p>
-            </div>
-
-            <div>
-              <p className="text-xl font-bold">+28,793</p>
-              <p className="pt-4 text-sm text-light-gray flex justify-end">
-                Yesterday
-              </p>
-            </div>
+          <div className="flex flex-row space-x-2 pt-3">
+            <p className="font-semibold">{usdxData?.totalSupply && formatNumberWithCommas(Number(usdxData?.totalSupply).toFixed(3))} USDX</p>
+            <p className="font-semibold text-dark-green">(+0.02%)</p>
           </div>
+
+          <p className="text-sm text-light-mid-gray">≈${usdxData?.totalSupply && formatNumberWithCommas(Number(usdxData?.totalSupply).toFixed(3))}</p>
+
+          <div className="flex flex-row justify-between pt-6 pb-4 border-b-[1px] border-text-bg-gray">
+            <p className="font-semibold">Total Supply</p>
+            <p>{usdxData?.totalSupply && formatNumberWithCommas(Number(usdxData?.totalSupply).toFixed(3))}</p>
+          </div>
+
+          
+
+          <div  className="flex flex-row justify-between pt-4 pb-4 border-b-[1px] border-text-bg-gray">
+            <p className="font-semibold">Circulating Supply</p>
+            <p>{usdxData?.circulationSupply && formatNumberWithCommas(Number(usdxData?.circulationSupply).toFixed(3))}</p>
+          </div>
+
+          <div  className="flex flex-row justify-between pt-4 pb-4 border-b-[1px] border-text-bg-gray">
+            <p className="font-semibold">Total Market Cap</p>
+            <p>{usdxData?.totalMarketCap && formatNumberWithCommas(Number(usdxData?.totalMarketCap).toFixed(3))}</p>
+          </div>
+
+          <div  className="flex flex-row justify-between pt-4 ">
+            <p className="font-semibold">Circulating Market Cap</p>
+            <p>{usdxData?.circulatingMarketCap && formatNumberWithCommas(Number(usdxData?.circulatingMarketCap).toFixed(3))}</p>
+          </div>
+
         </div>
 
         {/* Block Rewards */}
-        <div className="w-full md:w-[32%]  rounded-2xl p-5 bg-white shadow-md my-3 md:my-12">
-          <div className="pt-1">
-            <p className="font-bold">Block Rewards</p>
+        <div className="w-full md:w-[40%]  rounded-2xl p-5 bg-white shadow-md my-3 md:my-12">
+          <div className="pt-1 flex flex-row justify-between">
+            <p className="font-bold text-xl">Basic Info</p>
+            <p><IoEllipsisVertical size={24}/></p>
           </div>
 
-          <div className=" w-full flex flex-row justify-between pt-9 pl-1">
-            <div>
-              <p className="text-xl font-bold">8.87b POX</p>
-              <p className="text-xs flex justify-end ">=$1,078,347,147.3</p>
-              <p className="pt-4 text-sm text-light-gray">Total</p>
-            </div>
+        <div className="flex flex-row justify-between pt-14 pb-4 border-b-[1px] border-text-bg-gray">
+          <p className="font-semibold">Contract</p>
+          <div className="flex flex-row space-x-1">
+          <p>{usdxData?.contractAddress && usdxData?.contractAddress}</p>
+          <p className="pt-1"><RiFileCopy2Fill /></p>
+          </div>
+          
+        </div>
 
-            <div>
-              <p className="text-xl font-bold">5067,392 TRX</p>
-              <p className="text-xs flex justify-end">=$615,954.9</p>
-              <p className="pt-4 text-sm text-light-gray flex justify-end">
-                Yesterday
-              </p>
-            </div>
+        <div className="flex flex-row justify-between pt-4 pb-4 border-b-[1px] border-text-bg-gray">
+          <p className="font-semibold">Issuer</p>
+
+          <div className="flex flex-row space-x-1">
+          <p>{usdxData?.issuer && usdxData?.issuer}</p>
+          <p className="pt-1"><RiFileCopy2Fill /></p>
+          </div>
+         
+          
+        </div>
+
+        <div className="flex flex-row justify-between  pt-4 pb-4 border-b-[1px] border-text-bg-gray">
+          <p className="font-semibold">Issuing Time</p>
+          <p className=""> {usdxData?.issuingTime && usdxData?.issuingTime}(UTC)</p>
+        </div>
+
+        <div className="flex flex-row justify-between  pt-4 pb-4 border-b-[1px] border-text-bg-gray">
+          <p className="font-semibold">Decimal</p>
+          <p className="">{usdxData?.decimals && usdxData?.decimals}</p>
+        </div>
+
+        <div className="flex flex-row justify-between  pt-4  ">
+          <p className="font-semibold">Social Profiles:</p>
+          <div className="flex flex-row space-x-3">
+           <Link>
+           <p><PiTwitterLogoLight size={20} color="#C23631"/></p>
+           </Link> 
+
+           
+           
           </div>
         </div>
 
+        </div>
+
         {/* Stats on Burned Pox */}
-        <div className="w-full md:w-[32%] rounded-2xl p-5 bg-white shadow-md my-3 md:my-12">
-          <div className="pt-1">
-            <p className="font-bold">Stats on Burned POX</p>
+        <div className="w-full md:w-[30%] rounded-2xl p-5 bg-white shadow-md my-3 md:my-12">
+          <div className="pt-1 flex flex-row justify-between items-center">
+            <p className="font-bold text-xl">More</p>
+            <p className="border-2 rounded-lg p-1 "><TbTrendingUp  size={16}/></p>
           </div>
 
-          <div className=" w-full flex flex-row justify-between pt-9 pl-1">
-            <div>
-              <p className="text-xl font-bold">11.21b POX</p>
-              <p className=" text-xs">=$1,363,166,000.31</p>
-              <p className="pt-4 text-sm text-light-gray flex ">Total</p>
-            </div>
+          <div className="flex flex-row justify-between pt-14 pb-4 border-b-[1px] border-text-bg-gray">
+            <p className="font-semibold">Holders</p>
+            <p>{usdxData?.totalHolders && usdxData?.totalHolders}</p>
+          </div>
 
-            <div>
-              <p className="text-xl font-bold">11,220,752 TRX</p>
-              <p className="text-xs flex justify-end">=$1,363,912.13</p>
-              <p className="pt-4 text-sm text-light-gray flex justify-end">
-                Yesterday
-              </p>
-            </div>
+          <div className="flex flex-row justify-between pt-4 pb-4 border-b-[1px] border-text-bg-gray">
+            <p className="font-semibold">Total Transfer Count</p>
+            <p>{usdxData?.totaltransferCount && formatNumberWithCommas(usdxData?.totaltransferCount)}</p>
+          </div>
+
+          <div className="flex flex-row justify-between pt-4 pb-4 border-b-[1px] border-text-bg-gray">
+            <p className="font-semibold">Transfer (24h)</p>
+            <p>{usdxData?.transfer24H && usdxData?.transfer24H}</p>
+          </div>
+
+          <div className="flex flex-row justify-between pt-4">
+            <p className="font-semibold">Trading Volume (24h)</p>
+            <p>${usdxData?.tradingVolume && Number(usdxData?.tradingVolume).toFixed(2)}</p>
+
           </div>
         </div>
       </div>
