@@ -118,9 +118,12 @@ const VerifiedContractTable = () => {
                   <p className="w-[12%] text-center  indent-8">
                     {contact?.updatedAt && formatTimestampOnlyDate(contact?.updatedAt)}
                   </p>
-                  <p className="w-[5%]  flex justify-center ">
+                  <Link to={`/tokendetailpage/${contact?.contractAddress}`}  className="w-[5%]  flex justify-center ">
+                  <p>
                     <PiWrenchLight />
                   </p>
+                  </Link>
+                 
                 </div>
               </>
             );
@@ -216,9 +219,11 @@ const AllContractTable = () => {
                 <p className="w-[15%] text-center   indent-4">
                   {contact?.updatedAt && formatTimestampOnlyDate(contact?.updatedAt)}
                 </p>
-                <p className="w-[10%] flex  justify-center">
-                  <PiWrenchLight />
-                </p>
+                <Link to={`/tokendetailpage/${contact?.contractAddress}`}  className="w-[10%]  flex justify-center ">
+                  <p>
+                    <PiWrenchLight />
+                  </p>
+                  </Link>
               </div>
             </>
           );

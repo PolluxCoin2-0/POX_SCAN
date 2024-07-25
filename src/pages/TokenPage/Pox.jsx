@@ -17,6 +17,7 @@ import { PiYoutubeLogoLight } from "react-icons/pi";
 import { TbTrendingUp } from "react-icons/tb";
 import { getPoxOverviewData } from "../../utils/axios/Data";
 import { formatNumberWithCommas } from "../../utils/FormattingNumber";
+import { toast } from "react-toastify";
 
 const TokenTransferTable = () => {
   
@@ -133,6 +134,8 @@ const HoldersTable = () => {
 
   return (
     <div>
+
+      
       <div className="flex flex-row justify-evenly p-2 bg-lightest-gray rounded-lg ">
         <p className="w-[8%]  text-center font-bold ">#</p>
         <p className="w-[32%] text-center font-bold ">Account</p>
@@ -211,6 +214,11 @@ const Pox = () => {
     setCurrentPage(page);
   };
 
+  const handleCopy = (issueTime) => {
+    navigator.clipboard.writeText(issueTime);
+    toast.success(" copied!");
+  };
+
   const [onSearch, setOnSearch] = useState("");
   return (
     <div className="px-4 md:px-12 pb-12">
@@ -281,7 +289,7 @@ const Pox = () => {
           <p className="font-semibold">Issuing Time:</p>
           <div className="flex flex-row space-x-1">
           <p>{poxData?.issueTime && poxData?.issueTime}</p>
-          <p className="pt-1"><RiFileCopy2Fill /></p>
+          <p className="pt-1"><RiFileCopy2Fill  onClick={() => handleCopy(poxData?.issueTime)}/></p>
           </div>
           
         </div>
@@ -291,7 +299,7 @@ const Pox = () => {
 
           <div className="flex flex-row space-x-1">
           <p>{poxData?.Decimal && poxData?.Decimal}</p>
-          <p className="pt-1"><RiFileCopy2Fill /></p>
+          <p className="pt-1"><RiFileCopy2Fill onClick={() => handleCopy(poxData?.issueTime)}/></p>
           </div>
          
           
@@ -299,12 +307,18 @@ const Pox = () => {
 
         <div className="flex flex-row justify-between  pt-4 pb-4 border-b-[1px] border-text-bg-gray">
           <p className="font-semibold">Official Website:</p>
-          <p className="text-dark-red underline">{poxData?.Web && poxData?.Web} </p>
+          <Link to="https://polluxcoin.info/">
+          <p className="text-dark-red underline cursor-pointer">{poxData?.Web && poxData?.Web} </p>
+          </Link>
+        
         </div>
 
         <div className="flex flex-row justify-between  pt-4 pb-4 border-b-[1px] border-text-bg-gray">
           <p className="font-semibold">White Paper:</p>
+          <Link to="https://polluxcoin.info/white-paper.pdf">
           <p className="text-dark-red underline">{poxData?.Whitepaper && poxData?.Whitepaper}</p>
+          </Link>
+          
         </div>
 
         <div className="flex flex-row justify-between  pt-4 pb-4 ">
@@ -387,6 +401,19 @@ const Pox = () => {
         >
           Holders
         </p>
+      </div>
+
+
+      {/* For colourful bar */}
+      <div className="bg-white rounded-lg shadow-lg mb-5 p-5 ">
+        <p className="text-lg font-semibold">Asset Breakdown by Holders</p>
+        <div className="flex flex-row justify-evenly w-full mt-5 border-[1px] border-text-bg-gray ">
+          <p className="w-[29%] bg-pink-gradient rounded-tl-md rounded-bl-md">1</p>
+          <p className="w-[20%] bg-blue">2</p>
+          <p className="w-[6%] bg-dark-peach">3</p>
+          <p className="w-[10%] bg-light-purple">4</p>
+          <p className="w-[35%] bg-dark-yellow rounded-tr-md rounded-br-md">5</p>
+        </div>
       </div>
 
       <div className="bg-white rounded-2xl p-4 md:p-7 ">

@@ -2,12 +2,14 @@ import PieChartComp from "../../components/PieChartComp";
 import SearchBarExpand from "../../components/SearchBarExpand";
 import { useEffect, useState } from "react";
 import Pagination from "../../components/Pagination";
-import { getTransferTableDataOfPoxTransfer, getTransferTableDataOfPRC20Transfer} from "../../utils/axios/Blockchain";
+import { getTransactionStatsData, getTransferTableDataOfPoxTransfer, getTransferTableDataOfPRC20Transfer} from "../../utils/axios/Blockchain";
 import { secondsAgo } from "../../utils/secondAgo";
 import { shortenString } from "../../utils/shortenString";
 import { IoCheckmarkCircleOutline } from "react-icons/io5";
 import { RxCrossCircled } from "react-icons/rx";
 import { Link } from "react-router-dom";
+import { MdKeyboardArrowRight } from "react-icons/md";
+import { formatNumberWithCommas } from "../../utils/FormattingNumber";
 
 
 // For Tab Switching
@@ -221,6 +223,24 @@ const PRC20TransferTable = ({ setPieChartData }) => {
 };
 
 const Transfer = () => {
+
+  const [data, setData] = useState([]);
+  const [stats, setStats] = useState({});
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getTransferTableDataOfPRC20Transfer();
+        setData(data);
+
+        const stats = await getTransactionStatsData();
+        
+        setStats(stats?.message);
+      } catch (error) {
+        console.log('error', error);
+      } 
+    };
+    fetchData();
+  }, [])
   const [isRender, setIsRender] = useState("PRC20 Transfers");
   const [pieChartData, setPieChartData] = useState([]);
 
@@ -264,19 +284,26 @@ const Transfer = () => {
             <div className="bg-white px-4 md:px-12 py-6 gap-9 rounded-2xl shadow-xl ">
               <div className="flex flex-row justify-between">
                 <p className=" text-xl font-bold">Transfer Counts</p>
+                
+                <div className="flex flex-row cursor-pointer">
+                  <p className="text-dark-red text-lg font-semibold">More</p>
+                  <MdKeyboardArrowRight className="mt-1 " size={24} color="#C23631"/>
+                </div>
+                
+               
               </div>
 
-              <div className=" flex flex-row justify-between gap-20 rounded-lg py-5">
+              <div className=" flex flex-row justify-between   rounded-lg py-5">
                 <div className="">
-                  <p className="text-xl font-bold">55,451,455,254</p>
-                  <p className="text-light-gray  pt-5">Total</p>
+                  <p className="text-xl font-bold pt-5">{data?.totalPage && formatNumberWithCommas(data?.totalPage)}</p>
+                  <p className="text-light-gray  pt-2">Total</p>
                 </div>
 
-                <div>
-                  <p className="text-dark-green font-bold text-xl">
-                    +4,048,420
+                <div className="text-right">
+                  <p className="text-dark-green font-bold text-xl pt-5">
+                    0
                   </p>
-                  <p className="text-light-gray  pt-5"> Yesterday</p>
+                  <p className="text-light-gray  pt-2"> Yesterday</p>
                 </div>
               </div>
             </div>
@@ -285,21 +312,28 @@ const Transfer = () => {
             <div className="bg-white px-4 md:px-12 py-6 gap-9 rounded-2xl shadow-xl">
               <div className="flex flex-row justify-between ">
                 <p className=" text-xl font-bold "> Transfer Volume</p>
+                
+                <div className="flex flex-row cursor-pointer">
+                  <p className="text-dark-red text-lg font-semibold">More</p>
+                  <MdKeyboardArrowRight className="mt-1" size={24} color="#C23631"/>
+                </div>
+                
+              
               </div>
 
-              <div className=" flex flex-row justify-between gap-20 rounded-lg pt-6 pb-6">
+              <div className=" flex flex-row justify-between  rounded-lg pt-6 pb-6">
                 <div>
-                  <p className="text-xl font-bold ">51,421</p>
-                  <p className="font-bold">=$18, 294.13b</p>
-                  <p className="text-light-gray pt-5">Total</p>
+                  <p className="text-xl font-bold pt-5">{stats?.Total_Volume && formatNumberWithCommas(Number(stats?.Total_Volume /Math.pow(10,6)).toFixed(2))}</p>
+                  <p className="font-bold">≈$0b</p>
+                  <p className="text-light-gray pt-2">Total</p>
                 </div>
 
-                <div>
-                  <p className="text-xl font-bold text-dark-green">
-                    +4,048,420
+                <div className="text-right">
+                  <p className="text-xl font-bold text-dark-green pt-5">
+                  {stats?.Yesterday_Volume && formatNumberWithCommas(Number(stats?.Yesterday_Volume /Math.pow(10, 4)).toFixed(2))}b
                   </p>
-                  <p className="font-bold">=$15.85b</p>
-                  <p className="text-light-gray pt-5">Yesterday</p>
+                  <p className="font-bold">≈$0</p>
+                  <p className="text-light-gray pt-2">Yesterday</p>
                 </div>
               </div>
             </div>

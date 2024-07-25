@@ -14,9 +14,11 @@ import { PiFacebookLogoLight, PiInstagramLogoLight, PiTwitterLogoLight, PiYoutub
 import { LiaTelegram } from "react-icons/lia";
 import { TbTrendingUp } from "react-icons/tb";
 import UsdxImg from "../../assets/UsdxImg.png";
-import { FaArrowRightLong } from "react-icons/fa6";
 import { getUsdxOverviewData } from "../../utils/axios/Data";
 import { formatNumberWithCommas } from "../../utils/FormattingNumber";
+import { toast } from "react-toastify";
+
+
 const UsdxTable = () => {
   const [data, setData] = useState({});
 
@@ -49,7 +51,7 @@ const UsdxTable = () => {
           return (
             <>
               <div className="min-w-[1500px]  flex flex-row  justify-around border-b-2 p-3 border-text-bg-gray">
-                <p className="w-[12%]  text-center ">{Number(stablecoin?.asset).toFixed(6)}</p>
+                <p className="w-[12%]  text-center ">{stablecoin?.asset}</p>
                 <p className=" w-[8%] flex justify-center">{stablecoin?.result && stablecoin?.result ? <IoCheckmarkCircleOutline size={24} color="green" />:<RxCrossCircled size={24} color="red"/>}</p>
                 <p className="w-[14%] text-center ">{secondsAgo(stablecoin?.timeStamp)}</p>
 
@@ -168,6 +170,11 @@ const Usdx = () => {
     setCurrentPage(page);
   };
   
+  const handleCopy = (issueTime) => {
+    navigator.clipboard.writeText(issueTime);
+    toast.success(" copied!");
+  };
+
   const [onSearch, setOnSearch] = useState("");
   return (
     <div className="px-4 md:px-12 pb-12">
@@ -247,8 +254,11 @@ const Usdx = () => {
         <div className="flex flex-row justify-between pt-14 pb-4 border-b-[1px] border-text-bg-gray">
           <p className="font-semibold">Contract</p>
           <div className="flex flex-row space-x-1">
-          <p>{usdxData?.contractAddress && usdxData?.contractAddress}</p>
-          <p className="pt-1"><RiFileCopy2Fill /></p>
+            <Link to={`/tokendetailpage/${usdxData?.contractAddress}`} className="text-dark-red">
+            <p>{usdxData?.contractAddress && usdxData?.contractAddress}</p>
+            </Link>
+          
+          <p className="pt-1"><RiFileCopy2Fill onClick={() => handleCopy(usdxData?.contractAddress)}/></p>
           </div>
           
         </div>
@@ -257,8 +267,11 @@ const Usdx = () => {
           <p className="font-semibold">Issuer</p>
 
           <div className="flex flex-row space-x-1">
-          <p>{usdxData?.issuer && usdxData?.issuer}</p>
-          <p className="pt-1"><RiFileCopy2Fill /></p>
+            <Link to={`/accountdetails/${usdxData?.issuer}`} className="text-dark-red">
+            <p>{usdxData?.issuer && usdxData?.issuer}</p>
+            </Link>
+         
+          <p className="pt-1"><RiFileCopy2Fill onClick={() => handleCopy(usdxData?.issuer)}/></p>
           </div>
          
           
@@ -297,7 +310,7 @@ const Usdx = () => {
 
           <div className="flex flex-row justify-between pt-14 pb-4 border-b-[1px] border-text-bg-gray">
             <p className="font-semibold">Holders</p>
-            <p>{usdxData?.totalHolders && usdxData?.totalHolders}</p>
+            <p>{usdxData?.totalHolders && formatNumberWithCommas(usdxData?.totalHolders)}</p>
           </div>
 
           <div className="flex flex-row justify-between pt-4 pb-4 border-b-[1px] border-text-bg-gray">
@@ -307,12 +320,12 @@ const Usdx = () => {
 
           <div className="flex flex-row justify-between pt-4 pb-4 border-b-[1px] border-text-bg-gray">
             <p className="font-semibold">Transfer (24h)</p>
-            <p>{usdxData?.transfer24H && usdxData?.transfer24H}</p>
+            <p>{usdxData?.transfer24H && formatNumberWithCommas(usdxData?.transfer24H)}</p>
           </div>
 
           <div className="flex flex-row justify-between pt-4">
             <p className="font-semibold">Trading Volume (24h)</p>
-            <p>${usdxData?.tradingVolume && Number(usdxData?.tradingVolume).toFixed(2)}</p>
+            <p>${usdxData?.tradingVolume && formatNumberWithCommas(Number(usdxData?.tradingVolume).toFixed(2))}</p>
 
           </div>
         </div>

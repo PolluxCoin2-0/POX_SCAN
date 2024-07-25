@@ -10,6 +10,7 @@ import { shortenString } from "../../utils/shortenString";
 import { secondsAgo } from "../../utils/secondAgo";
 import { Link } from "react-router-dom";
 import { RxCrossCircled } from "react-icons/rx";
+import { formatNumberWithCommas } from "../../utils/FormattingNumber";
 
 const Transaction = () => {
   const [data, setData] = useState({});
@@ -62,8 +63,8 @@ setPieChartData(pieChartDataArr);
 
                 <Link to="/tokens/pox">
                 <div className="flex flex-row space-x-0">
-                <p className="font-semibold text-dark-red">More</p>
-                <p className="pt-1 text-dark-red"><MdOutlineKeyboardArrowRight size={20}/></p>
+                <p className="font-semibold text-dark-red text-lg">More</p>
+                <p className="pt-1 text-dark-red"><MdOutlineKeyboardArrowRight size={24}/></p>
                 </div>
                 </Link>
                
@@ -72,17 +73,17 @@ setPieChartData(pieChartDataArr);
 
               <div className=" flex flex-row justify-between gap-20 py-5">
                 <div className="">
-                  <p className="text-xl font-bold">
-                    {data?.Total_Transactions}
+                  <p className="text-xl font-bold pt-5">
+                    {data?.Total_Transactions && formatNumberWithCommas(data?.Total_Transactions)}
                   </p>
-                  <p className="text-light-gray  pt-5">Total</p>
+                  <p className="text-light-gray  pt-2">Total</p>
                 </div>
 
                 <div>
-                  <p className="text-dark-green font-bold text-xl">
-                    +{data?.Yesterday_Transaction}
+                  <p className="text-dark-green font-bold text-xl pt-5 text-right">
+                    +{data?.Yesterday_Transaction && formatNumberWithCommas(data?.Yesterday_Transaction)}
                   </p>
-                  <p className="text-light-gray  pt-5"> Yesterday</p>
+                  <p className="text-light-gray  pt-2"> Yesterday</p>
                 </div>
               </div>
             </div>
@@ -94,8 +95,8 @@ setPieChartData(pieChartDataArr);
 
                 <Link to="/tokens/pox">
                 <div className="flex flex-row space-x-0">
-                <p className="font-semibold text-dark-red">More</p>
-                <p className="pt-1 text-dark-red"><MdOutlineKeyboardArrowRight size={20}/></p>
+                <p className="font-semibold text-dark-red text-lg">More</p>
+                <p className="pt-1 text-dark-red"><MdOutlineKeyboardArrowRight size={24}/></p>
                 </div>
                 </Link>
              
@@ -103,19 +104,19 @@ setPieChartData(pieChartDataArr);
 
               <div className=" flex flex-row justify-between gap-20 rounded-lg pt-6 pb-4">
                 <div>
-                  <p className="text-xl font-bold ">
-                    {(data?.Total_Volume / Math.pow(10, 6)).toFixed(2)} POX
+                  <p className="text-xl font-bold pt-5 ">
+                    {formatNumberWithCommas((data?.Total_Volume / Math.pow(10, 6)).toFixed(2))} POX
                   </p>
                   <p className="font-bold">=$18, 294.13b</p>
-                  <p className="text-light-gray pt-5">Total</p>
+                  <p className="text-light-gray pt-2">Total</p>
                 </div>
 
                 <div>
-                  <p className="text-xl font-bold text-dark-green ">
-                    +{(data?.Yesterday_Volume / Math.pow(10, 6)).toFixed(2)} POX
+                  <p className="text-xl font-bold text-dark-green pt-5 text-right">
+                    +{formatNumberWithCommas((data?.Yesterday_Volume / Math.pow(10, 6)).toFixed(2))} POX
                   </p>
-                  <p className="font-bold">=$15.85b</p>
-                  <p className="text-light-gray pt-5">Yesterday</p>
+                  <p className="font-bold text-right">=$15.85b</p>
+                  <p className="text-light-gray pt-2 text-right">Yesterday</p>
                 </div>
               </div>
             </div>
@@ -131,19 +132,19 @@ setPieChartData(pieChartDataArr);
             <SimplePieChartComp value={pieChartData} />
 
             <div className=" w-4/5">
-              <div className="flex flex-row items-center space-x-2 whitespace-nowrap">
-              <span className="bg-dark-yellow px-2 py-2 rounded-lg"></span>
+              <div className="flex flex-row items-center space-x-4 whitespace-nowrap">
+              <span className="bg-dark-yellow px-2 py-2  rounded-lg"></span>
               <p className="pb-2 font-semibold">Total Transactions</p>
               </div>
-              <div  className="flex flex-row items-center space-x-2 whitespace-nowrap">
+              <div  className="flex flex-row items-center pt-4 space-x-4 whitespace-nowrap">
               <span className="bg-[#E66262] px-2 py-2 rounded-lg"></span>
               <p className="pb-2 font-semibold">Yesterday Transactions</p>
               </div>
-              <div  className="flex flex-row items-center space-x-2 whitespace-nowrap">
-              <span className="bg-[#1A5BA1] px-2 py-2 rounded-lg"></span>
+              <div  className="flex flex-row items-center pt-4 space-x-4 whitespace-nowrap">
+              <span className="bg-[#1A5BA1] px-2 py-2  rounded-lg"></span>
               <p className="font-semibold">Total Volume</p>
               </div>
-              <div  className="flex flex-row items-center space-x-2 whitespace-nowrap">
+              <div  className="flex flex-row items-center pt-6 space-x-4 whitespace-nowrap">
               <span className="bg-[#35CA7B] px-2 py-2 rounded-lg"></span>
               <p className="pb-1 font-semibold">Yesterday Volume</p>
               </div>
