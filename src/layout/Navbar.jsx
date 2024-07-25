@@ -254,7 +254,7 @@ const Navbar = () => {
             return (
               <div
                 key={index}
-                onMouseEnter={() => setHoveredItem(formattedKey)}
+                onTouchStart={() => setHoveredItem(formattedKey)}
                 //  onMouseLeave={() => setHoveredItem(null)}
                 className="relative mb-2"
               >
