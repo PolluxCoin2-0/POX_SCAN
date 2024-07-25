@@ -42,6 +42,7 @@ setPieChartData(pieChartDataArr);
     setCurrentPage(page);
   };
 
+
   return (
     <div className="px-4 md:px-12 pb-12">
       <div>
@@ -207,7 +208,7 @@ setPieChartData(pieChartDataArr);
                   </Link>
                   
                   <p className="w-[10%] text-center "  >{transaction?.timeStamp && secondsAgo(transaction?.timeStamp)}</p>
-                  <p className="w-[16%] text-center  ">{transaction.type}</p>
+                  <p className="w-[16%] text-center  ">{transaction.type && transaction?.type}</p>
 
                   <Link to={`/accountdetails/${transaction.fromAddress}`} className="w-[12%] text-dark-red text-center ">
                   <p >{transaction?.fromAddress && shortenString(transaction?.fromAddress,5)}</p>
@@ -217,7 +218,14 @@ setPieChartData(pieChartDataArr);
                   <p >{transaction?.toAddress && shortenString(transaction?.toAddress,5)}</p>
                   </Link>
                  
-                  <p className="w-[16%]  text-center">{transaction?.assetAmount/Math.pow(10,6)}</p>
+                  <p className="w-[16%] text-center">
+  {transaction?.assetAmount !== undefined && transaction?.assetAmount !== null
+    ? `${(Number(transaction.assetAmount) / Math.pow(10, 6)).toFixed(6)} ${transaction.type || ''}`
+    : transaction?.type || 'N/A'}
+</p>
+
+
+
                   <p className="w-[10%]  flex justify-center indent-4">{transaction?.result && transaction?.result==="SUCCESS"?<IoCheckmarkCircleOutline size={24} color="green" />:<RxCrossCircled size={24} color="red"/>}</p>
                 </div>
               </>

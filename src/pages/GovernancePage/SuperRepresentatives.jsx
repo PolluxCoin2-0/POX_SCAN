@@ -5,6 +5,8 @@ import TinyChartComp from "../../components/TinyChartComp";
 import { getPartnersTableData, getSuperTableData } from "../../utils/axios/Governance";
 import { extractSiteName } from "../../utils/extractSiteName";
 import { Link } from "react-router-dom";
+import { IoCheckmarkCircleOutline } from "react-icons/io5";
+import { RxCrossCircled } from "react-icons/rx";
 
 
 const Table1 = ({data}) => {
@@ -35,8 +37,8 @@ const Table1 = ({data}) => {
         <p >{representative?.url && extractSiteName(representative?.url)}</p>
         </Link> 
         
-        <p className="w-[9%]  text-center">{representative.CurrentVersion}</p>
-        <p className="w-[6%]  text-center">{representative?.isJobs && representative?.isJobs}</p> 
+        <p className="w-[9%]  text-center">1</p>
+        <p className="w-[6%]  flex justify-center"><IoCheckmarkCircleOutline size={24} color="green" /></p> 
         <p className="w-[8%] text-center">{representative.latestBlockNum && representative?.latestBlockNum ? representative?.latestBlockNum : 0}</p>
         <p className="w-[10%]  text-center">{representative.totalProduced && representative?.totalProduced ? representative?.totalProduced : 0}</p>
         <p className="w-[8%]  text-center">{representative.totalMissed && representative?.totalMissed ? representative?.totalMissed : 0}</p>
@@ -114,9 +116,11 @@ const SuperRepresentatives = () => {
   const renderItemComponent = () => {
     switch (isRender) {
       case "Super Representative":
-      case "SR Partner":
-      case "SR Candidates":
         return <Table1 data={data} />;
+      case "SR Partner":
+        return <Table1 data={data} />;
+      case "SR Candidates":
+        return "No Data Found";
       default:
         return null;
     }

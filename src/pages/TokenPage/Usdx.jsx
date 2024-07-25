@@ -121,7 +121,7 @@ const TokenHolderTable = () => {
         <p className="w-[20%]  text-center    font-bold  ">{Number(stablecoin?.balance).toFixed(6)}</p>
         <p className="w-[16%]  text-center  ">${Number(stablecoin?.balance).toFixed(2)}</p>
         <p className="w-[12%]   text-center ">{stablecoin?.percentage}%</p>
-        <p className="w-[16%]  text-center ">{/* Render latest transaction time here */}</p>
+        <p className="w-[16%]  text-center ">{secondsAgo(stablecoin?.updatedAt)}</p>
       </div>
     );
   })}

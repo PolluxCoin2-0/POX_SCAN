@@ -76,7 +76,7 @@ const TokenTransferTable = () => {
                   {stablecoin.timeStamp && secondsAgo(stablecoin?.timeStamp)}
                 </p>
                 <p className=" w-[12%] text-center">
-                  {stablecoin.PoxCount}
+                  {stablecoin?.assetName}
                 </p>
 
                 <Link
