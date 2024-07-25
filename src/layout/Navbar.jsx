@@ -238,7 +238,7 @@ const Navbar = () => {
           <img
             src={LogoWithText}
             alt="logo-poxscan"
-            className="cursor-pointe w-[80%]"
+            className="cursor-pointer w-[80%]"
           />
         </Link>
         <div>
@@ -247,14 +247,14 @@ const Navbar = () => {
       </div>
       {
         isOpen &&(
-          <>
-          <div className="fixed inset-0 bg-dark-skyblue py-6 px-4 z-20 top-14 min-h-fit">
+          <> 
+          <div className="absolute inset-0 bg-dark-skyblue py-6 px-4 z-20 top-14 min-h-fit">
             {Object.keys(NavbarOptions).map((key, index) => {
             const formattedKey = key.replace(/\s+/g, ""); // Remove all spaces from key
             return (
               <div
                 key={index}
-                onMouseEnter={() => setHoveredItem(formattedKey)}
+                onTouchStart={() => setHoveredItem(formattedKey)}
                 //  onMouseLeave={() => setHoveredItem(null)}
                 className="relative mb-2"
               >
