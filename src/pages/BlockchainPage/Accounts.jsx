@@ -7,6 +7,7 @@ import { getAccountsData, getAccountTableData } from "../../utils/axios/Blockcha
 import { shortenString } from "../../utils/shortenString";
 import { secondsAgo } from "../../utils/secondAgo";
 import { Link } from "react-router-dom";
+import { formatNumberWithCommas } from "../../utils/FormattingNumber";
 
 
 
@@ -56,14 +57,14 @@ const Accounts = () => {
           <div className="flex flex-row justify-between pt-1 ">
             <p className="font-bold text-lg">Number of Accounts</p>
             <div className="flex flex-row">
-              <p>More</p>
-              <MdKeyboardArrowRight className="mt-1 text-xl" />
+              <p className="text-dark-red">More</p>
+              <MdKeyboardArrowRight className="mt-1 text-xl" color="#C23631" />
             </div>
           </div>
 
           <div className=" w-full flex flex-row justify-between pt-9 pl-1 ">
             <div>
-              <p className="font-bold text-xl">{data?.totaladdr && data?.totaladdr}</p>
+              <p className="font-bold text-xl">{data?.totaladdr && formatNumberWithCommas(data?.totaladdr)}</p>
               <p className="pt-4 text-sm text-light-gray">Total</p>
             </div>
 
@@ -80,19 +81,19 @@ const Accounts = () => {
           <div className=" flex flex-row justify-between pt-1">
             <p className="font-bold text-lg">POX Holders</p>
             <div className="flex flex-row">
-              <p>More</p>
-              <MdKeyboardArrowRight className="mt-1 text-xl" />
+              <p className="text-dark-red">More</p>
+              <MdKeyboardArrowRight className="mt-1 text-xl"  color="#C23631"/>
             </div>
           </div>
 
           <div className=" w-full flex flex-row justify-between pt-9 pl-1">
             <div>
-              <p className="text-xl font-bold">{data?.hodlers && data?.hodlers}</p>
+              <p className="text-xl font-bold">{data?.hodlers && formatNumberWithCommas(data?.hodlers)}</p>
               <p className="pt-4 text-sm text-light-gray">Total holders</p>
             </div>
 
             <div>
-              <p className="text-xl font-bold text-light-brown">{data?.hpercen && data?.hpercen}%</p>
+              <p className="text-xl font-bold text-dark-green">{data?.hpercen && data?.hpercen}%</p>
               <p className="pt-4 text-sm text-light-gray flex justify-end">
                 Percentage
               </p>
@@ -102,16 +103,16 @@ const Accounts = () => {
 
         <div className="w-full md:w-[32%] rounded-2xl p-8 bg-white shadow-md ">
           <div className="flex flex-row justify-between pt-1">
-            <p className="font-bold">POX Active Accounts</p>
+            <p className="font-bold text-lg">Active Accounts</p>
             <div className="flex flex-row">
-              <p>More</p>
-              <MdKeyboardArrowRight className="mt-1 text-xl" />
+              <p className="text-dark-red">More</p>
+              <MdKeyboardArrowRight className="mt-1 text-xl" color="#C23631"/>
             </div>
           </div>
 
           <div className=" w-full flex flex-row justify-between pt-9 pl-1">
             <div>
-              <p className="text-xl font-bold">{data?.avgdailyactiveadr && data?.avgdailyactiveadr}</p>
+              <p className="text-xl font-bold">{data?.avgdailyactiveadr && formatNumberWithCommas(Number(data?.avgdailyactiveadr).toFixed(3))}</p>
               <p className="pt-4 text-sm text-light-gray flex ">
                 Daily Active Accounts
               </p>
