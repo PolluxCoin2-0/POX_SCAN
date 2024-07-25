@@ -3,11 +3,13 @@ import { SearchBar } from "../components";
 import LogoWithText from "../assets/Logowithtext.png";
 import Logo from "../assets/Logo.png";
 import { IoNotificationsCircleOutline } from "react-icons/io5";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import PoxImg from "../assets/PoxImg.png";
 import UsdxImg from "../assets/UsdxImg.png";
 import { NavbarOptions } from "../data/NavbarOptions";
 import { HiMenu } from "react-icons/hi";
+import { MdKeyboardArrowDown, MdKeyboardArrowUp, MdOutlineKeyboardArrowDown } from "react-icons/md";
+import { BsDot } from "react-icons/bs";
 
 const BlockchainHover = () => (
   <div className="absolute bg-white shadow-lg rounded-xl px-4 py-2">
@@ -120,11 +122,16 @@ const PoxecosystemHover = () => (
 );
 
 const Navbar = () => {
+  const navigate = useNavigate();
   const location = useLocation();
   const currentPath = location.pathname;
   const [hoveredItem, setHoveredItem] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const [showNetOptions, setShowNetOptions] = useState(false);
+  const [path, setPath] = useState("");
+  const [submenu, setSubmenu] = useState({});
+  const [openSubmenus, setOpenSubmenus] = useState({});
+
   const renderHoverComponent = () => {
     switch (hoveredItem) {
       case "Blockchain":
@@ -155,11 +162,122 @@ const Navbar = () => {
     };
   }, []);
 
+  const capitalizeFirstLetter = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  };
+
+  useEffect(() => {
+    const pathNameFromURL = location.pathname.split("/")[1];
+    const capitalizedPath = capitalizeFirstLetter(pathNameFromURL);
+    let submenuList;
+
+    if (
+      capitalizedPath === "PoxEcosystem" ||
+      capitalizedPath === "Poxecosystem"
+    ) {
+      setPath("Pox Ecosystem");
+      submenuList = getSubmenuList(path);
+      setSubmenu(submenuList);
+    } else {
+      setPath(capitalizedPath);
+      submenuList = getSubmenuList(capitalizedPath);
+      setSubmenu(submenuList);
+    }
+  }, [location, path]);
+
+  const toggleSubmenu = (key, path) => {
+    setOpenSubmenus((prev) => ({
+      ...prev,
+      [key]: !prev[key],
+    }));
+    navigate(path);
+  };
+
+  const getSubmenuList = (path) => {
+    const submenu = NavbarOptions[path];
+    if (submenu) {
+      return submenu;
+    }
+    if (NavbarOptions.Data[path]) {
+      return NavbarOptions.Data[path];
+    }
+    return {};
+  };
+
+  const removeSpaces = (str) => {
+    return str.replace(/[&\s]+/g, "");
+  };
+
+  const buildPath = (parentPath, item) => {
+    // Remove leading slash from parentPath to avoid double slashes in the URL
+    const basePath = parentPath.replace(/^\/|\/$/g, "").replace(/\s+/g, "");
+    return `/${basePath}/${removeSpaces(item)}`;
+  };
+
+  const isActiveRoute = (menuItemPath) => {
+    return location.pathname.startsWith(menuItemPath);
+  };
+
+  const renderSubmenu = (submenu, parentPath = "") => {
+    if (Array.isArray(submenu)) {
+      return (
+        <div className="pl-4 pb-2">
+          {submenu.map((item, index) => (
+            <div key={index} className="mb-2">
+              <Link to={buildPath(parentPath, item)}>
+                <button
+                  onClick={() => toggleSubmenu(item, buildPath(parentPath, item))}
+                  className={`flex justify-start items-center p-2 rounded-lg group font-semibold w-full ${
+                    isActiveRoute(buildPath(parentPath, item))
+                      ? "bg-dark-yellow text-black"
+                      : "hover:bg-white hover:text-black"
+                  }`}
+                >
+                  {item}
+                </button>
+              </Link>
+            </div>
+          ))}
+        </div>
+      );
+    } else if (typeof submenu === "object" && !Array.isArray(submenu)) {
+      return (
+        <div className="pl-4">
+          {Object.entries(submenu).map(([key, value], index) => (
+            <div key={index} className="mb-2">
+              <button
+                onClick={() => toggleSubmenu(key, buildPath(parentPath, key))}
+                className={`flex justify-between items-center p-2 rounded-lg group font-semibold w-full ${
+                  isActiveRoute(buildPath(parentPath, key))
+                    ? "bg-dark-yellow text-black"
+                    : "hover:bg-white hover:text-black"
+                }`}
+              >
+                <span>{key}</span>
+                {openSubmenus[key] ? (
+                  <MdKeyboardArrowUp className="group-hover:text-black" />
+                ) : (
+                  <MdOutlineKeyboardArrowDown className="group-hover:text-black" />
+                )}
+              </button>
+              {openSubmenus[key] && (
+                <div className="mt-2">
+                  {renderSubmenu(value, buildPath(parentPath, key))}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      );
+    } else {
+      return null;
+    }
+  };
+
   return (
     <>
-
-    {/* Larger Scrren Navbar */}
-      <div className="hidden md:flex  bg-dark-skyblue py-2 h-16 text-lg items-center justify-between pl-8 relative w-full">
+       {/* Larger Scrren Navbar */}
+       <div className="hidden md:flex  bg-dark-skyblue py-2 h-16 text-lg items-center justify-between pl-8 relative w-full">
         <div className="flex items-center md:space-x-2 lg:space-x-2 xl:space-x-2 space-x-10">
           <Link to="/">
             <img
@@ -232,7 +350,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Screen Navbar */}
+      {/* Mobile submenu */}
       <div className="sm:block md:hidden lg:hidden xl:hidden 2xl:hidden bg-dark-skyblue flex justify-between items-center p-4 z-50">
         <Link to="/">
           <img
@@ -245,57 +363,35 @@ const Navbar = () => {
           <HiMenu size={24} color="white" className="cursor-pointer" onClick={()=>setIsOpen(!isOpen)} />
         </div>
       </div>
-      {
-        isOpen &&(
-          <> 
-          <div className="absolute inset-0 bg-dark-skyblue py-6 px-4 z-20 top-14 min-h-fit">
-            {Object.keys(NavbarOptions).map((key, index) => {
-            const formattedKey = key.replace(/\s+/g, ""); // Remove all spaces from key
-            return (
-              <div
-                key={index}
-                onTouchStart={() => setHoveredItem(formattedKey)}
-                //  onMouseLeave={() => setHoveredItem(null)}
-                className="relative mb-2"
+      {isOpen && (
+        <div className="lg:hidden bg-mid-light-gray w-full flex flex-col p-4 ">
+          {Object.keys(NavbarOptions).map((key) => (
+            <div key={key} className="mb-2">
+              <button
+                onClick={() => toggleSubmenu(key, `/${key.toLowerCase()}`)}
+                className={`flex justify-between items-center p-2 rounded-lg group font-semibold w-full ${
+                  isActiveRoute(`/${key.toLowerCase()}`)
+                    ? "bg-light-sky-blue text-black"
+                    : "hover:bg-white hover:text-black"
+                }`}
               >
-                <Link to={`/${formattedKey}`}>
-                  <p
-                    className={`inline cursor-pointer whitespace-nowrap font-semibold ${
-                      currentPath === `/${formattedKey}`
-                        ? "text-black rounded-lg bg-dark-yellow mx-2 px-4 py-1"
-                        : "text-white px-3"
-                    }`}
-                  >
-                    {key}
-                  </p>
-                </Link>
-                {hoveredItem === formattedKey && (
-                  <div className="absolute top-full left-0 mt-2 z-10 hover-menu">
-                    {renderHoverComponent()}
-                  </div>
+                <span>{key}</span>
+                {openSubmenus[key] ? (
+                  <MdKeyboardArrowUp className="group-hover:text-black" />
+                ) : (
+                  <MdOutlineKeyboardArrowDown className="group-hover:text-black" />
                 )}
-              </div>
-            );
-          })}
-        <Link to="/register">
-            <p className="text-white cursor-pointer font-semibold mx-3 pb-1">
-              Register
-            </p>
-          </Link>
-          <Link to="/login">
-            <p className="text-white cursor-pointer font-semibold mx-3 pb-4">Login</p>{" "}
-          </Link>
-        <Link to="/connectwallet">
-            <button className="bg-dark-yellow py-1 px-3 rounded-xl font-semibold text-black cursor-pointer mx-2">
-              Connect Wallet
-            </button>
-          </Link>
-          </div>
-        </>
-        )
-      }
+              </button>
+              {openSubmenus[key] && (
+                <div className="mt-2">{renderSubmenu(NavbarOptions[key], key)}</div>
+              )}
+            </div>
+          ))}
+        </div>
+      )}
     </>
   );
 };
 
 export default Navbar;
+ 
