@@ -405,14 +405,43 @@ const Pox = () => {
 
 
       {/* For colourful bar */}
-      <div className="bg-white rounded-lg shadow-lg mb-5 p-5 ">
+      <div className="bg-white rounded-lg shadow-lg mb-5 p-5 mb-">
         <p className="text-lg font-semibold">Asset Breakdown by Holders</p>
-        <div className="flex flex-row justify-evenly w-full mt-5 border-[1px] border-text-bg-gray ">
-          <p className="w-[29%] bg-pink-gradient rounded-tl-md rounded-bl-md">1</p>
-          <p className="w-[20%] bg-blue">2</p>
-          <p className="w-[6%] bg-dark-peach">3</p>
-          <p className="w-[10%] bg-light-purple">4</p>
-          <p className="w-[35%] bg-dark-yellow rounded-tr-md rounded-br-md">5</p>
+        <div className="flex flex-row justify-evenly w-full mt-5 border-[1px] border-white ">
+          <p className="w-[29%] bg-pink-gradient rounded-tl-md rounded-bl-md text-dark-pink">-</p>
+          <p className="w-[20%] bg-blue-gradient"></p>
+          <p className="w-[6%] bg-peach-gradient"></p>
+          <p className="w-[10%] bg-voilet-gradient"></p>
+          <p className="w-[35%] bg-yellow-gradient rounded-tr-md rounded-br-md"></p>
+        </div>
+
+        <div className="flex flex-row justify-between mt-5">
+          <div className="flex flex-row items-center space-x-1">
+          <span className="bg-pink-gradient px-2 py-2 rounded-lg"></span>
+          <p className="text-sm font-semibold">Top 1~10 holders: 29.35%</p>
+          </div>
+         
+         <div className="flex flex-row items-center space-x-1">
+         <span className="bg-blue-gradient px-2 py-2 rounded-lg"></span>
+         <p className="text-sm font-semibold">Top 11~50 holders: 20.48%</p>
+         </div>
+         
+         <div className="flex flex-row items-center space-x-1">
+         <span className=" bg-peach-gradient px-2 py-2 rounded-lg"></span>
+         <p className="text-sm font-semibold">Top 51~100 holders: 4.69%</p>
+         </div>
+         
+         <div className="flex flex-row items-center space-x-1">
+         <span className="bg-voilet-gradient px-2 py-2 rounded-lg"></span>
+         <p className="text-sm font-semibold">Top 101~500 holders: 9.80%</p>
+         </div>
+         
+         <div className="flex flex-row items-center space-x-1"> 
+         <span className="bg-yellow-gradient px-2 py-2 rounded-lg"></span>
+          <p className="text-sm font-semibold">Top 501~ ∞ holders: 35.68%</p>
+
+         </div>
+         
         </div>
       </div>
 

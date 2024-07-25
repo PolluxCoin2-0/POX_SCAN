@@ -53,7 +53,11 @@ export default {
       'purple-gradient': 'linear-gradient(to bottom, #B1B9F8 0%, #ADB7F9 100%)',
       'red-gradient': 'linear-gradient(to bottom, #F4A79D 0%, #F4A79D 100%)',
       'gray-gradient': "linear-gradient(to bottom, #1e293b, #4b5563)",
-      "blue-gradient" : "bg-gradient-to-r from-slate-50 to-sky-200",
+      'pink-gradient' : 'linear-gradient(to bottom, #dd68a5 0%, #f993c8 100%)',
+      'blue-gradient': 'linear-gradient(to bottom, #1d9dfc 0%, #74c3fe 100%)',
+      'peach-gradient': 'linear-gradient(to bottom, #ff657c 0%, #ff8597 100%)',
+      'voilet-gradient': 'linear-gradient(to bottom, #7c6dd6 0%, #77c1fc 100%) ',
+      'yellow-gradient': 'linear-gradient(to bottom, #feb934 0%, #feca62 100%)',
       
     },
    
