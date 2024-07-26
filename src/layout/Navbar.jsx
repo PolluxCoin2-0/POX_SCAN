@@ -10,6 +10,8 @@ import { NavbarOptions } from "../data/NavbarOptions";
 import { HiMenu } from "react-icons/hi";
 import { MdKeyboardArrowDown, MdKeyboardArrowUp, MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { BsDot } from "react-icons/bs";
+import { useSelector } from "react-redux";
+import HoverWalletPage from "../pages/ConnectWalletPage/HoverWalletPage";
 
 const BlockchainHover = () => (
   <div className="absolute bg-white shadow-lg rounded-xl px-4 py-2">
@@ -131,6 +133,8 @@ const Navbar = () => {
   const [path, setPath] = useState("");
   const [submenu, setSubmenu] = useState({});
   const [openSubmenus, setOpenSubmenus] = useState({});
+  const [openWallet, setOpenWallet] = useState(false);
+  const walletAddress = useSelector((state)=>state.wallet.address);
 
   const renderHoverComponent = () => {
     switch (hoveredItem) {
@@ -328,10 +332,17 @@ const Navbar = () => {
             <p className="text-white cursor-pointer">Login</p>{" "}
           </Link>
           <Link to="/connectwallet">
-            <button className="bg-dark-yellow py-1 px-3 rounded-xl text-black cursor-pointer whitespace-nowrap">
-              Connect Wallet
+            <button className="bg-dark-yellow py-1 px-3 rounded-xl text-black cursor-pointer whitespace-nowrap" onClick={()=>setOpenWallet(!openWallet)}>
+              {walletAddress.length>0 ? walletAddress:"Connect Wallet"}
             </button>
           </Link>
+          {
+          //  walletAddress.length>0 && 
+          openWallet && 
+          <div className="absolute top-14 right-1 ">
+            <HoverWalletPage/>
+          </div>
+            }
           <IoNotificationsCircleOutline
             size={36}
             color="white"
