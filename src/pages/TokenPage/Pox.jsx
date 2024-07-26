@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import SearchBarExpand from "../../components/SearchBarExpand";
 import Pagination from "../../components/Pagination";
-import { getHoldersData, getPoxData } from "../../utils/Token";
+import { getHoldersData, getHoldersSlidersStatsData, getPoxData } from "../../utils/Token";
 import { IoCheckmarkCircleOutline } from "react-icons/io5";
 import { shortenString } from "../../utils/shortenString";
 import { secondsAgo } from "../../utils/secondAgo";
@@ -178,12 +178,16 @@ const HoldersTable = () => {
 const Pox = () => {
  
   const [poxData, setPoxData] = useState({});
+  const [sliderData, setSliderData] = useState({});
   useEffect(() => {
     const fetchData = async () => {
       try {
         const poxData = await getPoxOverviewData();
-        console.log(poxData);
         setPoxData(poxData);
+
+        const sliderData = await getHoldersSlidersStatsData();
+        console.log(sliderData);
+        setSliderData(sliderData?.message);
       } catch (error) {
         console.log("error", error);
       }
@@ -405,10 +409,12 @@ const Pox = () => {
 
 
       {/* For colourful bar */}
-      <div className="bg-white rounded-lg shadow-lg mb-5 p-5 mb-">
+      <div className="bg-white rounded-lg shadow-lg p-5 mb-10">
         <p className="text-lg font-semibold">Asset Breakdown by Holders</p>
-        <div className="flex flex-row justify-evenly w-full mt-5 border-[1px] border-white ">
-          <p className="w-[29%] bg-pink-gradient rounded-tl-md rounded-bl-md text-dark-pink">-</p>
+        <div className="flex flex-row justify-evenly w-full mt-5 border-[1px] border-white h-5">
+          <p className="w-[29%] bg-pink-gradient rounded-tl-md rounded-bl-md text-dark-pink">.</p>
+        
+
           <p className="w-[20%] bg-blue-gradient"></p>
           <p className="w-[6%] bg-peach-gradient"></p>
           <p className="w-[10%] bg-voilet-gradient"></p>
@@ -418,27 +424,27 @@ const Pox = () => {
         <div className="flex flex-row justify-between mt-5">
           <div className="flex flex-row items-center space-x-1">
           <span className="bg-pink-gradient px-2 py-2 rounded-lg"></span>
-          <p className="text-sm font-semibold">Top 1~10 holders: 29.35%</p>
+          <p className="text-sm font-semibold">{sliderData?.rangeData?.[0]?.range}: {sliderData?.rangeData?.[0]?.percentage}</p>
           </div>
          
          <div className="flex flex-row items-center space-x-1">
          <span className="bg-blue-gradient px-2 py-2 rounded-lg"></span>
-         <p className="text-sm font-semibold">Top 11~50 holders: 20.48%</p>
+         <p className="text-sm font-semibold">{sliderData?.rangeData?.[1]?.range}: {sliderData?.rangeData?.[1]?.percentage}</p>
          </div>
          
          <div className="flex flex-row items-center space-x-1">
          <span className=" bg-peach-gradient px-2 py-2 rounded-lg"></span>
-         <p className="text-sm font-semibold">Top 51~100 holders: 4.69%</p>
+         <p className="text-sm font-semibold">{sliderData?.rangeData?.[2]?.range}: {sliderData?.rangeData?.[2]?.percentage}</p>
          </div>
          
          <div className="flex flex-row items-center space-x-1">
          <span className="bg-voilet-gradient px-2 py-2 rounded-lg"></span>
-         <p className="text-sm font-semibold">Top 101~500 holders: 9.80%</p>
+         <p className="text-sm font-semibold">{sliderData?.rangeData?.[3]?.range}: {sliderData?.rangeData?.[3]?.percentage}</p>
          </div>
          
          <div className="flex flex-row items-center space-x-1"> 
          <span className="bg-yellow-gradient px-2 py-2 rounded-lg"></span>
-          <p className="text-sm font-semibold">Top 501~ ∞ holders: 35.68%</p>
+          <p className="text-sm font-semibold">{sliderData?.rangeData?.[4]?.range}: {sliderData?.rangeData?.[4]?.percentage}</p>
 
          </div>
          

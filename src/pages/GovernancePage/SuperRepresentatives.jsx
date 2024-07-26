@@ -6,7 +6,9 @@ import { getPartnersTableData, getSuperTableData } from "../../utils/axios/Gover
 import { extractSiteName } from "../../utils/extractSiteName";
 import { Link } from "react-router-dom";
 import { IoCheckmarkCircleOutline } from "react-icons/io5";
-import { RxCrossCircled } from "react-icons/rx";
+
+import CountdownTimer from "./CountDownTimer";
+
 
 
 const Table1 = ({data}) => {
@@ -62,9 +64,11 @@ const CardSuperRepresentative = ({title, leftSubTitle, totalCount, rightSubTitle
           <p className="text-lg font-bold">{title}</p>
           <p className="text-light-gray pt-4">{leftSubTitle} </p>
           <p className="text-xl font-bold pt-0">{totalCount}</p>
-          <p className="pt-3 text-light-gray">
+          <p className="pt-3 text-light-gray flex flex-row gap-1">
             {rightSubTitle}:{" "}
-            <span className="text-dark-green font-bold">{totalvalues}</span>
+            <span className="text-dark-green font-bold">
+             {totalvalues==="timer"?<CountdownTimer/>:totalvalues} 
+            </span>
           </p>
         </div>
 
@@ -134,7 +138,7 @@ const SuperRepresentatives = () => {
 
       <p className=" text-2xl font-bold">Super Representatives</p>
       <div className=" flex flex-row justify-evenly w-full space-x-10">
-        <div className="bg-white w-[50%] h-96 mt-10 rounded-2xl">
+        <div className="bg-white w-[50%] h-96 mt-10 rounded-2xl shadow-lg">
           <p className="text-xl font-bold pt-10 pl-10">
             Real-time Block Distribution
           </p>
@@ -143,14 +147,15 @@ const SuperRepresentatives = () => {
 
         <div className="flex flex-row mt-10 w-[50%]">
           <div className="w-full mr-3">
-            <div className="bg-white  mb-3 rounded-tl-2xl pl-5 pt-5">
+            <div className="bg-white  mb-3 rounded-tl-2xl  shadow-lg pl-5 pt-5">
               <CardSuperRepresentative 
               title="Votes"
               leftSubTitle="Total (Real Time)"
               totalCount={data?.totalVotes}
-              rightSubTitle="Next Round"/>
+              rightSubTitle="Next Round"
+              totalvalues="timer"/>
             </div>
-            <div className="bg-white rounded-bl-2xl  pl-5 pt-5">
+            <div className="bg-white rounded-bl-2xl shadow-lg pl-5 pt-5">
               <CardSuperRepresentative 
               title="Super Representatives" 
               className="text-nowrap"
@@ -162,18 +167,20 @@ const SuperRepresentatives = () => {
           </div>
 
           <div className="w-full">
-            <div className="bg-white  mb-3 rounded-tr-2xl pl-5 pt-5">
+            <div className="bg-white  mb-3 rounded-tr-2xl shadow-lg pl-5 pt-5">
               <CardSuperRepresentative 
               title="Blocks Produced"
               leftSubTitle="Max. Sendbox"
               rightSubTitle="Min. inbox"
+              totalvalues={""}
               />
             </div>
-            <div className="bg-white rounded-br-2xl pl-5 pt-5">
+            <div className="bg-white rounded-br-2xl shadow-lg pl-5 pt-5">
               <CardSuperRepresentative 
               title="Productivity"
               leftSubTitle="Highest Sendbox"
-              rightSubTitle="Lowest inbox"/>
+              rightSubTitle="Lowest inbox"
+              totalvalues={""}/>
             </div>
           </div>
         </div>
@@ -198,6 +205,9 @@ const SuperRepresentatives = () => {
         It is a long established fact that a reader will be distracted by the
         readable content of a page when looking at its layout.
       </p>
+
+
+
 
       <div className=" mt-10 rounded-2xl ">
         <div className="flex flex-row items-center space-x-12  rounded-xl">

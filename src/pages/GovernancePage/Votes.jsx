@@ -9,6 +9,7 @@ import { getVotesData, getVotesTableData } from "../../utils/axios/Governance";
 import { extractSiteName } from "../../utils/extractSiteName";
 import HollowCircleTimer from "./HollowCircleTimer";
 import { Link } from "react-router-dom";
+import { formatNumberWithCommas } from "../../utils/FormattingNumber";
 
 const Votes = () => {
 
@@ -73,7 +74,7 @@ const Votes = () => {
               </div>
               <div className="pb-4">
                 <p className="text-light-gray">Real-time Votes this round</p>
-                <p className="text-lg font-bold">{votedata?.realTimeTotalVotes} <span className="text-sm font-bold text-dark-green">(+)</span></p>
+                <p className="text-lg font-bold">{votedata?.realTimeTotalVotes && formatNumberWithCommas(votedata?.realTimeTotalVotes)} <span className="text-sm font-bold text-dark-green">(+)</span></p>
               </div>
             </div>
 

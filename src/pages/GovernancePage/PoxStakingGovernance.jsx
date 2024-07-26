@@ -4,7 +4,6 @@ import GovStack from "../../assets/Govstack.png";
 import GovPox from "../../assets/Govpox.png";
 import Poximg from "../../assets/PoxImg.png";
 import justLend from "../../assets/justland.png";
-import LineChartComp from "../../components/LineChart";
 import iconPledge from "../../assets/iconpledge.png";
 import iconPower from "../../assets/power.png";
 import iconReward from "../../assets/Reward.png";
@@ -14,8 +13,25 @@ import { HiArrowUpRight } from "react-icons/hi2";
 import { IoIosArrowForward } from "react-icons/io";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { Link } from "react-router-dom";
-
+import ExponentialGraph from "../../components/ExponentialGraph";
+import { useState } from "react";
+import { LuCircle } from "react-icons/lu";
+import { IoMdArrowDropright } from "react-icons/io";
+import VoteImg from "../../assets/SVG3.png";
 const PoxStakingGovernance = () => {
+  const [inputValue, setInputValue] = useState(10000);
+
+  const handleInputChange = (event) => {
+    let value = parseInt(event.target.value, 10);
+    if (!isNaN(value)) {
+      value = Math.round(value / 1) * 1; // Ensure the value is a multiple of 1000
+      setInputValue(value);
+    }
+  };
+
+  const handleStep = (step) => {
+    setInputValue((prevValue) => prevValue + step);
+  };
   return (
     <div className="px-12 pb-12">
       <div>
@@ -69,7 +85,7 @@ const PoxStakingGovernance = () => {
         </div>
 
         <div className="bg-white py-7 px-20  w-[25%] rounded-2xl shadow-xl">
-          <p className=" text-md text-light-gray">
+          <p className=" text-md text-light-gray text-nowrap">
             Total POX Reward Distribution
           </p>
           <p className="text-2xl font-bold pt-3">6,2345,7853,00</p>
@@ -88,19 +104,24 @@ const PoxStakingGovernance = () => {
 
         <div className=" ">
           <p className="font-bold text-3xl">Governance Model</p>
-          <p className="text-sm text-light-gray pt-4">
+          <p className="text-md text-light-gray pt-4">
             Open, transparent and all on-chain
           </p>
 
           <div>
             <div>
-              <p className="text-xl font-bold w-[40%] pt-10 mt-3">
+              <div className="flex flex-row items-center pt-5">
+              <p className=""><img src={VoteImg} alt="vote image" /></p>
+              <p className="text-xl font-bold w-[40%] pl-2">
                 Vote in Elections
               </p>
-              <p className="text-sm text-light-gray text-wrap">
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever s
+              </div>
+              
+              <p className="text-sm text-light-gray text-wrap pl-7">
+              POX, the native token of Pollux, can be staked by its holders to obtain Pollux Power <br/>
+              which is used as votes in on-chain elections. The 27 most-voted <br/>
+               candidates will be responsible for producing blocks and packing<br/> 
+               transactions as Pollux's witnesses.
               </p>
             </div>
 
@@ -140,11 +161,11 @@ const PoxStakingGovernance = () => {
         </p>
 
         <div className="flex flex-row justify-between w-full">
-          <div className=" bg-white px-10 pt-10 rounded-2xl shadow-xl w-[60%]">
+          <div className=" bg-white px-10 pt-10 rounded-2xl shadow-xl  w-[60%]">
             <p className="font-bold text-xl">Get Pox for Governance</p>
-            <p className="text-light-gray">
+            <p className="text-light-gray pt-2">
               By staking pox, you can obtain POX power which can be used to vote
-              for SRS you support and earn rewards.
+              for SRS you <br/> support and earn rewards.
             </p>
 
             <div className="">
@@ -152,33 +173,49 @@ const PoxStakingGovernance = () => {
                 <div>
                   <img src={iconPledge} alt="lock icon" className="" />
 
-                  <p>Stake POX</p>
+                  <p className="font-semibold">Stake POX</p>
                 </div>
-                <div>Get POX power</div>
+
+                <div className=" text-center">
+                <div className="font-semibold">Get POX power</div>
+                <div className="flex flex-row items-center">
+                  <p><LuCircle /></p>
+                  <p className="border-[1px] w-[300px]"></p>
+                  <p className="flex justify-start"><IoMdArrowDropright size={28}/></p>
+                </div>
+                </div>
+              
                 <div>
                   <img src={iconPower} alt=" power icon" className=" " />
-                  <p>POx Power</p>
+                  <p className="font-semibold">POX Power</p>
                 </div>
               </div>
 
-              <div className="flex flex-row justify-around pt-14">
-                <div>
-                  <img src={iconPower} alt="" className="pl-7" />
+              <div className="flex flex-row justify-between pt-20">
+                <div className="ml-6">
+                  <img src={iconPower} alt="" className="pl-7 text-left" />
 
-                  <p className="pl-7">POX power</p>
+                  <p className="pl-7 font-semibold">POX power</p>
                 </div>
-
-                <div>Vote for SRS and get voting rewards</div>
-                <div>
+                 
+                 <div className="text-center">
+                 <div className="font-semibold">Vote for SRS and get voting rewards</div>
+                <div className="flex flex-row items-center">
+                  <p><LuCircle /></p>
+                  <p className="border-[1px] w-[300px]"></p>
+                  <p className="flex justify-start"><IoMdArrowDropright size={28}/></p>
+                </div>
+                 </div>
+             
+                <div className="mr-6">
                   <img src={iconReward} alt="" className=" " />
-
-                  <p>Voting Rewards</p>
+                  <p className="font-semibold">Voting Rewards</p>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="flex flex-row  bg-white justify-evenly ml-5 rounded-2xl shadow-xl px-5 w-[40%]">
+          <div className="flex flex-row  bg-white justify-evenly ml-5 rounded-2xl shadow-xl px-5 pb-10 w-[40%]">
             <div className="w-[40%] ">
               <p className=" pt-10 text-xl font-bold">
                 Get resources for free Transaction
@@ -189,10 +226,13 @@ const PoxStakingGovernance = () => {
                 dynamically recover to the original amoung after a certain
                 period.
               </p>
+              
+              <div className=" pl-28 ">
+              <img src={icon} alt="icon image " />
+              </div>
+             
 
-              <img src={icon} alt="icon image " className=" pl-40 pt-5" />
-
-              <HiArrowUpRight size={20} className="cursor-default" />
+              <HiArrowUpRight size={20} className="cursor-default mt-16" />
             </div>
 
             <div className="w-[40%] items-start ">
@@ -203,10 +243,13 @@ const PoxStakingGovernance = () => {
                 You my delegate idle resources to others and can reclaim the
                 resources anytime.
               </p>
+               
+               <div className=" mt-24 pl-28 ">
+               <img src={svg} alt=" "  />
+               </div>
+              
 
-              <img src={svg} alt=" " className="pl-44 pt-20" />
-
-              <HiArrowUpRight size={20} className="cursor-pointer " />
+              <HiArrowUpRight size={20} className="cursor-pointer mt-16" />
             </div>
           </div>
         </div>
@@ -218,11 +261,20 @@ const PoxStakingGovernance = () => {
         </p>
 
         <div className=" bg-white rounded-2xl shadow-xl">
-          <div className="flex flex-row justify-between p-10 ">
-            <div className="flex flex-col justify-start ">
+          <div className="flex flex-row justify-between items-center p-10 w-full">
+            <div className="flex flex-col justify-start w-[35%] ">
               <p className=" font-bold text-xl "> I want to stake</p>
-              <div className="flex flex-row justify-between items-center border-2 rounded-lg w-full px-4 py-2 mt-6 ">
-                <p className="font-bold ">10000</p>
+              <div className="flex flex-row justify-between items-center border-[1px] rounded-lg w-full px-4 py-1 mt-6 ">
+              {/* <p className="font-bold">{inputValue}</p> */}
+      <input
+        type="number"
+        value={inputValue}
+        onChange={handleInputChange}
+        step="1"
+        className="focus:outline-none"
+  
+      />
+    
                 <div className="flex flex-row items-center space-x-2">
                   <img src={Poximg} alt="pox img" className="w-[18] h-[18]" />
                   <p className="font-bold">POX</p>
@@ -230,15 +282,18 @@ const PoxStakingGovernance = () => {
               </div>
               <p className="mt-6 font-bold">
                 Est. Rewards{" "}
-                <span className="text-light-brown text-xl">+1244.181000</span>
+                <span className="text-light-brown text-xl pl-1">431.00</span>
               </p>
             </div>
 
-            <div className="flex flex-row ">
-              <p className="font-bold text-xl">Highest APY</p>
-              <p className="text-light-brown font-bold text-xl">4.15%</p>
+            <div className=" w-[35%] mr-52">
+             
+                
+                <div className="w-[700px] h-[200px] pt-5 flex justify-start"> 
+                  <ExponentialGraph />
 
-              <LineChartComp />
+                </div>
+             
             </div>
           </div>
 

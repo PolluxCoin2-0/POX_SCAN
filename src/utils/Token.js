@@ -54,3 +54,12 @@ export const getUsdxHolderData = async() => {
         console.log("error", error);
     }
 }
+
+export const getHoldersSlidersStatsData = async() => {
+    try {
+        const response = await axios.get("https://node.poxscan.io/api/account/stats");
+        return (response?.data);
+    } catch (error) {
+        console.log("error", error);
+    }
+}

@@ -16,7 +16,7 @@ const ContractsDeployment = () => {
       <div className=" mb-10">
         <p className="text-2xl font-bold">Contracts Deployment</p>
 
-        <p className="bg-white rounded-lg px-3  py-4 mt-8 text-light-gray leading-10  text-lg tracking-wider text-justify">
+        <p className="bg-white rounded-xl shadow-lg px-3  py-4 mt-8 text-light-gray leading-10  text-lg tracking-wider text-justify">
           Contract Deployment Means Publishing Your Smart Contract Code To A
           Blockchain Network. You Can Compile And Deploy Smart Contract On
           TRONSCAN By
@@ -27,7 +27,7 @@ const ContractsDeployment = () => {
         </p>
       </div>
 
-      <div className="bg-white  rounded-xl p-8 ">
+      <div className="bg-white  rounded-xl shadow-xl p-8 ">
         <FileDropzone onFileUpload={handleFileUpload} />
       </div>
     </div>
