@@ -39,7 +39,7 @@ const BroadcastTransaction = () => {
           <textarea
             id="message"
             name="message"
-            rows="5"
+            rows="10"
             value={message}
             onChange={handleChange}
             className="mt-1 block w-full px-3 py-2 rounded-md  focus:outline-none resize-none "
@@ -48,7 +48,7 @@ const BroadcastTransaction = () => {
           />
         </div>
         <div className="mt-6 flex items-center justify-center">
-        <button className="bg-dark-yellow py-2 px-16 font-bold rounded-lg text-black cursor-pointer mt-10 " >
+        <button className="bg-dark-yellow py-2 px-16 font-bold rounded-lg text-black cursor-pointer" >
               Upload Transaction
           </button>
         </div>
