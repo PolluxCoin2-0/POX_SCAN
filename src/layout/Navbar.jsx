@@ -281,13 +281,14 @@ const Navbar = () => {
   return (
     <>
        {/* Larger Scrren Navbar */}
-       <div className="hidden md:flex  bg-dark-skyblue py-2 h-16 text-lg items-center justify-between pl-8 relative w-full">
-        <div className="flex items-center md:space-x-2 lg:space-x-2 xl:space-x-2 space-x-10">
-          <Link to="/">
+       <div className="hidden md:hidden lg:flex xl:flex 2xl:flex bg-dark-skyblue py-2 h-16 text-lg 
+       items-center justify-between lg:pl-2 pl-8 relative w-full">
+        <div className="flex items-center lg:space-x-0 xl:space-x-2 2xl:space-x-10">
+          <Link to="/" className="lg:w-32">
             <img
               src={LogoWithText}
               alt="logo-poxscan"
-              className="cursor-pointer border-r-2 border-white pr-8"
+              className="cursor-pointer border-r-2 border-white lg:pr-2 pr-8"
             />
           </Link>
           {Object.keys(NavbarOptions).map((key, index) => {
@@ -304,7 +305,7 @@ const Navbar = () => {
                     className={`cursor-pointer whitespace-nowrap font-semibold ${
                       currentPath === `/${formattedKey}`
                         ? "text-black rounded-3xl bg-dark-yellow px-4 py-1"
-                        : "text-white px-3"
+                        : "text-white lg:px-2 px-3"
                     }`}
                   >
                     {key}
@@ -320,11 +321,11 @@ const Navbar = () => {
           })}
         </div>
 
-        <div className="flex items-center justify-between space-x-6 relative">
+        <div className="flex items-center justify-between lg:space-x-3 space-x-6 relative">
           <SearchBar />
           <Link to="/register">
             {" "}
-            <p className="text-white cursor-pointer border-r-2 pr-6">
+            <p className="text-white  cursor-pointer border-r-2 lg:pr-2 pr-6">
               Register
             </p>{" "}
           </Link>
@@ -332,7 +333,7 @@ const Navbar = () => {
             <p className="text-white cursor-pointer">Login</p>{" "}
           </Link>
           <Link to="/connectwallet">
-            <button className="bg-dark-yellow py-1 px-3 rounded-xl text-black cursor-pointer whitespace-nowrap" onClick={()=>setOpenWallet(!openWallet)}>
+            <button className="bg-dark-yellow py-1  px-3 rounded-xl text-black cursor-pointer whitespace-nowrap" onClick={()=>setOpenWallet(!openWallet)}>
               {walletAddress.length>0 ? walletAddress:"Connect Wallet"}
             </button>
           </Link>
@@ -362,7 +363,7 @@ const Navbar = () => {
       </div>
 
       {/* Mobile submenu */}
-      <div className="sm:block md:hidden lg:hidden xl:hidden 2xl:hidden bg-dark-skyblue flex justify-between items-center p-4 z-50">
+      <div className="sm:block md:flex lg:hidden xl:hidden 2xl:hidden bg-dark-skyblue flex justify-between items-center p-4 z-50">
         <Link to="/">
           <img
             src={LogoWithText}
