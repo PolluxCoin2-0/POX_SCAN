@@ -265,7 +265,7 @@ const Pox = () => {
             <p>Market Cap </p>{" "}
             <p className=" flex flex-row justify-end items-center">
               <span className=" text-dark-green ">
-                ${formatNumberWithCommas(poxData.marketCap)}
+                ${poxData?.marketCap && formatNumberWithCommas(poxData.marketCap)}
               </span>
             </p>
           </div>
@@ -274,7 +274,7 @@ const Pox = () => {
             <p>Market Cap Change (24h)</p>{" "}
             <p className=" flex flex-row justify-end items-center">
               <span className=" text-dark-green ">
-                ${formatNumberWithCommas(poxData.marketCapChange24h)}
+                ${poxData.marketCapChange24h && formatNumberWithCommas(poxData.marketCapChange24h)}
               </span>
             </p>
           </div>
@@ -282,7 +282,7 @@ const Pox = () => {
           <div className=" flex flex-row items-center justify-between px-2  pt-4 pb-1">
             <p>24h Volume/Market Cap</p>{" "}
             <p className=" flex flex-row justify-end items-center">
-              <span className=" text-dark-green ">{poxData.volChange}</span>
+              <span className=" text-dark-green ">{poxData?.volChange}</span>
             </p>
           </div>
 
@@ -290,7 +290,7 @@ const Pox = () => {
             <p>Volume 24h</p>{" "}
             <p className=" flex flex-row justify-end items-center">
               <span className=" text-dark-green ">
-                ${formatNumberWithCommas(poxData.volume24h)}
+                ${poxData?.volume24h && formatNumberWithCommas(poxData?.volume24h)}
               </span>
             </p>
           </div>
