@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { shortenString } from "../../../utils/shortenString";
 import { getRankingContractDayThreeData } from "../../../utils/axios/Data";
+import { Link } from "react-router-dom";
 
 const TableData = ({title, tableDataArray, type}) => {
 
@@ -39,10 +40,13 @@ const TableData = ({title, tableDataArray, type}) => {
 
       return (
         <div key={index} className="flex flex-row justify-around p-5 border-b-2 border-b-lightest-gray">
-          <p className="w-[20%]">{rank}</p>
+          <p className="w-[20%] text-center">{rank}</p>
           
-          <p className="w-[60%]">{type ==="contractAddress"? shortenString(param?.contractAddress, 10): shortenString(param?._id, 10)}</p>
-          <p className="w-[20%]">{param?.totalCount}</p>
+          <Link to={`/accountdetails/${param?.contractAddress}`}  className="w-[60%] text-dark-red text-center">
+          <p>{type ==="contractAddress"? shortenString(param?.contractAddress, 10): shortenString(param?._id, 10)}</p>
+          </Link>
+          
+          <p className="w-[20%] text-center">{param?.totalCount}</p>
         </div>
       );
     })}

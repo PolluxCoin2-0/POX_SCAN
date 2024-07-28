@@ -122,13 +122,13 @@ const HoldersTable = () => {
 
   return (
     <div>
-      <div className="flex flex-row justify-evenly p-2 bg-lightest-gray rounded-lg ">
-        <p className="w-[8%]  text-center font-bold ">#</p>
+      <div className="min-w-[1500px] flex flex-row justify-evenly p-2 bg-lightest-gray rounded-lg">
+        <p className="w-[8%]   text-center font-bold ">#</p>
         <p className="w-[32%] text-center font-bold ">Account</p>
-        <p className="w-[15%] text-center font-bold ">Amount</p>
-        <p className="w-[15%] text-center font-bold ">Value</p>
-        <p className="w-[15%] text-center font-bold ">Percentage</p>
-        <p className="w-[15%] text-center font-bold ">Latest TXN Time(Local)</p>
+        <p className="w-[15%]  text-center font-bold ">Amount</p>
+        <p className="w-[15%]  text-center font-bold ">Value</p>
+        <p className="w-[15%]  text-center font-bold ">Percentage</p>
+        <p className="w-[15%]  text-center font-bold ">Latest TXN Time(Local)</p>
       </div>
 
       {holderdata?.apiResult?.map &&
@@ -140,13 +140,13 @@ const HoldersTable = () => {
 
                 <Link
                   to={`/tokendetailpage/${stablecoin?.address}`}
-                  className=" w-[32%] text-dark-red text-center "
+                  className=" w-[32%]  text-dark-red text-center "
                 >
                   <p>{stablecoin?.address && stablecoin?.address}</p>
                 </Link>
 
                 <p className="w-[15%]  text-center ">{stablecoin?.balance}</p>
-                <p className="w-[15%] text-center ">{stablecoin.PoxCount}</p>
+                <p className="w-[15%]  text-center ">{stablecoin.PoxCount}</p>
                 <p className=" w-[15%]  text-center ">
                   {stablecoin?.percentage.toFixed(6)}%
                 </p>
@@ -285,7 +285,7 @@ const Pox = () => {
       </div>
 
       <div className="bg-white rounded-2xl p-4 md:p-7 ">
-        <div className="overflow-x-auto md:overflow-hidden">
+        <div className="overflow-x-auto ">
           <p className="pb-5 font-medium text-light-gray">
             Only the first{" "}
             <span className="text-black font-semibold">10,000</span> records are
