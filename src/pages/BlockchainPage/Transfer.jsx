@@ -39,7 +39,7 @@ const POXTransferTable = () => {
 
   return (
     <div>
-      <div className="bg-white rounded-2xl p-4 md:p-10 overflow-x-auto md:overflow-hidden">
+      <div className="bg-white rounded-2xl p-4 md:p-10 overflow-x-auto lg:overflow-x-auto xl:overflow-x-auto 2xl:overflow-hidden">
         <div className=" flex flex-row justify-between">
           <div>
             <p className="">
@@ -269,7 +269,7 @@ const Transfer = () => {
   };
 
   return (
-    <div className="px-4 md:px-12 pb-12">
+    <div className="px-4 md:px-4 lg:px-4 xl:px-12 2xl:px-12 pb-12">
       <div>
         <SearchBarExpand />
       </div>
@@ -279,8 +279,9 @@ const Transfer = () => {
           <p className="text-2xl font-bold">Transfers</p>
         </div>
 
-        <div className=" flex flex-col space-y-6 md:space-y-0 md:flex-row justify-between w-full">
-          <div className=" flex flex-col gap-10 w-full md:w-[48%]">
+        <div className=" flex flex-col space-y-6 lg:space-y-0 xl:space-y-0 2xl:space-y-0 md:space-y-6 md:flex-col lg:flex-row xl:flex-row 2xl:flex-row
+        justify-between w-full">
+          <div className=" flex flex-col gap-10 w-full md:w-full lg:w-[48%] xl:w-[48%] 2xl:w-[48%]">
             <div className="bg-white px-4 md:px-12 py-6 gap-9 rounded-2xl shadow-xl ">
               <div className="flex flex-row justify-between">
                 <p className=" text-xl font-bold">Transfer Counts</p>
@@ -293,7 +294,7 @@ const Transfer = () => {
                
               </div>
 
-              <div className=" flex flex-row justify-between   rounded-lg py-5">
+              <div className=" flex flex-row justify-between rounded-lg py-5">
                 <div className="">
                   <p className="text-xl font-bold pt-5">{data?.totalPage && formatNumberWithCommas(data?.totalPage)}</p>
                   <p className="text-light-gray  pt-2">Total</p>
@@ -339,13 +340,14 @@ const Transfer = () => {
             </div>
           </div>
 
-          <div className="bg-white rounded-2xl shadow-xl w-full md:w-[48%] py-3">
+          <div className="bg-white rounded-2xl shadow-xl w-full md:w-full lg:w-[48%] xl:w-[48%] 2xl:w-[48%] py-3">
             <p className="font-bold text-xl pt-5 pl-8 ">
             Daily Txn Distribution (Total 4.75b Transfer)
             </p>
 
-            <div className="flex flex-col space-y-6 md:space-y-0 md:flex-row md:items-center md:justify-evenly justify-between">
-              <div className="h-80 w-[70%]">
+            <div className="flex flex-col space-y-6 md:space-y-0 md:flex-row md:items-center md:justify-evenly
+            lg:flex-col xl:flex-col 2xl:flex-row justify-between">
+              <div className="lg:h-64 xl:h-64 lg:ml-12 xl:ml-12 h-80 lg:w-full xl:w-full w-[70%]">
                 <PieChartComp value={pieChartData} xAxis="PRC20" yAxis=""/>
               </div>
             <div className="w-[30%]">

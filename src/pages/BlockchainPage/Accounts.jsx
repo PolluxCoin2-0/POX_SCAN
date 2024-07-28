@@ -44,16 +44,16 @@ const Accounts = () => {
   const [onSearch, setOnSearch] = useState("");
 
   return (
-    <div className="px-4 md:px-12 pb-12">
+    <div className="px-4 md:px-4 lg:px-4 xl:px-12 2xl:px-12 pb-12">
       <div>
         <SearchBarExpand onSearch={setOnSearch} />
       </div>
 
       <p className="font-bold text-2xl pb-10">Accounts</p>
       <div className="flex flex-col space-y-6 md:space-y-0 md:flex-row justify-around ">
-        <div className="w-full md:w-[32%] bg-white shadow-lg rounded-2xl p-8">
+        <div className="w-full md:w-[32%] bg-white shadow-lg rounded-2xl md:px-2 md:py-4 p-8">
           <div className="flex flex-row justify-between pt-1 ">
-            <p className="font-bold text-lg">Number of Accounts</p>
+            <p className="font-bold md:text-base text-lg">Number of Accounts</p>
             <div className="flex flex-row">
               <p className="text-dark-red">More</p>
               <MdKeyboardArrowRight className="mt-1 text-xl" color="#C23631" />
@@ -62,12 +62,12 @@ const Accounts = () => {
 
           <div className=" w-full flex flex-row justify-between pt-9 pl-1 ">
             <div>
-              <p className="font-bold text-xl">{data?.totaladdr && formatNumberWithCommas(data?.totaladdr)}</p>
+              <p className="md:text-base font-bold text-xl">{data?.totaladdr && formatNumberWithCommas(data?.totaladdr)}</p>
               <p className="pt-4 text-sm text-light-gray">Total</p>
             </div>
 
             <div>
-              <p className="text-xl font-bold text-dark-green">+{data?.yestudayaddr && data?.yestudayaddr}</p>
+              <p className="md:text-base text-xl font-bold text-dark-green">+{data?.yestudayaddr && data?.yestudayaddr}</p>
               <p className="pt-4 text-sm text-light-gray flex justify-end">
                 Last 24h
               </p>
@@ -75,9 +75,9 @@ const Accounts = () => {
           </div>
         </div>
 
-        <div className="w-full md:w-[32%]  rounded-2xl p-8 bg-white shadow-md ">
+        <div className="w-full md:w-[32%]  rounded-2xl md:px-2 md:py-4 p-8 bg-white shadow-md ">
           <div className=" flex flex-row justify-between pt-1">
-            <p className="font-bold text-lg">POX Holders</p>
+            <p className="font-bold md:text-base text-lg">POX Holders</p>
             <div className="flex flex-row">
               <p className="text-dark-red">More</p>
               <MdKeyboardArrowRight className="mt-1 text-xl"  color="#C23631"/>
@@ -86,12 +86,12 @@ const Accounts = () => {
 
           <div className=" w-full flex flex-row justify-between pt-9 pl-1">
             <div>
-              <p className="text-xl font-bold">{data?.hodlers && formatNumberWithCommas(data?.hodlers)}</p>
+              <p className="md:text-base text-xl font-bold">{data?.hodlers && formatNumberWithCommas(data?.hodlers)}</p>
               <p className="pt-4 text-sm text-light-gray">Total holders</p>
             </div>
 
             <div>
-              <p className="text-xl font-bold text-dark-green">{data?.hpercen && data?.hpercen}%</p>
+              <p className="md:text-base text-xl font-bold text-dark-green">{data?.hpercen && data?.hpercen}%</p>
               <p className="pt-4 text-sm text-light-gray flex justify-end">
                 Percentage
               </p>
@@ -99,9 +99,9 @@ const Accounts = () => {
           </div>
         </div>
 
-        <div className="w-full md:w-[32%] rounded-2xl p-8 bg-white shadow-md ">
+        <div className="w-full md:w-[32%] rounded-2xl md:px-2 md:py-4 p-8 bg-white shadow-md ">
           <div className="flex flex-row justify-between pt-1">
-            <p className="font-bold text-lg">Active Accounts</p>
+            <p className="font-bold md:text-base text-lg">Active Accounts</p>
             <div className="flex flex-row">
               <p className="text-dark-red">More</p>
               <MdKeyboardArrowRight className="mt-1 text-xl" color="#C23631"/>
@@ -110,14 +110,14 @@ const Accounts = () => {
 
           <div className=" w-full flex flex-row justify-between pt-9 pl-1">
             <div>
-              <p className="text-xl font-bold">{data?.avgdailyactiveadr && formatNumberWithCommas(Number(data?.avgdailyactiveadr).toFixed(3))}</p>
+              <p className="md:text-base text-xl font-bold">{data?.avgdailyactiveadr && formatNumberWithCommas(Number(data?.avgdailyactiveadr).toFixed(3))}</p>
               <p className="pt-4 text-sm text-light-gray flex ">
                 Daily Active Accounts
               </p>
             </div>
 
             <div>
-              <p className="text-xl font-bold text-dark-red">- {data?.percentagedailyactiveaddr && data?.percentagedailyactiveaddr.toFixed(2)}%</p>
+              <p className="md:text-base text-xl font-bold text-dark-red">- {data?.percentagedailyactiveaddr && data?.percentagedailyactiveaddr.toFixed(2)}%</p>
               <p className="pt-4 text-sm text-light-gray flex justify-end">
                 24h Change
               </p>
@@ -126,7 +126,7 @@ const Accounts = () => {
         </div>
       </div>
 
-      <div className="bg-white  rounded-2xl p-2 md:p-7  overflow-x-auto mt-8 md:mt-16">
+      <div className="bg-white  rounded-2xl p-2 md:p-7  overflow-x-auto mt-8 md:mt-10 lg:mt-16 xl:mt-16 2xl:mt-16">
         <div className="flex flex-row justify-start gap-5 min-w-[1500px] md:min-w-full">
           <p className="pb-5 font-medium text-light-gray">
             The latest <span className="text-black font-semibold"> 10,000  </span>
@@ -142,7 +142,7 @@ const Accounts = () => {
           </div> */}
         </div>
 
-        <div className="flex flex-row justify-around p-2 bg-lightest-gray rounded-lg min-w-[1500px] md:min-w-full">
+        <div className="flex flex-row justify-around p-2 bg-lightest-gray rounded-lg min-w-[1500px]">
           <p className=" w-[5%] text-center  font-bold ">#</p>
           <p className=" w-[20%] text-center font-bold  ">Account</p>
           <p className=" w-[18%] text-center font-bold ">Pox Balance</p>
@@ -158,7 +158,8 @@ const Accounts = () => {
         {data1?.apiResult && data1?.apiResult.map((stablecoin, index) => {
           return (
             <>
-              <div className="flex flex-row  justify-around border-b-2 p-2 pb-4 pt-4 border-text-bg-gray min-w-[1500px] md:min-w-full" key={index}>
+              <div className="flex flex-row  justify-around border-b-2 p-2 pb-4 pt-4 border-text-bg-gray 
+              min-w-[1500px]" key={index}>
                 <p className=" text-center w-[5%]">{index+1}</p>
                 <Link to={`/tokendetailpage/${stablecoin?.address}`} className=" w-[20%] text-center  text-dark-red">
                 <p >{shortenString(stablecoin?.address && stablecoin?.address,10)}</p>

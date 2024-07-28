@@ -56,7 +56,7 @@ const VerifiedContractTable = () => {
             </p>
           </div>
 
-          <div className="hidden md:flex flex-row justify-between px-32 rounded-md  border-2 border-lightest-gray">
+          <div className="hidden md:hidden lg:flex xl:flex 2xl:flex flex-row justify-between px-32 rounded-md  border-2 border-lightest-gray">
             <IoSearch className=" text-xl pt-4 w-10 h-10 text-light-gray" />
 
             <input
@@ -280,7 +280,7 @@ const Contacts = () => {
   };
 
   return (
-    <div className="px-4 md:px-12 pb-12">
+    <div className="px-4 md:px-4 lg:px-4 xl:px-12 2xl:px-12 pb-12">
       <div>
         <SearchBarExpand />
       </div>
@@ -295,8 +295,9 @@ const Contacts = () => {
          
         </div>
 
-        <div className=" flex flex-col space-y-6 md:space-y-0 md:flex-row justify-between w-full">
-          <div className=" flex flex-col gap-10 w-full md:w-[30%]">
+        <div className="flex flex-col space-y-6 md:space-y-6 lg:space-y-0 xl:space-y-0 2xl:space-y-0 md:flex-col 
+        lg:flex-row xl:flex-row 2xl:flex-row justify-between w-full">
+          <div className=" flex flex-col gap-10 w-full md:w-full lg:w-[30%] xl:w-[30%] 2xl:w-[30%]">
             <div className="bg-white px-4 md:px-12  py-6 gap-9 rounded-2xl shadow-xl ">
               <div className="flex flex-row justify-between">
                 <p className=" text-xl font-bold pl-0">Contracts</p>
@@ -306,7 +307,7 @@ const Contacts = () => {
                 </div>
               </div>
 
-              <div className=" flex flex-row justify-between  py-5">
+              <div className="flex flex-row justify-between  py-5">
                 <div className="">
                   <p className="pt-5 text-xl font-bold">
                     {data1[1]?.total_contracts && data1[1]?.total_contracts}
@@ -325,7 +326,7 @@ const Contacts = () => {
 
             {/* Verified Contacts */}
             <div className="bg-white px-4 md:px-12 py-6 gap-9 rounded-2xl shadow-xl">
-              <div className="flex flex-row justify-between ">
+              <div className="flex flex-row justify-between items-center ">
                 <p className=" text-xl font-bold "> Verified Contracts </p>
                 <div className="flex flex-row ">
                   <p className="text-dark-red">More</p>
@@ -351,7 +352,7 @@ const Contacts = () => {
             </div>
           </div>
 
-          <div className="bg-white rounded-2xl shadow-xl w-full md:w-[68%] py-3">
+          <div className="bg-white rounded-2xl shadow-xl w-full md:w-full lg:w-[68%] xl:w-[68%] 2xl:w-[68%] py-3">
             <p className="font-bold text-xl pt-5 pl-8 ">24h Top Contracts</p>
 
             <div className="flex flex-col md:flex-row justify-between">

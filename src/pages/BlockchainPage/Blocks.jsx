@@ -37,10 +37,8 @@ const Blocks = () => {
     setCurrentPage(page);
   };
 
-  console.log("data coming from block comp",dataFromSearch)
-
   return (
-    <div className="px-4 md:px-12 pb-12">
+    <div className="px-4 md:px-4 lg:px-4 xl:px-12 2xl:px-12">
       <div>
         <SearchBarExpand setDataFromSearch={setDataFromSearch} />
       </div>
@@ -53,12 +51,12 @@ const Blocks = () => {
 
           <div className=" w-full flex flex-row justify-between pt-9 pl-1 ">
             <div>
-              <p className=" font-bold text-xl">{data1?.totalBlocks && formatNumberWithCommas(data1?.totalBlocks)}</p>
+              <p className=" font-bold md:text-lg text-xl">{data1?.totalBlocks && formatNumberWithCommas(data1?.totalBlocks)}</p>
               <p className="pt-4 text-sm text-light-gray">Latest</p>
             </div>
             
             <div>
-              <p className="text-xl font-bold text-dark-red">+{data1?.totalBlocks24H && data1?.totalBlocks24H}</p>
+              <p className="md:text-lg text-xl font-bold text-dark-red">+{data1?.totalBlocks24H && data1?.totalBlocks24H}</p>
               <p className="pt-4 text-sm text-light-gray flex justify-end">
                 Yesterday
               </p>
@@ -74,13 +72,13 @@ const Blocks = () => {
 
           <div className=" w-full flex flex-row justify-between pt-9 pl-1">
             <div>
-              <p className="text-xl font-bold">{formatNumberWithCommas(Number(data1?.totalBlockReward ?? 0).toFixed(1))} POX</p>
+              <p className="md:text-lg text-xl font-bold">{formatNumberWithCommas(Number(data1?.totalBlockReward ?? 0).toFixed(1))} POX</p>
               <p className="text-xs flex justify-end ">=$1,078,347,147.3</p>
               <p className="pt-4 text-sm text-light-gray">Total</p>
             </div>
 
             <div>
-              <p className="text-xl text-dark-red font-bold">{data1?.totalBlockRewards24h && data1?.totalBlockRewards24h}TRX</p>
+              <p className="md:text-lg text-xl text-dark-red font-bold">{data1?.totalBlockRewards24h && data1?.totalBlockRewards24h}TRX</p>
               <p className="text-xs flex justify-end">=$615,954.9</p>
               <p className="pt-4 text-sm text-light-gray flex justify-end">
                 Yesterday
@@ -97,14 +95,14 @@ const Blocks = () => {
 
           <div className=" w-full flex flex-row justify-between pt-9 pl-1">
             <div>
-              <p className="text-xl font-bold">{formatNumberWithCommas(Number(data1?.burnedPOX ?? 0).toFixed(3))} POX</p>
-              <p className=" text-xs">=$1,363,166,000.31</p>
+              <p className="md:text-lg text-xl font-bold">{formatNumberWithCommas(Number(data1?.burnedPOX ?? 0).toFixed(3))} POX</p>
+              <p className=" text-xs">=$1,363.31</p>
               <p className="pt-4 text-sm text-light-gray flex ">Total</p>
             </div>
 
             <div>
-              <p className="text-xl text-dark-red font-bold">{data1?.burnedPOX24H && data1?.burnedPOX24H.toFixed(3)} TRX</p>
-              <p className="text-xs flex justify-end">=$1,363,912.13</p>
+              <p className="md:text-lg text-xl text-dark-red font-bold">{data1?.burnedPOX24H && data1?.burnedPOX24H.toFixed(3)} TRX</p>
+              <p className="text-xs flex justify-end">=$1,363.13</p>
               <p className="pt-4 text-sm text-light-gray flex justify-end">
                 Yesterday
               </p>
@@ -121,7 +119,7 @@ const Blocks = () => {
           displayed
         </p>
  
-        <div className="flex flex-row justify-evenly  p-2 pb-3 bg-lightest-gray rounded-lg min-w-[1500px] md:min-w-full">
+        <div className="flex flex-row justify-evenly  p-2 pb-3 bg-lightest-gray rounded-lg min-w-[1500px] ">
           <p className=" w-[12%] font-bold text-center  ">Block</p>
           <p className=" w-[10%] font-bold text-center  ">Age</p>
           <p className=" w-[12%] font-bold text-center ">Producer</p>
@@ -135,7 +133,7 @@ const Blocks = () => {
         {data?.apiResult && data?.apiResult.map((stablecoin, index) => {
           return (
             <>
-              <div className="flex flex-row justify-between border-b-2 p-4 border-text-bg-gray min-w-[1500px] md:min-w-full" key={index}>
+              <div className="flex flex-row justify-between border-b-2 p-4 border-text-bg-gray min-w-[1500px]" key={index}>
                 <Link to={`/blockdetailpage/${stablecoin?.number}`} className="w-[12%] text-dark-red pl-6 ">
                 <p >
                 {stablecoin?.number && stablecoin?.number}
