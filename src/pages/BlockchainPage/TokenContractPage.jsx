@@ -14,14 +14,15 @@ const CodeTable = () => {
     <div className="bg-white rounded-bl-xl rounded-br-xl shadow-xl p-5 ">
        <p className="text-lg font-bold underline underline-offset-4 ">Contract Source Code Verified (Perfect match) </p>
 
-       <div className="flex flex-row justify-between space-x-20 items-center w-full mt-4 border-b-[1px] pb-4">
+       <div className="flex flex-row justify-between space-x-4 md:space-x-20 lg:space-x-20 xl:space-x-20 2xl:space-x-20 items-center md:items-start
+       lg:items-start xl:items-start 2xl:items-start w-full mt-4 border-b-[1px] pb-4">
        <div className="w-[50%]">
-       <div className="flex flex-row justify-between">
+       <div className="flex flex-row items-center justify-between whitespace-nowrap space-x-8 md:space-x-0  lg:space-x-0 xl:space-x-0 2xl:space-x-0">
        <p className="text-light-gray font-semibold">Contract Name</p>
        <p className="font-semibold">PolluxUsd</p>
        </div>
 
-       <div className="flex flex-row justify-between mt-2">
+       <div className="flex flex-row items-center justify-between mt-2">
        <p className="text-light-gray font-semibold">Optimization</p>
        <p className="font-semibold">Yes</p>
        </div>
@@ -33,12 +34,12 @@ const CodeTable = () => {
        </div>
  
        <div className="w-[50%] ">
-       <div className="flex flex-row justify-between">
+       <div className="flex flex-row items-center justify-between">
        <p className="text-light-gray font-semibold">Compiler Version</p>
        <p className="font-semibold">solidity 0.8.23</p>
        </div>
 
-       <div className="flex flex-row justify-between mt-2 ">
+       <div className="flex flex-row items-center justify-between mt-2 ">
        <p className="text-light-gray font-semibold">License</p>
        <p className="font-semibold">MIT</p>
        </div>
@@ -49,9 +50,6 @@ const CodeTable = () => {
 
        <div className="bg-mid-light-gray rounded-xl mt-5 pt-5 pb-5  pr-10 pl-10">
        <p className="text-lg font-semibold">PolluxUsd</p>
-
-      
-
        <div className="bg-text-bg-gray mt-8 rounded-sm w-full h-[600px]" >
         <CodeSnippet/>
        </div>
@@ -613,7 +611,11 @@ const TokenContractPage = () => {
   return (
     <div>
       
-    <div className="flex flex-row space-x-8 mt-10 bg-white rounded-tl-xl rounded-tr-xl p-5">
+    <div className="flex flex-col md:flex-row lg:flex-row xl:flex-row 2xl:flex-row 
+    md:items-center lg:items-center xl:items-center 2xl:items-center
+    space-x-0 md:space-x-8 lg:space-x-8 xl:space-x-8 2xl:space-x-8
+    space-y-4 md:space-y-0 lg:space-y-0 xl:space-y-0 2xl:space-y-0
+     mt-10 bg-white rounded-tl-xl rounded-tr-xl p-5">
     <p 
     className={`cursor-pointer py-2 px-14 whitespace-nowrap ${
       isShow === "Code"

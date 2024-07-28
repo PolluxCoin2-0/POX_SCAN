@@ -20,7 +20,6 @@ const TransactionsTable = () => {
       const fetchData = async () => {
         try {
           const data = await getTokenTransactionsDetailData();
-          
           setData(data?.message);
         } catch (error) {
           console.log('error', error);
@@ -40,7 +39,8 @@ const TransactionsTable = () => {
   
     return (
       <div>
-        <div className="bg-white rounded-2xl p-4 md:p-10 overflow-x-auto md:overflow-hidden mt-10">
+        <div className="bg-white rounded-2xl p-4 md:p-10 overflow-x-auto md:overflow-x-auto lg:overflow-x-auto
+        xl:overflow-x-auto 2xl:overflow-x-hidden mt-10">
           <div className=" flex flex-row justify-between">
             <div>
               <p className="text-lg font-bold">A total of 10 transaction(s) </p>
@@ -154,13 +154,10 @@ const TransactionsTable = () => {
 
 const TokenDetailPage = () => {
    const contractAddress = useParams().id;
-
      const handleCopy = (address) => {
     navigator.clipboard.writeText(address);
     toast.success("Hash copied successfully!");
   };
-
-
 
     const [tokendata, setTokenData] = useState({});
     const [contractdata, setContractData] = useState({});
@@ -169,8 +166,6 @@ const TokenDetailPage = () => {
         try {
           const tokendata = await getTokenDetailData(contractAddress);
           const contractdata = await getContractDetailData(contractAddress);
-          console.log(contractdata);
-
           setTokenData(tokendata?.message);
           setContractData(contractdata);
         } catch (error) {
@@ -180,7 +175,6 @@ const TokenDetailPage = () => {
   
       fetchData();
     }, [])
-
 
     const [isRender, setIsRender] = useState("Transactions");
     const renderItemComponent = () => {
@@ -193,12 +187,10 @@ const TokenDetailPage = () => {
 
       case "Transfers":
         return <TransferTable />;
-
-      
     }
   };
   return (
-    <div className="px-12 pb-12">
+    <div className="px-4 md:px-4 lg:px-4 xl:px-12 2xl:px-12 pb-12">
 
         {/* Search Bar */}
         <div>
@@ -206,13 +198,13 @@ const TokenDetailPage = () => {
         </div>
 
         {/* first Div */}
-        <div className="flex flex-row justify-between">
+        <div className="flex flex-col md:flex-col lg:flex-row xl:flex-row 2xl:flex-row 
+        lg:items-center lg:justify-between xl:items-center xl:justify-between 2xl:items-center 2xl:justify-between">
 
             <div>
                 <p className="text-xl font-bold">Account</p>
-
-                <div className="flex flex-row space-x-4">
-                <p className="text-lg font-semibold pt-3">{tokendata?.address}</p>
+                <div className="flex flex-row items-center space-x-4 pt-3">
+                <p className="text-lg font-semibold truncate">{tokendata?.address}</p>
                 <p className="text-xl p-2 bg-white rounded-full cursor-pointer ">
               <BiSolidCopyAlt
                 className="cursor-pointer"
@@ -224,17 +216,15 @@ const TokenDetailPage = () => {
             </p>
             </div>
 
-                <div className="flex flex-row space-x-4 mt-3">
+                <div className="flex flex-row items-center space-x-4 mt-3">
                     <p  className=" py-1 pl-2 pr-2 font-semibold bg-lightest-gray rounded-md">Add a private tag</p>
-                    <p  className=" py-1 pl-2 pr-2 font-semibold bg-lightest-gray text-dark-brown rounded-md">{tokendata?.accountname && tokendata?.accountname}
-
-                        </p>
+                    <p  className=" py-1 pl-2 pr-2 font-semibold bg-lightest-gray text-dark-brown rounded-md">{tokendata?.accountname && tokendata?.accountname}</p>
                 </div>
             </div>
 
-            <div className="flex flex-row space-x-10 mt-14">
+            <div className="flex flex-row items-center space-x-10 mt-14">
             <div>
-                <div className="flex flex-row space-x-2">
+                <div className="flex flex-row items-center space-x-2">
                 <p className="bg-lightest-gray rounded-md pt-1 px-1">
                   <AiOutlineQuestion />
                 </p>
@@ -245,7 +235,7 @@ const TokenDetailPage = () => {
             </div>
 
             <div>
-                <div className="flex flex-row space-x-2">
+                <div className="flex flex-row items-center space-x-2">
                 <p className="bg-lightest-gray rounded-md pt-1 px-1">
                   <AiOutlineQuestion />
                 </p>
@@ -257,15 +247,16 @@ const TokenDetailPage = () => {
         </div>
 
         {/* Second Div */} 
-        <div className="flex flex-row w-full space-x-10 mt-6" >
+        <div className="flex flex-col md:flex-col lg:flex-col xl:flex-row 2xl:flex-row w-full 
+        space-y-4 md:space-y-4 lg:space-y-4 xl:space-y-0 2xl:space-y-0 space-x-0 md:space-x-0 lg:space-x-0 xl:space-x-10 2xl:space-x-10 mt-6" >
 
-            <div className="w-[60%] bg-white rounded-lg p-5 shadow-lg">
+            <div className="w-full md:w-full lg:w-full xl:w-[60%] 2xl:w-[60%] bg-white rounded-lg p-5 shadow-lg">
                 <p className="text-2xl font-bold border-b-[1px] border-text-bg-gray pb-4">Overview</p>
 
                 <div>
 
-                    <div className="flex flex-row justify-between border-b-[1px] border-text-bg-gray pb-4 pt-4">
-                        <div className="flex flex-row space-x-2">
+                    <div className="flex flex-row items-center justify-between border-b-[1px] border-text-bg-gray pb-4 pt-4">
+                        <div className="flex flex-row items-center space-x-2">
                         <p className="bg-lightest-gray rounded-md pt-1 px-1"><AiOutlineQuestion /> </p>
                         <p className="font-bold">Name: </p>
                         </div>
@@ -273,8 +264,8 @@ const TokenDetailPage = () => {
                         <p>{tokendata?.contractDetails?.contractName && tokendata?.contractDetails?.contractName}</p>
                     </div>
 
-                    <div className="flex flex-row justify-between border-b-[1px] border-text-bg-gray pb-4 pt-4">
-                        <div className="flex flex-row space-x-2">
+                    <div className="flex flex-row items-center justify-between border-b-[1px] border-text-bg-gray pb-4 pt-4">
+                        <div className="flex flex-row items-center space-x-2">
                         <p className="bg-lightest-gray rounded-md pt-1 px-1"><AiOutlineQuestion /> </p>
                         <p className="font-bold">Total Assets:</p>
                         </div>
@@ -282,8 +273,8 @@ const TokenDetailPage = () => {
                     <p> {tokendata?.balance  && tokendata?.balance/Math.pow(10,6)} POX</p>
                     </div>
 
-                    <div className="flex flex-row justify-between border-b-[1px] border-text-bg-gray pb-4 pt-4">
-                        <div className="flex flex-row space-x-2">
+                    <div className="flex flex-row items-center justify-between border-b-[1px] border-text-bg-gray pb-4 pt-4">
+                        <div className="flex flex-row items-center space-x-2">
                         <p className="bg-lightest-gray rounded-md pt-1 px-1"><AiOutlineQuestion /> </p>
                         <p className="font-bold">Transactions:</p>
                         </div>
@@ -291,21 +282,23 @@ const TokenDetailPage = () => {
                     <p>{tokendata?.Transactions && tokendata?.Transactions}</p>
                     </div>
 
-                    <div className="flex flex-row items-center justify-between border-b-[1px] border-text-bg-gray pb-4 pt-4">
-                        <div className="flex flex-row space-x-2">
+                    <div className="flex flex-col md:flex-col lg:flex-row xl:flex-row 2xl:flex-row
+                    lg:items-center lg:justify-between xl:items-center xl:justify-between 2xl:items-center 2xl:justify-between
+                     border-b-[1px] border-text-bg-gray pb-4 pt-4">
+                        <div className="flex flex-row items-center space-x-2">
                         <p className="bg-lightest-gray rounded-md pt-1 px-1"><AiOutlineQuestion /> </p>
                         <p className="font-bold">Creator:</p>
                         </div>
                    
-                    <div className="flex flex-col items-end">
-                    <p>{tokendata?.contractDetails?.issuer && tokendata?.contractDetails?.issuer }  /   at Txn   /  </p>
-                    <p>d3fe3dc36194e6c5c115989f113ad12753a2990c7fc0c98e4b2243e7ea7 83386</p>
+                    <div className="flex flex-col items-start md:items-end lg:items-end xl:items-end 2xl:items-end">
+                    <p className="">{tokendata?.contractDetails?.issuer && tokendata?.contractDetails?.issuer }  /   at Txn   /  </p>
+                    <p className="w-full truncate">d3fe3dc36194e6c5c115989f113ad12753a2990c7fc0c98e4b2243e7ea7 83386</p>
                     </div>
                    
                     </div>
 
-                    <div className="flex flex-row justify-between border-b-[1px] border-text-bg-gray pb-4 pt-4">
-                        <div className="flex flex-row space-x-2">
+                    <div className="flex flex-row items-center justify-between border-b-[1px] border-text-bg-gray pb-4 pt-4">
+                        <div className="flex flex-row items-center space-x-2">
                         <p className="bg-lightest-gray rounded-md pt-1 px-1"><AiOutlineQuestion /> </p>
                         <p className="font-bold">Energy Consumption Ratio:</p>
                         </div>
@@ -313,8 +306,8 @@ const TokenDetailPage = () => {
                     <p>Contract 100%   /   User {tokendata?.TotalEnergy}%</p>
                     </div>
 
-                    <div className="flex flex-row justify-between border-b-[1px] border-text-bg-gray pb-4 pt-4">
-                        <div className="flex flex-row space-x-2">
+                    <div className="flex flex-row items-center justify-between border-b-[1px] border-text-bg-gray pb-4 pt-4">
+                        <div className="flex flex-row items-center space-x-2">
                         <p className="bg-lightest-gray rounded-md pt-1 px-1 "><AiOutlineQuestion /> </p>
                         <p className="font-bold">Creator's Energy:</p>
                         </div>
@@ -322,8 +315,8 @@ const TokenDetailPage = () => {
                     <p>Available: 0/0</p>
                     </div>
 
-                    <div className="flex flex-row justify-between border-b-[1px] border-text-bg-gray pb-4 pt-4">
-                        <div className="flex flex-row space-x-2">
+                    <div className="flex flex-row items-center justify-between border-b-[1px] border-text-bg-gray pb-4 pt-4">
+                        <div className="flex flex-row items-center space-x-2">
                         <p className="bg-lightest-gray rounded-md pt-1 px-1"><AiOutlineQuestion /> </p>
                         <p className="font-bold">Extra Energy Consumption Factor:</p>
                         </div>
@@ -331,8 +324,8 @@ const TokenDetailPage = () => {
                     <p>{tokendata?.TotalEnergy}%</p>
                     </div>
 
-                    <div className="flex flex-row justify-between  pb-4 pt-4">
-                        <div className="flex flex-row space-x-2">
+                    <div className="flex flex-row items-center justify-between  pb-4 pt-4">
+                        <div className="flex flex-row items-center space-x-2">
                         <p className="bg-lightest-gray rounded-md pt-1 px-1"><AiOutlineQuestion /> </p>
                         <p className="font-bold">Energy & POLLUX Power:</p>
                         </div>
@@ -343,7 +336,7 @@ const TokenDetailPage = () => {
             </div>
 
 
-            <div className="w-[40%] bg-white rounded-lg shadow-lg p-5">
+            <div className="w-full md:w-full lg:w-full xl:w-[40%] 2xl:w-[40%] bg-white rounded-lg shadow-lg p-5">
 
                 <div className="flex flex-row justify-between">
                   <p  className="text-2xl font-bold pb-4">Calling Overview</p>
