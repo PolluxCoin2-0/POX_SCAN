@@ -14,15 +14,15 @@ import { formatNumberWithCommas } from "../../utils/FormattingNumber";
 const Accounts = () => {
    const [data, setData] = useState({});
    const [data1, setData1] = useState({});
+  // For Pagination
+  const [currentPage, setCurrentPage] = useState(0);
 
    useEffect(() => {
     
     const fetchData = async () => {
       try {
         const data = await getAccountsData();
-        const data1 = await getAccountTableData();
-
-        
+        const data1 = await getAccountTableData(currentPage);
 
         setData(data?.message);
         setData1(data1?.message);
@@ -33,11 +33,9 @@ const Accounts = () => {
     };
 
     fetchData();
-  }, [])
+  }, [currentPage])
 
-  // For Pagination
-  const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = 10; // Example total pages
+
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -179,8 +177,7 @@ const Accounts = () => {
 
         <div className="flex justify-start md:justify-end min-w-[800px] overflow-x-auto">
         <Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
+        totalPages={data1?.totalPages}
         onPageChange={handlePageChange}
       />
         </div>
