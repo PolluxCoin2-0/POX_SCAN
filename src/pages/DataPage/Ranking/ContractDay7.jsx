@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { shortenString } from "../../../utils/shortenString";
 import { getRankingContractDaySevenData, getRankingContractDayThreeData } from "../../../utils/axios/Data";
+import { Link } from "react-router-dom";
 
 const TableData = ({title, tableDataArray, type}) => {
 
@@ -28,9 +29,9 @@ const TableData = ({title, tableDataArray, type}) => {
   <p className="text-2xl font-bold pb-8 pt-8">{title}</p>
   <div className="bg-white rounded-xl pt-6 pl-10 pr-10 pb-10">
     <div className="flex flex-row justify-around bg-lightest-gray p-2 rounded-lg">
-      <p className="text-light-gray w-[20%]">Rank</p>
-      <p className="text-light-gray w-[60%]">Account</p>
-      <p className="text-light-gray w-[20%]">Total Count</p>
+      <p className="text-light-gray text-center w-[20%]">Rank</p>
+      <p className="text-light-gray text-center w-[60%]">Account</p>
+      <p className="text-light-gray text-center w-[20%]">Total Count</p>
     </div>
 
     {tableDataArray?.map && tableDataArray?.map((param, index) => {
@@ -39,9 +40,12 @@ const TableData = ({title, tableDataArray, type}) => {
 
       return (
         <div key={index} className="flex flex-row justify-around p-5 border-b-2 border-b-lightest-gray">
-          <p className="w-[20%]">{rank}</p>
-          <p className="w-[60%]">{type ==="contractAddress"? shortenString(param?.contractAddress, 10): shortenString(param?._id, 10)}</p>
-          <p className="w-[20%]">{param?.totalCount}</p>
+          <p className="w-[20%] text-center">{rank}</p>
+          <Link to={`/accountdetails/${param?.contractAddress}`} className="w-[60%] text-dark-red text-center">
+          <p >{type ==="contractAddress"? shortenString(param?.contractAddress, 10): shortenString(param?._id, 10)}</p>
+          </Link>
+          
+          <p className="w-[20%] text-center ">{param?.totalCount}</p>
         </div>
       );
     })}
