@@ -35,9 +35,9 @@ const ParameterTable = () => {
   return (
     <div className="bg-white pt-2 pb-8">
       <div className="flex flex-row justify-between mt-7 ml-2 mr-2 rounded-xl bg-lightest-gray pt-3 pb-3 pl-5 pr-5">
-        <p className="w-[10%]">Number</p>
-        <p className="w-[70%]">Parameter</p>
-        <p className="w-[20%]">Current Value</p>
+        <p className="w-[10%] font-bold ">Number</p>
+        <p className="w-[70%] font-bold ">Parameter</p>
+        <p className="w-[20%] font-bold ">Current Value</p>
       </div>
 
       {data?.map &&
@@ -111,13 +111,13 @@ const handleShowModal =()=>{
   return (
     <div className="bg-white pt-2 pb-8 ">
       <div className="flex flex-row justify-evenly  mt-7 ml-2 mr-2 rounded-xl bg-lightest-gray pt-3 pb-3 pl-5 pr-5">
-        <p className="w-[5%] ">Number</p>
-        <p className="w-[17%] ">Content</p>
-        <p className="w-[20%] ">Proposer</p>
-        <p className="w-[16%]">Created / Expire on (UTC)</p>
-        <p className="w-[12%] ">Status</p>
-        <p className="w-[12%]">Upvotes / Total Votes</p>
-        <p className="w-[16%] ">Operation</p>
+        <p className="w-[5%]  font-bold text-center ">Number</p>
+        <p className="w-[20%] font-bold text-center  ">Content</p>
+        <p className="w-[17%] font-bold text-center  ">Proposer</p>
+        <p className="w-[16%] font-bold text-center ">Created / Expire on (UTC)</p>
+        <p className="w-[12%] font-bold text-center  ">Status</p>
+        <p className="w-[12%] font-bold text-center ">Upvotes / Total Votes</p>
+        <p className="w-[18%] font-bold text-center  ">Operation</p>
       </div>
 
       {data1?.map &&
@@ -125,22 +125,22 @@ const handleShowModal =()=>{
           return (
             <>
               <div className="flex flex-row justify-evenly p-5 border-b-2 border-b-lightest-gray">
-                <p className="w-[5%] items-center ">#{param?.proposal_id}</p>
-                <p className="w-[17%]  truncate items-center ">
+                <p className="w-[5%] text-center  ">#{param?.proposal_id}</p>
+                <p className="w-[20%]  truncate text-center ">
                   {param?.parameters?.[0]?.description &&
                     param?.parameters?.[0]?.description}
                 </p>
-                <p className="w-[20%] items-center ">
+                <p className="w-[17%] text-center ">
                   {param?.proposer_address &&
                     shortenString(param?.proposer_address, 10)}
                 </p>
-                <p className="w-[16%] items-center ">
+                <p className="w-[16%] text-center  ">
                   {formatTimestamp(param?.create_time)} {" "}
                   {formatTimestamp(param?.expiration_time)}
                 </p>
-                <p className="w-[12%]  items-center text-dark-green ">{param?.state}</p>
-                <p className="w-[12%] items-center "></p>
-                <p className="w-[16%] items-center cursor-pointer text-dark-red underline text-nowrap " onClick={()=>handleModal(param?.proposal_id)}>View Details Committee Proposals </p>
+                <p className="w-[12%] text-center text-dark-green ">{param?.state}</p>
+                <p className="w-[12%] text-center "></p>
+                <p className="w-[18%] text-center cursor-pointer text-dark-red underline text-nowrap " onClick={()=>handleModal(param?.proposal_id)}>View Details Committee Proposals </p>
               </div>
             </>
           );
@@ -192,7 +192,7 @@ const ParametersProposals = () => {
       <div className=" rounded-xl my-7 p-10">
         <div className="flex flex-row space-x-8">
           <p
-            className={`cursor-pointer py-3 px-4 whitespace-nowrap ${
+            className={`cursor-pointer font-bold text-center border-2py-3 px-4 whitespace-nowrap ${
               isRender === "Network Parameter"
                 ? "bg-white  rounded-t-2xl"
                 : "text-black"
@@ -203,7 +203,7 @@ const ParametersProposals = () => {
           </p>
 
           <p
-            className={`cursor-pointer py-3 px-4 whitespace-nowrap ${
+            className={`cursor-pointer font-bold py-3 px-4 whitespace-nowrap ${
               isRender === "Committee Proposals"
                 ? "bg-white  rounded-t-2xl"
                 : "text-black"

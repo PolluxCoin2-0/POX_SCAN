@@ -17,11 +17,11 @@ import { IoIosCheckmarkCircleOutline } from "react-icons/io";
 import { RxCrossCircled } from "react-icons/rx";
 import { shortenString } from "../../utils/shortenString";
 import { secondsAgo } from "../../utils/secondAgo";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { getTrendingSearchGraphData } from "../../utils/axios/Home";
 
-const TransactionTable = () => {
+const TransactionTable = () => { 
   // For Pagination
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = 10; // Example total pages
@@ -54,17 +54,17 @@ const TransactionTable = () => {
       </div>
 
       <div className="min-w-[1500px] flex flex-row justify-evenly text-center bg-lightest-gray p-4 m-3 rounded-xl">
-        <p className="w-[4%]">
+        <p className="w-[4%] flex justify-center ">
           <IoMdEye />
         </p>
-        <p className="w-[16%]">Hash</p>
-        <p className="w-[10%]">Block</p>
-        <p className="w-[10%]">Time</p>
-        <p className="w-[14%]">Transaction Type</p>
-        <p className="w-[12%]">From</p>
-        <p className="w-[12%]">To</p>
-        <p className="w-[14%]">Token</p>
-        <p className="w-[8%]">Result</p>
+        <p className="w-[16%] font-bold text-center ">Hash</p>
+        <p className="w-[10%] font-bold text-center ">Block</p>
+        <p className="w-[10%] font-bold text-center ">Time</p>
+        <p className="w-[14%] font-bold text-center ">Transaction Type</p>
+        <p className="w-[12%] font-bold text-center ">From</p>
+        <p className="w-[12%] font-bold text-center ">To</p>
+        <p className="w-[14%] font-bold text-center ">Token</p>
+        <p className="w-[8%] font-bold text-center ">Result</p>
       </div>
 
       {data?.transactions &&
@@ -73,28 +73,42 @@ const TransactionTable = () => {
             key={index}
             className="min-w-[1500px] flex flex-row justify-evenly p-4 m-3 border-b-2 border-lightest-gray rounded-xl"
           >
-            <p className="w-[4%]">
+            <p className="w-[4%] flex justify-center ">
               <IoMdEye />
             </p>
-            <p className="w-[16%] text-center">
+
+            <Link to={`/transactiondetails/${transaction?.transactionId}`} className="w-[16%] text-center text-dark-red">
+            <p >
               {transaction?.transactionId &&
                 shortenString(transaction?.transactionId, 8)}
             </p>
-            <p className="w-[10%] text-center">{transaction?.blockNumber}</p>
+            </Link>
+            
+            <Link to={`/blockdetailpage/${transaction?.blockNumber}`} className="w-[10%] text-center text-dark-red">
+            <p >{transaction?.blockNumber}</p>
+            </Link>
+          
             <p className="w-[10%] text-center">
               {transaction?.timeStamp && secondsAgo(transaction?.timeStamp)}
             </p>
             <p className="w-[14%] text-center">
               {transaction?.type && transaction?.type}
             </p>
-            <p className="w-[12%] text-center">
+
+            <Link to={`/accountdetails/${transaction?.fromAddress}`} className="w-[12%] text-center text-dark-red">
+            <p >
               {transaction?.fromAddress &&
                 shortenString(transaction?.fromAddress, 5)}
             </p>
-            <p className="w-[12%] text-center">
+            </Link>
+           
+           <Link to={`/producerdetailpage/${transaction?.toAddress}`} className="w-[12%] text-center text-dark-red">
+           <p >
               {transaction?.toAddress &&
                 shortenString(transaction?.toAddress, 5)}
             </p>
+           </Link>
+          
             <p className="w-[14%] text-center">
               {transaction?.type && transaction?.type}
             </p>
@@ -151,14 +165,14 @@ const TransferTable = () => {
       </div>
 
       <div className="min-w-[1500px] flex flex-row justify-evenly text-center bg-lightest-gray p-4 m-3 rounded-xl">
-        <p className="w-[22%]">Token</p>
-        <p className="w-[22%]">Amount/Function</p>
-        <p className="w-[5%]">Result </p>
-        <p className="w-[10%]">Time</p>
-        <p className="w-[8%]">From</p>
-        <p className="w-[8%]">To</p>
-        <p className="w-[10%]">Hash</p>
-        <p className="w-[5%]">Block</p>
+        <p className="w-[19%] font-bold text-center ">Token</p>
+        <p className="w-[18%] font-bold text-center ">Amount/Function</p>
+        <p className="w-[7%] font-bold text-center ">Result </p>
+        <p className="w-[10%] font-bold text-center ">Time</p>
+        <p className="w-[13%] font-bold text-center ">From</p>
+        <p className="w-[13%] font-bold text-center ">To</p>
+        <p className="w-[15%] font-bold text-center ">Hash</p>
+        <p className="w-[7%] font-bold text-center ">Block</p>
       </div>
 
       {data1?.transactions &&
@@ -167,17 +181,27 @@ const TransferTable = () => {
             key={index}
             className="min-w-[1500px] flex flex-row justify-evenly p-4 m-3 border-b-2 border-lightest-gray rounded-xl"
           >
-            <p className="w-[22%] text-center">
+              
+              <div className="w-[19%]">
+              <div className="flex justify-center space-x-6 ">
+                 <p className="text-dark-red "> Pollux...({transaction?.multipleDecodedData?.decodedDataResult?.name && transaction?.multipleDecodedData?.decodedDataResult?.name})</p>
+                 <p className="px-2 py-[1px] rounded-md bg-light-red text-black"> {transaction?.multipleDecodedData?.decodedDataResult?.name && transaction?.multipleDecodedData?.decodedDataResult?.name}</p>
+                 </div>
+            <Link to={`/transactiondetails/${transaction?.multipleDecodedData?.decodedDataResult?.contractAddress}`} className=" text-center text-light-gray">
+            <p >
               {transaction?.multipleDecodedData?.decodedDataResult
                 ?.contractAddress &&
-              transaction?.multipleDecodedData?.decodedDataResult
-                ?.contractAddress
-                ? transaction?.multipleDecodedData?.decodedDataResult
-                    ?.contractAddress
-                : transaction?.contractAddress}
+              shortenString(transaction?.multipleDecodedData?.decodedDataResult
+                ?.contractAddress, 10)
+                ? shortenString(transaction?.multipleDecodedData?.decodedDataResult
+                    ?.contractAddress, 10)
+                : shortenString(transaction?.contractAddress, 10)}
             </p>
+            </Link>
+            </div>
+           
 
-            <p className="w-[22%] text-center">
+            <p className="w-[18%] text-center">
               {transaction?.multipleDecodedData?.decodedDataResult?.value &&
               transaction?.multipleDecodedData?.decodedDataResult?.value
                 ? transaction?.multipleDecodedData?.decodedDataResult?.value
@@ -185,7 +209,7 @@ const TransferTable = () => {
               /{transaction?.functionSelector}
             </p>
 
-            <p className="w-[5%] text-center">
+            <p className="w-[7%] text-center flex justify-center">
               {transaction?.result === "SUCCESS" ? (
                 <IoIosCheckmarkCircleOutline size={24} color="green" />
               ) : (
@@ -196,8 +220,9 @@ const TransferTable = () => {
             <p className="w-[10%] text-center">
               {transaction?.timeStamp && secondsAgo(transaction?.timeStamp)}
             </p>
-
-            <p className="w-[8%] text-center">
+             
+             <Link to={`/accountdetails/${transaction?.multipleDecodedData?.decodedDataResult?.from}`} className="w-[13%] text-center text-dark-red">
+             <p >
               {transaction?.multipleDecodedData?.decodedDataResult?.from &&
               transaction?.multipleDecodedData?.decodedDataResult?.from
                 ? shortenString(
@@ -206,8 +231,10 @@ const TransferTable = () => {
                   )
                 : shortenString(transaction?.fromAddress, 5)}
             </p>
-
-            <p className="w-[8%] text-center">
+             </Link>
+           
+            <Link to={`/producerdetailpage/${ transaction?.multipleDecodedData?.decodedDataResult?.to}`}  className="w-[13%] text-center text-dark-red">
+            <p >
               {transaction?.multipleDecodedData?.decodedDataResult?.to &&
               transaction?.multipleDecodedData?.decodedDataResult?.to
                 ? shortenString(
@@ -216,15 +243,23 @@ const TransferTable = () => {
                   )
                 : shortenString(transaction?.toAddress, 5)}
             </p>
-
-            <p className="w-[10%] text-center">
+            </Link>
+           
+             
+             <Link to={`/transactiondetails/${transaction?.transactionId}`} className="w-[15%] text-center text-dark-red">
+             <p >
               {transaction?.transactionId &&
                 shortenString(transaction?.transactionId, 8)}
             </p>
-
-            <p className="w-[5%] flex justify-center">
+             </Link>
+            
+              
+              <Link to={`/blockdetailpage/${transaction?.blockNumber}`}  className="w-[7%] flex justify-center text-dark-red">
+              <p>
               {transaction?.blockNumber && transaction?.blockNumber}
             </p>
+              </Link>
+          
           </div>
         ))}
 

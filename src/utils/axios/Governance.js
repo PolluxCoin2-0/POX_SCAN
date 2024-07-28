@@ -60,3 +60,11 @@ export const getCommitteeProposalData = async() => {
         console.log("error", error);
     }
 }
+
+export const getSuperBlocksData = async() => {
+    try {
+        const response = await axios.post("https://testnet-governance.poxscan.io/governance/getWitnessData");
+    } catch (error) {
+        console.log("error", error);
+    }
+}

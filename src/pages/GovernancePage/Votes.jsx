@@ -9,6 +9,7 @@ import { getVotesData, getVotesTableData } from "../../utils/axios/Governance";
 import { extractSiteName } from "../../utils/extractSiteName";
 import HollowCircleTimer from "./HollowCircleTimer";
 import { Link } from "react-router-dom";
+import { formatNumberWithCommas } from "../../utils/FormattingNumber";
 
 const Votes = () => {
 
@@ -73,7 +74,7 @@ const Votes = () => {
               </div>
               <div className="pb-4">
                 <p className="text-light-gray">Real-time Votes this round</p>
-                <p className="text-lg font-bold">{votedata?.realTimeTotalVotes} <span className="text-sm font-bold text-dark-green">(+)</span></p>
+                <p className="text-lg font-bold">{votedata?.realTimeTotalVotes && formatNumberWithCommas(votedata?.realTimeTotalVotes)} <span className="text-sm font-bold text-dark-green">(+)</span></p>
               </div>
             </div>
 
@@ -147,15 +148,16 @@ const Votes = () => {
          <button className="bg-lightest-gray px-4 py-1 rounded-md">Vote</button>
         </div>
         <div className="bg-[#FAFAFA] px-6">
-  <div className="flex flex-row justify-around p-5 bg-text-bg-gray rounded-lg">
-    <p className="w-[25%]">Name</p>
-    <p className="w-[10%]">Ranking</p>
-    <p className="w-[10%]">Real-time Votes</p>
-    <p className="w-[10%]">Percentage</p>
-    <p className="w-[10%]">Productivity</p>
-    <p className="w-[11%]">Reward Distribution</p>
-    <p className="w-[10%]">APR</p>
-    <p className="w-[10%]">My Votes</p>
+  <div className="flex flex-row justify-around p-4 bg-mid-light-gray rounded-lg">
+    <p className="w-[7%] text-center  font-bold ">Sr.No</p>
+    <p className="w-[20%] text-center font-bold ">Name</p>
+    <p className="w-[10%] text-center font-bold ">Ranking</p>
+    <p className="w-[10%] text-center font-bold ">Real-time Votes</p>
+    <p className="w-[10%] text-center font-bold ">Percentage</p>
+    <p className="w-[10%] text-center font-bold ">Productivity</p>
+    <p className="w-[13%] text-center font-bold ">Reward Distribution</p>
+    <p className="w-[10%] text-center font-bold ">APR</p>
+    <p className="w-[10%] text-center font-bold ">My Votes</p>
   </div>
 
   {data?.result && data?.result.map((voter, index) => {
@@ -164,17 +166,19 @@ const Votes = () => {
 
     return (
       <div key={index} className="flex flex-row justify-around p-5 border-b-2 border-text-bg-gray">
-        <Link to={`/accountdetails/${voter?.address}`}>
-        <p className="w-[25%] text-dark-red">{voter?.url && extractSiteName(voter?.url)}</p>
+        
+        <p className="w-[7%] text-center ">{index+1}</p>
+        <Link to={`/accountdetails/${voter?.address}`}  className="w-[20%] text-center  text-dark-red">
+        <p>{voter?.url && extractSiteName(voter?.url)}</p>
         </Link>
        
-        <p className="w-[10%] ">{rank}</p>
-        <p className="w-[10%]">{voter.brokerage}</p>
-        <p className="w-[10%]">{voter?.votePercentage.toFixed(2)}</p>
-        <p className="w-[10%]">{voter.productivity.toFixed(2)}</p>
-        <p className="w-[11%]">{voter?.brokerage}%</p>
-        <p className="w-[10%]">{voter?.apr}</p>
-        <p className="w-[10%]">{voter.MyVotes}</p>
+        <p className="w-[10%] text-center  ">{rank}</p>
+        <p className="w-[10%] text-center ">{voter.brokerage}</p>
+        <p className="w-[10%] text-center ">{voter?.votePercentage.toFixed(2)}</p>
+        <p className="w-[10%] text-center ">{voter.productivity.toFixed(2)}</p>
+        <p className="w-[13%] text-center ">{voter?.brokerage}%</p>
+        <p className="w-[10%] text-center ">{voter?.apr}</p>
+        <p className="w-[10%] text-center ">{voter.MyVotes}</p>
       </div>
     );
   })}

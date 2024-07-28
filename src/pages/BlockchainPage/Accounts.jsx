@@ -7,6 +7,7 @@ import { getAccountsData, getAccountTableData } from "../../utils/axios/Blockcha
 import { shortenString } from "../../utils/shortenString";
 import { secondsAgo } from "../../utils/secondAgo";
 import { Link } from "react-router-dom";
+import { formatNumberWithCommas } from "../../utils/FormattingNumber";
 
 
 
@@ -56,14 +57,14 @@ const Accounts = () => {
           <div className="flex flex-row justify-between pt-1 ">
             <p className="font-bold text-lg">Number of Accounts</p>
             <div className="flex flex-row">
-              <p>More</p>
-              <MdKeyboardArrowRight className="mt-1 text-xl" />
+              <p className="text-dark-red">More</p>
+              <MdKeyboardArrowRight className="mt-1 text-xl" color="#C23631" />
             </div>
           </div>
 
           <div className=" w-full flex flex-row justify-between pt-9 pl-1 ">
             <div>
-              <p className="font-bold text-xl">{data?.totaladdr && data?.totaladdr}</p>
+              <p className="font-bold text-xl">{data?.totaladdr && formatNumberWithCommas(data?.totaladdr)}</p>
               <p className="pt-4 text-sm text-light-gray">Total</p>
             </div>
 
@@ -80,19 +81,19 @@ const Accounts = () => {
           <div className=" flex flex-row justify-between pt-1">
             <p className="font-bold text-lg">POX Holders</p>
             <div className="flex flex-row">
-              <p>More</p>
-              <MdKeyboardArrowRight className="mt-1 text-xl" />
+              <p className="text-dark-red">More</p>
+              <MdKeyboardArrowRight className="mt-1 text-xl"  color="#C23631"/>
             </div>
           </div>
 
           <div className=" w-full flex flex-row justify-between pt-9 pl-1">
             <div>
-              <p className="text-xl font-bold">{data?.hodlers && data?.hodlers}</p>
+              <p className="text-xl font-bold">{data?.hodlers && formatNumberWithCommas(data?.hodlers)}</p>
               <p className="pt-4 text-sm text-light-gray">Total holders</p>
             </div>
 
             <div>
-              <p className="text-xl font-bold text-light-brown">{data?.hpercen && data?.hpercen}%</p>
+              <p className="text-xl font-bold text-dark-green">{data?.hpercen && data?.hpercen}%</p>
               <p className="pt-4 text-sm text-light-gray flex justify-end">
                 Percentage
               </p>
@@ -102,16 +103,16 @@ const Accounts = () => {
 
         <div className="w-full md:w-[32%] rounded-2xl p-8 bg-white shadow-md ">
           <div className="flex flex-row justify-between pt-1">
-            <p className="font-bold">POX Active Accounts</p>
+            <p className="font-bold text-lg">Active Accounts</p>
             <div className="flex flex-row">
-              <p>More</p>
-              <MdKeyboardArrowRight className="mt-1 text-xl" />
+              <p className="text-dark-red">More</p>
+              <MdKeyboardArrowRight className="mt-1 text-xl" color="#C23631"/>
             </div>
           </div>
 
           <div className=" w-full flex flex-row justify-between pt-9 pl-1">
             <div>
-              <p className="text-xl font-bold">{data?.avgdailyactiveadr && data?.avgdailyactiveadr}</p>
+              <p className="text-xl font-bold">{data?.avgdailyactiveadr && formatNumberWithCommas(Number(data?.avgdailyactiveadr).toFixed(3))}</p>
               <p className="pt-4 text-sm text-light-gray flex ">
                 Daily Active Accounts
               </p>
@@ -130,7 +131,7 @@ const Accounts = () => {
       <div className="bg-white  rounded-2xl p-2 md:p-7  overflow-x-auto mt-8 md:mt-16">
         <div className="flex flex-row justify-start gap-5 min-w-[1500px] md:min-w-full">
           <p className="pb-5 font-medium text-light-gray">
-            The latest <span className="text-black font-semibold"> 10,000 </span>
+            The latest <span className="text-black font-semibold"> 10,000  </span>
             records are shown, sorted by decreasing POX balance by default{" "}
           </p>
           {/* <p className="text-light-gray text-3xl ">
@@ -144,22 +145,22 @@ const Accounts = () => {
         </div>
 
         <div className="flex flex-row justify-around p-2 bg-lightest-gray rounded-lg min-w-[1500px] md:min-w-full">
-          <p className=" w-[5%] text-center  ">#</p>
-          <p className=" w-[20%] text-center  ">Account</p>
-          <p className=" w-[18%] text-center ">Pox Balance</p>
-          <p className=" w-[10%] text-center  ">Percentage</p>
-          <p className=" w-[10%] text-center   whitespace-nowrap">
+          <p className=" w-[5%] text-center  font-bold ">#</p>
+          <p className=" w-[20%] text-center font-bold  ">Account</p>
+          <p className=" w-[18%] text-center font-bold ">Pox Balance</p>
+          <p className=" w-[10%] text-center font-bold  ">Percentage</p>
+          <p className=" w-[10%] text-center  font-bold  whitespace-nowrap">
             POX Power
           </p>
-          <p className=" w-[10%] text-center ">Pox Count</p>
-          <p className=" w-[15%] text-center  ">Age</p>
+          <p className=" w-[10%] text-center font-bold ">Pox Count</p>
+          <p className=" w-[15%] text-center font-bold  ">Age</p>
           
         </div>
 
         {data1?.apiResult && data1?.apiResult.map((stablecoin, index) => {
           return (
             <>
-              <div className="flex flex-row  justify-around border-b-2 p-2 border-text-bg-gray min-w-[1500px] md:min-w-full" key={index}>
+              <div className="flex flex-row  justify-around border-b-2 p-2 pb-4 pt-4 border-text-bg-gray min-w-[1500px] md:min-w-full" key={index}>
                 <p className=" text-center w-[5%]">{index+1}</p>
                 <Link to={`/tokendetailpage/${stablecoin?.address}`} className=" w-[20%] text-center  text-dark-red">
                 <p >{shortenString(stablecoin?.address && stablecoin?.address,10)}</p>

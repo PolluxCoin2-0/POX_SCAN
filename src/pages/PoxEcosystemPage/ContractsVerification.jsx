@@ -20,10 +20,17 @@ const ContractsVerification = () => {
       <div className="">
         <p className="  pt-8 text-2xl font-bold">Contracts Verification</p>
 
-        <div className="bg-white  p-8 mt-8 rounded-xl">
-        <p className="text-light-gray leading-10 text-lg flex text-justify tracking-wider"> 1. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever <br/> since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.<br/>
-        2. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged <br/> It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,<br/>
-        3. Agreed with terms & conditions</p>
+        <div className="bg-white  p-8 mt-8 rounded-xl shadow-lg">
+        <p className="text-light-gray leading-10 text-lg flex text-justify tracking-wider pb-2"> 
+        1. Contract verification is the matching of the smart contract code you write with the smart contract code posted on the blockchain network to check the<br/>
+        authenticity and transparency of the smart contract.You can validate your smart contract on Polluxcoin by uploading the smart contract file.</p>
+
+       <p className="text-light-gray leading-10 text-lg flex text-justify tracking-wider pb-2"> 
+        2. Polluxcoin respects the ownership of the developers (or the owner) of the source code. We are morally as well as legally obligated to ensure that the code  <br />
+       will only be used within the service we provide.</p>
+
+        <p className="text-light-gray leading-10 text-lg flex text-justify tracking-wider">
+          3. Please go to Source Code Terms of Use for specific terms.</p>
         </div>
      
       </div>
@@ -34,7 +41,9 @@ const ContractsVerification = () => {
               <FormComponent />
         </div>
 
-          <div className="bg-white  rounded-xl  ">
+      
+
+          <div className="bg-white  rounded-xl shadow-xl ">
         <FileDropzone onFileUpload={handleFileUpload} />
       </div>
       </div>

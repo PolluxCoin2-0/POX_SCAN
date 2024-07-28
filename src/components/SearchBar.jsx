@@ -1,14 +1,14 @@
 
 const SearchBar = () => {
   return (
-    <div className="pt-2 relative mx-auto text-gray-600">
+    <div className="pt-1 relative lg:w-2/5 text-gray-600">
       <input
-        className=" bg-white md:h-8 lg:h-8 xl:h-10 px-5 pr-16 rounded-3xl md:text-xs lg:text-xs xl:text-sm focus:outline-none placeholder:text-black placeholder:font-medium"
+        className=" bg-white w-full md:h-8 lg:h-8 xl:h-10 px-5 lg:pr-2 pr-16 rounded-3xl md:text-xs lg:text-xs xl:text-sm focus:outline-none placeholder:text-black placeholder:font-medium"
         type="search"
         name="search"
         placeholder="Search..."
       />
-      <button type="submit" className="absolute right-0 top-0 mt-5 mr-4">
+      <button type="submit" className="absolute right-0 top-0 mt-4 mr-4">
         <svg
           className="text-black md:h-3 md:w-3 lg:h-3 lg:w-3 xl:h-4 xl:w-4 fill-current"
           xmlns="http://www.w3.org/2000/svg"

@@ -53,12 +53,12 @@ const Blocks = () => {
 
           <div className=" w-full flex flex-row justify-between pt-9 pl-1 ">
             <div>
-              <p className="text-dark-red font-bold text-xl">{formatNumberWithCommas(Number(data1?.totalBlocks ?? 0))}</p>
+              <p className=" font-bold text-xl">{data1?.totalBlocks && formatNumberWithCommas(data1?.totalBlocks)}</p>
               <p className="pt-4 text-sm text-light-gray">Latest</p>
             </div>
             
             <div>
-              <p className="text-xl font-bold">+{formatNumberWithCommas(Number(data1?.totalBlocks24H ))}</p>
+              <p className="text-xl font-bold text-dark-red">+{data1?.totalBlocks24H && data1?.totalBlocks24H}</p>
               <p className="pt-4 text-sm text-light-gray flex justify-end">
                 Yesterday
               </p>
@@ -80,7 +80,7 @@ const Blocks = () => {
             </div>
 
             <div>
-              <p className="text-xl font-bold">5067,392 TRX</p>
+              <p className="text-xl text-dark-red font-bold">{data1?.totalBlockRewards24h && data1?.totalBlockRewards24h}TRX</p>
               <p className="text-xs flex justify-end">=$615,954.9</p>
               <p className="pt-4 text-sm text-light-gray flex justify-end">
                 Yesterday
@@ -103,7 +103,7 @@ const Blocks = () => {
             </div>
 
             <div>
-              <p className="text-xl font-bold">{data1?.burnedPOX24H && data1?.burnedPOX24H.toFixed(3)} TRX</p>
+              <p className="text-xl text-dark-red font-bold">{data1?.burnedPOX24H && data1?.burnedPOX24H.toFixed(3)} TRX</p>
               <p className="text-xs flex justify-end">=$1,363,912.13</p>
               <p className="pt-4 text-sm text-light-gray flex justify-end">
                 Yesterday
@@ -152,7 +152,7 @@ const Blocks = () => {
                 <p className="w-[16%] text-center ">{stablecoin?.energyUsage && stablecoin?.energyUsage}</p>
                 <p className="w-[12%] text-center ">{stablecoin?.netUsage && stablecoin?.netUsage}</p>
                 <p className="w-[12%] text-center  ">{stablecoin?.blockReward && stablecoin?.blockReward} POX</p>
-                <p className="w-[14%] text-center ">{stablecoin?.confirmed && stablecoin?.confirmed ? "CONFIRMED" : "UNCONFIRMED"}</p>
+                <p className="w-[14%] text-center text-dark-green">{stablecoin?.confirmed && stablecoin?.confirmed ? "CONFIRMED" : "UNCONFIRMED"}</p>
 
              </div>
             </>

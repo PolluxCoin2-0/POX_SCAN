@@ -3,7 +3,7 @@ import EncodingData from "./EncodingData";
 
 const EncodingConverter = () => {
   return (
-    <div className="px-12 pb-12">
+    <div className="px-4 lg:px-12 xl:px-12 2xl:px-12 pb-12">
       <div>
         <SearchBarExpand />
       </div>

@@ -11,7 +11,7 @@ import { secondsAgo } from "../../utils/secondAgo";
 import { RxCrossCircled } from "react-icons/rx";
 import { toast } from "react-toastify";
 import TokenContractPage from "./TokenContractPage";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const TransactionsTable = () => {
     // For API Integration
@@ -48,14 +48,14 @@ const TransactionsTable = () => {
             </div>
   
           <div className="min-w-[1500px] flex flex-row justify-evenly items-center bg-lightest-gray p-2 m-3 rounded-xl">
-            <p className="w-[16%]">Hash</p>
-            <p className="w-[8%]">Block</p>
-            <p className="w-[12%]">Time</p>
-            <p className="w-[12%]">Transaction Type</p>
-            <p className="w-[15%]">From</p>
-            <p className="w-[16%]">To</p>
-            <p className="w-[12%]">Token</p>
-            <p className="w-[5%]">Result</p>
+            <p className="w-[16%] font-bold text-center ">Hash</p>
+            <p className="w-[10%]  font-bold text-center ">Block</p>
+            <p className="w-[12%] font-bold text-center ">Time</p>
+            <p className="w-[16%] font-bold text-center ">Transaction Type</p>
+            <p className="w-[12%] font-bold text-center ">From</p>
+            <p className="w-[12%] font-bold text-center ">To</p>
+            <p className="w-[15%] font-bold text-center ">Token</p>
+            <p className="w-[8%] font-bold text-center ">Result</p>
             
           </div>
   
@@ -63,18 +63,32 @@ const TransactionsTable = () => {
             return (
               <>
                 <div className="min-w-[1500px] flex flex-row justify-evenly items-center p-5 border-b-2 border-lightest-gray  rounded-xl ">
-                  <p className="whitespace-nowrap w-[16%]">
+
+                  <Link to={`/transactiondetails/${transactions?.transactionId}`} className="whitespace-nowrap w-[16%] text-center">
+                  <p >
                     <span className="text-dark-red px-2">
                     {transactions?.transactionId && shortenString(transactions?.transactionId,8)}
                     </span>
                   </p>
-                  <p className="w-[8%]">{transactions?.blockNumber && formatNumberWithCommas(transactions?.blockNumber)}</p>
-                  <p className="w-[12%]">{transactions?.timeStamp && secondsAgo(transactions?.timeStamp)}</p>
-                  <p className="w-[12%] ">{transactions?.type && transactions?.type}</p>
-                  <p className="w-[15%] text-dark-red">{transactions?.fromAddress && shortenString(transactions?.fromAddress,4)}</p>
-                  <p className="w-[16%] text-dark-red">{transactions?.toAddress && shortenString(transactions?.toAddress,4)}</p>
-                  <p className="w-[12%] ">{transactions?.assetAmount && transactions?.assetAmount} {transactions?.type && transactions?.type} </p>
-                  <p className="w-[5%] ">{transactions?.result && transactions?.result==="SUCCESS"?<IoCheckmarkCircleOutline size={24} color="green" />:<RxCrossCircled size={24} color="red"/>}</p>
+                  </Link>
+                 
+                 <Link to={`/blockdetailpage/${transactions?.blockNumber}`} className="w-[10%] text-dark-red cursor-default text-center">
+                 <p >{transactions?.blockNumber && formatNumberWithCommas(transactions?.blockNumber)}</p>
+                 </Link>
+                 
+                  <p className="w-[12%] text-center">{transactions?.timeStamp && secondsAgo(transactions?.timeStamp)}</p>
+                  <p className="w-[16%] text-center ">{transactions?.type && transactions?.type}</p>
+
+                  <Link to={`/accountdetails/${transactions?.fromAddress}`} className="w-[12%] text-dark-red cursor-pointer text-center">
+                  <p >{transactions?.fromAddress && shortenString(transactions?.fromAddress,4)}</p>
+                  </Link>
+                   
+                   <Link to={`/producerdetailpage/${transactions?.toAddress}`} className="w-[12%] text-dark-red cursor-pointer text-center">
+                   <p >{transactions?.toAddress && shortenString(transactions?.toAddress,4)}</p>
+                   </Link>
+                 
+                  <p className="w-[15%]  text-center">{transactions?.assetAmount && transactions?.assetAmount} {transactions?.type && transactions?.type} </p>
+                  <p className="w-[8%] flex justify-center ">{transactions?.result && transactions?.result==="SUCCESS"?<IoCheckmarkCircleOutline size={24} color="green" />:<RxCrossCircled size={24} color="red"/>}</p>
                 </div>
               </>
             );

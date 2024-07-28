@@ -118,9 +118,12 @@ const VerifiedContractTable = () => {
                   <p className="w-[12%] text-center  indent-8">
                     {contact?.updatedAt && formatTimestampOnlyDate(contact?.updatedAt)}
                   </p>
-                  <p className="w-[5%]  flex justify-center ">
+                  <Link to={`/tokendetailpage/${contact?.contractAddress}`}  className="w-[5%]  flex justify-center ">
+                  <p>
                     <PiWrenchLight />
                   </p>
+                  </Link>
+                 
                 </div>
               </>
             );
@@ -216,9 +219,11 @@ const AllContractTable = () => {
                 <p className="w-[15%] text-center   indent-4">
                   {contact?.updatedAt && formatTimestampOnlyDate(contact?.updatedAt)}
                 </p>
-                <p className="w-[10%] flex  justify-center">
-                  <PiWrenchLight />
-                </p>
+                <Link to={`/tokendetailpage/${contact?.contractAddress}`}  className="w-[10%]  flex justify-center ">
+                  <p>
+                    <PiWrenchLight />
+                  </p>
+                  </Link>
               </div>
             </>
           );
@@ -282,35 +287,38 @@ const Contacts = () => {
       <div className="">
         <div className="flex flex-row justify-between items-center pb-10">
           <p className="text-lg md:text-2xl font-bold">Contracts</p>
+          <Link to="pagenotfound">
           <button className="bg-dark-yellow py-2 px-4 md:px-16 font-bold text-base md:text-xl rounded-lg text-black cursor-pointer  ">
             Contracts Verification
           </button>
+          </Link>
+         
         </div>
 
         <div className=" flex flex-col space-y-6 md:space-y-0 md:flex-row justify-between w-full">
           <div className=" flex flex-col gap-10 w-full md:w-[30%]">
             <div className="bg-white px-4 md:px-12  py-6 gap-9 rounded-2xl shadow-xl ">
               <div className="flex flex-row justify-between">
-                <p className=" text-xl font-bold pl-0">Contacts</p>
+                <p className=" text-xl font-bold pl-0">Contracts</p>
                 <div className="flex flex-row pr-0">
-                  <p>More</p>
-                  <MdKeyboardArrowRight className="mt-1 text-xl" />
+                  <p className="text-dark-red ">More</p>
+                  <MdKeyboardArrowRight className="mt-1 text-xl" color="#C23631"/>
                 </div>
               </div>
 
-              <div className=" flex flex-row justify-between gap-20 py-5">
-                <div className="pl-0">
-                  <p>
+              <div className=" flex flex-row justify-between  py-5">
+                <div className="">
+                  <p className="pt-5 text-xl font-bold">
                     {data1[1]?.total_contracts && data1[1]?.total_contracts}
                   </p>
-                  <p className="text-light-gray  pt-5">Total</p>
+                  <p className="text-light-gray  pt-1">Total</p>
                 </div>
 
                 <div>
-                  <p className="text-dark-green font-bold text-xl pr-0">
+                  <p className="text-dark-green font-bold text-xl pt-5 pr-0 text-right">
                     {data1[1]?.allContract24h && data1[1]?.allContract24h}
                   </p>
-                  <p className="text-light-gray  pt-5">Last 24h</p>
+                  <p className="text-light-gray  pt-1">Last 24h</p>
                 </div>
               </div>
             </div>
@@ -318,26 +326,26 @@ const Contacts = () => {
             {/* Verified Contacts */}
             <div className="bg-white px-4 md:px-12 py-6 gap-9 rounded-2xl shadow-xl">
               <div className="flex flex-row justify-between ">
-                <p className=" text-xl font-bold "> Verified Contacts </p>
+                <p className=" text-xl font-bold "> Verified Contracts </p>
                 <div className="flex flex-row ">
-                  <p>More</p>
-                  <MdKeyboardArrowRight className="mt-1 text-xl" />
+                  <p className="text-dark-red">More</p>
+                  <MdKeyboardArrowRight className="mt-1 text-xl" color="#C23631"/>
                 </div>
               </div>
 
-              <div className=" flex flex-row justify-between gap-20 rounded-lg pt-6 pb-6">
+              <div className=" flex flex-row justify-between  rounded-lg pt-6 pb-6">
                 <div>
-                  <p className="text-xl font-bold ">
+                  <p className="text-xl font-bold pt-5 ">
                     {data[1]?.verifiedContractCount}
                   </p>
-                  <p className="text-light-gray pt-5">Total</p>
+                  <p className="text-light-gray pt-1">Total</p>
                 </div>
 
                 <div>
-                  <p className="text-xl font-bold text-dark-green text-right">
+                  <p className="text-xl pt-5 font-bold text-dark-green text-right">
                     {data[1]?.verifiedContract24h}
                   </p>
-                  <p className="text-light-gray pt-5">Yesterday</p>
+                  <p className="text-light-gray pt-1">Yesterday</p>
                 </div>
               </div>
             </div>

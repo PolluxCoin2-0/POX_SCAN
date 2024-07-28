@@ -1,14 +1,29 @@
 import { useEffect, useState } from "react";
 import SearchBarExpand from "../../components/SearchBarExpand";
 import Pagination from "../../components/Pagination";
-import { getHoldersData, getPoxData } from "../../utils/Token";
+import {
+  getHoldersData,
+  getHoldersSlidersStatsData,
+  getPoxData,
+} from "../../utils/Token";
 import { IoCheckmarkCircleOutline } from "react-icons/io5";
 import { shortenString } from "../../utils/shortenString";
 import { secondsAgo } from "../../utils/secondAgo";
 import { Link } from "react-router-dom";
+import PoxImg from "../../assets/PoxImg.png";
+import { IoEllipsisVertical } from "react-icons/io5";
+import { RiFileCopy2Fill } from "react-icons/ri";
+import { PiTwitterLogoLight } from "react-icons/pi";
+import { PiFacebookLogoLight } from "react-icons/pi";
+import { PiInstagramLogoLight } from "react-icons/pi";
+import { LiaTelegram } from "react-icons/lia";
+import { PiYoutubeLogoLight } from "react-icons/pi";
+import { TbTrendingUp } from "react-icons/tb";
+import { getPoxOverviewData } from "../../utils/axios/Data";
+import { formatNumberWithCommas } from "../../utils/FormattingNumber";
+import { toast } from "react-toastify";
 
 const TokenTransferTable = () => {
-  
   const [data, setData] = useState({});
 
   useEffect(() => {
@@ -42,7 +57,7 @@ const TokenTransferTable = () => {
       {data?.transactions?.map &&
         data?.transactions?.map((stablecoin, index) => {
           return (
-            <>
+            <div key={index}>
               <div className="min-w-[1500px]  flex flex-row  justify-around border-b-2 p-3 border-text-bg-gray">
                 <Link
                   to={`/transactiondetails/${stablecoin?.transactionId}`}
@@ -65,7 +80,7 @@ const TokenTransferTable = () => {
                   {stablecoin.timeStamp && secondsAgo(stablecoin?.timeStamp)}
                 </p>
                 <p className=" w-[12%] text-center">
-                  {stablecoin.PoxCount}
+                  {stablecoin?.assetName}
                 </p>
 
                 <Link
@@ -97,14 +112,14 @@ const TokenTransferTable = () => {
                   <IoCheckmarkCircleOutline />
                 </p>
               </div>
-            </>
+            </div>
           );
         })}
     </div>
   );
 };
 
-const HoldersTable = () => {  
+const HoldersTable = () => {
   const [holderdata, setHolderData] = useState({});
 
   useEffect(() => {
@@ -122,8 +137,8 @@ const HoldersTable = () => {
 
   return (
     <div>
-      <div className="min-w-[1500px] flex flex-row justify-evenly p-2 bg-lightest-gray rounded-lg">
-        <p className="w-[8%]   text-center font-bold ">#</p>
+      <div className="flex flex-row justify-evenly p-2 bg-lightest-gray rounded-lg ">
+        <p className="w-[8%]  text-center font-bold ">#</p>
         <p className="w-[32%] text-center font-bold ">Account</p>
         <p className="w-[15%]  text-center font-bold ">Amount</p>
         <p className="w-[15%]  text-center font-bold ">Value</p>
@@ -134,7 +149,7 @@ const HoldersTable = () => {
       {holderdata?.apiResult?.map &&
         holderdata?.apiResult?.map((stablecoin, index) => {
           return (
-            <>
+            <div key={index}>
               <div className="min-w-[1500px]  flex flex-row  justify-around border-b-2 p-3 border-text-bg-gray">
                 <p className="w-[8%]  text-center  ">{index + 1}</p>
 
@@ -147,14 +162,13 @@ const HoldersTable = () => {
 
                 <p className="w-[15%]  text-center ">{stablecoin?.balance}</p>
                 <p className="w-[15%]  text-center ">{stablecoin.PoxCount}</p>
-                <p className=" w-[15%]  text-center ">
-                  {stablecoin?.percentage.toFixed(6)}%
+
+                <p className="w-[15%]  text-center ">
+                  {Number(stablecoin?.balance).toFixed(6)}
                 </p>
-                <p className=" w-[15%]  text-center ">
-                  {stablecoin?.age && secondsAgo(stablecoin?.age)}
-                </p>
+                <p className=" w-[15%]  text-center "> </p>
               </div>
-            </>
+            </div>
           );
         })}
     </div>
@@ -162,6 +176,25 @@ const HoldersTable = () => {
 };
 
 const Pox = () => {
+  const [poxData, setPoxData] = useState({});
+  const [sliderData, setSliderData] = useState({});
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const poxData = await getPoxOverviewData();
+        setPoxData(poxData);
+
+        const sliderData = await getHoldersSlidersStatsData();
+        console.log(sliderData);
+        setSliderData(sliderData?.message);
+      } catch (error) {
+        console.log("error", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   const [isRender, setIsRender] = useState("Token Transfer");
   const renderItemComponent = () => {
     switch (isRender) {
@@ -184,124 +217,207 @@ const Pox = () => {
     setCurrentPage(page);
   };
 
+  const handleCopy = (issueTime) => {
+    navigator.clipboard.writeText(issueTime);
+    toast.success(" copied!");
+  };
+
   const [onSearch, setOnSearch] = useState("");
   return (
     <div className="px-4 md:px-12 pb-12">
       <div>
         <SearchBarExpand onSearch={setOnSearch} />
       </div>
-      <p className="font-bold text-2xl">Pollux (POX)</p>
-      <div className=" flex flex-col  md:flex-row justify-between">
+
+      <div className="flex flex-row space-x-4">
+        <div>
+          <img src={PoxImg} alt="pox image" className="w-[60px] " />
+        </div>
+        <div>
+          <p className="font-bold text-xl">Pollux (POX)</p>
+          <p className="pt-1">
+            Pollux is the official token issued by pollux network on the POX
+            chain.
+          </p>
+        </div>
+      </div>
+
+      <div className=" flex flex-col space-x-5 md:flex-row justify-between">
         {/* Number of Blocks */}
-        <div className="w-full md:w-[32%]  bg-white shadow-lg rounded-2xl p-5 my-6 md:my-12">
-          <div className="pt-1">
-            <p className="font-bold">Number of Blocks</p>
+        <div className="w-full md:w-1/3  bg-lightest-gray rounded-xl my-2">
+          <p className=" px-2  flex flex-row justify-between items-center  pt-4 ">
+            <span>Price</span>{" "}
+            <span className=" text-dark-red flex flex-row items-center justify-end">
+              ${poxData.price}
+              <span className="flex items-center pl-3 ">
+                <TbTrendingUp />
+              </span>
+            </span>
+          </p>
+          <div className=" flex flex-row items-center justify-between px-2  pt-4 pb-1">
+            <p>Price change (24h) </p>{" "}
+            <p className=" flex flex-row justify-end items-center">
+              <span className=" text-dark-green ">{poxData.change24h}</span>
+            </p>
           </div>
 
-          <div className=" w-full flex flex-row justify-between pt-9 pl-1 ">
-            <div>
-              <p className="text-dark-red font-bold text-xl">60754103</p>
-              <p className="pt-4 text-sm text-light-gray">Latest</p>
-            </div>
+          <div className=" flex flex-row items-center justify-between px-2  pt-4 pb-1">
+            <p>Market Cap </p>{" "}
+            <p className=" flex flex-row justify-end items-center">
+              <span className=" text-dark-green ">
+                ${formatNumberWithCommas(poxData.marketCap)}
+              </span>
+            </p>
+          </div>
 
-            <div>
-              <p className="text-xl font-bold">+28,793</p>
-              <p className="pt-4 text-sm text-light-gray flex justify-end">
-                Yesterday
-              </p>
+          <div className=" flex flex-row items-center justify-between px-2  pt-4 pb-1">
+            <p>Market Cap Change (24h)</p>{" "}
+            <p className=" flex flex-row justify-end items-center">
+              <span className=" text-dark-green ">
+                ${formatNumberWithCommas(poxData.marketCapChange24h)}
+              </span>
+            </p>
+          </div>
+
+          <div className=" flex flex-row items-center justify-between px-2  pt-4 pb-1">
+            <p>24h Volume/Market Cap</p>{" "}
+            <p className=" flex flex-row justify-end items-center">
+              <span className=" text-dark-green ">{poxData.volChange}</span>
+            </p>
+          </div>
+
+          <div className=" flex flex-row items-center justify-between px-2  pt-4 pb-1">
+            <p>Volume 24h</p>{" "}
+            <p className=" flex flex-row justify-end items-center">
+              <span className=" text-dark-green ">
+                ${formatNumberWithCommas(poxData.volume24h)}
+              </span>
+            </p>
+          </div>
+        </div>
+
+        <div className="w-full md:w-1/3 bg-lightest-gray rounded-xl my-2">
+          <p className=" px-2  flex flex-row justify-between items-center  pt-4 ">
+            <span>Total supply </span>{" "}
+            <span className=" text-dark-red flex flex-row items-center justify-end">
+              {sliderData?.totalSupply}
+            </span>
+          </p>
+          <div className=" flex flex-row items-center justify-between px-2  pt-4 pb-1">
+            <p>Circulating Supply</p>{" "}
+            <p className=" flex flex-row justify-end items-center">
+              <span className=" text-dark-green ">
+                {sliderData?.circulatingSupply}
+              </span>
+            </p>
+          </div>
+
+          <div className=" flex flex-row items-center justify-between px-2  pt-4 pb-1">
+            <p>Block </p>{" "}
+            <p className=" flex flex-row justify-end items-center">
+              <span className=" text-dark-green ">{sliderData?.block}</span>
+            </p>
+          </div>
+
+          <div className=" flex flex-row items-center justify-between px-2  pt-4 pb-1">
+            <p>Reward per block</p>{" "}
+            <p className=" flex flex-row justify-end items-center">
+              <span className=" text-dark-green ">{sliderData?.reward}</span>
+            </p>
+          </div>
+
+          <div className=" flex flex-row items-center justify-between px-2  pt-4 pb-1">
+            <p>Issue time</p>{" "}
+            <div className=" flex flex-row justify-end items-center">
+              <p className=" text-dark-green pr-2">{sliderData?.issueTime}</p>
+              <span
+                onClick={() => handleCopy(sliderData?.issueTime)}
+                className=" text-dark-red cursor-pointer"
+              >
+                <RiFileCopy2Fill />
+              </span>
             </div>
           </div>
         </div>
 
-        {/* Block Rewards */}
-        <div className="w-full md:w-[32%]  rounded-2xl p-5 bg-white shadow-md my-3 md:my-12">
-          <div className="pt-1">
-            <p className="font-bold">Block Rewards</p>
+        <div className="w-full md:w-1/3 bg-lightest-gray rounded-xl my-2">
+          <p className=" px-2  flex flex-row justify-between items-center  pt-4 ">
+            <span>Holders </span>{" "}
+            <span className=" text-dark-red flex flex-row items-center justify-end">
+              {sliderData?.holders}
+            </span>
+          </p>
+          <div className=" flex flex-row items-center justify-between px-2  pt-4 pb-1">
+            <p>Transaction Count </p>{" "}
+            <p className=" flex flex-row justify-end items-center">
+              <span className=" text-dark-green ">
+                {sliderData?.transactionCount}
+              </span>
+            </p>
           </div>
 
-          <div className=" w-full flex flex-row justify-between pt-9 pl-1">
-            <div>
-              <p className="text-xl font-bold">8.87b POX</p>
-              <p className="text-xs flex justify-end ">=$1,078,347,147.3</p>
-              <p className="pt-4 text-sm text-light-gray">Total</p>
-            </div>
-
-            <div>
-              <p className="text-xl font-bold">5067,392 TRX</p>
-              <p className="text-xs flex justify-end">=$615,954.9</p>
-              <p className="pt-4 text-sm text-light-gray flex justify-end">
-                Yesterday
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Stats on Burned Pox */}
-        <div className="w-full md:w-[32%] rounded-2xl p-5 bg-white shadow-md my-3 md:my-12">
-          <div className="pt-1">
-            <p className="font-bold">Stats on Burned POX</p>
+          <div className=" flex flex-row items-center justify-between px-2  pt-4 pb-1">
+            <p>Transactions (24h) </p>{" "}
+            <p className=" flex flex-row justify-end items-center">
+              <span className=" text-dark-green ">
+                {sliderData?.transaction24h}
+              </span>
+            </p>
           </div>
 
-          <div className=" w-full flex flex-row justify-between pt-9 pl-1">
-            <div>
-              <p className="text-xl font-bold">11.21b POX</p>
-              <p className=" text-xs">=$1,363,166,000.31</p>
-              <p className="pt-4 text-sm text-light-gray flex ">Total</p>
-            </div>
-
-            <div>
-              <p className="text-xl font-bold">11,220,752 TRX</p>
-              <p className="text-xs flex justify-end">=$1,363,912.13</p>
-              <p className="pt-4 text-sm text-light-gray flex justify-end">
-                Yesterday
-              </p>
-            </div>
+          <div className=" flex flex-row items-center justify-between px-2  pt-4 pb-1">
+            <p>POS count</p>{" "}
+            <p className=" flex flex-row justify-end items-center">
+              <span className=" text-dark-green ">{sliderData?.posCount}</span>
+            </p>
           </div>
         </div>
       </div>
 
-      <div className="flex flex-row space-x-8 pb-10">
+      <div className="flex justify-around w-full  bg-lightest-gray rounded-xl my-3">
         <p
-          className={`cursor-pointer py-3 px-4 whitespace-nowrap  ${
-            isRender === "Token Transfer"
-              ? "bg-dark-yellow font-semibold  shadow-lg rounded-lg"
-              : "text-black bg-text-bg-gray shadow-md rounded-lg"
-          }`}
           onClick={() => setIsRender("Token Transfer")}
+          className={`cursor-pointer w-full  text-center py-3 rounded-xl ${
+            isRender === "Token Transfer"
+              ? " bg-dark-red text-white"
+              : "text-dark-red"
+          } `}
         >
           Token Transfer
         </p>
-
         <p
-          className={`cursor-pointer py-3 px-4 whitespace-nowrap  ${
-            isRender === "Holders"
-              ? "bg-dark-yellow font-semibold  shadow-lg rounded-lg"
-              : "text-black bg-text-bg-gray shadow-md rounded-lg"
-          }`}
           onClick={() => setIsRender("Holders")}
+          className={`cursor-pointer w-full  text-center py-3 rounded-xl ${
+            isRender === "Holders" ? " bg-dark-red text-white" : "text-dark-red"
+          } `}
         >
           Holders
         </p>
       </div>
 
-      <div className="bg-white rounded-2xl p-4 md:p-7 ">
-        <div className="overflow-x-auto ">
-          <p className="pb-5 font-medium text-light-gray">
-            Only the first{" "}
-            <span className="text-black font-semibold">10,000</span> records are
-            displayed
-          </p>
-
-          <div>{renderItemComponent()}</div>
-
-          <div className="flex justify-end">
-            <Pagination
-              currentPage={currentPage}
-              totalPages={totalPages}
-              onPageChange={handlePageChange}
-            />
-          </div>
-        </div>
+      <div>{renderItemComponent()}</div>
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={handlePageChange}
+      />
+      <div className="flex flex-row justify-end items-center space-x-4 text-lightest-gray text-xl ">
+        <p>Follow us</p>
+        <span>
+          <PiTwitterLogoLight />
+        </span>
+        <span>
+          <PiFacebookLogoLight />
+        </span>
+        <span>
+          <PiInstagramLogoLight />
+        </span>
+        <span>
+          <LiaTelegram />
+        </span>
+        <span>
+          <PiYoutubeLogoLight />
+        </span>
       </div>
     </div>
   );
