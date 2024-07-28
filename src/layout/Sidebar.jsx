@@ -123,7 +123,7 @@ const Sidebar = ({ children }) => {
 
   return (
     <div className="flex h-screen">
-      <aside className="hidden md:flex w-64 bg-black text-white">
+      <aside className="hidden md:hidden lg:flex xl:flex 2xl:flex w-64 bg-black text-white">
         <div className="h-full px-3 py-4 overflow-y-auto w-full">
           <ul className="space-y-2 font-medium text-center">
             {renderSubmenu(submenu, `/${path}`)}

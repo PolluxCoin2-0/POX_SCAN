@@ -1,9 +1,8 @@
-import { PieChart, Pie, Tooltip, ResponsiveContainer, Cell } from 'recharts';
+import { PieChart, Pie, Tooltip, ResponsiveContainer, Cell } from "recharts";
 
-const COLORS = ['#1A5BA1','#35CA7B', ];
+const COLORS = ["#1A5BA1", "#35CA7B"];
 
 const SimplePieChartComp = ({ value }) => {
-  console.log(value);
   if (!value || value.length === 0) {
     return <div>No data available</div>;
   }

@@ -29,8 +29,8 @@ const TvlContainer = () => {
         </p> */}
       </div>
 
-      <div className="w-full flex flex-col md:flex-row justify-between">
-        <div className="w-full md:w-[70%] overflow-x-auto">
+      <div className="w-full flex flex-col md:flex-col lg:flex-row xl:flex-row 2xl:flex-row justify-between">
+        <div className="w-full md:w-full lg:w-[70%] xl:w-[70%] 2xl:w-[70%] overflow-x-auto">
           <div className="min-w-[800px]">
             {" "}
             {/* Adjust min-width as needed */}
@@ -69,7 +69,7 @@ const TvlContainer = () => {
         </div>
 
         {/* Charts */}
-        <div className="w-full md:w-[28%] mt-6 md:mt-0">
+        <div className="w-full md:w-full lg:w-[28%] xl:w-[28%] 2xl:w-[28%] mt-6 md:mt-0">
           <div className="shadow-lg bg-white rounded-xl p-4">
             <p className="font-semibold">TVL</p>
             <div className="h-[170px]">
