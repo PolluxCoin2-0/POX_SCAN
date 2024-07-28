@@ -1,46 +1,66 @@
+// currentPage, totalPages, onPageChange 
 
+import ReactPaginate from 'react-paginate';
+import { useMemo } from 'react';
 
-const Pagination = ({ currentPage, totalPages, onPageChange }) => {
-  const handleClick = (page) => {
-    if (page >= 1 && page <= totalPages) {
-      onPageChange(page);
-    }
-  };
+const Pagination = ({ totalPages, onPageChange }) => {
+  const totalPageNumbers = useMemo(() => Math.ceil(totalPages / 10), [totalPages]);
 
-  const renderPageNumbers = () => {
-    const pages = [];
-    for (let i = 1; i <= totalPages; i++) {
-      pages.push(
-        <button
-          key={i}
-          onClick={() => handleClick(i)}
-          className={`px-4 py-2 mx-1 border-[1px] border-text-bg-gray rounded ${i === currentPage ? 'bg-black text-white' : 'bg-gray-200 text-gray-700 '}`}
-        >
-          {i}
-        </button>
-      );
-    }
-    return pages;
+  const handlePageClick = (data) => {
+    const selectedPage = data.selected + 1;
+    onPageChange(selectedPage);
   };
 
   return (
-    <div className="flex justify-center items-center mt-4">
-      <button
-        onClick={() => handleClick(currentPage - 1)}
-        className="px-4 py-2 mx-1 rounded bg-gray-200 text-gray-700"
-        disabled={currentPage === 1}
-      >
-        Previous
-      </button>
-      {renderPageNumbers()}
-      <button
-        onClick={() => handleClick(currentPage + 1)}
-        className="px-4 py-2 mx-1 rounded bg-gray-200 text-gray-700"
-        disabled={currentPage === totalPages}
-      >
-        Next
-      </button>
-    </div>
+    <nav className="flex items-center justify-center gap-x-2 py-4" aria-label="Pagination">
+      <ReactPaginate
+        previousLabel={
+          <svg
+            className="shrink-0 size-4.5"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="m15 18-6-6 6-6"></path>
+          </svg>
+        }
+        nextLabel={
+          <svg
+            className="shrink-0 size-4.5"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="m9 18 6-6-6-6"></path>
+          </svg>
+        }
+        breakLabel="....."
+        breakClassName="min-h-[38px] min-w-[38px] flex justify-center items-center py-2 text-sm text-gray-800 dark:text-white tracking-[6px]"
+        pageCount={totalPageNumbers}
+        marginPagesDisplayed={2}
+        pageRangeDisplayed={5}
+        onPageChange={handlePageClick}
+        containerClassName="flex items-center gap-x-1"
+        pageClassName="min-h-[38px] min-w-[38px] flex justify-center items-center py-2 px-3 text-sm rounded-md"
+        pageLinkClassName="text-gray-800 hover:bg-gray-100 focus:bg-gray-100 dark:text-white dark:hover:bg-white/10 dark:focus:bg-white/10"
+        previousClassName="min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-1.5 text-sm rounded-md text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-white/10 dark:focus:bg-white/10"
+        nextClassName="min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-1.5 text-sm rounded-md text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-white/10 dark:focus:bg-white/10"
+        activeClassName="bg-black text-white text-lg focus:bg-gray-300 dark:bg-neutral-600 dark:text-white dark:focus:bg-neutral-500"
+        disabledClassName="opacity-50 pointer-events-none"
+      />
+    </nav>
   );
 };
 

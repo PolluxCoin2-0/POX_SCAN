@@ -27,9 +27,11 @@ export const getAccountsData = async() => {
     }
 }
 
-export const getAccountTableData =  async() => {
+export const getAccountTableData =  async(pageNo) => {
+    console.log(pageNo);
     try {
-        const response = await axios.get("https://node.poxscan.io/api/account/list?limit=10&page=0");
+        const response = await axios.get(`https://node.poxscan.io/api/account/list?limit=10&page=${pageNo}`);
+        console.log(response?.data)
         return (response?.data);
     } catch (error) {
         console.log("error", error);
