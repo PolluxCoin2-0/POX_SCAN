@@ -6,7 +6,7 @@ import { IoCopyOutline } from "react-icons/io5";
 import { MdKeyboardArrowRight, MdNoteAlt } from "react-icons/md";
 import { RxCross2 } from "react-icons/rx";
 import { TbArrowsExchange } from "react-icons/tb";
-import QRCode from "qrcode.react";
+// import QRCode from "qrcode.react";
 
 const SendComponent = ({ onClose }) => {
   return (
