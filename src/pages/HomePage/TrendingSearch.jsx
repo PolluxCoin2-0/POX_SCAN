@@ -157,7 +157,7 @@ const TrendingSearch = () => {
       </div>
 
       {/* Right Side Chart */}
-      <div className="w-full md:w-full lg:w-[28%] xl:w-[32%] 2xl:w-[28%] rounded-xl px-0 md:px-4  pb-6 lg:mt-6 xl:mt-2 2xl:mt-8 md:mt-6">
+      <div className="w-full md:w-full lg:w-[28%] xl:w-[32%] 2xl:w-[28%] rounded-xl px-0 md:px-4  pb-6 lg:mt-6 xl:mt-2 2xl:mt-0 md:mt-6">
         <div className="flex justify-between items-center mb-3">
           <p className="font-semibold text-lg">POX</p>
           <select
