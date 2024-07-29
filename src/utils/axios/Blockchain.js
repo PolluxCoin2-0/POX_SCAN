@@ -9,9 +9,10 @@ export const getBlockData = async ()=> {
     }
 }
 
-export const getBlockTableData= async() => {
+export const getBlockTableData= async(pageNo) => {
+    console.log(pageNo)
     try {
-        const response = await axios.get("https://node.poxscan.io/api/getblocks?limit=10");
+        const response = await axios.get(`https://node.poxscan.io/api/getblocks?page=${pageNo}&limit=10`);
         return (response?.data);
     } catch (error) {
         console.log("error", error);
@@ -38,12 +39,12 @@ export const getAccountTableData =  async(pageNo) => {
     }
 }
 
-export const getContractTableData = async() => {
+export const getContractTableData = async(pageNo) => {
     try {
         const response = await axios.post("https://governance.poxscan.io/dev/verifiedcontract",
             
                 {
-                    "pageNos": 0, 
+                    "pageNos": pageNo, 
                     "pageLimit": 10
                 }
             
@@ -55,6 +56,7 @@ export const getContractTableData = async() => {
 }
 
 export const getAllContractTableData =  async() => {
+    
     try {
         const response = await axios.post("https://governance.poxscan.io/dev/getcontracts",
             {
@@ -68,11 +70,11 @@ export const getAllContractTableData =  async() => {
     }
 }
 
-export const getTransferTableDataOfPoxTransfer = async() => {
+export const getTransferTableDataOfPoxTransfer = async(pageNo) => {
     try {
         const response = await axios.post("https://node.poxscan.io/api/transaction",
             {
-                " page": 0,
+                " page": pageNo,
               "limit": 10, 
               "filter": "POX"
              }
@@ -83,14 +85,14 @@ export const getTransferTableDataOfPoxTransfer = async() => {
     }
 }
 
-export const getTransferTableDataOfPRC20Transfer = async() => {
+export const getTransferTableDataOfPRC20Transfer = async(pageNo) => {
     try {
         const response = await axios.post("https://governance.poxscan.io/blockchain/getcontractdata",
             {
                 "typefilter": "type",
                 "filter": "PRC20",
                 "pageLimit": 10,
-                "pageNos": 0,
+                "pageNos": pageNo,
                 "getStats": false
             }
         );
@@ -118,12 +120,12 @@ export const getTransactionStatsData = async() => {
     }
 }
 
-export const getTransactionTableData = async()=>{
+export const getTransactionTableData = async(pageNo)=>{
     try {
         const response = await axios.post("https://node.poxscan.io/api/transaction",
             {
                 "end_timestamp": 1721125787352,
-                "page": 0,
+                "page": pageNo,
                 "limit": 10
         }
     )

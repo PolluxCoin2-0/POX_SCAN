@@ -53,7 +53,7 @@ const Pagination = ({ totalPages, onPageChange }) => {
         pageRangeDisplayed={5}
         onPageChange={handlePageClick}
         containerClassName="flex items-center gap-x-1"
-        pageClassName="min-h-[38px] min-w-[38px] flex justify-center items-center py-2 px-3 text-sm rounded-md"
+        pageClassName="min-h-[38px] min-w-[38px] flex justify-center border-[1px] border-mid-light-gray items-center py-2 px-3 text-sm rounded-md"
         pageLinkClassName="text-gray-800 hover:bg-gray-100 focus:bg-gray-100 dark:text-white dark:hover:bg-white/10 dark:focus:bg-white/10"
         previousClassName="min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-1.5 text-sm rounded-md text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-white/10 dark:focus:bg-white/10"
         nextClassName="min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-1.5 text-sm rounded-md text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-white/10 dark:focus:bg-white/10"

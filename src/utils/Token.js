@@ -1,10 +1,10 @@
 import axios from "axios";
 
-export const getPoxData = async() => {
+export const getPoxData = async(pageNo) => {
     try {
         const response = await axios.post("https://node.poxscan.io/api/transaction",
             {
-                " page": 0, 
+                " page": pageNo, 
              "limit": 10, 
              "filter": "POX"
              }
@@ -15,9 +15,9 @@ export const getPoxData = async() => {
     }
 }
  
-export const getHoldersData = async() => {
+export const getHoldersData = async(pageNo) => {
     try {
-        const response = await axios.get("https://node.poxscan.io/api/account/list?limit=10&page=0");
+        const response = await axios.get(`https://node.poxscan.io/api/account/list?limit=10&page=${pageNo}`);
         return (response?.data);
     } catch (error) {
         console.log("error", error);
@@ -58,6 +58,15 @@ export const getUsdxHolderData = async() => {
 export const getHoldersSlidersStatsData = async() => {
     try {
         const response = await axios.get("https://node.poxscan.io/api/account/stats");
+        return (response?.data);
+    } catch (error) {
+        console.log("error", error);
+    }
+}
+
+export const getUsdxHolderSlidersStataData = async() => {
+    try {
+        const response = await axios.get("https://governance.poxscan.io/blockchain/contractslider");
         return (response?.data);
     } catch (error) {
         console.log("error", error);

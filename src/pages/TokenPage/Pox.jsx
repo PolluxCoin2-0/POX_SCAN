@@ -24,12 +24,21 @@ import { formatNumberWithCommas } from "../../utils/FormattingNumber";
 import { toast } from "react-toastify";
 
 const TokenTransferTable = () => {
+
+  // For Pagination
+
+  const [currentPage, setCurrentPage] = useState(0);
+  
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
   const [data, setData] = useState({});
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await getPoxData();
+        const data = await getPoxData(currentPage);
         setData(data?.message);
       } catch (error) {
         console.log("error", error);
@@ -37,10 +46,19 @@ const TokenTransferTable = () => {
     };
 
     fetchData();
-  }, []);
+  }, [currentPage]);
 
   return (
-    <div>
+    <div className="bg-white p-5 pl-5 pr-5 rounded-xl shadow-xl">
+       <div className="bg-white rounded-2xl pt-5 pb-5 ">
+      <div className="overflow-x-auto">
+        <p className=" font-medium text-light-gray">
+          Only the first{" "}
+          <span className="text-black font-semibold">10,000</span> records are
+          displayed
+        </p>
+        </div>
+        </div>
       <div className="min-w-[1500px]  flex flex-row justify-around p-2 bg-lightest-gray rounded-lg ">
         <p className=" w-[18%] text-center font-bold">Hash</p>
         <p className=" w-[10%] text-center font-bold ">Block</p>
@@ -58,7 +76,7 @@ const TokenTransferTable = () => {
         data?.transactions?.map((stablecoin, index) => {
           return (
             <div key={index}>
-              <div className="min-w-[1500px]  flex flex-row  justify-around border-b-2 p-3 border-text-bg-gray">
+              <div className="min-w-[1500px]  flex flex-row  justify-around border-b-2 p-4 border-text-bg-gray">
                 <Link
                   to={`/transactiondetails/${stablecoin?.transactionId}`}
                   className="text-dark-red  text-center  w-[18%]  "
@@ -115,28 +133,100 @@ const TokenTransferTable = () => {
             </div>
           );
         })}
+
+      <div className="flex justify-end">
+      <Pagination
+      
+      totalPages={data?.totalPage}
+      onPageChange={handlePageChange}
+    />
+      </div>
+     
     </div>
   );
 };
 
 const HoldersTable = () => {
-  const [holderdata, setHolderData] = useState({});
 
+    // For Pagination
+
+    const [currentPage, setCurrentPage] = useState(0);
+  
+
+    const handlePageChange = (page) => {
+      setCurrentPage(page);
+    };
+  const [holderdata, setHolderData] = useState({});
+  const [sliderdata, setSliderData] = useState({});
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const holderdata = await getHoldersData();
+        const holderdata = await getHoldersData(currentPage);
         setHolderData(holderdata?.message);
+
+        const sliderdata = await getHoldersSlidersStatsData();
+        console.log(sliderdata);
+        setSliderData(sliderdata?.message);
       } catch (error) {
         console.log("error", error);
       }
     };
 
     fetchData();
-  }, []);
+  }, [currentPage]);
 
   return (
     <div>
+
+      <div className="bg-white p-5 rounded-xl shadow-lg mb-10">
+       <p className=" text-lg font-semibold">Asset Breakdown by Holders</p>
+
+       <div className=" flex flex-row w-full  border-white  rounded-md mt-5 h-[20px]">
+        <p className="bg-pink-gradient w-[34%] text-dark-pink rounded-tl-md rounded-bl-md  ">.</p>
+        <p className="w-[20%] bg-blue-gradient"></p>
+        <p className="w-[5%] bg-peach-gradient"></p>
+        <p className="w-[10%] bg-voilet-gradient"></p>
+        <p className="w-[32%] bg-yellow-gradient rounded-tr-md rounded-br-md"></p>
+       </div>
+
+       <div className="flex flex-row justify-between mt-5">
+        <div className="flex flex-row items-center space-x-2">
+        <span className="bg-pink-gradient px-2 py-2 rounded-lg"></span>
+        <p className="text-sm font-medium">{sliderdata?.rangeData?.[0]?.range}: {sliderdata?.rangeData?.[0]?.percentage}</p>
+        </div>
+      
+      <div className="flex flex-row items-center space-x-2">
+      <span className="bg-blue-gradient px-2 py-2 rounded-lg"></span>
+      <p className="text-sm font-semibold">{sliderdata?.rangeData?.[1]?.range}:  {sliderdata?.rangeData?.[1]?.percentage}</p>
+      </div>
+        
+        <div className="flex flex-row items-center space-x-2">
+        <span className="bg-peach-gradient px-2 py-2 rounded-lg"></span>
+        <p className="text-sm font-semibold">{sliderdata?.rangeData?.[2]?.range}:  {sliderdata?.rangeData?.[2]?.percentage}</p>
+        </div>
+       
+       <div className="flex flex-row items-center space-x-2">
+       <span className="bg-voilet-gradient px-2 py-2 rounded-lg"></span>
+       <p className="text-sm font-semibold">{sliderdata?.rangeData?.[3]?.range}:  {sliderdata?.rangeData?.[3]?.percentage}</p>
+       </div>
+       
+       <div className="flex flex-row items-center space-x-2">
+       <span className="bg-yellow-gradient px-2 py-2 rounded-lg"></span>
+       <p className="text-sm font-semibold">{sliderdata?.rangeData?.[4]?.range}:  {sliderdata?.rangeData?.[4]?.percentage}</p>
+       </div>
+     
+       </div>
+      </div>
+  <div className="bg-white p-5 pl-5 pr-5 rounded-xl shadow-xl">
+        <div className="bg-white rounded-2xl pt-5 pb-5 ">
+      <div className="overflow-x-auto">
+        <p className=" font-medium text-light-gray">
+          Only the first{" "}
+          <span className="text-black font-semibold">10</span> records are
+          displayed
+        </p>
+        </div>
+        </div>
       <div className="flex flex-row justify-evenly p-2 bg-lightest-gray rounded-lg ">
         <p className="w-[8%]  text-center font-bold ">#</p>
         <p className="w-[32%] text-center font-bold ">Account</p>
@@ -150,7 +240,7 @@ const HoldersTable = () => {
         holderdata?.apiResult?.map((stablecoin, index) => {
           return (
             <div key={index}>
-              <div className="min-w-[1500px]  flex flex-row  justify-around border-b-2 p-3 border-text-bg-gray">
+              <div className="min-w-[1500px]  flex flex-row  justify-around border-b-2 p-4 border-text-bg-gray">
                 <p className="w-[8%]  text-center  ">{index + 1}</p>
 
                 <Link
@@ -171,7 +261,16 @@ const HoldersTable = () => {
             </div>
           );
         })}
+         <div className="flex justify-end">
+      <Pagination
+      
+      totalPages={holderdata?.totalPages}
+      onPageChange={handlePageChange}
+    />
+      </div>
     </div>
+    </div>
+  
   );
 };
 
@@ -182,6 +281,7 @@ const Pox = () => {
     const fetchData = async () => {
       try {
         const poxData = await getPoxOverviewData();
+        console.log(poxData);
         setPoxData(poxData);
 
         const sliderData = await getHoldersSlidersStatsData();
@@ -208,14 +308,7 @@ const Pox = () => {
     }
   };
 
-  // For Pagination
-
-  const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = 10; // Example total pages
-
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
-  };
+  
 
   const handleCopy = (issueTime) => {
     navigator.clipboard.writeText(issueTime);
@@ -241,154 +334,173 @@ const Pox = () => {
           </p>
         </div>
       </div>
+        
 
       <div className=" flex flex-col space-x-5 md:flex-row justify-between">
         {/* Number of Blocks */}
-        <div className="w-full md:w-1/3  bg-lightest-gray rounded-xl my-2">
-          <p className=" px-2  flex flex-row justify-between items-center  pt-4 ">
-            <span>Price</span>{" "}
-            <span className=" text-dark-red flex flex-row items-center justify-end">
-              ${poxData.price}
-              <span className="flex items-center pl-3 ">
-                <TbTrendingUp />
-              </span>
-            </span>
-          </p>
-          <div className=" flex flex-row items-center justify-between px-2  pt-4 pb-1">
-            <p>Price change (24h) </p>{" "}
-            <p className=" flex flex-row justify-end items-center">
-              <span className=" text-dark-green ">{poxData.change24h}</span>
-            </p>
+        <div className="w-full md:w-[30%]  bg-white shadow-lg rounded-2xl p-5 my-6 md:my-12">
+          <div className="pt-1 flex flex-row justify-between">
+            <p className=" text-xl font-bold">Overview</p>
+            <p className="text-dark-green bg-light-green rounded-md px-6 font-bold ">Reputation: {poxData?.Rep} </p>
           </div>
 
-          <div className=" flex flex-row items-center justify-between px-2  pt-4 pb-1">
-            <p>Market Cap </p>{" "}
-            <p className=" flex flex-row justify-end items-center">
-              <span className=" text-dark-green ">
-                ${poxData?.marketCap && formatNumberWithCommas(poxData.marketCap)}
-              </span>
-            </p>
+          <div className="flex flex-row space-x-2 pt-3">
+            <p className="font-semibold">{poxData?.price && poxData?.price} USDX</p>
+            <p className="font-semibold text-dark-green">(+0.02%)</p>
           </div>
 
-          <div className=" flex flex-row items-center justify-between px-2  pt-4 pb-1">
-            <p>Market Cap Change (24h)</p>{" "}
-            <p className=" flex flex-row justify-end items-center">
-              <span className=" text-dark-green ">
-                ${poxData.marketCapChange24h && formatNumberWithCommas(poxData.marketCapChange24h)}
-              </span>
-            </p>
+          
+
+          <div className="flex flex-row justify-between pt-7 pb-4 border-b-[1px] border-text-bg-gray">
+            <p className="font-semibold">Total Supply</p>
+            <p>{poxData?.totalsupply && formatNumberWithCommas(Number(poxData?.totalsupply).toFixed(3))}</p>
           </div>
 
-          <div className=" flex flex-row items-center justify-between px-2  pt-4 pb-1">
-            <p>24h Volume/Market Cap</p>{" "}
-            <p className=" flex flex-row justify-end items-center">
-              <span className=" text-dark-green ">{poxData?.volChange}</span>
-            </p>
+          <div className="flex flex-row justify-between pt-4 pb-4 border-b-[1px] border-text-bg-gray">
+            <p className="font-semibold">Max Supply</p>
+            <p>{poxData?.maxSupply && formatNumberWithCommas(Number(poxData?.maxSupply).toFixed(0))}</p>
           </div>
 
-          <div className=" flex flex-row items-center justify-between px-2  pt-4 pb-1">
-            <p>Volume 24h</p>{" "}
-            <p className=" flex flex-row justify-end items-center">
-              <span className=" text-dark-green ">
-                ${poxData?.volume24h && formatNumberWithCommas(poxData?.volume24h)}
-              </span>
-            </p>
+          
+
+          <div  className="flex flex-row justify-between pt-4 pb-4 border-b-[1px] border-text-bg-gray">
+            <p className="font-semibold">Circulating Supply</p>
+            <p>{poxData?.circsupply && formatNumberWithCommas(Number(poxData?.circsupply).toFixed(3))}</p>
+          </div>
+
+          <div  className="flex flex-row justify-between pt-4 pb-4 border-b-[1px] border-text-bg-gray">
+            <p className="font-semibold">Total Market Cap</p>
+            <p>{poxData?.totalmatket && formatNumberWithCommas(Number(poxData?.totalmatket).toFixed(3))}</p>
+          </div>
+
+          <div  className="flex flex-row justify-between pt-4 ">
+            <p className="font-semibold">Circulating Market Cap</p>
+            <p>{poxData?.circmarket && formatNumberWithCommas(Number(poxData?.circmarket).toFixed(3))}</p>
+          </div>
+
+        </div>
+
+        {/* Block Rewards */}
+        <div className="w-full md:w-[40%]  rounded-2xl p-5 bg-white shadow-md my-3 md:my-12">
+          <div className="pt-1 flex flex-row justify-between">
+            <p className="font-bold text-xl">Basic Info</p>
+            <p><IoEllipsisVertical size={24}/></p>
+          </div>
+
+        <div className="flex flex-row justify-between pt-14 pb-4 border-b-[1px] border-text-bg-gray">
+          <p className="font-semibold">Issuing Time:</p>
+          <div className="flex flex-row space-x-1">
+            
+            <p>{poxData?.issueTime && poxData?.issueTime}</p>
+            
+          
+          <p className="pt-1"><RiFileCopy2Fill onClick={() => handleCopy(poxData?.contractAddress)}/></p>
+          </div>
+          
+        </div>
+
+        <div className="flex flex-row justify-between pt-4 pb-4 border-b-[1px] border-text-bg-gray">
+          <p className="font-semibold">Decimal:</p>
+
+          <div className="flex flex-row space-x-1">
+          
+            <p>{poxData?.Decimal && poxData?.Decimal}</p>
+            
+         
+          <p className="pt-1"><RiFileCopy2Fill onClick={() => handleCopy(poxData?.issuer)}/></p>
+          </div>
+         
+          
+        </div>
+
+        <div className="flex flex-row justify-between  pt-4 pb-4 border-b-[1px] border-text-bg-gray">
+          <p className="font-semibold">Official Website:</p>
+          <p className="text-dark-red underline"> {poxData?.Web && poxData?.Web}</p>
+        </div>
+
+        <div className="flex flex-row justify-between  pt-4 pb-4 border-b-[1px] border-text-bg-gray">
+          <p className="font-semibold">White Paper:</p>
+          <p className="text-dark-red underline">{poxData?.Whitepaper && poxData?.Whitepaper}</p>
+        </div>
+
+        <div className="flex flex-row justify-between  pt-4  ">
+          <p className="font-semibold">Social Profiles:</p>
+          <div className="flex flex-row space-x-3">
+           <Link to={poxData?.social?.twitter} className="cursor-pointer">
+           <p><PiTwitterLogoLight size={20} color="#C23631"/></p>
+           </Link> 
+            
+            <Link to={poxData?.social?.fb} className="cursor-pointer">
+            <p ><PiFacebookLogoLight size={20} color="#C23631"/> </p>
+            </Link>
+          
+        <Link to={poxData?.social?.insta} className="cursor-pointer">
+        <p ><PiInstagramLogoLight size={20} color="#C23631"/> </p>
+        </Link>
+       
+       <Link to={poxData?.social?.tele} className="cursor-pointer">
+       <p> <LiaTelegram size={20} color="#C23631"/> </p>
+       </Link>
+       
+       <Link to={poxData?.social?.yt} className="cursor-pointer">
+       <p>
+          <PiYoutubeLogoLight size={20} color="#C23631"/>
+        </p>
+           
+       </Link>
+       
           </div>
         </div>
 
-        <div className="w-full md:w-1/3 bg-lightest-gray rounded-xl my-2">
-          <p className=" px-2  flex flex-row justify-between items-center  pt-4 ">
-            <span>Total supply </span>{" "}
-            <span className=" text-dark-red flex flex-row items-center justify-end">
-              {sliderData?.totalSupply}
-            </span>
-          </p>
-          <div className=" flex flex-row items-center justify-between px-2  pt-4 pb-1">
-            <p>Circulating Supply</p>{" "}
-            <p className=" flex flex-row justify-end items-center">
-              <span className=" text-dark-green ">
-                {sliderData?.circulatingSupply}
-              </span>
-            </p>
-          </div>
-
-          <div className=" flex flex-row items-center justify-between px-2  pt-4 pb-1">
-            <p>Block </p>{" "}
-            <p className=" flex flex-row justify-end items-center">
-              <span className=" text-dark-green ">{sliderData?.block}</span>
-            </p>
-          </div>
-
-          <div className=" flex flex-row items-center justify-between px-2  pt-4 pb-1">
-            <p>Reward per block</p>{" "}
-            <p className=" flex flex-row justify-end items-center">
-              <span className=" text-dark-green ">{sliderData?.reward}</span>
-            </p>
-          </div>
-
-          <div className=" flex flex-row items-center justify-between px-2  pt-4 pb-1">
-            <p>Issue time</p>{" "}
-            <div className=" flex flex-row justify-end items-center">
-              <p className=" text-dark-green pr-2">{sliderData?.issueTime}</p>
-              <span
-                onClick={() => handleCopy(sliderData?.issueTime)}
-                className=" text-dark-red cursor-pointer"
-              >
-                <RiFileCopy2Fill />
-              </span>
-            </div>
-          </div>
         </div>
 
-        <div className="w-full md:w-1/3 bg-lightest-gray rounded-xl my-2">
-          <p className=" px-2  flex flex-row justify-between items-center  pt-4 ">
-            <span>Holders </span>{" "}
-            <span className=" text-dark-red flex flex-row items-center justify-end">
-              {sliderData?.holders}
-            </span>
-          </p>
-          <div className=" flex flex-row items-center justify-between px-2  pt-4 pb-1">
-            <p>Transaction Count </p>{" "}
-            <p className=" flex flex-row justify-end items-center">
-              <span className=" text-dark-green ">
-                {sliderData?.transactionCount}
-              </span>
-            </p>
+        {/* Stats on Burned Pox */}
+        <div className="w-full md:w-[30%] rounded-2xl p-5 bg-white shadow-md my-3 md:my-12">
+          <div className="pt-1 flex flex-row justify-between items-center">
+            <p className="font-bold text-xl">More</p>
+            <p className="border-2 rounded-lg p-1 "><TbTrendingUp  size={16}/></p>
           </div>
 
-          <div className=" flex flex-row items-center justify-between px-2  pt-4 pb-1">
-            <p>Transactions (24h) </p>{" "}
-            <p className=" flex flex-row justify-end items-center">
-              <span className=" text-dark-green ">
-                {sliderData?.transaction24h}
-              </span>
-            </p>
+          <div className="flex flex-row justify-between pt-14 pb-4 border-b-[1px] border-text-bg-gray">
+            <p className="font-semibold">Holders</p>
+            <p>{poxData?.holders && formatNumberWithCommas(poxData?.holders)}</p>
           </div>
 
-          <div className=" flex flex-row items-center justify-between px-2  pt-4 pb-1">
-            <p>POS count</p>{" "}
-            <p className=" flex flex-row justify-end items-center">
-              <span className=" text-dark-green ">{sliderData?.posCount}</span>
-            </p>
+          <div className="flex flex-row justify-between pt-4 pb-4 border-b-[1px] border-text-bg-gray">
+            <p className="font-semibold">Total Transfer Count</p>
+            <p>{poxData?.totaltransfer && formatNumberWithCommas(poxData?.totaltransfer)}</p>
+          </div>
+
+          <div className="flex flex-row justify-between pt-4 pb-4 border-b-[1px] border-text-bg-gray">
+            <p className="font-semibold">Transfer (24h)</p>
+            <p>{poxData?.last24transfer && formatNumberWithCommas(poxData?.last24transfer)}</p>
+          </div>
+
+          <div className="flex flex-row justify-between pt-4">
+            <p className="font-semibold">Trading Volume (24h)</p>
+            <p>${poxData?.tradingvol && formatNumberWithCommas(Number(poxData?.tradingvol).toFixed(2))}</p>
+
           </div>
         </div>
       </div>
 
-      <div className="flex justify-around w-full  bg-lightest-gray rounded-xl my-3">
+      <div className="flex flex-row space-x-8 pb-10 mt-10">
         <p
           onClick={() => setIsRender("Token Transfer")}
-          className={`cursor-pointer w-full  text-center py-3 rounded-xl ${
+          className={`cursor-pointer px-4  text-center py-3 rounded-xl ${
             isRender === "Token Transfer"
-              ? " bg-dark-red text-white"
-              : "text-dark-red"
+             ? "bg-dark-yellow font-semibold  shadow-lg rounded-lg"
+              : "text-black bg-text-bg-gray shadow-md rounded-lg"
           } `}
         >
           Token Transfer
         </p>
         <p
           onClick={() => setIsRender("Holders")}
-          className={`cursor-pointer w-full  text-center py-3 rounded-xl ${
-            isRender === "Holders" ? " bg-dark-red text-white" : "text-dark-red"
+          className={`cursor-pointer px-8  text-center py-3 rounded-xl ${
+            isRender === "Holders" 
+          ? "bg-dark-yellow font-semibold  shadow-lg rounded-lg"
+              : "text-black bg-text-bg-gray shadow-md rounded-lg"
           } `}
         >
           Holders
@@ -396,29 +508,8 @@ const Pox = () => {
       </div>
 
       <div>{renderItemComponent()}</div>
-      <Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={handlePageChange}
-      />
-      <div className="flex flex-row justify-end items-center space-x-4 text-lightest-gray text-xl ">
-        <p>Follow us</p>
-        <span>
-          <PiTwitterLogoLight />
-        </span>
-        <span>
-          <PiFacebookLogoLight />
-        </span>
-        <span>
-          <PiInstagramLogoLight />
-        </span>
-        <span>
-          <LiaTelegram />
-        </span>
-        <span>
-          <PiYoutubeLogoLight />
-        </span>
-      </div>
+    
+  
     </div>
   );
 };

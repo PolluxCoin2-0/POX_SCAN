@@ -87,7 +87,7 @@ const PieChartComp = ({ value, xAxis, yAxis }) => {
   };
 
   // Add fill color to each data point
-  const dataWithColors = value.map((entry, index) => ({
+  const dataWithColors = value && value.map((entry, index) => ({
     ...entry,
     fill: colors[index % colors.length],
   }));

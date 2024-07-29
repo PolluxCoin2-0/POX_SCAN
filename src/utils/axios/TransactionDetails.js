@@ -1,10 +1,10 @@
 import axios from "axios";
 
-export const getTransactionDetailsData = async() => {
+export const getTransactionDetailsData = async(pageNo) => {
     try {
         const response = await axios.post("https://node.poxscan.io/api/transaction",
             {
-                "page": 0, 
+                "page": pageNo, 
                 "address": "PJ4GrZTvQvtYTi41PJTCVkxpwJSGijpLj2"
             }
         )

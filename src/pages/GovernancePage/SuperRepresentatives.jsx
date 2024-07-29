@@ -11,7 +11,9 @@ import CountdownTimer from "./CountDownTimer";
 
 
 
+
 const Table1 = ({data}) => {
+ 
   return (
     <div className="bg-white pt-2  rounded-tl-none rounded-2xl">
     <div className="flex flex-row items-center justify-evenly bg-light-orange p-3 rounded-tl-none rounded-2xl m-4">
@@ -51,6 +53,7 @@ const Table1 = ({data}) => {
         <p className="w-[8%]  text-center">{representative.apr}%</p>
       </div>
     ))}
+    
   </div>
   
   );

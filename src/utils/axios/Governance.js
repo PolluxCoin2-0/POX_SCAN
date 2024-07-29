@@ -2,7 +2,9 @@ import axios from "axios";
 
 export const getSuperTableData = async() => {
     try {
-        const response = await axios.post("https://governance.poxscan.io/governance/getWitnessData");
+        const response = await axios.post("https://governance.poxscan.io/governance/getWitnessData",
+            {}
+        );
         return (response?.data);
     } catch (error) {
         console.log("error", error);

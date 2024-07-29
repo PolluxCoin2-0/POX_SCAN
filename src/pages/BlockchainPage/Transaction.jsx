@@ -16,6 +16,10 @@ import { RxCrossCircled } from "react-icons/rx";
 import { formatNumberWithCommas } from "../../utils/FormattingNumber";
 
 const Transaction = () => {
+
+  // For Pagination
+  const [currentPage, setCurrentPage] = useState(0);
+
   const [data, setData] = useState({});
   const [transactionTableData, setTransactionTableData] = useState({});
   const [pieChartData, setPieChartData] = useState([]);
@@ -30,7 +34,7 @@ const Transaction = () => {
         ];
         setPieChartData(pieChartDataArr);
 
-        const data1 = await getTransactionTableData();
+        const data1 = await getTransactionTableData(currentPage);
         setTransactionTableData(data1?.message);
       } catch (error) {
         console.log("error", error);
@@ -38,11 +42,10 @@ const Transaction = () => {
     };
 
     fetchData();
-  }, []);
+  }, [currentPage]);
 
-  // For Pagination
-  const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = 10; // Example total pages
+  
+  
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -285,8 +288,7 @@ const Transaction = () => {
 
           <div className="flex justify-start md:justify-end">
             <Pagination
-              currentPage={currentPage}
-              totalPages={totalPages}
+              totalPages={transactionTableData?.totalPage}
               onPageChange={handlePageChange}
             />
           </div>

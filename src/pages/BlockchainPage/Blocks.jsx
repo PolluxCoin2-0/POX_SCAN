@@ -13,12 +13,15 @@ const Blocks = () => {
   const [data1, setData1] =useState({});
   const [dataFromSearch, setDataFromSearch] = useState({});
 
+  // For Pagination
+  const [currentPage, setCurrentPage] = useState(0);
+
   useEffect(()=>{
     const fetchData=async()=>{
     try {
-      const data = await  getBlockTableData();
-      const data1 = await getBlockData();
+      const data = await  getBlockTableData(currentPage);
       setData(data?.message);
+      const data1 = await getBlockData();
       setData1(data1);
       }
       catch (error) {
@@ -26,12 +29,7 @@ const Blocks = () => {
       }
     } 
     fetchData();
-  },[])
-
-
-  // For Pagination
-  const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = 10; // Example total pages
+  },[currentPage])
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -160,8 +158,8 @@ const Blocks = () => {
         <div className="flex justify-start md:justify-end min-w-[800px] overflow-x-auto">
 
         <Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
+        
+        totalPages={data?.totalPages}
         onPageChange={handlePageChange}
       />
         </div>

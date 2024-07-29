@@ -191,7 +191,7 @@ const Votes = () => {
     />
   </div>
 </div>
-
+ 
       
       </div>
     

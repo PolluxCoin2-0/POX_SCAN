@@ -82,8 +82,8 @@ const VerifiedContractTable = () => {
           <p className="w-[5%] text-center font-bold">Setting</p>
         </div>
   
-        {data[0] &&
-          data[0].map((contact, index) => {
+        {data?.[0] &&
+          data?.[0].map((contact, index) => {
             return (
               <>
                 <div className="min-w-[1500px]  flex flex-row justify-evenly p-5 border-b-2 border-lightest-gray  rounded-xl pr-0">
@@ -144,7 +144,7 @@ const VerifiedContractTable = () => {
 const AllContractTable = () => {
   // For Pagination
   const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = 10; // Example total pages
+  const totalPages = 10;
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -189,8 +189,8 @@ const AllContractTable = () => {
         <p className="w-[10%] text-center  font-bold ">Settings</p>
       </div>
 
-      {data1[0] &&
-        data1[0].map((contact, index) => {
+      {data1?.[0] &&
+        data1?.[0].map((contact, index) => {
           return (
             <>
               <div className="min-w-[1500px]  flex flex-row justify-evenly p-5 border-b-2 border-lightest-gray  rounded-xl pr-0 ">
@@ -231,7 +231,7 @@ const AllContractTable = () => {
 
       <div className="flex justify-start md:justify-end ">
         <Pagination
-          currentPage={currentPage}
+          
           totalPages={totalPages}
           onPageChange={handlePageChange}
         />
@@ -252,7 +252,7 @@ const Contacts = () => {
         const data1 = await getAllContractTableData();
         setData1(data1);
 
-        const contractAddresses = data1[0].map((contract) => ({
+        const contractAddresses = data1?.[0].map((contract) => ({
           contractAddress: contract.contractAddress,
           noOfCalls: contract.noOfCalls,
         }));
@@ -310,14 +310,14 @@ const Contacts = () => {
               <div className="flex flex-row justify-between  py-5">
                 <div className="">
                   <p className="pt-5 text-xl font-bold">
-                    {data1[1]?.total_contracts && data1[1]?.total_contracts}
+                    {data1?.[1]?.total_contracts && data1?.[1]?.total_contracts}
                   </p>
                   <p className="text-light-gray  pt-1">Total</p>
                 </div>
 
                 <div>
                   <p className="text-dark-green font-bold text-xl pt-5 pr-0 text-right">
-                    {data1[1]?.allContract24h && data1[1]?.allContract24h}
+                    {data1?.[1]?.allContract24h && data1?.[1]?.allContract24h}
                   </p>
                   <p className="text-light-gray  pt-1">Last 24h</p>
                 </div>
@@ -337,14 +337,14 @@ const Contacts = () => {
               <div className=" flex flex-row justify-between  rounded-lg pt-6 pb-6">
                 <div>
                   <p className="text-xl font-bold pt-5 ">
-                    {data[1]?.verifiedContractCount}
+                    {data?.[1]?.verifiedContractCount}
                   </p>
                   <p className="text-light-gray pt-1">Total</p>
                 </div>
 
                 <div>
                   <p className="text-xl pt-5 font-bold text-dark-green text-right">
-                    {data[1]?.verifiedContract24h}
+                    {data?.[1]?.verifiedContract24h}
                   </p>
                   <p className="text-light-gray pt-1">Yesterday</p>
                 </div>
@@ -365,7 +365,7 @@ const Contacts = () => {
               </div>
 
               <div className=" px-4 md:px-0 w-full md:w-[55%] h-80 overflow-y-scroll">
-                {piechartdata.map((data, idx) => {
+                {piechartdata && piechartdata.map((data, idx) => {
                   return (
                     <>
                       <div

@@ -21,7 +21,7 @@ import { getTrendingSearchGraphData } from "../../utils/axios/Home";
 const TransactionTable = () => {
   // For Pagination
   const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = 10; // Example total pages
+  
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -32,7 +32,8 @@ const TransactionTable = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await getTransactionDetailsData();
+        const data = await getTransactionDetailsData(currentPage);
+        console.log(data)
         setData(data?.message);
       } catch (error) {
         console.log("error", error);
@@ -40,7 +41,7 @@ const TransactionTable = () => {
     };
 
     fetchData();
-  }, []);
+  }, [currentPage]);
 
   return (
     <div className="bg-white rounded-2xl p-4 md:p-10 overflow-x-auto md:overflow-hidden">
@@ -121,8 +122,8 @@ const TransactionTable = () => {
 
       <div className="flex justify-start md:justify-end">
         <Pagination
-          currentPage={currentPage}
-          totalPages={totalPages}
+          
+          totalPages={data?.totalRecords}
           onPageChange={handlePageChange}
         />
       </div>
@@ -261,7 +262,7 @@ const TransferTable = () => {
 
       <div className="flex justify-start md:justify-end">
         <Pagination
-          currentPage={currentPage}
+        
           totalPages={totalPages}
           onPageChange={handlePageChange}
         />

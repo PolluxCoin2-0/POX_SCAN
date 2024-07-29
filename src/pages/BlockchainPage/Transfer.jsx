@@ -14,12 +14,15 @@ import { formatNumberWithCommas } from "../../utils/FormattingNumber";
 
 // For Tab Switching
 const POXTransferTable = () => {
+   // For Pagination
+   const [currentPage, setCurrentPage] = useState(0);
+  
   // For API Integration
   const [data, setData] = useState({});
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await getTransferTableDataOfPoxTransfer();
+        const data = await getTransferTableDataOfPoxTransfer(currentPage);
         setData(data?.message);
       } catch (error) {
         console.log('error', error);
@@ -27,11 +30,9 @@ const POXTransferTable = () => {
     };
 
     fetchData();
-  }, [])
+  }, [currentPage])
 
-  // For Pagination
-  const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = 10; // Example total pages
+ 
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -101,8 +102,8 @@ const POXTransferTable = () => {
 
         <div className="flex justify-start md:justify-end">
           <Pagination
-            currentPage={currentPage}
-            totalPages={totalPages}
+            
+            totalPages={data?.totalPage}
             onPageChange={handlePageChange}
           />
         </div>
@@ -112,14 +113,21 @@ const POXTransferTable = () => {
 };
 
 const PRC20TransferTable = ({ setPieChartData }) => {
+  // For Pagination
+  const [currentPage, setCurrentPage] = useState(0);
+  
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
   // For API Integration
   const [data, setData] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await getTransferTableDataOfPRC20Transfer();
-        setData(data?.filterTokens);
+        const data = await getTransferTableDataOfPRC20Transfer(currentPage);
+        setData(data);
         const pieChartData = [{ PRC20: data?.totalPage }];
         setPieChartData(pieChartData);
       } catch (error) {
@@ -127,15 +135,9 @@ const PRC20TransferTable = ({ setPieChartData }) => {
       } 
     };
     fetchData();
-  }, [])
+  }, [currentPage])
 
-  // For Pagination
-  const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = 10; // Example total pages
-
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
-  };
+  
 
   return (
     <div>
@@ -165,7 +167,7 @@ const PRC20TransferTable = ({ setPieChartData }) => {
           
         </div>
 
-        {data && data.map((contact, index) => {
+        {data?.filterTokens && data?.filterTokens.map((contact, index) => {
           return (
             <>
               <div className="min-w-[1300px] flex flex-row justify-evenly items-center p-5 border-b-2 border-lightest-gray  rounded-xl pr-0">
@@ -212,8 +214,7 @@ const PRC20TransferTable = ({ setPieChartData }) => {
 
         <div className="flex justify-start md:justify-end">
           <Pagination
-            currentPage={currentPage}
-            totalPages={totalPages}
+            totalPages={data?.totalPage}
             onPageChange={handlePageChange}
           />
         </div>

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { TokenData } from "../../data/Token";
 import SearchBarExpand from "../../components/SearchBarExpand";
 import Pagination from "../../components/Pagination";
-import { getUsdxData, getUsdxHolderData } from "../../utils/Token";
+import { getUsdxData, getUsdxHolderData, getUsdxHolderSlidersStataData } from "../../utils/Token";
 import { IoCheckmarkCircleOutline, IoEllipsisVertical, IoShirtOutline } from "react-icons/io5";
 import { shortenString } from "../../utils/shortenString";
 import { GiSandsOfTime } from "react-icons/gi";
@@ -20,12 +20,21 @@ import { toast } from "react-toastify";
 
 
 const UsdxTable = () => {
+
+  // For Pagination
+
+  const [currentPage, setCurrentPage] = useState(1);
+  
+ 
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
   const [data, setData] = useState({});
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await getUsdxData();
+        const data = await getUsdxData(currentPage);
         setData(data);
       } catch (error) {
         console.log('error', error);
@@ -33,10 +42,19 @@ const UsdxTable = () => {
     };
 
     fetchData();
-  }, [])
+  }, [currentPage])
 
   return (
-    <div>
+    <div className="bg-white rounded-xl shadow-lg p-5">
+      <div className="bg-white rounded-2xl  md:p-7 ">
+      <div className="overflow-x-auto">
+        <p className="font-medium text-light-gray">
+          Only the first{" "}
+          <span className="text-black font-semibold">10,000</span> records are
+          displayed
+        </p>
+        </div>
+        </div>
       <div className="min-w-[1500px]  flex flex-row justify-around p-2 bg-lightest-gray rounded-lg ">
           <p className=" w-[12%] font-bold text-center ">Amount</p>
           <p className=" w-[8%] font-bold text-center ">Result</p>
@@ -50,7 +68,7 @@ const UsdxTable = () => {
         {data?.transactions  && data?.transactions.map((stablecoin, index) => {
           return (
             <>
-              <div className="min-w-[1500px]  flex flex-row  justify-around border-b-2 p-3 border-text-bg-gray">
+              <div className="min-w-[1500px]  flex flex-row  justify-around border-b-2 p-4 border-text-bg-gray">
                 <p className="w-[12%]  text-center ">{stablecoin?.asset}</p>
                 <p className=" w-[8%] flex justify-center">{stablecoin?.result && stablecoin?.result ? <IoCheckmarkCircleOutline size={24} color="green" />:<RxCrossCircled size={24} color="red"/>}</p>
                 <p className="w-[14%] text-center ">{secondsAgo(stablecoin?.timeStamp)}</p>
@@ -76,6 +94,13 @@ const UsdxTable = () => {
             </>
           );
         })}
+        <div className="flex justify-end">
+        <Pagination
+        
+        totalPages={data?.totalPages}
+        onPageChange={handlePageChange}
+      />
+        </div>
     </div>
   )
 }
@@ -83,24 +108,90 @@ const UsdxTable = () => {
 
 const TokenHolderTable = () => {
 
-  const [holderdata, setHolderData] = useState({});
+   // For Pagination
 
+   const [currentPage, setCurrentPage] = useState(1);
+  
+ 
+   const handlePageChange = (page) => {
+     setCurrentPage(page);
+   };
+
+  const [holderdata, setHolderData] = useState({});
+ const [sliderdata, setSliderData] = useState({});
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await getUsdxHolderData();
+        const data = await getUsdxHolderData(currentPage);
         setHolderData(data);
+
+
+         const sliderdata = await getUsdxHolderSlidersStataData();
+         console.log(sliderdata)
+        setSliderData(sliderdata);
       } catch (error) {
         console.log('error', error);
       } 
     };
 
     fetchData();
-  }, [])
+  }, [currentPage])
 
   return (
-    <div className="">
-  <div className="min-w-[1500px] flex flex-row justify-around p-2 bg-lightest-gray rounded-lg rounded-tr-lg rounded-br-lg">
+
+    <div>
+
+<div className="bg-white p-5 rounded-xl shadow-lg mb-10">
+       <p className=" text-lg font-semibold">Asset Breakdown by Holders</p>
+
+       <div className=" flex flex-row w-full  border-white  rounded-md mt-5 h-[20px]">
+        <p className="bg-pink-gradient w-[57%] text-dark-pink rounded-tl-md rounded-bl-md  ">.</p>
+        <p className="w-[10%] bg-blue-gradient"></p>
+        <p className="w-[4%] bg-peach-gradient"></p>
+        <p className="w-[11%] bg-voilet-gradient"></p>
+        <p className="w-[16%] bg-yellow-gradient rounded-tr-md rounded-br-md"></p>
+       </div>
+
+       <div className="flex flex-row justify-between mt-5">
+        <div className="flex flex-row items-center space-x-1">
+        <span className="bg-pink-gradient px-2 py-2 rounded-lg"></span>
+        <p className="text-xs font-semibold">{sliderdata?.[0]?.range}: {sliderdata?.[0]?.percentage }</p>
+        </div>
+      
+      <div className="flex flex-row items-center space-x-1">
+      <span className="bg-blue-gradient px-2 py-2 rounded-lg"></span>
+      <p className="text-xs font-semibold">{sliderdata?.[1]?.range}:  {sliderdata?.[1]?.percentage}</p>
+      </div>
+        
+        <div className="flex flex-row items-center space-x-1">
+        <span className="bg-peach-gradient px-2 py-2 rounded-lg"></span>
+        <p className="text-xs font-semibold">{sliderdata?.[2]?.range}:  {sliderdata?.[2]?.percentage}</p>
+        </div>
+       
+       <div className="flex flex-row items-center space-x-1">
+       <span className="bg-voilet-gradient px-2 py-2 rounded-lg"></span>
+       <p className="text-xs font-semibold">{sliderdata?.[3]?.range}:  {sliderdata?.[3]?.percentage}</p>
+       </div>
+       
+       <div className="flex flex-row items-center space-x-1">
+       <span className="bg-yellow-gradient px-2 py-2 rounded-lg"></span>
+       <p className="text-xs font-semibold">{sliderdata?.[4]?.range}:  {sliderdata?.[4]?.percentage}</p>
+       </div>
+     
+       </div>
+      </div>
+ <div className="bg-white rounded-xl shadow-lg p-5">
+<div className="bg-white rounded-2xl  md:p-7 ">
+      <div className="overflow-x-auto">
+        <p className="font-medium text-light-gray">
+          Only the first{" "}
+          <span className="text-black font-semibold">10,000</span> records are
+          displayed
+        </p>
+        </div>
+        </div>
+
+  <div className="min-w-[1500px] flex flex-row justify-around p-2  bg-lightest-gray rounded-lg rounded-tr-lg rounded-br-lg">
     <p className="w-[8%] font-bold text-center ">#</p>
     <p className="w-[28%] font-bold text-center ">Account</p>
     <p className="w-[20%] font-bold text-center  ">Amount</p>
@@ -113,7 +204,7 @@ const TokenHolderTable = () => {
     
 
     return (
-      <div key={index} className="min-w-[1500px] flex flex-row justify-around border-b-2 p-3 border-text-bg-gray">
+      <div key={index} className="min-w-[1500px] flex flex-row justify-around border-b-2 p-4 border-text-bg-gray">
         <p className="w-[8%] text-center ">{index+1}</p>
 
         <Link to={`/accountdetails/${stablecoin?.walletAddress}`} className="w-[28%]   text-center  text-dark-red" text-center >
@@ -127,7 +218,18 @@ const TokenHolderTable = () => {
       </div>
     );
   })}
+
+<div className="flex justify-end">
+        <Pagination
+        
+        totalPages={holderdata?.totalPages}
+        onPageChange={handlePageChange}
+      />
+        </div>
 </div>
+    </div>
+   
+
 
   )
 }
@@ -290,7 +392,7 @@ const Usdx = () => {
         <div className="flex flex-row justify-between  pt-4  ">
           <p className="font-semibold">Social Profiles:</p>
           <div className="flex flex-row space-x-3">
-           <Link>
+           <Link >
            <p><PiTwitterLogoLight size={20} color="#C23631"/></p>
            </Link> 
 
@@ -347,28 +449,15 @@ const Usdx = () => {
        onClick={() => setIsRender("Token Holders")}>Token Holders</p>
        </div>
       
-      <div className="bg-white rounded-2xl p-4 md:p-7 ">
-      <div className="overflow-x-auto">
-        <p className="pb-5 font-medium text-light-gray">
-          Only the first{" "}
-          <span className="text-black font-semibold">10,000</span> records are
-          displayed
-        </p>
+     
 
         <div>{renderItemComponent()}</div>
 
       
 
-        <div className="flex justify-end">
-        <Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={handlePageChange}
-      />
-        </div>
+     
       </div>
-      </div>
-    </div>
+     
   );
 };
 
