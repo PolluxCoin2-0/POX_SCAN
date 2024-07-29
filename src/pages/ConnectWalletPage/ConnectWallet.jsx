@@ -1,7 +1,31 @@
 import PolinkImg from "../../assets/PoxscanImage.png";
 import Ledger from "../../assets/Ledger.png";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setNetwork, setWalletAddress } from "../../redux/slice/walletSlice";
+import { toast } from "react-toastify";
 
 const ConnectWallet = () => {
+  const dispatch = useDispatch();
+const walletAddress = useSelector((state)=>state.wallet.address);
+
+  async function getPolinkweb() {
+   if(walletAddress){
+    return toast.error("Wallet is already connected");
+   }
+
+    var obj = setInterval(async () => {
+      if (window.pox) {
+        clearInterval(obj);
+        const detailsData = JSON.stringify(await window.pox.getDetails());
+        const parsedDetailsObject = JSON.parse(detailsData);
+        console.log(parsedDetailsObject)
+        dispatch(setWalletAddress(parsedDetailsObject[1].data?.wallet_address));
+        dispatch(setNetwork(parsedDetailsObject[1].data?.Network));
+      }
+    }, 1000);
+  }
+
   return (
     <div className="h-screen bg-[#132847] flex justify-center items-center ">
       <div className="w-[50%] border-[1px] border-light-gray rounded-2xl text-center py-14 bg-[#293A4F] flex flex-col items-center">
@@ -19,7 +43,7 @@ const ConnectWallet = () => {
             <p className="font-semibold text-3xl">Ledger</p>
           </div>
         </div>
-        <button className="bg-dark-yellow px-28 py-3 rounded-lg font-bold text-xl">
+        <button className="bg-dark-yellow px-28 py-3 rounded-lg font-bold text-xl" onClick={getPolinkweb}>
           Connect
         </button>
         <div className="text-white pt-12 leading-8 font-light">

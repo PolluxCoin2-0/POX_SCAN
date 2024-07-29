@@ -12,6 +12,7 @@ import { MdKeyboardArrowDown, MdKeyboardArrowUp, MdOutlineKeyboardArrowDown } fr
 import { BsDot } from "react-icons/bs";
 import { useSelector } from "react-redux";
 import HoverWalletPage from "../pages/ConnectWalletPage/HoverWalletPage";
+import { shortenString } from "../utils/shortenString";
 
 const BlockchainHover = () => (
   <div className="absolute bg-white shadow-lg rounded-xl px-4 py-2">
@@ -334,11 +335,11 @@ const Navbar = () => {
           </Link>
           <Link to="/connectwallet">
             <button className="bg-dark-yellow py-1  px-3 rounded-xl text-black cursor-pointer whitespace-nowrap" onClick={()=>setOpenWallet(!openWallet)}>
-              {walletAddress.length>0 ? walletAddress:"Connect Wallet"}
+              {walletAddress.length>0 ? shortenString(walletAddress,6):"Connect Wallet"}
             </button>
           </Link>
           {
-          //  walletAddress.length>0 && 
+         walletAddress.length>0 && 
           openWallet && 
           <div className="absolute top-14 right-1 ">
             <HoverWalletPage/>

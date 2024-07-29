@@ -6,6 +6,10 @@ import { IoCopyOutline } from "react-icons/io5";
 import { MdKeyboardArrowRight, MdNoteAlt } from "react-icons/md";
 import { RxCross2 } from "react-icons/rx";
 import { TbArrowsExchange } from "react-icons/tb";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import { setWalletAddress } from "../../redux/slice/walletSlice";
+import QRCode from "qrcode.react";
 // import QRCode from "qrcode.react";
 
 const SendComponent = ({ onClose }) => {
@@ -75,7 +79,7 @@ const ReceiveComponent = ({ onClose }) => {
           />
         </div>
         <div className="flex justify-center mb-10">
-          <QRCode value={receivingAccount || "default"} size={200} />
+          <QRCode  value={receivingAccount || "default"} size={200} />
         </div>
         <div className="flex justify-center">
           <button
@@ -115,6 +119,10 @@ const MultiSignatureComponent = ({ onClose }) => {
 };
 
 const ExitWalletComponent = ({ onClose }) => {
+  const dispatch = useDispatch();
+  const removeWalletAddress=()=>{
+    dispatch(setWalletAddress(""));
+  }
   return (
     <div className="bg-light-gray p-6 rounded-lg shadow-lg max-w-sm mx-auto">
       <div className="flex justify-end pr-4">
@@ -122,7 +130,7 @@ const ExitWalletComponent = ({ onClose }) => {
       </div>
       <p className="text-xl mb-4">Exit Wallet</p>
       <p>Are you sure you want to exit the wallet?</p>
-      <button className="bg-red-500 text-white px-4 py-2 rounded-md mt-4">
+      <button className="bg-red-500 text-white px-4 py-2 rounded-md mt-4" onClick={removeWalletAddress}>
         Exit
       </button>
     </div>
@@ -131,9 +139,15 @@ const ExitWalletComponent = ({ onClose }) => {
 
 const HoverWalletPage = () => {
   const [activeComponent, setActiveComponent] = useState("");
+const walletAddress = useSelector((state)=>state.wallet.address);
 
   const handleComponentClose = () => {
     setActiveComponent("");
+  };
+
+  const handleCopy = (address) => {
+    navigator.clipboard.writeText(address);
+    return toast.success("Wallet Address copied")
   };
 
   return (
@@ -143,9 +157,9 @@ const HoverWalletPage = () => {
         <div className="flex items-center space-x-2 mb-6">
           <HiUserCircle size={40} className="text-gray-500" />
           <p className="flex-grow text-gray-700 text-sm overflow-hidden overflow-ellipsis whitespace-nowrap">
-            PR58ATVJNmiGkG9KKEiiUcKVrBga45jrjk
+            {walletAddress.length>0 && walletAddress}
           </p>
-          <IoCopyOutline
+          <IoCopyOutline onClick={()=>handleCopy(walletAddress)}
             size={24}
             className="text-gray-500 cursor-pointer hover:text-gray-700"
           />
@@ -270,11 +284,12 @@ const HoverWalletPage = () => {
           <MultiSignatureComponent onClose={handleComponentClose} />
         </div>
       )}
-      {activeComponent === "exitWallet" && (
-        <div className="fixed z-10 backdrop-blur-[1px] bg-dark-brown bg-opacity-30 h-screen w-full inset-0 flex items-center justify-center">
-          <ExitWalletComponent onClose={handleComponentClose} />
-        </div>
-      )} */}
+      */}
+       {activeComponent === "exitWallet" && (
+         <div className="fixed z-10 backdrop-blur-[1px] bg-dark-brown bg-opacity-30 h-screen w-full inset-0 flex items-center justify-center">
+           <ExitWalletComponent onClose={handleComponentClose} />
+         </div>
+       )} 
     </>
   );
 };
