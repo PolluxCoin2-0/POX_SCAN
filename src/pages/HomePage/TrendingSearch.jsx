@@ -66,9 +66,9 @@ const TrendingSearch = () => {
     setSelectedOption(event.target.value);
   };
   return (
-    <div className="flex flex-col md:flex-col lg:flex-row xl:flex-row 2xl:flex-row justify-between py-6">
+    <div className="flex flex-col md:flex-col lg:flex-col xl:flex-row 2xl:flex-row justify-between py-6">
       {/* Left Side Trending Search */}
-      <div className="w-full md:w-full lg:w-[70%] xl:w-[66%] 2xl:w-[70%]">
+      <div className="w-full md:w-full lg:w-full xl:w-[66%] 2xl:w-[70%]">
         <div className="flex justify-between space-x-4 pb-6">
           <div className="flex space-x-4 items-center">
             <p className="font-semibold text-xl whitespace-nowrap">Trending Search :</p>
@@ -157,7 +157,7 @@ const TrendingSearch = () => {
       </div>
 
       {/* Right Side Chart */}
-      <div className="w-full md:w-full lg:w-[28%] xl:w-[32%] 2xl:w-[28%] rounded-xl px-0 md:px-4  pb-6 lg:mt-6 xl:mt-2 2xl:mt-1 md:mt-6">
+      <div className="w-full md:w-full lg:w-full xl:w-[32%] 2xl:w-[28%] rounded-xl px-0 md:px-4  pb-6 lg:mt-4 xl:mt-2 2xl:mt-1 md:mt-6">
         <div className="flex justify-between items-center mb-3">
           <p className="font-semibold text-lg">POX</p>
           <select

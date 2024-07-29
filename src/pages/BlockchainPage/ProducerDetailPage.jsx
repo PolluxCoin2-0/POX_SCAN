@@ -1,22 +1,32 @@
-import { Pagination, SearchBarExpand } from "../../components"
+import { Pagination, SearchBarExpand } from "../../components";
 import { BiSolidCopyAlt } from "react-icons/bi";
 import { RiQrCodeFill } from "react-icons/ri";
 import { AiOutlineQuestion } from "react-icons/ai";
 import AreaChartComp from "../../components/AreaChart";
 import { useEffect, useState } from "react";
 import { getPoxPriceTableData } from "../../utils/axios/Data";
-import { IoIosArrowForward, IoIosCheckmarkCircleOutline, IoMdArrowUp, IoMdEye } from "react-icons/io";
+import {
+  IoIosArrowForward,
+  IoIosCheckmarkCircleOutline,
+  IoMdArrowUp,
+  IoMdEye,
+} from "react-icons/io";
 import { IoMdArrowDown } from "react-icons/io";
 import { Link, useParams } from "react-router-dom";
 import { getProducerDetailData } from "../../utils/axios/Blockchain";
 import { extractSiteName } from "../../utils/extractSiteName";
 import { LuArrowDownToLine, LuArrowUpToLine } from "react-icons/lu";
 import PoxImg from "../../assets/PoxImg.png";
-import { getAccountDetailsPageData, getTransactionDetailsData, getTransferDetailData } from "../../utils/axios/TransactionDetails";
+import {
+  getAccountDetailsPageData,
+  getTransactionDetailsData,
+  getTransferDetailData,
+} from "../../utils/axios/TransactionDetails";
 import { shortenString } from "../../utils/shortenString";
 import { secondsAgo } from "../../utils/secondAgo";
 import { RxCrossCircled } from "react-icons/rx";
 import { getTrendingSearchGraphData } from "../../utils/axios/Home";
+import { toast } from "react-toastify";
 
 const TransactionTable = () => {
   // For Pagination
@@ -65,7 +75,7 @@ const TransactionTable = () => {
       </div>
 
       {data?.transactions &&
-        data?.transactions.slice(0,10).map((transaction, index) => (
+        data?.transactions.slice(0, 10).map((transaction, index) => (
           <div
             key={index}
             className="min-w-[1500px] flex flex-row justify-evenly p-4 m-3 border-b-2 border-lightest-gray rounded-xl"
@@ -74,17 +84,23 @@ const TransactionTable = () => {
               <IoMdEye />
             </p>
 
-            <Link to={`/transactiondetails/${transaction?.transactionId}`} className="w-[16%] text-center cursor-pointer text-dark-red">
-            <p >
-              {transaction?.transactionId &&
-                shortenString(transaction?.transactionId, 8)}
-            </p>
+            <Link
+              to={`/transactiondetails/${transaction?.transactionId}`}
+              className="w-[16%] text-center cursor-pointer text-dark-red"
+            >
+              <p>
+                {transaction?.transactionId &&
+                  shortenString(transaction?.transactionId, 8)}
+              </p>
             </Link>
-           
-           <Link to={`/blockdetailpage/${transaction?.blockNumber}`} className="w-[10%] text-center  text-dark-red">
-           <p >{transaction?.blockNumber}</p>
-           </Link>
-         
+
+            <Link
+              to={`/blockdetailpage/${transaction?.blockNumber}`}
+              className="w-[10%] text-center  text-dark-red"
+            >
+              <p>{transaction?.blockNumber}</p>
+            </Link>
+
             <p className="w-[10%] text-center ">
               {transaction?.timeStamp && secondsAgo(transaction?.timeStamp)}
             </p>
@@ -92,20 +108,26 @@ const TransactionTable = () => {
               {transaction?.type && transaction?.type}
             </p>
 
-            <Link to={`/accountdetails/${transaction?.fromAddress}`} className="w-[12%] text-center  text-dark-red">
-            <p >
-              {transaction?.fromAddress &&
-                shortenString(transaction?.fromAddress, 5)}
-            </p>
+            <Link
+              to={`/accountdetails/${transaction?.fromAddress}`}
+              className="w-[12%] text-center  text-dark-red"
+            >
+              <p>
+                {transaction?.fromAddress &&
+                  shortenString(transaction?.fromAddress, 5)}
+              </p>
             </Link>
-            
-            <Link to={`/producerdetailpage/${transaction?.toAddress}`} className="w-[12%] text-center text-dark-red   ">
-            <p >
-              {transaction?.toAddress &&
-                shortenString(transaction?.toAddress, 5)}
-            </p>
+
+            <Link
+              to={`/producerdetailpage/${transaction?.toAddress}`}
+              className="w-[12%] text-center text-dark-red   "
+            >
+              <p>
+                {transaction?.toAddress &&
+                  shortenString(transaction?.toAddress, 5)}
+              </p>
             </Link>
-         
+
             <p className="w-[14%] text-center ">
               {transaction?.type && transaction?.type}
             </p>
@@ -149,7 +171,7 @@ const TransferTable = () => {
         console.log("error", error);
       }
     };
-    
+
     fetchData();
   }, []);
 
@@ -173,32 +195,42 @@ const TransferTable = () => {
       </div>
 
       {data1?.transactions &&
-        data1?.transactions.slice(0,10).map((transaction, index) => (
-
+        data1?.transactions.slice(0, 10).map((transaction, index) => (
           <div
             key={index}
             className="min-w-[1500px] flex flex-row justify-evenly p-4 m-3 border-b-2 border-lightest-gray rounded-xl"
           >
-             <div className="w-[22%] ">
-             <div className="flex justify-center space-x-0 ">
-                 <p className="text-dark-red "> Pollux...({transaction?.multipleDecodedData?.decodedDataResult?.name && transaction?.multipleDecodedData?.decodedDataResult?.name})</p>
-                 <p className="px-2 py-[1px] rounded-md bg-light-red text-black"> {transaction?.multipleDecodedData?.decodedDataResult?.name && transaction?.multipleDecodedData?.decodedDataResult?.name}</p>
-                 </div>
-            
-            <Link to={`/tokendetailpage/${transaction?.multipleDecodedData?.decodedDataResult?.contractAddress}`} className=" text-center  text-light-gray">
-            <p >
-              {transaction?.multipleDecodedData?.decodedDataResult
-                ?.contractAddress &&
-              transaction?.multipleDecodedData?.decodedDataResult
-                ?.contractAddress
-                ? transaction?.multipleDecodedData?.decodedDataResult
+            <div className="w-[22%] ">
+              <div className="flex justify-center space-x-0 ">
+                <p className="text-dark-red ">
+                  {" "}
+                  Pollux...(
+                  {transaction?.multipleDecodedData?.decodedDataResult?.name &&
+                    transaction?.multipleDecodedData?.decodedDataResult?.name}
+                  )
+                </p>
+                <p className="px-2 py-[1px] rounded-md bg-light-red text-black">
+                  {" "}
+                  {transaction?.multipleDecodedData?.decodedDataResult?.name &&
+                    transaction?.multipleDecodedData?.decodedDataResult?.name}
+                </p>
+              </div>
+
+              <Link
+                to={`/tokendetailpage/${transaction?.multipleDecodedData?.decodedDataResult?.contractAddress}`}
+                className=" text-center  text-light-gray"
+              >
+                <p>
+                  {transaction?.multipleDecodedData?.decodedDataResult
+                    ?.contractAddress &&
+                  transaction?.multipleDecodedData?.decodedDataResult
                     ?.contractAddress
-                : transaction?.contractAddress}
-            </p>
-            </Link>
-             </div>
-            
-           
+                    ? transaction?.multipleDecodedData?.decodedDataResult
+                        ?.contractAddress
+                    : transaction?.contractAddress}
+                </p>
+              </Link>
+            </div>
 
             <p className="w-[15%] text-center ">
               {transaction?.multipleDecodedData?.decodedDataResult?.value &&
@@ -219,39 +251,46 @@ const TransferTable = () => {
             <p className="w-[10%] text-center ">
               {transaction?.timeStamp && secondsAgo(transaction?.timeStamp)}
             </p>
-            
-            <Link to={`/accountdetails/${transaction?.multipleDecodedData?.decodedDataResult?.from}`} className="w-[10%] text-center  text-dark-red">
-            <p >
-              {transaction?.multipleDecodedData?.decodedDataResult?.from &&
-              transaction?.multipleDecodedData?.decodedDataResult?.from
-                ? shortenString(
-                    transaction?.multipleDecodedData?.decodedDataResult?.from,
-                    5
-                  )
-                : shortenString(transaction?.fromAddress, 5)}
-            </p>
+
+            <Link
+              to={`/accountdetails/${transaction?.multipleDecodedData?.decodedDataResult?.from}`}
+              className="w-[10%] text-center  text-dark-red"
+            >
+              <p>
+                {transaction?.multipleDecodedData?.decodedDataResult?.from &&
+                transaction?.multipleDecodedData?.decodedDataResult?.from
+                  ? shortenString(
+                      transaction?.multipleDecodedData?.decodedDataResult?.from,
+                      5
+                    )
+                  : shortenString(transaction?.fromAddress, 5)}
+              </p>
             </Link>
-           
-             
-             <Link to={`/producerdetailpage/${transaction?.multipleDecodedData?.decodedDataResult?.to}`} className="w-[10%] text-center  text-dark-red">
-             <p >
-              {transaction?.multipleDecodedData?.decodedDataResult?.to &&
-              transaction?.multipleDecodedData?.decodedDataResult?.to
-                ? shortenString(
-                    transaction?.multipleDecodedData?.decodedDataResult?.to,
-                    5
-                  )
-                : shortenString(transaction?.toAddress, 5)}
-            </p>
-             </Link>
-          
-           <Link to={`/transactiondetails/${transaction?.transactionId}`} className="w-[15%] text-dark-red  text-center ">
-           <p >
-              {transaction?.transactionId &&
-                shortenString(transaction?.transactionId, 8)}
-            </p>
-           </Link>
-            
+
+            <Link
+              to={`/producerdetailpage/${transaction?.multipleDecodedData?.decodedDataResult?.to}`}
+              className="w-[10%] text-center  text-dark-red"
+            >
+              <p>
+                {transaction?.multipleDecodedData?.decodedDataResult?.to &&
+                transaction?.multipleDecodedData?.decodedDataResult?.to
+                  ? shortenString(
+                      transaction?.multipleDecodedData?.decodedDataResult?.to,
+                      5
+                    )
+                  : shortenString(transaction?.toAddress, 5)}
+              </p>
+            </Link>
+
+            <Link
+              to={`/transactiondetails/${transaction?.transactionId}`}
+              className="w-[15%] text-dark-red  text-center "
+            >
+              <p>
+                {transaction?.transactionId &&
+                  shortenString(transaction?.transactionId, 8)}
+              </p>
+            </Link>
 
             <p className="w-[10%] flex justify-center ">
               {transaction?.blockNumber && transaction?.blockNumber}
@@ -270,7 +309,7 @@ const TransferTable = () => {
   );
 };
 
-const Wallet = ({value1, value2}) => {
+const Wallet = ({ value1, value2 }) => {
   return (
     <div className="bg-white h-auto rounded-lg p-5">
       <div>
@@ -281,24 +320,27 @@ const Wallet = ({value1, value2}) => {
         <div className="flex flex-row ">
           <img src={PoxImg} alt="pox image" className="" />
           <Link to="/tokens/pox">
-          <p className="pl-2 font-bold text-dark-red">Pollux (POX )</p>
+            <p className="pl-2 font-bold text-dark-red">Pollux (POX )</p>
           </Link>
-          
         </div>
-<div>
-        <p>{value1}</p>
-        <p>≈ ${value2}</p>
+        <div>
+          <p>{value1}</p>
+          <p>≈ ${value2}</p>
         </div>
       </div>
 
       <div className="flex flex-row justify-between  p-7 border-b-[1px] border-text-bg-gray pt-4 pb-40">
         <div>
-        <div className="flex flex-row items-center">
-          <img src={PoxImg} alt="pox image" className="" />
-          <p className="pl-2 font-bold">Pollux USD (USDX)</p>
-          <p className=" ml-2 px-2 py-1 text-light-mid-gray bg-text-bg-gray rounded-lg">PRC20</p>
-        </div>
-        <p className="pl-10 font-semibold">PSTv3ZweeCRHd5cmxoL3dTTbSKGgtYZ5cm</p>
+          <div className="flex flex-row items-center">
+            <img src={PoxImg} alt="pox image" className="" />
+            <p className="pl-2 font-bold">Pollux USD (USDX)</p>
+            <p className=" ml-2 px-2 py-1 text-light-mid-gray bg-text-bg-gray rounded-lg">
+              PRC20
+            </p>
+          </div>
+          <p className="pl-10 font-semibold">
+            PSTv3ZweeCRHd5cmxoL3dTTbSKGgtYZ5cm
+          </p>
         </div>
 
         <p className="font-bold">8007.22</p>
@@ -319,54 +361,51 @@ const ProducerDetailPage = () => {
   const [data, setData] = useState({});
   const [accountData, setAccountData] = useState({});
   const [poxPrice, setPoxPrice] = useState(0);
+  const [isShow, setIsShow] = useState("Transactions");
+  // For tab Switching in walllet
+  const [isRender, setIsRender] = useState("Wallet (1)");
 
- useEffect(() => {
-    
+  useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await getProducerDetailData (witnessAddress);
-        console.log(data);
+        const data = await getProducerDetailData(witnessAddress);
         setData(data?.message);
-
         const poxPrice = await getTrendingSearchGraphData();
         setPoxPrice(poxPrice?.price);
         const accountDataObj = await getAccountDetailsPageData(witnessAddress);
         setAccountData(accountDataObj?.message);
-        
-        
       } catch (error) {
-        console.log('error', error);
-      } 
+        console.log("error", error);
+      }
     };
-
     fetchData();
   }, []);
 
-    // const handleCopy = (address) => {
-    //     navigator.clipboard.writeText(address);
-    //     toast.success("Hash copied successfully!");
-    //   };
+  const handleCopy = (address) => {
+    navigator.clipboard.writeText(address);
+    toast.success("Hash copied successfully!");
+  };
 
+  const showItemComponent = () => {
+    switch (isShow) {
+      case "Transactions":
+        return <TransactionTable />;
 
-    const [isShow, setIsShow] = useState("Transactions");
-    const showItemComponent = () => {
-      switch (isShow) {
-        case "Transactions":
-          return <TransactionTable />;
-  
-        case "Transfers":
-          return <TransferTable  />;
-      }
-    };
-    // For tab Switching in walllet
-  const [isRender, setIsRender] = useState("Wallet (1)");
+      case "Transfers":
+        return <TransferTable />;
+    }
+  };
 
   const renderItemComponent = () => {
     switch (isRender) {
       case "Wallet (1)":
-        return <Wallet value1=  {(
-          (Number(accountData?.balance) / Math.pow(10, 6))
-        ).toFixed(6)} value2={poxPrice} value3={""} />;
+        return (
+          <Wallet
+            value1={(Number(accountData?.balance) / Math.pow(10, 6)).toFixed(6)}
+            value2={poxPrice}
+            value3={""}
+          />
+        );
 
       case "Portfolio (0)":
         return (
@@ -382,367 +421,370 @@ const ProducerDetailPage = () => {
           </div>
         );
     }
-  }
+  };
   return (
     <div className="px-12 pb-12">
-      
       {/* Search Bar */}
       <div>
         <SearchBarExpand />
       </div>
-
       {/* First  */}
       <div className="flex flex-row justify-between">
         <div>
-            <p className="text-xl font-bold">Account</p>
-
-            <div className="flex flex-row space-x-4">
-                <p className="text-lg font-semibold pt-3"></p>{data?.address}
-                <p className="text-xl p-2 bg-white rounded-full cursor-pointer ">
-              <BiSolidCopyAlt
-                // onClick={() => handleCopy(accountData?.address)}
-              />
+          <p className="text-xl font-bold">Account</p>
+          <div className="flex flex-row items-center space-x-4">
+            <p className="text-lg font-semibold pt-3"></p>
+            {data?.address}
+            <p className="text-xl p-2 bg-white rounded-full cursor-pointer ">
+              <BiSolidCopyAlt onClick={() => handleCopy(data?.address)} />
             </p>
             <p className="text-xl bg-white p-2 rounded-full cursor-pointer">
               <RiQrCodeFill />
             </p>
-            </div>
-
-            <p className="mt-2 py-1 pl-5 mr-80 font-semibold bg-lightest-gray rounded-md">Add a private tag</p>
+          </div>
+          <p className="mt-2 py-1 px-3 mr-80 font-semibold bg-lightest-gray rounded-md">
+            Add a private tag
+          </p>
         </div>
 
-
-        <div className="flex flex-row space-x-10 mt-14">
-            <div>
-                <div className="flex flex-row space-x-2">
-                <p className="bg-lightest-gray rounded-md pt-1 px-1">
-                  <AiOutlineQuestion />
-                </p>
-                <p>Recent Activity (UTC)</p>
-                </div>
-            
-                <p>2024-07-19T00:00:40.423Z</p>
+        <div className="flex flex-row items-center space-x-10 mt-14">
+          <div>
+            <div className="flex flex-row space-x-2">
+              <p className="bg-lightest-gray rounded-md pt-1 px-1">
+                <AiOutlineQuestion />
+              </p>
+              <p>Recent Activity (UTC)</p>
             </div>
+            <p>2024-07-19T00:00:40.423Z</p>
+          </div>
 
-            <div>
-                <div className="flex flex-row space-x-2">
-                <p className="bg-lightest-gray rounded-md pt-1 px-1">
-                  <AiOutlineQuestion />
-                </p>
-                <p>Created on (UTC)</p>
-                </div>
-                <p>2024-07-19T00:00:40.423Z</p>
+          <div>
+            <div className="flex flex-row space-x-2">
+              <p className="bg-lightest-gray rounded-md pt-1 px-1">
+                <AiOutlineQuestion />
+              </p>
+              <p>Created on (UTC)</p>
             </div>
+            <p>2024-07-19T00:00:40.423Z</p>
+          </div>
         </div>
       </div>
 
-     {/* Second div */}
-     <div className="flex flex-row justify-between space-x-5 w-full mt-5">
+      {/* Second div */}
+      <div className="flex flex-row justify-between space-x-5 w-full mt-5">
         <div className="w-[50%] bg-white rounded-lg shadow-lg p-5">
-               <div className="flex flex-row justify-between border-b-[1px] border-text-bg-gray pt-2 pb-4">
-                <div className="flex flex-row space-x-2">
-                <p className="bg-lightest-gray rounded-md font-bold pt-1 px-1"><AiOutlineQuestion /></p>
-                <p className="font-bold">Name</p>
-                </div>
-                <p>{data?.checkSR?.url && extractSiteName(data?.checkSR?.url)}</p>
-               </div>
+          
+          <div className="flex flex-row justify-between items-center border-b-[1px] border-text-bg-gray pt-2 pb-4">
+            <div className="flex flex-row space-x-2">
+              <p className="bg-lightest-gray rounded-md font-bold pt-1 px-1">
+                <AiOutlineQuestion />
+              </p>
+              <p className="font-bold">Name</p>
+            </div>
+            <p>{data?.checkSR?.url && extractSiteName(data?.checkSR?.url)}</p>
+          </div>
 
-               <div className="flex flex-row justify-between border-b-[1px] border-text-bg-gray pt-4 pb-4">
-                <div className="flex flex-row space-x-2">
-                <p className="bg-lightest-gray rounded-md font-bold pt-1 px-1"><AiOutlineQuestion /></p>
-                <p className="font-bold">Website</p>
-                </div>
-                <p className="text-dark-red">{data?.checkSR?.url}</p>
-               </div>
+          <div className="flex flex-row justify-between items-center border-b-[1px] border-text-bg-gray pt-4 pb-4">
+            <div className="flex flex-row space-x-2">
+              <p className="bg-lightest-gray rounded-md font-bold pt-1 px-1">
+                <AiOutlineQuestion />
+              </p>
+              <p className="font-bold">Website</p>
+            </div>
+            <p className="text-dark-red">{data?.checkSR?.url}</p>
+          </div>
 
-               <div className="flex flex-row justify-between border-b-[1px] border-text-bg-gray pt-4 pb-4">
-                <div className="flex flex-row space-x-2">
-                <p className="bg-lightest-gray rounded-md font-bold pt-1 px-1"><AiOutlineQuestion /></p>
-                <p className="font-bold">Block Count/Efficiency：</p>
-                </div>
-                <p> <span className="text-dark-skyblue"> {data?.checkSR?.totalProduced} </span>/ /99.18</p>
-               </div>
+          <div className="flex flex-row justify-between items-center border-b-[1px] border-text-bg-gray pt-4 pb-4">
+            <div className="flex flex-row space-x-2">
+              <p className="bg-lightest-gray rounded-md font-bold pt-1 px-1">
+                <AiOutlineQuestion />
+              </p>
+              <p className="font-bold">Block Count/Efficiency：</p>
+            </div>
+            <p>
+              {" "}
+              <span className="text-dark-skyblue">
+                {" "}
+                {data?.checkSR?.totalProduced}{" "}
+              </span>
+              / /99.18
+            </p>
+          </div>
 
-               <div className="flex flex-row justify-between pt-4 pb-2">
-                <div className="flex flex-row space-x-2">
-                <p className="bg-lightest-gray font-bold rounded-md pt-1 px-1"><AiOutlineQuestion /></p>
-                <p className="font-bold">Round Ranking/Votes：
-                </p>
-                </div>
-                <p>{data?.checkSR?.ranking}/ {data?.checkSR?.voteCount}</p>
-               </div>
+          <div className="flex flex-row items-center justify-between pt-4 pb-2">
+            <div className="flex flex-row space-x-2">
+              <p className="bg-lightest-gray font-bold rounded-md pt-1 px-1">
+                <AiOutlineQuestion />
+              </p>
+              <p className="font-bold">Round Ranking/Votes：</p>
+            </div>
+            <p>
+              {data?.checkSR?.ranking}/ {data?.checkSR?.voteCount}
+            </p>
+          </div>
         </div>
 
         <div className="w-[50%]   flex flex-row space-x-5">
-            <div className="w-[33%] bg-white rounded-lg shadow-lg p-5">
+          <div className="w-[33%] bg-white rounded-lg shadow-lg p-5">
+            <div className="flex flex-row space-x-2">
+              <p className="bg-lightest-gray rounded-md pt-1 px-1">
+                <AiOutlineQuestion />
+              </p>
+              <p className="font-bold"> Current Ranking</p>
+            </div>
 
-              <div className="flex flex-row space-x-2">
-              <p className="bg-lightest-gray rounded-md pt-1 px-1"><AiOutlineQuestion /></p>
-                <p className="font-bold"> Current Ranking</p>
-              </div>
+            <p className="text-xl font-semibold pt-3">
+              {data?.checkSR?.ranking}
+            </p>
 
-              <p className="text-xl font-semibold pt-3">{data?.checkSR?.ranking}</p>
-
-              <div className="pt-10 flex justify-end">
+            <div className="pt-10 flex justify-end">
               <img src="https://poxscan.io/images/cup.svg" alt="cup-image" />
-              </div>
-             
-              <div className=" w-full flex flex-row">
-                <p  className="w-[100%] border-[3px] border-light-mid-red rounded-lg mt-3 mb-1 "></p>
-                <p className=" border-r-[5px]  border-dark-red mt-2  rounded "></p>
-              </div>
-
-              <div className="flex flex-row justify-between pt-3">
-                <p>1</p>
-                <p>2</p>
-              </div>
             </div>
 
-
-            <div className="w-[33%] bg-white rounded-lg shadow-lg p-5">
-
-              <div className="flex flex-row space-x-2">
-              <p className="bg-lightest-gray rounded-md pt-1 px-1"><AiOutlineQuestion /></p>
-                <p className="font-bold">Current Votes</p>
-              </div>
-
-              <p className="text-xl font-semibold pt-3">{data?.checkSR?.voteCount}</p>
-
-              <div className="w-[250px] h-[120px] pt-5">
-            <AreaChartComp 
-              value={data}
-              xDataKey="date"
-              yDataKey="value"
-              componentChartColor="#C23631"/>
-            </div>
+            <div className=" w-full flex flex-row">
+              <p className="w-[100%] border-[3px] border-light-mid-red rounded-lg mt-3 mb-1 "></p>
+              <p className=" border-r-[5px]  border-dark-red mt-2  rounded "></p>
             </div>
 
+            <div className="flex flex-row justify-between pt-3">
+              <p>1</p>
+              <p>2</p>
+            </div>
+          </div>
 
-            <div className="w-[33%] bg-white rounded-lg shadow-lg p-5">
+          <div className="w-[33%] bg-white rounded-lg shadow-lg p-5">
+            <div className="flex flex-row space-x-2">
+              <p className="bg-lightest-gray rounded-md pt-1 px-1">
+                <AiOutlineQuestion />
+              </p>
+              <p className="font-bold">Current Votes</p>
+            </div>
 
-              <div className="flex flex-row space-x-2">
-              <p className="bg-lightest-gray rounded-md pt-1 px-1"><AiOutlineQuestion /></p>
-                <p className="font-bold">Reward Distribution</p>
-              </div>
+            <p className="text-xl font-semibold pt-3">
+              {data?.checkSR?.voteCount}
+            </p>
 
-              <div className=" "></div>
-              
-              <div className="mt-36">
+            <div className="w-[250px] h-[120px] pt-5">
+              <AreaChartComp
+                value={data}
+                xDataKey="date"
+                yDataKey="value"
+                componentChartColor="#C23631"
+              />
+            </div>
+          </div>
+
+          <div className="w-[33%] bg-white rounded-lg shadow-lg p-5">
+            <div className="flex flex-row space-x-2">
+              <p className="bg-lightest-gray rounded-md pt-1 px-1">
+                <AiOutlineQuestion />
+              </p>
+              <p className="font-bold">Reward Distribution</p>
+            </div>
+
+            <div className=" "></div>
+
+            <div className="mt-36">
               <div className="flex flex-row justify-between">
-                 <div className="flex flex-row space-x-2">
-                 <p className="text-xl font-bold text-dark-red">98%</p>
-                 <p className="pt-2 text-dark-red"><IoMdArrowUp /></p>
-                 </div>
-               
                 <div className="flex flex-row space-x-2">
-                <p className="text-xl font-bold text-dark-green">2%</p>
-                <p className="pt-2 text-dark-green"><IoMdArrowDown /></p>
+                  <p className="text-xl font-bold text-dark-red">98%</p>
+                  <p className="pt-2 text-dark-red">
+                    <IoMdArrowUp />
+                  </p>
                 </div>
-               
+
+                <div className="flex flex-row space-x-2">
+                  <p className="text-xl font-bold text-dark-green">2%</p>
+                  <p className="pt-2 text-dark-green">
+                    <IoMdArrowDown />
+                  </p>
+                </div>
               </div>
 
               <div className="flex flex-row justify-between">
                 <p className="text-sm text-light-gray">Voters</p>
-                <p  className="text-sm text-light-mid-gray">SR Rewards</p>
+                <p className="text-sm text-light-mid-gray">SR Rewards</p>
               </div>
-              </div>
-            
-
-
-
-              <div></div>
             </div>
+            <div></div>
+          </div>
         </div>
-     </div>
+      </div>
 
-
-     <div className="flex flex-row justify-between w-full space-x-5 pt-5 mt-10">
-          {/* First Div */}
-          <div className="w-[50%] bg-white rounded-lg p-5">
-            <div className="flex flex-row justify-between">
-              <div className="">
-               
-
-                <p className="text-2xl pt-2 font-bold">
-                  $
-                  {(
-                    (Number(accountData?.balance) / Math.pow(10, 6)) *
-                    poxPrice
-                  ).toFixed(2)}
-                </p>
-                <p className="text-light-gray pt-2 font-semibold">
-                  {Number(accountData?.balance / Math.pow(10, 6)).toFixed(2)}{" "}
-                  POX
-                </p>
-              </div>
+      <div className="flex flex-row justify-between w-full space-x-5 pt-5 mt-10">
+        {/* First Div */}
+        <div className="w-[50%] bg-white rounded-lg p-5">
+          <div className="flex flex-row justify-between">
+            <div className="">
+              <p className="text-2xl pt-2 font-bold">
+                $
+                {(
+                  (Number(accountData?.balance) / Math.pow(10, 6)) *
+                  poxPrice
+                ).toFixed(2)}
+              </p>
+              <p className="text-light-gray pt-2 font-semibold">
+                {Number(accountData?.balance / Math.pow(10, 6)).toFixed(2)} POX
+              </p>
             </div>
+          </div>
 
-            <div className="pt-4">
-              <div className="flex flex-row justify-between border-b-[1px] border-t-[1px] border-text-bg-gray pt-4 pb-4">
-                <div className="flex flex-row space-x-2 ">
-                  <p className="bg-lightest-gray rounded-md pt-1 px-1">
-                    <AiOutlineQuestion />
-                  </p>
-                  <p className=" font-bold ">POX Staked / Balance:</p>
-                </div>
+          <div className="pt-4">
+            <div className="flex flex-row justify-between border-b-[1px] border-t-[1px] border-text-bg-gray pt-4 pb-4">
+              <div className="flex flex-row space-x-2 ">
+                <p className="bg-lightest-gray rounded-md pt-1 px-1">
+                  <AiOutlineQuestion />
+                </p>
+                <p className=" font-bold ">POX Staked / Balance:</p>
+              </div>
 
-                <p>
-                  {" "}
-                  <span className="text-dark-red">
-                    {accountData?.staked &&
-                      Number(accountData?.staked / Math.pow(10, 6)).toFixed(
-                        2
-                      )}{" "}
-                    POX
-                  </span>{" "}
-                  /{" "}
-                  {accountData?.balance &&
-                    Number(accountData?.balance / Math.pow(10, 6)).toFixed(
+              <p>
+                {" "}
+                <span className="text-dark-red">
+                  {accountData?.staked &&
+                    Number(accountData?.staked / Math.pow(10, 6)).toFixed(
                       2
                     )}{" "}
                   POX
-                </p>
-              </div>
-
-              <div className="flex flex-row justify-between border-b-[1px] border-text-bg-gray pt-4 pb-4">
-                <div className="flex flex-row space-x-2 ">
-                  <p className="bg-lightest-gray rounded-md pt-1 px-1">
-                    <AiOutlineQuestion />
-                  </p>
-                  <p className=" font-bold ">Transactions:</p>
-                </div>
-
-                <p className=" text-dark-red">{accountData?.Transactions}</p>
-              </div>
-
-              <div className="flex flex-row justify-between border-b-[1px] border-text-bg-gray pt-4 pb-4">
-                <div className="flex flex-row space-x-2 ">
-                  <p className="bg-lightest-gray rounded-md pt-1 px-1">
-                    <AiOutlineQuestion />
-                  </p>
-                  <p className=" font-bold">Transfers:</p>
-                </div>
-
-                <div className="flex flex-row items-center space-x-1 text-lg ">
-                  <p className="text-dark-red">{accountData?.Transactions}</p>{" "}
-                  <p>(</p>
-                  <p className="pt-1 text-dark-green">
-                    <LuArrowDownToLine size={16} />
-                  </p>
-                  <p> {accountData?.Intxn} </p>
-                  <p className="pt-1 text-dark-red">
-                    <LuArrowUpToLine size={16} />
-                  </p>
-                  <p>{accountData?.Outtxn} )</p>
-                </div>
-              </div>
-
-              <div className="flex flex-row justify-between border-b-[1px] border-text-bg-gray pt-4 pb-4">
-                <div className="flex flex-row space-x-2 ">
-                  <p className="bg-lightest-gray rounded-md pt-1 px-1">
-                    <AiOutlineQuestion />
-                  </p>
-                  <p className=" font-bold">Bandwidth:</p>
-                </div>
-                <p>
-                  Available: {accountData?.AvailableBandwidth} /{" "}
-                  <span className="text-dark-red">
-                    {accountData?.TotalBandwidth}
-                  </span>
-                </p>
-              </div>
-
-              <div className="flex flex-row justify-between border-b-[1px]  border-text-bg-gray pt-4 pb-4">
-                <div className="flex flex-row space-x-2 ">
-                  <p className="bg-lightest-gray rounded-md pt-1 px-1">
-                    <AiOutlineQuestion />
-                  </p>
-                  <p className=" font-bold">Energy:</p>
-                </div>
-                <p>
-                  Available: {accountData?.Availablenergy} /{" "}
-                  <span className="text-dark-red">
-                    {accountData?.TotalEnergy}
-                  </span>
-                </p>
-              </div>
-
-              <div className="flex flex-row justify-between border-b-[1px] border-text-bg-gray pt-4 pb-4">
-                <div className="flex flex-row space-x-2 ">
-                  <p className="bg-lightest-gray rounded-md pt-1 px-1">
-                    <AiOutlineQuestion />
-                  </p>
-                  <p className=" font-bold ">Votes:</p>
-                </div>
-
-                <p>
-                  Voted:{" "}
-                  <span className="text-dark-red">
-                    {accountData?.VotedVotes}
-                  </span>{" "}
-                  / {accountData?.TotalVotes}
-                </p>
-              </div>
-
-              <div className="flex flex-row justify-between  pt-4 ">
-                <div className="flex flex-row space-x-2 ">
-                  <p className="bg-lightest-gray rounded-md pt-1 px-1">
-                    <AiOutlineQuestion />
-                  </p>
-                  <p className=" font-bold">Claimable Voting Rewards:</p>
-                </div>
-
-                <p>
-                  {accountData?.ClaimableVotingRewards / Math.pow(10, 6)} POX
-                </p>
-              </div>
-            </div>
-
-            <div></div>
-          </div>
-
-          {/* Second Div */}
-          <div className="w-[50%]  rounded-lg ">
-            <div className="flex flex-row justify-between space-x-1 rounded-lg ">
-              <p
-                className={`cursor-pointer py-3 px-24 font-bold whitespace-nowrap  ${
-                  isRender === "Wallet (1)"
-                    ? "bg-white rounded-t-lg"
-                    : "bg-lightest-gray text-black rounded-lg rounded-bl-none"
-                }`}
-                onClick={() => setIsRender("Wallet (1)")}
-              >
-                Wallet (1)
-              </p>
-
-              <p
-                className={`cursor-pointer py-3 px-20 font-bold whitespace-nowrap  ${
-                  isRender === "Portfolio (0)"
-                    ? "bg-white rounded-t-lg"
-                    : "bg-lightest-gray text-black rounded-lg"
-                }`}
-                onClick={() => setIsRender("Portfolio (0)")}
-              >
-                Portfolio (0)
-              </p>
-
-              <p
-                className={`cursor-pointer py-3 px-20 font-bold whitespace-nowrap  ${
-                  isRender === "Approval (0)"
-                    ? "bg-white rounded-t-lg"
-                    : "bg-lightest-gray text-black rounded-lg"
-                }`}
-                onClick={() => setIsRender("Approval (0)")}
-              >
-                Approval (0)
+                </span>{" "}
+                /{" "}
+                {accountData?.balance &&
+                  Number(accountData?.balance / Math.pow(10, 6)).toFixed(
+                    2
+                  )}{" "}
+                POX
               </p>
             </div>
 
-            <div>{renderItemComponent()}</div>
+            <div className="flex flex-row justify-between border-b-[1px] border-text-bg-gray pt-4 pb-4">
+              <div className="flex flex-row space-x-2 ">
+                <p className="bg-lightest-gray rounded-md pt-1 px-1">
+                  <AiOutlineQuestion />
+                </p>
+                <p className=" font-bold ">Transactions:</p>
+              </div>
+              <p className=" text-dark-red">{accountData?.Transactions}</p>
+            </div>
+
+            <div className="flex flex-row justify-between border-b-[1px] border-text-bg-gray pt-4 pb-4">
+              <div className="flex flex-row space-x-2 ">
+                <p className="bg-lightest-gray rounded-md pt-1 px-1">
+                  <AiOutlineQuestion />
+                </p>
+                <p className=" font-bold">Transfers:</p>
+              </div>
+
+              <div className="flex flex-row items-center space-x-1 text-lg ">
+                <p className="text-dark-red">{accountData?.Transactions}</p>{" "}
+                <p>(</p>
+                <p className="pt-1 text-dark-green">
+                  <LuArrowDownToLine size={16} />
+                </p>
+                <p> {accountData?.Intxn} </p>
+                <p className="pt-1 text-dark-red">
+                  <LuArrowUpToLine size={16} />
+                </p>
+                <p>{accountData?.Outtxn} )</p>
+              </div>
+            </div>
+
+            <div className="flex flex-row justify-between border-b-[1px] border-text-bg-gray pt-4 pb-4">
+              <div className="flex flex-row space-x-2 ">
+                <p className="bg-lightest-gray rounded-md pt-1 px-1">
+                  <AiOutlineQuestion />
+                </p>
+                <p className=" font-bold">Bandwidth:</p>
+              </div>
+              <p>
+                Available: {accountData?.AvailableBandwidth} /{" "}
+                <span className="text-dark-red">
+                  {accountData?.TotalBandwidth}
+                </span>
+              </p>
+            </div>
+
+            <div className="flex flex-row justify-between border-b-[1px]  border-text-bg-gray pt-4 pb-4">
+              <div className="flex flex-row space-x-2 ">
+                <p className="bg-lightest-gray rounded-md pt-1 px-1">
+                  <AiOutlineQuestion />
+                </p>
+                <p className=" font-bold">Energy:</p>
+              </div>
+              <p>
+                Available: {accountData?.Availablenergy} /{" "}
+                <span className="text-dark-red">
+                  {accountData?.TotalEnergy}
+                </span>
+              </p>
+            </div>
+
+            <div className="flex flex-row justify-between border-b-[1px] border-text-bg-gray pt-4 pb-4">
+              <div className="flex flex-row space-x-2 ">
+                <p className="bg-lightest-gray rounded-md pt-1 px-1">
+                  <AiOutlineQuestion />
+                </p>
+                <p className=" font-bold ">Votes:</p>
+              </div>
+
+              <p>
+                Voted:{" "}
+                <span className="text-dark-red">{accountData?.VotedVotes}</span>{" "}
+                / {accountData?.TotalVotes}
+              </p>
+            </div>
+
+            <div className="flex flex-row justify-between  pt-4 ">
+              <div className="flex flex-row space-x-2 ">
+                <p className="bg-lightest-gray rounded-md pt-1 px-1">
+                  <AiOutlineQuestion />
+                </p>
+                <p className=" font-bold">Claimable Voting Rewards:</p>
+              </div>
+              <p>{accountData?.ClaimableVotingRewards / Math.pow(10, 6)} POX</p>
+            </div>
           </div>
+          <div></div>
         </div>
 
-        <div className="flex flex-row justify-between md:justify-start gap-8 pt-20 pb-10">
+        {/* Second Div */}
+        <div className="w-[50%]  rounded-lg ">
+          <div className="flex flex-row justify-between space-x-1 rounded-lg ">
+            <p
+              className={`cursor-pointer py-3 px-24 font-bold whitespace-nowrap  ${
+                isRender === "Wallet (1)"
+                  ? "bg-white rounded-t-lg"
+                  : "bg-lightest-gray text-black rounded-lg rounded-bl-none"
+              }`}
+              onClick={() => setIsRender("Wallet (1)")}
+            >
+              Wallet (1)
+            </p>
+            <p
+              className={`cursor-pointer py-3 px-20 font-bold whitespace-nowrap  ${
+                isRender === "Portfolio (0)"
+                  ? "bg-white rounded-t-lg"
+                  : "bg-lightest-gray text-black rounded-lg"
+              }`}
+              onClick={() => setIsRender("Portfolio (0)")}
+            >
+              Portfolio (0)
+            </p>
+            <p
+              className={`cursor-pointer py-3 px-20 font-bold whitespace-nowrap  ${
+                isRender === "Approval (0)"
+                  ? "bg-white rounded-t-lg"
+                  : "bg-lightest-gray text-black rounded-lg"
+              }`}
+              onClick={() => setIsRender("Approval (0)")}
+            >
+              Approval (0)
+            </p>
+          </div>
+          <div>{renderItemComponent()}</div>
+        </div>
+      </div>
+
+      <div className="flex flex-row justify-between md:justify-start gap-8 pt-20 pb-10">
         <button
           className={` py-2 md:py-3 px-3 md:px-9 font-bold text-base md:text-xl rounded-lg text-black cursor-pointer whitespace-nowrap ${
             isShow === "Transactions" ? "bg-dark-yellow shadow-lg" : "bg-white"
@@ -760,12 +802,9 @@ const ProducerDetailPage = () => {
           Transfers
         </button>
       </div>
-
       <div>{showItemComponent()}</div>
-
-     
     </div>
-  )
-  }
+  );
+};
 
 export default ProducerDetailPage;

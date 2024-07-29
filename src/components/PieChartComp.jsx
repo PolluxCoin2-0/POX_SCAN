@@ -6,7 +6,7 @@ import { formatNumberWithCommas } from "../utils/FormattingNumber";
 const colors = ["#F3BB1B", "#1A5BA1"];
 
 const renderActiveShape = (props, xAxis, yAxis) => {
-  const RADIAN = Math.PI / 180;
+  const RADIAN = Math.PI / 120;
   const {
     cx,
     cy,
