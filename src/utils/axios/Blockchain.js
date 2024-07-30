@@ -144,11 +144,11 @@ export const getBlockDetailPageData = async(id) => {
     }
 }
 
-export const getTokenTransactionsDetailData = async() => {
+export const getTokenTransactionsDetailData = async(pageNo) => {
     try {
         const response = await axios.post("https://node.poxscan.io/api/transaction",
             {
-                "page": 0, 
+                "page": pageNo, 
                 "limit": 10, 
                 "address": "PSTv3ZweeCRHd5cmxoL3dTTbSKGgtYZ5cm"
             }
