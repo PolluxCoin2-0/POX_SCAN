@@ -31,27 +31,35 @@ import { toast } from "react-toastify";
 const TransactionTable = () => {
   // For Pagination
   const [currentPage, setCurrentPage] = useState(0);
-  
+  const [data, setData] = useState({});
+  const [currentPageData, setCurrentPageData] = useState([]);
+  const itemsPerPage = 10;
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
 
-  const [data, setData] = useState({});
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await getTransactionDetailsData(currentPage);
-        console.log(data)
-        setData(data?.message);
+        const apiData = await getTransactionDetailsData(currentPage);
+        setData(apiData?.message);
       } catch (error) {
         console.log("error", error);
       }
     };
-
     fetchData();
-  }, [currentPage]);
+  }, []);
+
+  useEffect(() => {
+    const start = currentPage * itemsPerPage;
+    const end = start + itemsPerPage;
+    setCurrentPageData(data?.transactions?.slice(start, end));
+  }, [currentPage, data]);
+
+  console.log(currentPage)
+  console.log(currentPageData)
 
   return (
     <div className="bg-white rounded-2xl p-4 md:p-10 overflow-x-auto md:overflow-hidden">
@@ -75,8 +83,8 @@ const TransactionTable = () => {
         <p className="w-[8%] font-bold text-center ">Result</p>
       </div>
 
-      {data?.transactions &&
-        data?.transactions?.map((transaction, index) => (
+      {currentPageData &&
+        currentPageData.map((transaction, index) => (
           <div
             key={index}
             className="min-w-[1500px] flex flex-row justify-evenly p-4 m-3 border-b-2 border-lightest-gray rounded-xl"
