@@ -160,6 +160,7 @@ const PRC20TransferTable = ({ setPieChartData }) => {
     const fetchData = async () => {
       try {
         const data = await getTransferTableDataOfPRC20Transfer(currentPage);
+        console.log(data)
         setData(data);
         const pieChartData = [{ PRC20: data?.totalPage }];
         setPieChartData(pieChartData);
@@ -198,7 +199,7 @@ const PRC20TransferTable = ({ setPieChartData }) => {
         </div>
 
         {data &&
-          data.map((contact, index) => {
+          data?.filterTokens?.map((contact, index) => {
             return (
               <>
                 <div className="min-w-[1300px] flex flex-row justify-evenly items-center p-5 border-b-2 border-lightest-gray  rounded-xl pr-0">

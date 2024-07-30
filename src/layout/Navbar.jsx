@@ -13,6 +13,7 @@ import { BsDot } from "react-icons/bs";
 import { useSelector } from "react-redux";
 import HoverWalletPage from "../pages/ConnectWalletPage/HoverWalletPage";
 import { shortenString } from "../utils/shortenString";
+import Notification from "./Notification";
 
 const BlockchainHover = () => (
   <div className="absolute bg-white shadow-lg rounded-xl px-4 py-2">
@@ -345,11 +346,19 @@ const Navbar = () => {
             <HoverWalletPage/>
           </div>
             }
+           
+           
+          
+
           <IoNotificationsCircleOutline
             size={36}
             color="white"
             className="cursor-pointer"
           />
+
+   
+
+
           <div onClick={()=>setShowNetOptions(!showNetOptions)}>
             <img src={Logo} alt="logo-poxscan" className="cursor-pointer" />
           </div>

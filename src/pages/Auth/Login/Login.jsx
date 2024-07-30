@@ -5,7 +5,6 @@ import { RxCross2 } from "react-icons/rx";
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
-
 const Login = () => {
     
   // for show and hide password
@@ -36,12 +35,16 @@ const [isModalOpen, setIsModalOpen] = useState(false);
     });
   };
 
+  // connect with firebase - when onclick login
   const handleSubmit = (e) => {
+    
     e.preventDefault();
     // Handle form submission logic here
     console.log('Form submitted:', formData);
   };
 
+
+  
   return (
     <div className="fixed z-10 backdrop-blur-sm h-screen w-full inset-0">
     < div className="flex flex-col items-center justify-center min-h-screen w-full py-14">
@@ -101,7 +104,9 @@ const [isModalOpen, setIsModalOpen] = useState(false);
                    
               </div>
              
-              <button type="submit" className="w-full bg-darker-blue text-white text-yellow p-4 rounded-xl text-xl hover:bg-indigo-700 ">Log in</button>
+              <button type="submit" 
+              className="w-full bg-darker-blue text-white text-yellow p-4 rounded-xl text-xl hover:bg-indigo-700 "
+              onClick={handleSubmit}>Log in</button>
     
               <div className="flex flex-row justify-between">
               <Link to="/forgetpassword"> <a href="/forgot-password" className="text-lg text-blue-500 hover:underline "> Forgot Password? </a> </Link>

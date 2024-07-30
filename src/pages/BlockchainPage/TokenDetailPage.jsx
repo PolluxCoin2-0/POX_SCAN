@@ -14,12 +14,20 @@ import TokenContractPage from "./TokenContractPage";
 import { Link, useParams } from "react-router-dom";
 
 const TransactionsTable = () => {
+   // For Pagination
+   const [currentPage, setCurrentPage] = useState(0);
+   
+ 
+   const handlePageChange = (page) => {
+     setCurrentPage(page);
+   };
+ 
     // For API Integration
     const [data, setData] = useState({});
     useEffect(() => {
       const fetchData = async () => {
         try {
-          const data = await getTokenTransactionsDetailData();
+          const data = await getTokenTransactionsDetailData(currentPage);
           setData(data?.message);
         } catch (error) {
           console.log('error', error);
@@ -27,16 +35,9 @@ const TransactionsTable = () => {
       };
   
       fetchData();
-    }, [])
+    }, [currentPage])
   
-    // For Pagination
-    const [currentPage, setCurrentPage] = useState(1);
-    const totalPages = 10; // Example total pages
-  
-    const handlePageChange = (page) => {
-      setCurrentPage(page);
-    };
-  
+   
     return (
       <div>
         <div className="bg-white rounded-2xl p-4 md:p-10 overflow-x-auto md:overflow-x-auto lg:overflow-x-auto
@@ -96,8 +97,8 @@ const TransactionsTable = () => {
   
           <div className="flex justify-start md:justify-end">
             <Pagination
-              currentPage={currentPage}
-              totalPages={totalPages}
+              
+              totalPages={data?.totalPage}
               onPageChange={handlePageChange}
             />
           </div>
@@ -141,7 +142,7 @@ const TransactionsTable = () => {
   
           <div className="flex justify-start md:justify-end">
             <Pagination
-              currentPage={currentPage}
+          
               totalPages={totalPages}
               onPageChange={handlePageChange}
             />

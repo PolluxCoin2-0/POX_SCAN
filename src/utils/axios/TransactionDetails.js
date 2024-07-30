@@ -14,11 +14,11 @@ export const getTransactionDetailsData = async(pageNo) => {
     }
 }
 
-export const getTransferDetailData = async() => {
+export const getTransferDetailData = async(pageNo) => {
     try {
         const response = await axios.post("https://node.poxscan.io/api/transaction",
             {
-                "page": 0, 
+                "page": pageNo, 
                 "address": "PJ4GrZTvQvtYTi41PJTCVkxpwJSGijpLj2", 
                 "isDecoded": true, 
                 "filter": "USDX"

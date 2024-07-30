@@ -30,7 +30,7 @@ import { toast } from "react-toastify";
 
 const TransactionTable = () => {
   // For Pagination
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(0);
   
 
   const handlePageChange = (page) => {
@@ -76,7 +76,7 @@ const TransactionTable = () => {
       </div>
 
       {data?.transactions &&
-        data?.transactions.slice(0, 10).map((transaction, index) => (
+        data?.transactions?.map((transaction, index) => (
           <div
             key={index}
             className="min-w-[1500px] flex flex-row justify-evenly p-4 m-3 border-b-2 border-lightest-gray rounded-xl"
@@ -154,8 +154,8 @@ const TransactionTable = () => {
 };
 
 const TransferTable = () => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = 10; // Example total pages
+  const [currentPage, setCurrentPage] = useState(0);
+
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -166,7 +166,7 @@ const TransferTable = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data1 = await getTransferDetailData();
+        const data1 = await getTransferDetailData(currentPage);
         setData1(data1?.message);
       } catch (error) {
         console.log("error", error);
@@ -174,7 +174,7 @@ const TransferTable = () => {
     };
 
     fetchData();
-  }, []);
+  }, [currentPage]);
 
   return (
     <div className="bg-white rounded-2xl p-4 md:p-10 overflow-x-auto md:overflow-hidden">
@@ -196,7 +196,7 @@ const TransferTable = () => {
       </div>
 
       {data1?.transactions &&
-        data1?.transactions.slice(0, 10).map((transaction, index) => (
+        data1?.transactions?.map((transaction, index) => (
           <div
             key={index}
             className="min-w-[1500px] flex flex-row justify-evenly p-4 m-3 border-b-2 border-lightest-gray rounded-xl"
@@ -302,7 +302,7 @@ const TransferTable = () => {
       <div className="flex justify-start md:justify-end">
         <Pagination
         
-          totalPages={totalPages}
+          totalPages={data1?.totalRecords}
           onPageChange={handlePageChange}
         />
       </div>

@@ -2,7 +2,8 @@ import  { useState } from 'react';
 import { RxCross2 } from "react-icons/rx";
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../../../Firebase/Firebase';
 const Register= () => {
   // for show and hide password
   const [isPassword, setIsPassword] = useState(true);
@@ -31,6 +32,8 @@ const Register= () => {
   });
 
   const [errors, setErrors] = useState({});
+  const [submitButtonDisabled, setSubmitButtonDisabled] = useState(false);
+
 
   const validate = () => {
     const errors = {};
@@ -78,7 +81,20 @@ const Register= () => {
     } else {
       setErrors(validationErrors);
     }
+    
+
+    setSubmitButtonDisabled(true);
+    createUserWithEmailAndPassword(auth, formData.phoneOrEmail, formData.password, formData.confirmPassword, formData.termsAccepted)
+    .then((res) => {
+      setSubmitButtonDisabled(true);
+      console.log(res);
+    }).catch((error) =>
+      console.log("error", error))
   };
+
+
+
+ 
 
   return (
     <div className="fixed z-10 backdrop-blur-sm h-screen w-full inset-0">
@@ -166,7 +182,10 @@ const Register= () => {
               </label>
               {errors.termsAccepted && <span className="text-dark-red text-sm block">{errors.termsAccepted} !</span>}
             </div>
-            <button type="submit" className="w-full bg-darker-blue text-white text-lg p-2 py-4 rounded-md hover:bg-indigo-700 mt-5">Create</button>
+            <button type="submit" 
+            className="w-full bg-darker-blue text-white text-lg p-2 py-4 rounded-md hover:bg-indigo-700 mt-5"
+            onClick={handleSubmit} disabled={submitButtonDisabled}>Create</button>
+
             <p className="mt-5">I have an account, <Link to="/login"><span className="text-dark-yellow cursor-pointer">Log in now</span></Link></p>
           </form>
         </div>
