@@ -10,10 +10,11 @@ import { NavbarOptions } from "../data/NavbarOptions";
 import { HiMenu } from "react-icons/hi";
 import { MdKeyboardArrowDown, MdKeyboardArrowUp, MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { BsDot } from "react-icons/bs";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import HoverWalletPage from "../pages/ConnectWalletPage/HoverWalletPage";
 import { shortenString } from "../utils/shortenString";
 import Notification from "./Notification";
+import { setLogin, setSignup } from "../redux/slice/walletSlice";
 
 const BlockchainHover = () => (
   <div className="absolute bg-white shadow-lg rounded-xl px-4 py-2">
@@ -126,6 +127,7 @@ const PoxecosystemHover = () => (
 );
 
 const Navbar = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
   const currentPath = location.pathname;
@@ -137,6 +139,9 @@ const Navbar = () => {
   const [openSubmenus, setOpenSubmenus] = useState({});
   const [openWallet, setOpenWallet] = useState(false);
   const walletAddress = useSelector((state)=>state.wallet.address);
+  const loginStatus = useSelector((state)=>state.wallet.login);
+  const signupStatus = useSelector((state)=>state.wallet.signup)
+
 
   const renderHoverComponent = () => {
     switch (hoveredItem) {
@@ -325,15 +330,14 @@ const Navbar = () => {
 
         <div className="flex items-center justify-between lg:space-x-3 space-x-6 relative">
           <SearchBar />
-          <Link to="/register">
             {" "}
-            <p className="text-white  cursor-pointer border-r-2 lg:pr-2 pr-6">
+            <p className="text-white  cursor-pointer border-r-2 lg:pr-2 pr-6" 
+            onClick={()=>dispatch(setSignup(!signupStatus))}>
               Register
             </p>{" "}
-          </Link>
-          <Link to="/login">
-            <p className="text-white cursor-pointer">Login</p>{" "}
-          </Link>
+            <p className="text-white cursor-pointer"
+            onClick={()=>dispatch(setLogin(!loginStatus))}
+            >Login</p>{" "}
           <Link to="/connectwallet">
             <button className="bg-dark-yellow py-1  px-3 rounded-xl text-black cursor-pointer whitespace-nowrap" onClick={()=>setOpenWallet(!openWallet)}>
               {walletAddress.length>0 ? shortenString(walletAddress,6):"Connect Wallet"}
@@ -346,19 +350,11 @@ const Navbar = () => {
             <HoverWalletPage/>
           </div>
             }
-           
-           
-          
-
           <IoNotificationsCircleOutline
             size={36}
             color="white"
             className="cursor-pointer"
           />
-
-   
-
-
           <div onClick={()=>setShowNetOptions(!showNetOptions)}>
             <img src={Logo} alt="logo-poxscan" className="cursor-pointer" />
           </div>

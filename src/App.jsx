@@ -67,7 +67,7 @@ import {
 import Usdx from "./pages/TokenPage/Usdx";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Provider } from "react-redux";
+import { Provider, useSelector } from "react-redux";
 import store from "./redux/store";
 import { useEffect, useState } from "react";
 import { auth } from "./Firebase/Firebase";
@@ -78,8 +78,6 @@ const routesArray = [
   "/transactiondetails/*",
   "/accountdetails/*",
   "/transaction/details",
-  "/register",
-  "/login",
   "/forgetpassword",
   "/newpassword",
   "/connectwallet",
@@ -143,6 +141,9 @@ const routesArray = [
 
 const AppRoutes = () => {
   const location = useLocation();
+  const loginStatus = useSelector((state)=>state.wallet.login);
+  const signupStatus = useSelector((state)=>state.wallet.signup)
+
   const hideSidebarRoutes = [
     "/",
     "/home",
@@ -154,10 +155,8 @@ const AppRoutes = () => {
   "/tokendetailpage",
     "/connectwallet",
     "/connectwallet2",
-    "/login",
     "/forgetpassword",
     "/newpassword",
-    "/register",
     "/error",
     "/governance/parameters"
   ];
@@ -176,6 +175,8 @@ const AppRoutes = () => {
   return (
     <div className="app-bg">
       <Navbar />
+      {loginStatus && <Login/>}
+      {signupStatus && <Register/>}
       {
         // eslint-disable-next-line no-constant-condition
         isValidRoutes ? (

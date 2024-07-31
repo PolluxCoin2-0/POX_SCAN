@@ -7,7 +7,7 @@ const Pagination = ({ totalPages, onPageChange }) => {
   const totalPageNumbers = useMemo(() => Math.ceil(totalPages / 10), [totalPages]);
 
   const handlePageClick = (data) => {
-    const selectedPage = data.selected + 1;
+    const selectedPage = data.selected;
     onPageChange(selectedPage);
   };
 
