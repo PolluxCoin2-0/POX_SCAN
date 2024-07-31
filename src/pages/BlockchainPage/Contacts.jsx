@@ -232,7 +232,7 @@ const AllContractTable = () => {
       <div className="flex justify-start md:justify-end ">
         <Pagination
           
-          totalPages={totalPages}
+          totalPages={data1?.[1]?.total_contracts}
           onPageChange={handlePageChange}
         />
       </div>

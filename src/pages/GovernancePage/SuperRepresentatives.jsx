@@ -6,14 +6,13 @@ import { getPartnersTableData, getSuperTableData } from "../../utils/axios/Gover
 import { extractSiteName } from "../../utils/extractSiteName";
 import { Link } from "react-router-dom";
 import { IoCheckmarkCircleOutline } from "react-icons/io5";
-
 import CountdownTimer from "./CountDownTimer";
+import Pagination from "../../components/Pagination";
 
-
-
-
-const Table1 = ({data}) => {
- 
+const Table1 = ({data, showPagination, setCurrentPage}) => {
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
   return (
     <div className="bg-white pt-2  rounded-tl-none rounded-2xl">
     <div className="flex flex-row items-center justify-evenly bg-light-orange p-3 rounded-tl-none rounded-2xl m-4">
@@ -46,20 +45,21 @@ const Table1 = ({data}) => {
         <p className="w-[8%] text-center">{representative.latestBlockNum && representative?.latestBlockNum ? representative?.latestBlockNum : 0}</p>
         <p className="w-[10%]  text-center">{representative.totalProduced && representative?.totalProduced ? representative?.totalProduced : 0}</p>
         <p className="w-[8%]  text-center">{representative.totalMissed && representative?.totalMissed ? representative?.totalMissed : 0}</p>
-        <p className="w-[8%]  text-center">{representative.productivity.toFixed(8)}</p>
+        <p className="w-[8%]  text-center">{representative.productivity && Number(representative.productivity).toFixed(8)}</p>
         <p className="w-[8%]  text-center">{representative.voteCount}</p>
-        <p className="w-[10%]  text-center">{representative.voteWeightage.toFixed(8)}%</p>
+        <p className="w-[10%]  text-center">{representative.voteWeightage && Number(representative.voteWeightage).toFixed(8)}%</p>
         <p className="w-[10%]  text-center">{representative.RewardDistribution}</p>
         <p className="w-[8%]  text-center">{representative.apr}%</p>
       </div>
     ))}
-    
-    
+    {
+      showPagination && 
+    <Pagination
+    totalPages ={data?.totalSr}
+    onPageChange={handlePageChange}
+    />
+  }
   </div>
-
-
-
-  
   );
 };
  
@@ -90,8 +90,9 @@ const CardSuperRepresentative = ({title, leftSubTitle, totalCount, rightSubTitle
 const SuperRepresentatives = () => {
   const [onSearch, setOnSearch] = useState("");
   const [isRender, setIsRender] = useState("Super Representative");
-  
   const [data, setData] = useState({});
+  const [currentPage, setCurrentPage] = useState(0);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -99,10 +100,9 @@ const SuperRepresentatives = () => {
         switch (isRender) {
           case "Super Representative":
             fetchDataFunction = getSuperTableData;
-            
             break;
           case "SR Partner":
-            fetchDataFunction = getPartnersTableData;
+            fetchDataFunction = () => getPartnersTableData(currentPage);
             break;
           case "SR Candidates":
             return "No Data Found" // Adjust as per your API structure
@@ -110,11 +110,7 @@ const SuperRepresentatives = () => {
           default:
             fetchDataFunction = getSuperTableData;
         }
-
-        
-
         const result = await fetchDataFunction();
-      
         setData(result?.message || []);
       } catch (error) {
         console.log('Error fetching data:', error);
@@ -122,14 +118,14 @@ const SuperRepresentatives = () => {
     };
 
     fetchData();
-  }, [isRender]);
+  }, [isRender, currentPage]);
 
   const renderItemComponent = () => {
     switch (isRender) {
       case "Super Representative":
-        return <Table1 data={data} />;
+        return <Table1 data={data} showPagination={false} />;
       case "SR Partner":
-        return <Table1 data={data} />;
+        return <Table1 data={data} showPagination={true} setCurrentPage={setCurrentPage}/>;
       case "SR Candidates":
         return "No Data Found";
       default:
@@ -236,14 +232,8 @@ const SuperRepresentatives = () => {
           >
             SR Candidates
           </p>
-          
           <p >Only the first 27 records are displayed</p>
-          
-          
         </div>
-
-        
-
         <div>{renderItemComponent()}</div>
       </div>
     </div>
