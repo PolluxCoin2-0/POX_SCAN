@@ -6,6 +6,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../../Firebase/Firebase";
 import { useDispatch, useSelector } from "react-redux";
 import { setSignup } from "../../../redux/slice/walletSlice";
+import { toast } from "react-toastify";
 
 const Register = () => {
   const signupStatus = useSelector((state)=>state.wallet.signup)
@@ -87,15 +88,16 @@ const Register = () => {
     .then((res) => {
       setSubmitButtonDisabled(false);
       console.log(res);
-      const user = res.user;
+    const user = res.user;
       console.log(user);
-      navigate("/");
+      toast.success("Successfully Registered!");
+    // navigate("/");
     })
     .catch((error) =>{
       setSubmitButtonDisabled(false);
       setErrors(error.message);
       console.log("Error", error.message)
-      toast.success("Error (auth/email-already-in-use)");
+      toast.error ("Email-already-in-use)");
   });
   };
 
