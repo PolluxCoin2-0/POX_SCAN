@@ -58,9 +58,6 @@ const TransactionTable = () => {
     setCurrentPageData(data?.transactions?.slice(start, end));
   }, [currentPage, data]);
 
-  console.log(currentPage)
-  console.log(currentPageData)
-
   return (
     <div className="bg-white rounded-2xl p-4 md:p-10 overflow-x-auto md:overflow-hidden">
       <div className="flex flex-row items-center justify-between">
