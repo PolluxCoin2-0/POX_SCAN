@@ -1,10 +1,14 @@
 import  { useState } from 'react';
 import { RxCross2 } from "react-icons/rx";
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../../Firebase/Firebase';
+import { toast } from 'react-toastify';
+
 const Register= () => {
+  const navigate = useNavigate();
+
   // for show and hide password
   const [isPassword, setIsPassword] = useState(true);
   const [isConfirmPassword, setIsConfirmPassword] = useState(true);
@@ -86,10 +90,18 @@ const Register= () => {
     setSubmitButtonDisabled(true);
     createUserWithEmailAndPassword(auth, formData.phoneOrEmail, formData.password, formData.confirmPassword, formData.termsAccepted)
     .then((res) => {
-      setSubmitButtonDisabled(true);
+      setSubmitButtonDisabled(false);
       console.log(res);
-    }).catch((error) =>
-      console.log("error", error))
+      const user = res.user;
+      console.log(user);
+      navigate("/");
+    })
+    .catch((error) =>{
+      setSubmitButtonDisabled(false);
+      setErrors(error.message);
+      console.log("Error", error.message)
+      toast.success("Error (auth/email-already-in-use)");
+  });
   };
 
 
@@ -183,7 +195,8 @@ const Register= () => {
               {errors.termsAccepted && <span className="text-dark-red text-sm block">{errors.termsAccepted} !</span>}
             </div>
             <button type="submit" 
-            className="w-full bg-darker-blue text-white text-lg p-2 py-4 rounded-md hover:bg-indigo-700 mt-5"
+            className={`w-full  text-white text-lg p-2 py-4 rounded-md hover:bg-indigo-700 mt-5
+              submitButtonDisabled ? bg-darker-blue hover:bg-light-mid-gray : `}
             onClick={handleSubmit} disabled={submitButtonDisabled}>Create</button>
 
             <p className="mt-5">I have an account, <Link to="/login"><span className="text-dark-yellow cursor-pointer">Log in now</span></Link></p>

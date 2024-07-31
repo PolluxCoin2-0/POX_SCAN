@@ -69,6 +69,8 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Provider } from "react-redux";
 import store from "./redux/store";
+import { useEffect, useState } from "react";
+import { auth } from "./Firebase/Firebase";
 
 const routesArray = [
   "/",
@@ -298,6 +300,14 @@ const AppRoutes = () => {
 };
 
 function App() {
+
+useEffect(() => {
+  auth.onAuthStateChanged((user) => {
+    console.log(user);
+    })
+  }, []);
+
+
   return (
     <Provider store={store}>
     <Router>
