@@ -22,6 +22,9 @@ import { toast } from "react-toastify";
 import { getTrendingSearchGraphData } from "../../utils/axios/Home";
 
 const TransactionTable = () => { 
+
+  const [currentPageData, setCurrentPageData] = useState([]);
+  const itemsPerPage = 10;
   // For Pagination
   const [currentPage, setCurrentPage] = useState(0);
   
@@ -44,7 +47,13 @@ const TransactionTable = () => {
     };
 
     fetchData();
-  }, [currentPage]);
+  }, []);
+
+  useEffect(() => {
+    const start = currentPage * itemsPerPage;
+    const end = start + itemsPerPage;
+    setCurrentPageData(data?.transactions?.slice(start, end));
+  }, [currentPage, data]);
 
   return (
     <div className="bg-white rounded-2xl p-4 md:p-10 overflow-x-auto md:overflow-hidden">
@@ -68,8 +77,8 @@ const TransactionTable = () => {
         <p className="w-[8%] font-bold text-center ">Result</p>
       </div>
 
-      {data?.transactions &&
-        data?.transactions.map((transaction, index) => (
+      {currentPageData &&
+        currentPageData.map((transaction, index) => (
           <div
             key={index}
             className="min-w-[1500px] flex flex-row justify-evenly p-4 m-3 border-b-2 border-lightest-gray rounded-xl"
@@ -136,7 +145,8 @@ const TransactionTable = () => {
 
 const TransferTable = () => {
   const [currentPage, setCurrentPage] = useState(0);
-
+  const [currentPageData, setCurrentPageData] = useState([]);
+  const itemsPerPage = 10;
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -155,7 +165,14 @@ const TransferTable = () => {
     };
     
     fetchData();
-  }, [currentPage]);
+  }, []);
+
+  
+  useEffect(() => {
+    const start = currentPage * itemsPerPage;
+    const end = start + itemsPerPage;
+    setCurrentPageData(data1?.transactions?.slice(start, end));
+  }, [currentPage, data1]);
 
   return (
     <div className="bg-white rounded-2xl p-4 md:p-10 overflow-x-auto md:overflow-hidden">
@@ -176,8 +193,8 @@ const TransferTable = () => {
         <p className="w-[7%] font-bold text-center ">Block</p>
       </div>
 
-      {data1?.transactions &&
-        data1?.transactions.map((transaction, index) => (
+      {currentPageData &&
+       currentPageData.map((transaction, index) => (
           <div
             key={index}
             className="min-w-[1500px] flex flex-row justify-evenly p-4 m-3 border-b-2 border-lightest-gray rounded-xl"

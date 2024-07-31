@@ -1,20 +1,30 @@
-// import React from 'react'
+
 
 import { useState } from "react";
 import { RxCross2 } from "react-icons/rx";
-import { FaArrowLeftLong } from "react-icons/fa6";
+import { FaArrowLeftLong, FaEye, FaEyeSlash } from "react-icons/fa6";
 
 const ForgetPasswordForm = () => {
   //   for cross button
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isPassword, setIsPassword] = useState(true);
+  const [isConfirmPassword, setIsConfirmPassword] = useState(true);
 
+  const toggleVisibility1 = () => {
+    setIsPassword(!isPassword);
+  };
+
+  const toggleVisibility2 = () => {
+    setIsConfirmPassword(!isConfirmPassword);
+  };
   const handleClose = () => {
     setIsModalOpen(!isModalOpen);
   };
 
   const [formData, setFormData] = useState({
-    phoneOrEmail: "",
+    
     password: "",
+    confirmpassword: "",
   });
 
   const handleChange = (e) => {
@@ -56,11 +66,13 @@ const ForgetPasswordForm = () => {
                 id="password"
                 name="password"
                 placeholder="Enter your new password"
-                value={formData.phoneOrEmail}
+                value={formData.password}
                 onChange={handleChange}
                 className="w-full px-4 py-4 border border-lightest-gray rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
                 required
               />
+
+           
             </div>
 
         
@@ -75,13 +87,14 @@ const ForgetPasswordForm = () => {
               <input
                 type="password"
                 id="password"
-                name="password"
+                name="confirmpassword"
                 placeholder="Enter your new password again"                                         
-                value={formData.password}
+                value={formData.confirmpassword}
                 onChange={handleChange}
                 className="w-full px-4 py-4 border border-lightest-gray  rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 "
                 required
               />
+             
             </div>
             <button
               type="submit"

@@ -7,6 +7,8 @@ import {
 import { Footer, Navbar, Sidebar } from "./layout";
 import {
   Home,
+  Login,
+  Register,
   AccountDetailPage,
   TransactionDetailPage,
   Nodes,
@@ -33,8 +35,6 @@ import {
   RealtimeBlockProduction,
   SrVotesDistribution,
   EncodingConverter,
-  Register,
-  Login,
   ForgetPassword,
   Pox,
   SuperRepresentatives,
@@ -155,6 +155,8 @@ const AppRoutes = () => {
   "/tokendetailpage",
     "/connectwallet",
     "/connectwallet2",
+    "/register",
+    "/login",
     "/forgetpassword",
     "/newpassword",
     "/error",

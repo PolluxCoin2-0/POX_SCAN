@@ -90,3 +90,12 @@ export const getNewAndActiveAndTotalAccounts = async() => {
         console.log("error", error);
     }
 };
+
+export const getNotificationMessageData = async() => {
+    try {
+        const response = await axios.get("https://node.poxscan.io/api/getmsg");
+        return (response?.data);
+    } catch (error) {
+        console.log("error", error);
+    }
+}

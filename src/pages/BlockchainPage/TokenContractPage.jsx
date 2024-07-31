@@ -62,7 +62,10 @@ const ReadContractTable = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isView, setIsView] = useState(false);
   const [inputValue, setInputValue] = useState("");
-  const handleToggle = () => {
+  const [key, setKey] = useState(1);
+  
+  const handleToggle = (keyNumber) => {
+    setKey(keyNumber)
     setIsOpen(!isOpen);
   };
 
@@ -77,10 +80,11 @@ const ReadContractTable = () => {
 
   return (
     <div className="bg-white rounded-bl-xl rounded-br-xl shadow-xl p-10 ">
+
     <div className="border-[1px] border-mid-light-gray rounded-tl-lg rounded-tr-lg">
     <div className="flex flex-row justify-between p-5 bg-text-bg-gray">
       <p className="text-lg">1. DOMAIN_SEPARATOR</p>
-      <p className="text-2xl" onClick={handleToggle} style={{ cursor: 'pointer' }}>
+      <p className="text-2xl" onClick={()=>handleToggle(1)} style={{ cursor: 'pointer' }}>
       {isOpen ? <IoIosArrowDropupCircle /> : <IoIosArrowDropdownCircle />}
       </p>
     </div>
@@ -91,7 +95,7 @@ const ReadContractTable = () => {
           <p className="text-xl"><IoCopy /></p>
         </div>
 
-        {isOpen && (
+        {key===1 && isOpen && (
           <div className="flex flex-row space-x-8">
           <p className="border-[1px] border-light-gray bg-text-bg-gray rounded-md px-0 py-1 w-[70px] pl-4 ml-5 mb-7"
           onClick={handleView} style={{cursor: 'pointer'}}>View </p>
@@ -111,7 +115,7 @@ const ReadContractTable = () => {
         <div className="border-[1px] border-mid-light-gray mt-8">
           <div className="flex flex-row justify-between p-5 bg-text-bg-gray  ">
           <p className="text-lg">2. allowance</p>
-          <p className="text-2xl" onClick={handleToggle} style={{ cursor: 'pointer' }}>
+          <p className="text-2xl" onClick={()=>handleToggle(2)} style={{ cursor: 'pointer' }}>
           {isOpen ? <IoIosArrowDropupCircle /> : <IoIosArrowDropdownCircle />}
           </p>
            </div>
@@ -121,7 +125,7 @@ const ReadContractTable = () => {
            <p className="text-xl"><IoCopy /></p>
           </div>
           
-          {isOpen && (
+          {key===2 && isOpen && (
             <div>
             <div>
             <p className="text-lg pl-6">owner_address<span className="text-dark-red text-xl">*</span></p>
@@ -155,7 +159,7 @@ const ReadContractTable = () => {
        <div className="border-[1px] border-mid-light-gray mt-8">
           <div className="flex flex-row justify-between p-5 bg-text-bg-gray  ">
           <p className="text-lg">3. auth</p>
-          <p className="text-2xl" onClick={handleToggle} style={{ cursor: 'pointer' }}>
+          <p className="text-2xl" onClick={()=>handleToggle(3)} style={{ cursor: 'pointer' }}>
           {isOpen ? <IoIosArrowDropupCircle /> : <IoIosArrowDropdownCircle />}</p>
            </div>
  
@@ -164,7 +168,7 @@ const ReadContractTable = () => {
            <p className="text-xl"><IoCopy /></p>
           </div>
 
-          {isOpen && (
+          {key === 3 && isOpen && (
             <div className="flex flex-row space-x-8">
             <p className="border-[1px] border-light-gray bg-text-bg-gray rounded-md px-0 py-1 w-[70px] pl-4 ml-5 mb-7"
             onClick={handleView} style={{cursor: 'pointer'}}>View </p>
@@ -181,7 +185,7 @@ const ReadContractTable = () => {
        <div className="border-[1px] border-mid-light-gray mt-8">
           <div className="flex flex-row justify-between p-5 bg-text-bg-gray  ">
           <p className="text-lg">4. balanceOf</p>
-          <p className="text-2xl"  onClick={handleToggle} style={{ cursor: 'pointer' }}><IoIosArrowDropdownCircle /></p>
+          <p className="text-2xl"  onClick={()=> handleToggle(4)} style={{ cursor: 'pointer' }}><IoIosArrowDropdownCircle /></p>
            </div>
 
           <div className="flex justify-end pr-5 pt-4 pb-4 space-x-5">
@@ -189,7 +193,7 @@ const ReadContractTable = () => {
            <p className="text-xl"><IoCopy /></p>
           </div>
           
-          {isOpen && (
+          { key===4 && isOpen && (
             <div>
             <div>
               <p className="text-lg pl-6">account_address*<span className="text-dark-red text-xl">*</span></p>
@@ -212,7 +216,7 @@ const ReadContractTable = () => {
         <div className="border-[1px] border-mid-light-gray mt-8">
           <div className="flex flex-row justify-between p-5 bg-text-bg-gray  ">
           <p className="text-lg">5. decimals</p>
-          <p className="text-2xl" onClick={handleToggle} style={{ cursor: 'pointer' }}>
+          <p className="text-2xl" onClick={()=> handleToggle(5)} style={{ cursor: 'pointer' }}>
           {isOpen ? <IoIosArrowDropupCircle /> : <IoIosArrowDropdownCircle />}</p>
            </div>
 
@@ -222,7 +226,7 @@ const ReadContractTable = () => {
           </div>
 
 
-          {isOpen && (
+          {key===5 && isOpen && (
             <div className="flex flex-row space-x-8">
             <p className="border-[1px] border-light-gray bg-text-bg-gray rounded-md px-0 py-1 w-[70px] pl-4 ml-5 mb-7"
             onClick={handleView} style={{cursor: 'pointer'}}>View </p>
@@ -240,7 +244,7 @@ const ReadContractTable = () => {
         <div className="border-[1px] border-mid-light-gray mt-8">
           <div className="flex flex-row justify-between p-5 bg-text-bg-gray  ">
           <p className="text-lg">6. eip712Domain</p>
-          <p className="text-2xl" onClick={handleToggle} style={{ cursor: 'pointer' }}>
+          <p className="text-2xl" onClick={()=>handleToggle(6)} style={{ cursor: 'pointer' }}>
           {isOpen ? <IoIosArrowDropupCircle /> : <IoIosArrowDropdownCircle />}</p>
            </div>
 
@@ -249,7 +253,7 @@ const ReadContractTable = () => {
            <p className="text-xl"><IoCopy /></p>
           </div>
 
-          {isOpen && (
+          {key===6 && isOpen && (
             <div className="flex flex-row space-x-8">
             <p className="border-[1px] border-light-gray bg-text-bg-gray rounded-md px-0 py-1 w-[70px] pl-4 ml-5 mb-7"
             onClick={handleView} style={{cursor: 'pointer'}}>View </p>
@@ -266,7 +270,7 @@ const ReadContractTable = () => {
         <div className="border-[1px] border-mid-light-gray mt-8">
           <div className="flex flex-row justify-between p-5 bg-text-bg-gray  ">
           <p className="text-lg">7. name</p>
-          <p className="text-2xl" onClick={handleToggle} style={{ cursor: 'pointer' }}>
+          <p className="text-2xl" onClick={()=> handleToggle(7)} style={{ cursor: 'pointer' }}>
           {isOpen ? <IoIosArrowDropupCircle /> : <IoIosArrowDropdownCircle />}</p>
            </div>
 
@@ -275,7 +279,7 @@ const ReadContractTable = () => {
            <p className="text-xl"><IoCopy /></p>
           </div>
 
-          {isOpen && (
+          {key===7 && isOpen && (
             <div className="flex flex-row space-x-8">
             <p className="border-[1px] border-light-gray bg-text-bg-gray rounded-md px-0 py-1 w-[70px] pl-4 ml-5 mb-7"
             onClick={handleView} style={{cursor: 'pointer'}}>View </p>
@@ -293,7 +297,7 @@ const ReadContractTable = () => {
         <div className="border-[1px] border-mid-light-gray mt-8">
           <div className="flex flex-row justify-between p-5 bg-text-bg-gray  ">
           <p className="text-lg">8. nonces</p>
-          <p className="text-2xl" onClick={handleToggle} style={{ cursor: 'pointer' }}>
+          <p className="text-2xl" onClick={()=>handleToggle(8)} style={{ cursor: 'pointer' }}>
           {isOpen ? <IoIosArrowDropupCircle /> : <IoIosArrowDropdownCircle />}</p>
            </div>
 
@@ -302,7 +306,7 @@ const ReadContractTable = () => {
            <p className="text-xl"><IoCopy /></p>
           </div>
 
-          {isOpen && (
+          {key===8 && isOpen && (
             <div>
             <div>
               <p className="text-lg pl-6">owner_address<span className="text-dark-red text-xl">*</span></p>
@@ -324,7 +328,7 @@ const ReadContractTable = () => {
         <div className="border-[1px] border-mid-light-gray mt-8">
           <div className="flex flex-row justify-between p-5 bg-text-bg-gray  ">
           <p className="text-lg">9. owner</p>
-          <p className="text-2xl"  onClick={handleToggle} style={{ cursor: 'pointer' }}>
+          <p className="text-2xl"  onClick={()=>handleToggle(9)} style={{ cursor: 'pointer' }}>
           {isOpen ? <IoIosArrowDropupCircle /> : <IoIosArrowDropdownCircle />}</p>
            </div>
 
@@ -332,7 +336,7 @@ const ReadContractTable = () => {
            <p className="text-xl"><BsCopy /></p>
            <p className="text-xl"><IoCopy /></p>
           </div>
-          {isOpen && (
+          {key===9 && isOpen && (
             <div className="flex flex-row space-x-8">
             <p className="border-[1px] border-light-gray bg-text-bg-gray rounded-md px-0 py-1 w-[70px] pl-4 ml-5 mb-7"
             onClick={handleView} style={{cursor: 'pointer'}}>View </p>
@@ -350,7 +354,7 @@ const ReadContractTable = () => {
         <div className="border-[1px] border-mid-light-gray mt-8">
           <div className="flex flex-row justify-between p-5 bg-text-bg-gray  ">
           <p className="text-lg">10. paused</p>
-          <p className="text-2xl" onClick={handleToggle} style={{ cursor: 'pointer' }}> 
+          <p className="text-2xl" onClick={()=>handleToggle(10)} style={{ cursor: 'pointer' }}> 
           {isOpen ? <IoIosArrowDropupCircle /> : <IoIosArrowDropdownCircle />}</p>
            </div>
 
@@ -358,7 +362,7 @@ const ReadContractTable = () => {
            <p className="text-xl"><BsCopy /></p>
            <p className="text-xl"><IoCopy /></p>
           </div>
-          {isOpen && (
+          { key===10 && isOpen && (
             <div className="flex flex-row space-x-8">
             <p className="border-[1px] border-light-gray bg-text-bg-gray rounded-md px-0 py-1 w-[70px] pl-4 ml-5 mb-7"
             onClick={handleView} style={{cursor: 'pointer'}}>View </p>
@@ -376,7 +380,7 @@ const ReadContractTable = () => {
         <div className="border-[1px] border-mid-light-gray mt-8">
           <div className="flex flex-row justify-between p-5 bg-text-bg-gray  ">
           <p className="text-lg">11. symbol</p>
-          <p className="text-2xl" onClick={handleToggle} style={{ cursor: 'pointer' }}>
+          <p className="text-2xl" onClick={()=> handleToggle(11)} style={{ cursor: 'pointer' }}>
           {isOpen ? <IoIosArrowDropupCircle /> : <IoIosArrowDropdownCircle />}</p>
            </div>
 
@@ -385,7 +389,7 @@ const ReadContractTable = () => {
            <p className="text-xl"><IoCopy /></p>
           </div>
 
-          {isOpen && (
+          {key===11 && isOpen && (
             <div className="flex flex-row space-x-8">
             <p className="border-[1px] border-light-gray bg-text-bg-gray rounded-md px-0 py-1 w-[70px] pl-4 ml-5 mb-7"
             onClick={handleView} style={{cursor: 'pointer'}}>View </p>
@@ -405,7 +409,7 @@ const ReadContractTable = () => {
         <div className="border-[1px] border-mid-light-gray rounded-bl-lg rounded-br-lg mt-8">
           <div className="flex flex-row justify-between p-5 bg-text-bg-gray  ">
           <p className="text-lg">12. totalSupply</p>
-          <p className="text-2xl" onClick={handleToggle} style={{ cursor: 'pointer' }}>
+          <p className="text-2xl" onClick={()=>handleToggle(12)} style={{ cursor: 'pointer' }}>
           {isOpen ? <IoIosArrowDropupCircle /> : <IoIosArrowDropdownCircle />}</p>
            </div>
 
@@ -414,7 +418,7 @@ const ReadContractTable = () => {
            <p className="text-xl"><IoCopy /></p>
           </div>
 
-          {isOpen && (
+          {key===12 && isOpen && (
             <div className="flex flex-row space-x-8">
             <p className="border-[1px] border-light-gray bg-text-bg-gray rounded-md px-0 py-1 w-[70px] pl-4 ml-5 mb-7"
             onClick={handleView} style={{cursor: 'pointer'}}>View </p>
@@ -432,6 +436,25 @@ const ReadContractTable = () => {
 } 
 
 const WriteContractTable = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [isView, setIsView] = useState(false);
+  const [inputValue, setInputValue] = useState("");
+  const [key, setKey] = useState(1);
+  
+  const handleToggle = (keyNumber) => {
+    setKey(keyNumber)
+    setIsOpen(!isOpen);
+  };
+
+  const handleView = () => {
+    setIsView(!isView);
+  }
+
+
+  const handleChange = (event) => {
+    setInputValue(event.target.value);
+  };
+  
   return (
     <div className="bg-white rounded-bl-xl rounded-br-xl shadow-xl pt-5 pb-5 pl-10 pr-10 ">
 
@@ -439,134 +462,452 @@ const WriteContractTable = () => {
     <div className="border-[1px] border-mid-light-gray rounded-tl-lg rounded-tr-lg">
        <div className="flex flex-row justify-between p-5 bg-text-bg-gray  ">
        <p className="text-lg">1. approve</p>
-       <p className="text-2xl"><IoIosArrowDropdownCircle /></p>
+       <p className="text-2xl" onClick={()=>handleToggle(1)} style={{ cursor: 'pointer' }}>
+          {isOpen ? <IoIosArrowDropupCircle /> : <IoIosArrowDropdownCircle />}
+          </p>
         </div>
 
        <div className="flex justify-end pr-5 pt-4 pb-4 space-x-5">
         <p className="text-xl"><BsCopy /></p>
         <p className="text-xl"><IoCopy /></p>
        </div>
+
+       {key===1 && isOpen && (
+            <div >
+            <div className="px-6">
+            <p className="text-lg ">spender_address<span className="text-dark-red text-xl">*</span></p>
+            <input
+            type="text"
+            value={inputValue}
+            onChange={handleChange}
+            placeholder="spender_address"
+            className="w-full my-4 p-2  focus:bg-white  bg-text-bg-gray rounded-md outline-[1px]  outline-light-mid-gray ml-0 mt-2"
+            />
+            </div>
+  
+            <div className="px-6">
+            <p className="text-lg ">value_uint256<span className="text-dark-red text-xl">*</span></p>
+            <input
+            type="text"
+            value={inputValue}
+            onChange={handleChange}
+            placeholder="value_uint256"
+            className="w-full my-4 p-2  focus:bg-white  bg-text-bg-gray rounded-md outline-[1px]  outline-light-mid-gray mt-2"
+            />
+            </div>
+  
+            <p className="border-[1px] border-light-gray bg-text-bg-gray rounded-md px-0 py-1 w-[70px] pl-4 ml-5 mb-7">Send</p>
+            
+            </div>
+          )}
     </div>
 
 
      <div className="border-[1px] border-mid-light-gray mt-8">
        <div className="flex flex-row justify-between p-5 bg-text-bg-gray  ">
        <p className="text-lg">2. burn</p>
-       <p className="text-2xl"><IoIosArrowDropdownCircle /></p>
+       <p className="text-2xl" onClick={()=>handleToggle(2)} style={{ cursor: 'pointer' }}>
+          {isOpen ? <IoIosArrowDropupCircle /> : <IoIosArrowDropdownCircle />}
+          </p>
         </div>
 
        <div className="flex justify-end pr-5 pt-4 pb-4 space-x-5">
         <p className="text-xl"><BsCopy /></p>
         <p className="text-xl"><IoCopy /></p>
        </div>
+
+       {key===2 && isOpen && (
+            <div>
+            <div className="px-6">
+            <p className="text-lg pl-0">value_uint256<span className="text-dark-red text-xl">*</span></p>
+            <input
+            type="text"
+            value={inputValue}
+            onChange={handleChange}
+            placeholder="value_uint256"
+            className="w-full my-4 p-2  focus:bg-white  bg-text-bg-gray rounded-md outline-[1px]  outline-light-mid-gray ml-0 mt-2"
+            />
+            </div>
+             <p className="border-[1px] border-light-gray bg-text-bg-gray rounded-md px-0 py-1 w-[70px] pl-4 ml-5 mb-7">Send</p>
+            
+            </div>
+          )}
     </div>
 
     <div className="border-[1px] border-mid-light-gray mt-8">
        <div className="flex flex-row justify-between p-5 bg-text-bg-gray  ">
        <p className="text-lg">3. burnFrom</p>
-       <p className="text-2xl"><IoIosArrowDropdownCircle /></p>
+       <p className="text-2xl" onClick={()=>handleToggle(3)} style={{ cursor: 'pointer' }}>
+          {isOpen ? <IoIosArrowDropupCircle /> : <IoIosArrowDropdownCircle />}
+          </p>
         </div>
 
        <div className="flex justify-end pr-5 pt-4 pb-4 space-x-5">
         <p className="text-xl"><BsCopy /></p>
         <p className="text-xl"><IoCopy /></p>
        </div>
+       {key===3 && isOpen && (
+            <div >
+            <div className="px-6">
+            <p className="text-lg ">account_address<span className="text-dark-red text-xl">*</span></p>
+            <input
+            type="text"
+            value={inputValue}
+            onChange={handleChange}
+            placeholder="account_address"
+            className="w-full my-4 p-2  focus:bg-white  bg-text-bg-gray rounded-md outline-[1px]  outline-light-mid-gray ml-0 mt-2"
+            />
+            </div>
+  
+            <div className="px-6">
+            <p className="text-lg ">value_uint256<span className="text-dark-red text-xl">*</span></p>
+            <input
+            type="text"
+            value={inputValue}
+            onChange={handleChange}
+            placeholder="value_uint256"
+            className="w-full my-4 p-2  focus:bg-white  bg-text-bg-gray rounded-md outline-[1px]  outline-light-mid-gray mt-2"
+            />
+            </div>
+  
+            <p className="border-[1px] border-light-gray bg-text-bg-gray rounded-md px-0 py-1 w-[70px] pl-4 ml-5 mb-7">Send</p>
+            
+            </div>
+          )}
     </div>
 
     <div className="border-[1px] border-mid-light-gray mt-8">
        <div className="flex flex-row justify-between p-5 bg-text-bg-gray  ">
        <p className="text-lg">4. mint</p>
-       <p className="text-2xl"><IoIosArrowDropdownCircle /></p>
+       <p className="text-2xl" onClick={()=>handleToggle(3)} style={{ cursor: 'pointer' }}>
+          {isOpen ? <IoIosArrowDropupCircle /> : <IoIosArrowDropdownCircle />}
+          </p>
         </div>
 
        <div className="flex justify-end pr-5 pt-4 pb-4 space-x-5">
         <p className="text-xl"><BsCopy /></p>
         <p className="text-xl"><IoCopy /></p>
        </div>
+       {key===4 && isOpen && (
+            <div >
+            <div className="px-6">
+            <p className="text-lg ">to_address<span className="text-dark-red text-xl">*</span></p>
+            <input
+            type="text"
+            value={inputValue}
+            onChange={handleChange}
+            placeholder="to_address"
+            className="w-full my-4 p-2  focus:bg-white  bg-text-bg-gray rounded-md outline-[1px]  outline-light-mid-gray ml-0 mt-2"
+            />
+            </div>
+  
+            <div className="px-6">
+            <p className="text-lg ">amount_uint256<span className="text-dark-red text-xl">*</span></p>
+            <input
+            type="text"
+            value={inputValue}
+            onChange={handleChange}
+            placeholder="amount_uint256"
+            className="w-full my-4 p-2  focus:bg-white  bg-text-bg-gray rounded-md outline-[1px]  outline-light-mid-gray mt-2"
+            />
+            </div>
+  
+            <p className="border-[1px] border-light-gray bg-text-bg-gray rounded-md px-0 py-1 w-[70px] pl-4 ml-5 mb-7">Send</p>
+            
+            </div>
+          )}
+       
+
     </div>
 
 
      <div className="border-[1px] border-mid-light-gray mt-8">
        <div className="flex flex-row justify-between p-5 bg-text-bg-gray  ">
        <p className="text-lg">5. pause</p>
-       <p className="text-2xl"><IoIosArrowDropdownCircle /></p>
+       <p className="text-2xl" onClick={()=>handleToggle(5)} style={{ cursor: 'pointer' }}>
+          {isOpen ? <IoIosArrowDropupCircle /> : <IoIosArrowDropdownCircle />}
+          </p>
         </div>
 
        <div className="flex justify-end pr-5 pt-4 pb-4 space-x-5">
         <p className="text-xl"><BsCopy /></p>
         <p className="text-xl"><IoCopy /></p>
        </div>
+       {key === 5 && isOpen && (
+            <div className="flex flex-row space-x-8">
+            <p className="border-[1px] border-light-gray bg-text-bg-gray rounded-md px-0 py-1 w-[70px] pl-4 ml-5 mb-7"
+            onClick={handleView} style={{cursor: 'pointer'}}>View </p>
+            
+            { isView && (
+              <p className="mt-1 text-lg font-bold">2sXa4yLs8RwUg7qhxuuBgMpEhb2FMQrgjY7PMmSJyE8ukWf8vZ9</p>
+            )}
+           
+          </div>
+        
+      )}
     </div>
 
 
      <div className="border-[1px] border-mid-light-gray mt-8">
        <div className="flex flex-row justify-between p-5 bg-text-bg-gray  ">
        <p className="text-lg">6. permit</p>
-       <p className="text-2xl"><IoIosArrowDropdownCircle /></p>
+       <p className="text-2xl" onClick={()=>handleToggle(6)} style={{ cursor: 'pointer' }}>
+          {isOpen ? <IoIosArrowDropupCircle /> : <IoIosArrowDropdownCircle />}
+          </p>
         </div>
 
        <div className="flex justify-end pr-5 pt-4 pb-4 space-x-5">
         <p className="text-xl"><BsCopy /></p>
         <p className="text-xl"><IoCopy /></p>
        </div>
+       {key===6 && isOpen && (
+            <div >
+            <div className="px-6">
+            <p className="text-lg ">owner_address<span className="text-dark-red text-xl">*</span></p>
+            <input
+            type="text"
+            value={inputValue}
+            onChange={handleChange}
+            placeholder="owner_address"
+            className="w-full my-4 p-2  focus:bg-white  bg-text-bg-gray rounded-md outline-[1px]  outline-light-mid-gray ml-0 mt-2"
+            />
+            </div>
+  
+            <div className="px-6">
+            <p className="text-lg ">spender_address<span className="text-dark-red text-xl">*</span></p>
+            <input
+            type="text"
+            value={inputValue}
+            onChange={handleChange}
+            placeholder="spender_address"
+            className="w-full my-4 p-2  focus:bg-white  bg-text-bg-gray rounded-md outline-[1px]  outline-light-mid-gray mt-2"
+            />
+            </div>
+
+            <div className="px-6">
+            <p className="text-lg ">value_uint256<span className="text-dark-red text-xl">*</span></p>
+            <input
+            type="text"
+            value={inputValue}
+            onChange={handleChange}
+            placeholder="value_uint256"
+            className="w-full my-4 p-2  focus:bg-white  bg-text-bg-gray rounded-md outline-[1px]  outline-light-mid-gray ml-0 mt-2"
+            />
+            </div>
+
+            <div className="px-6">
+            <p className="text-lg ">deadline_uint256<span className="text-dark-red text-xl">*</span></p>
+            <input
+            type="text"
+            value={inputValue}
+            onChange={handleChange}
+            placeholder="deadline_uint256"
+            className="w-full my-4 p-2  focus:bg-white  bg-text-bg-gray rounded-md outline-[1px]  outline-light-mid-gray ml-0 mt-2"
+            />
+            </div>
+
+            <div className="px-6">
+            <p className="text-lg ">v_uint8<span className="text-dark-red text-xl">*</span></p>
+            <input
+            type="text"
+            value={inputValue}
+            onChange={handleChange}
+            placeholder="v_uint8"
+            className="w-full my-4 p-2  focus:bg-white  bg-text-bg-gray rounded-md outline-[1px]  outline-light-mid-gray ml-0 mt-2"
+            />
+            </div>
+    
+    
+            <div className="px-6">
+            <p className="text-lg ">r_bytes32<span className="text-dark-red text-xl">*</span></p>
+            <input
+            type="text"
+            value={inputValue}
+            onChange={handleChange}
+            placeholder="r_bytes32"
+            className="w-full my-4 p-2  focus:bg-white  bg-text-bg-gray rounded-md outline-[1px]  outline-light-mid-gray ml-0 mt-2"
+            />
+            </div>
+  
+  
+            <div className="px-6">
+            <p className="text-lg ">s_bytes32*<span className="text-dark-red text-xl">*</span></p>
+            <input
+            type="text"
+            value={inputValue}
+            onChange={handleChange}
+            placeholder="s_bytes32*"
+            className="w-full my-4 p-2  focus:bg-white  bg-text-bg-gray rounded-md outline-[1px]  outline-light-mid-gray ml-0 mt-2"
+            />
+            </div>
+  
+            <p className="border-[1px] border-light-gray bg-text-bg-gray rounded-md px-0 py-1 w-[70px] pl-4 ml-5 mb-7">Send</p>
+            
+            </div>
+
+            
+          )}
     </div>
 
      <div className="border-[1px] border-mid-light-gray mt-8">
        <div className="flex flex-row justify-between p-5 bg-text-bg-gray  ">
        <p className="text-lg">7. renounceOwnership</p>
-       <p className="text-2xl"><IoIosArrowDropdownCircle /></p>
+       <p className="text-2xl" onClick={()=>handleToggle(7)} style={{ cursor: 'pointer' }}>
+          {isOpen ? <IoIosArrowDropupCircle /> : <IoIosArrowDropdownCircle />}
+          </p>
         </div>
 
        <div className="flex justify-end pr-5 pt-4 pb-4 space-x-5">
         <p className="text-xl"><BsCopy /></p>
         <p className="text-xl"><IoCopy /></p>
        </div>
+       {key === 7 && isOpen && (
+            <div className="flex flex-row space-x-8">
+            <p className="border-[1px] border-light-gray bg-text-bg-gray rounded-md px-0 py-1 w-[70px] pl-4 ml-5 mb-7"
+            onClick={handleView} style={{cursor: 'pointer'}}>View </p>
+            
+            { isView && (
+              <p className="mt-1 text-lg font-bold">2sXa4yLs8RwUg7qhxuuBgMpEhb2FMQrgjY7PMmSJyE8ukWf8vZ9</p>
+            )}
+           
+          </div>
+        
+      )}
     </div>
 
 
      <div className="border-[1px] border-mid-light-gray mt-8">
        <div className="flex flex-row justify-between p-5 bg-text-bg-gray  ">
        <p className="text-lg">8. setAuthAdd</p>
-       <p className="text-2xl"><IoIosArrowDropdownCircle /></p>
+       <p className="text-2xl" onClick={()=>handleToggle(8)} style={{ cursor: 'pointer' }}>
+          {isOpen ? <IoIosArrowDropupCircle /> : <IoIosArrowDropdownCircle />}
+          </p>
         </div>
 
        <div className="flex justify-end pr-5 pt-4 pb-4 space-x-5">
         <p className="text-xl"><BsCopy /></p>
         <p className="text-xl"><IoCopy /></p>
        </div>
+
+       {key===8 && isOpen && (
+            <div >
+            <div className="px-6">
+            <p className="text-lg ">newAdd_address<span className="text-dark-red text-xl">*</span></p>
+            <input
+            type="text"
+            value={inputValue}
+            onChange={handleChange}
+            placeholder="newAdd_address"
+            className="w-full my-4 p-2  focus:bg-white  bg-text-bg-gray rounded-md outline-[1px]  outline-light-mid-gray ml-0 mt-2"
+            />
+            </div>
+  
+           
+  
+            <p className="border-[1px] border-light-gray bg-text-bg-gray rounded-md px-0 py-1 w-[70px] pl-4 ml-5 mb-7">Send</p>
+            
+            </div>
+          )}
     </div>
 
 
      <div className="border-[1px] border-mid-light-gray mt-8">
        <div className="flex flex-row justify-between p-5 bg-text-bg-gray  ">
        <p className="text-lg">9. transfer</p>
-       <p className="text-2xl"><IoIosArrowDropdownCircle /></p>
+       <p className="text-2xl" onClick={()=>handleToggle(9)} style={{ cursor: 'pointer' }}>
+          {isOpen ? <IoIosArrowDropupCircle /> : <IoIosArrowDropdownCircle />}
+          </p>
         </div>
 
        <div className="flex justify-end pr-5 pt-4 pb-4 space-x-5">
         <p className="text-xl"><BsCopy /></p>
         <p className="text-xl"><IoCopy /></p>
        </div>
+
+       
+       {key===9 && isOpen && (
+            <div >
+            <div className="px-6">
+            <p className="text-lg ">to_address<span className="text-dark-red text-xl">*</span></p>
+            <input
+            type="text"
+            value={inputValue}
+            onChange={handleChange}
+            placeholder="to_address"
+            className="w-full my-4 p-2  focus:bg-white  bg-text-bg-gray rounded-md outline-[1px]  outline-light-mid-gray ml-0 mt-2"
+            />
+            </div>
+            <div className="px-6">
+            <p className="text-lg ">value_uint256<span className="text-dark-red text-xl">*</span></p>
+            <input
+            type="text"
+            value={inputValue}
+            onChange={handleChange}
+            placeholder="value_uint256"
+            className="w-full my-4 p-2  focus:bg-white  bg-text-bg-gray rounded-md outline-[1px]  outline-light-mid-gray ml-0 mt-2"
+            />
+            </div>
+  
+           
+  
+            <p className="border-[1px] border-light-gray bg-text-bg-gray rounded-md px-0 py-1 w-[70px] pl-4 ml-5 mb-7">Send</p>
+            
+            </div>
+          )}
     </div>
 
 
      <div className="border-[1px] border-mid-light-gray mt-8">
        <div className="flex flex-row justify-between p-5 bg-text-bg-gray  ">
        <p className="text-lg">10. transferFrom</p>
-       <p className="text-2xl"><IoIosArrowDropdownCircle /></p>
+       <p className="text-2xl" onClick={()=>handleToggle(10)} style={{ cursor: 'pointer' }}>
+          {isOpen ? <IoIosArrowDropupCircle /> : <IoIosArrowDropdownCircle />}
+          </p>
         </div>
 
        <div className="flex justify-end pr-5 pt-4 pb-4 space-x-5">
         <p className="text-xl"><BsCopy /></p>
         <p className="text-xl"><IoCopy /></p>
        </div>
+
+       {key===10 && isOpen && (
+            <div >
+            <div className="px-6">
+            <p className="text-lg ">from_address<span className="text-dark-red text-xl">*</span></p>
+            <input
+            type="text"
+            value={inputValue}
+            onChange={handleChange}
+            placeholder="from_address"
+            className="w-full my-4 p-2  focus:bg-white  bg-text-bg-gray rounded-md outline-[1px]  outline-light-mid-gray ml-0 mt-2"
+            />
+            </div>
+            <div className="px-6">
+            <p className="text-lg ">value_uint256<span className="text-dark-red text-xl">*</span></p>
+            <input
+            type="text"
+            value={inputValue}
+            onChange={handleChange}
+            placeholder="value_uint256"
+            className="w-full my-4 p-2  focus:bg-white  bg-text-bg-gray rounded-md outline-[1px]  outline-light-mid-gray ml-0 mt-2"
+            />
+            </div>
+  
+           
+  
+            <p className="border-[1px] border-light-gray bg-text-bg-gray rounded-md px-0 py-1 w-[70px] pl-4 ml-5 mb-7">Send</p>
+            
+            </div>
+          )}
     </div>
 
 
      <div className="border-[1px] border-mid-light-gray mt-8">
        <div className="flex flex-row justify-between p-5 bg-text-bg-gray  ">
        <p className="text-lg">11. transferOwnership</p>
-       <p className="text-2xl"><IoIosArrowDropdownCircle /></p>
+       <p className="text-2xl" onClick={()=>handleToggle(3)} style={{ cursor: 'pointer' }}>
+          {isOpen ? <IoIosArrowDropupCircle /> : <IoIosArrowDropdownCircle />}
+          </p>
         </div>
 
        <div className="flex justify-end pr-5 pt-4 pb-4 space-x-5">
@@ -579,7 +920,9 @@ const WriteContractTable = () => {
      <div className="border-[1px] border-mid-light-gray rounded-bl-lg rounded-br-lg mt-8">
        <div className="flex flex-row justify-between p-5 bg-text-bg-gray  ">
        <p className="text-lg">12. unpause</p>
-       <p className="text-2xl"><IoIosArrowDropdownCircle /></p>
+       <p className="text-2xl" onClick={()=>handleToggle(3)} style={{ cursor: 'pointer' }}>
+          {isOpen ? <IoIosArrowDropupCircle /> : <IoIosArrowDropdownCircle />}
+          </p>
         </div>
 
        <div className="flex justify-end pr-5 pt-4 pb-4 space-x-5">

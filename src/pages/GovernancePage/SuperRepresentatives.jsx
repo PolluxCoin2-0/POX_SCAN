@@ -54,7 +54,11 @@ const Table1 = ({data}) => {
       </div>
     ))}
     
+    
   </div>
+
+
+
   
   );
 };
@@ -86,7 +90,7 @@ const CardSuperRepresentative = ({title, leftSubTitle, totalCount, rightSubTitle
 const SuperRepresentatives = () => {
   const [onSearch, setOnSearch] = useState("");
   const [isRender, setIsRender] = useState("Super Representative");
-
+  
   const [data, setData] = useState({});
   useEffect(() => {
     const fetchData = async () => {
@@ -101,8 +105,8 @@ const SuperRepresentatives = () => {
             fetchDataFunction = getPartnersTableData;
             break;
           case "SR Candidates":
-            fetchDataFunction = getSuperTableData; // Adjust as per your API structure
-            break;
+            return "No Data Found" // Adjust as per your API structure
+            // break;
           default:
             fetchDataFunction = getSuperTableData;
         }

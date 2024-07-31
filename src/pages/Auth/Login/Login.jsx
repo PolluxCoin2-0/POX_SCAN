@@ -3,12 +3,16 @@ import { RxCross2 } from "react-icons/rx";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { setLogin } from "../../../redux/slice/walletSlice";
+import { setLogin, setSignup } from "../../../redux/slice/walletSlice";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../../Firebase/Firebase";
+import { toast } from "react-toastify";
 
 const Login = () => {
+  const loginStatus = useSelector((state)=>state.wallet.login);
   const dispatch = useDispatch();
   const [isVisible, setIsVisible] = useState(true);
-  const loginStatus = useSelector((state)=>state.wallet.login);
+ 
 
   const toggleVisibility = () => {
     setIsVisible(!isVisible);
@@ -22,6 +26,30 @@ const Login = () => {
     phoneOrEmail: "",
     password: "",
   });
+  
+  const [errors, setErrors] = useState({});
+  const [submitButtonDisabled, setSubmitButtonDisabled] = useState(false);
+
+
+  const validate = () => {
+    const errors = {};
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Regular expression for email validation
+
+    if (!formData.phoneOrEmail) {
+      errors.phoneOrEmail = "Phone or Email is required";
+    } else if (!emailPattern.test(formData.phoneOrEmail)) {
+      errors.phoneOrEmail = "Invalid email format";
+    }
+
+    if (!formData.password) {
+      errors.password = "Password is required";
+    } else if (formData.password.length < 6) {
+      errors.password = "Password must be at least 6 characters";
+    }
+  
+    return errors;
+  };
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -34,20 +62,43 @@ const Login = () => {
   // connect with firebase - when onclick login
   const handleSubmit = (e) => {
     e.preventDefault();
+    const validationErrors = validate();
     // Handle form submission logic here
+    if (Object.keys(validationErrors).length === 0) {
     console.log("Form submitted:", formData);
-  };
+    }
+    else {
+      setErrors(validationErrors);
+  }
+
+  setSubmitButtonDisabled(true);
+  signInWithEmailAndPassword(auth, formData.phoneOrEmail, formData.password)
+  .then((res) => {
+   
+    toast.success("Successfully Login!");
+    dispatch(setSignup(!loginStatus))
+  
+  })
+  .catch((error) =>{
+    setSubmitButtonDisabled(false);
+    setErrors(error.message);
+    console.log("Error", error.message)
+    toast.error ("Invalid Credentials");
+});
+  }
 
   return (
     <div className="fixed z-10 backdrop-blur-sm h-screen w-full inset-0">
       <div className="flex flex-col items-center justify-center min-h-screen w-full py-14">
           <div className="bg-white rounded-2xl">
             <div className="flex w-[700px] pr-4 pt-4 justify-end text-light-gray cursor-pointer">
-              <RxCross2 onClick={handleClose} size={24} />
+            <button type="button" onClick={handleClose}>
+                <RxCross2 size={32} />
+              </button>
             </div>
             <div className=" w-[700px] h-[570px] pl-16 pr-16 bg-white rounded-2xl shadow-md">
               <h2 className="mb-8 text-3xl font-semibold text-center text-black">
-                Email
+                Login
               </h2>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
@@ -67,6 +118,11 @@ const Login = () => {
                     className="w-full px-4 py-4 border border-lightest-gray rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
                     required
                   />
+                     {errors.phoneOrEmail && (
+                <span className="text-dark-red text-sm">
+                  {errors.phoneOrEmail} !
+                </span>
+              )}
                 </div>
 
                 <div>
@@ -87,6 +143,7 @@ const Login = () => {
                     required
                   />
 
+
                   <div
                     className="flex flex-row justify-end -mt-28 mr-5"
                     onClick={toggleVisibility}
@@ -97,12 +154,22 @@ const Login = () => {
                       <FaEyeSlash className="w-5 h-5  text-light-gray" />
                     )}
                   </div>
+                  
+                {errors.password && (
+                <span className="text-dark-red text-sm">
+                  {errors.password} !
+                </span>
+              )}
                 </div>
+
+
 
                 <button
                   type="submit"
-                  className="w-full bg-darker-blue text-white text-yellow p-4 rounded-xl text-xl hover:bg-indigo-700 "
+                  className={`w-full  text-white text-lg p-2 py-4 rounded-md hover:bg-indigo-700 mt-5
+                    submitButtonDisabled ? bg-darker-blue hover:bg-light-mid-gray : `}
                   onClick={handleSubmit}
+                  disabled={submitButtonDisabled}
                 >
                   Log in
                 </button>

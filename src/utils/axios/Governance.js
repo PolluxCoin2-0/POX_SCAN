@@ -11,11 +11,11 @@ export const getSuperTableData = async() => {
     }
 }
 
-export const getPartnersTableData = async() => {
+export const getPartnersTableData = async(pageNo) => {
     try {
         const response = await axios.post("https://governance.poxscan.io/governance/getWitnessDataP", 
             {
-                "pageNos": 0, 
+                "pageNos": pageNo, 
                 "pageSize": 10
             }
 

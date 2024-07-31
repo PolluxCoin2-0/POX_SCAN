@@ -142,7 +142,10 @@ const Navbar = () => {
   const loginStatus = useSelector((state)=>state.wallet.login);
   const signupStatus = useSelector((state)=>state.wallet.signup)
 
-
+   
+// for showing notification
+   const [showNotification, setShowNotification] = useState(false);
+  
   const renderHoverComponent = () => {
     switch (hoveredItem) {
       case "Blockchain":
@@ -350,11 +353,25 @@ const Navbar = () => {
             <HoverWalletPage/>
           </div>
             }
+
+
           <IoNotificationsCircleOutline
             size={36}
             color="white"
             className="cursor-pointer"
+            onClick={() => setShowNotification(!showNotification)}
           />
+
+          { showNotification && (
+            <div className="absolute right-20 mt-0 z-20">
+                <Notification />
+            </div>
+          
+          )
+
+          }
+
+
           <div onClick={()=>setShowNetOptions(!showNetOptions)}>
             <img src={Logo} alt="logo-poxscan" className="cursor-pointer" />
           </div>

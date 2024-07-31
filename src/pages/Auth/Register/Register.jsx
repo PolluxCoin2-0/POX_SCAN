@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { RxCross2 } from "react-icons/rx";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link} from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../../Firebase/Firebase";
 import { useDispatch, useSelector } from "react-redux";
@@ -91,7 +91,8 @@ const Register = () => {
     const user = res.user;
       console.log(user);
       toast.success("Successfully Registered!");
-    // navigate("/");
+      dispatch(setSignup(!signupStatus))
+    
     })
     .catch((error) =>{
       setSubmitButtonDisabled(false);
@@ -142,6 +143,7 @@ const Register = () => {
                 </span>
               )}
             </div>
+
             <div className="mb-4">
               <label
                 htmlFor="password"
@@ -176,6 +178,8 @@ const Register = () => {
                 </span>
               )}
             </div>
+
+            
             <div className="mb-4">
               <label
                 htmlFor="confirmPassword"
