@@ -14,23 +14,23 @@ const RealtimeBlockProduction = () => {
 
       <div >
         <p className=" text-2xl font-bold">Real-Time Block Production</p>
-        <div className="flex flex-row justify-between mt-8">
-          <div className="bg-white rounded-2xl w-[1300px]  h-[500px] shadow-xl">
+        <div className="flex flex-row justify-between mt-8 w-full">
+          <div className="bg-white rounded-2xl w-[70%] shadow-xl h-auto">
             <div className="h-80 pt-20">
             {/* <PieChartComp /> */}
             </div>
             
           </div>
 
-          <div className="flex flex-col ml-10">
-            <div className="bg-white rounded-2xl shadow-2xl w-[450px] h-[180px] ">
+          <div className="flex flex-col ml-7 w-[30%] h-auto">
+            <div className="bg-white rounded-xl shadow-xl w-[450px] h-[180px] ">
             <p className="text-lg font-bold pt-7 pl-10 pr-8">About</p>
             <p className="pl-10 pt-1 text-light-gray leading-5 text-md">The real-time block production chart<br/>shows the block distribution of Super 
             <br/> Super Representatives (SRs), who are obliged to <br/> to verify transaction and produces block. <br/>
             SRs are elected every 6 hours.</p>
             </div>
 
-            <div className="bg-white rounded-2xl w-[450px] h-[280px] mt-10 shadow-xl">
+            <div className="bg-white rounded-xl w-[450px] h-[280px] mt-5 shadow-xl">
               <p className="pt-5 pl-10 text-lg font-bold p-2">Highlights</p>
               <p className="pl-10 pt-1 text-light-gray text-lg">In this round 27 SRs have <br/>
               produced 6858 blocks with 1 SR(s)<br/> missing 1 block(s) until now.</p>

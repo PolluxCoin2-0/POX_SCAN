@@ -117,19 +117,19 @@ const Votes = () => {
           <div className="flex flex-row justify-around pt-5">
               <div>
                 <p className="text-light-gray">Available POX Balance</p>
-                <p className="font-bold text-xl">--</p>
+                <p className="font-bold text-xl">0 POX</p>
                 <p className="text-light-gray py-2 rounded-lg pl-3 mt-6 bg-lightest-gray">Get TRON Power</p>
               </div>
               <div className="border-2 border-dashed border-text-bg-gray"></div>
               <div>
                 <p className="text-light-gray">Available Votes/ Total Votes</p>
-                <p  className="font-bold text-xl">--</p>
+                <p  className="font-bold text-xl">0/0</p>
                 <p className="text-light-gray py-2 rounded-lg pl-5 mt-6 bg-lightest-gray">Vote</p>
               </div>
                <div className="border-2 border-dashed border-text-bg-gray"></div>
               <div>
                 <p className="text-light-gray">Claimable POX Rewards</p>
-                <p  className="font-bold text-xl">--</p>
+                <p  className="font-bold text-xl">0</p>
                 <p className="text-light-gray py-2 rounded-lg pl-5 mt-6 bg-lightest-gray">Claim</p>
               </div>
           </div>
@@ -140,8 +140,9 @@ const Votes = () => {
 
 {/*List */}
       <div className="bg-[#FAFAFA] py-10 mt-20 shadow-xl rounded-2xl">
-        <div className="flex flex-row justify-between items-center bg-[#FFFFFF] mx-6 px-4 py-2 mb-6">
-        <div className="border-2 border-lightest-gray rounded-xl">
+        <div className="flex flex-row justify-between items-center bg-[#FFFFFF] rounded-md shadow-md mx-6 px-4 py-2 mb-6">
+          <p className="font-bold">Only the first 39 records are displayed.</p>
+        <div className="border-2 border-lightest-gray  rounded-xl">
            <SearchBar/>
          </div>
 

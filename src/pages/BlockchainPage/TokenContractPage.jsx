@@ -7,6 +7,7 @@ import { IoIosArrowDropdownCircle, IoIosArrowDropupCircle } from "react-icons/io
 
 
 import CodeSnippet from "./codeSnippet";
+import { toast } from "react-toastify";
 
 
 const CodeTable = () => {
@@ -78,6 +79,11 @@ const ReadContractTable = () => {
     setInputValue(event.target.value);
   };
 
+  const handleCopy = (issueTime) => {
+    navigator.clipboard.writeText(issueTime);
+    toast.success(" copied!");
+  };
+
   return (
     <div className="bg-white rounded-bl-xl rounded-br-xl shadow-xl p-10 ">
 
@@ -91,8 +97,8 @@ const ReadContractTable = () => {
 
     
         <div className="flex justify-end pr-5 pt-4 pb-4 space-x-5">
-          <p className="text-xl"><BsCopy /></p>
-          <p className="text-xl"><IoCopy /></p>
+          <p className="text-xl" onClick={() => handleCopy("DOMAIN_SEPARATOR")}><BsCopy /></p>
+          <p className="text-xl" onClick={() => handleCopy("http://localhost:5173/tokendetailpage/PSTv3ZweeCRHd5cmxoL3dTTbSKGgtYZ5cm")}><IoCopy /></p>
         </div>
 
         {key===1 && isOpen && (
@@ -121,31 +127,31 @@ const ReadContractTable = () => {
            </div>
 
           <div className="flex justify-end pr-5 pt-4 pb-4 space-x-5">
-           <p className="text-xl"><BsCopy /></p>
-           <p className="text-xl"><IoCopy /></p>
+           <p className="text-xl" onClick={() => handleCopy("allowance")}><BsCopy /></p>
+           <p className="text-xl" onClick={() => handleCopy("http://localhost:5173/tokendetailpage/PSTv3ZweeCRHd5cmxoL3dTTbSKGgtYZ5cm")}><IoCopy /></p>
           </div>
           
           {key===2 && isOpen && (
             <div>
-            <div>
-            <p className="text-lg pl-6">owner_address<span className="text-dark-red text-xl">*</span></p>
+            <div className="px-6">
+            <p className="text-lg ">owner_address<span className="text-dark-red text-xl">*</span></p>
             <input
             type="text"
             value={inputValue}
             onChange={handleChange}
             placeholder="ownner_address"
-            className="w-[1460px] my-4 p-2  focus:bg-white  bg-text-bg-gray rounded-md outline-[1px]  outline-light-mid-gray ml-6 mt-2"
+            className="w-full my-4 p-2  focus:bg-white  bg-text-bg-gray rounded-md outline-[1px]  outline-light-mid-gray  mt-2"
             />
             </div>
   
-            <div>
-            <p className="text-lg pl-6">spender_address<span className="text-dark-red text-xl">*</span></p>
+            <div className="px-6">
+            <p className="text-lg ">spender_address<span className="text-dark-red text-xl">*</span></p>
             <input
             type="text"
             value={inputValue}
             onChange={handleChange}
             placeholder="spender_address"
-            className="w-[1460px] my-4 p-2  focus:bg-white  bg-text-bg-gray rounded-md outline-[1px]  outline-light-mid-gray ml-6 mt-2"
+            className="w-full my-4 p-2  focus:bg-white  bg-text-bg-gray rounded-md outline-[1px]  outline-light-mid-gray  mt-2"
             />
             </div>
   
@@ -164,8 +170,8 @@ const ReadContractTable = () => {
            </div>
  
           <div className="flex justify-end pr-5 pt-4 pb-4 space-x-5">
-           <p className="text-xl"><BsCopy /></p>
-           <p className="text-xl"><IoCopy /></p>
+           <p className="text-xl" onClick={()=> handleCopy("auth")}><BsCopy /></p>
+           <p className="text-xl" onClick={() => handleCopy("http://localhost:5173/tokendetailpage/PSTv3ZweeCRHd5cmxoL3dTTbSKGgtYZ5cm")}><IoCopy /></p>
           </div>
 
           {key === 3 && isOpen && (
@@ -189,20 +195,20 @@ const ReadContractTable = () => {
            </div>
 
           <div className="flex justify-end pr-5 pt-4 pb-4 space-x-5">
-           <p className="text-xl"><BsCopy /></p>
-           <p className="text-xl"><IoCopy /></p>
+           <p className="text-xl" onClick={()=> handleCopy("balanceOf")}><BsCopy /></p>
+           <p className="text-xl" onClick={() => handleCopy("http://localhost:5173/tokendetailpage/PSTv3ZweeCRHd5cmxoL3dTTbSKGgtYZ5cm")}><IoCopy /></p>
           </div>
           
           { key===4 && isOpen && (
             <div>
-            <div>
-              <p className="text-lg pl-6">account_address*<span className="text-dark-red text-xl">*</span></p>
+            <div className="px-6">
+              <p className="text-lg ">account_address*<span className="text-dark-red text-xl">*</span></p>
               <input
               type="text"
               value={inputValue}
               onChange={handleChange}
               placeholder="account_address*"
-              className="w-[1460px] my-4 p-2  focus:bg-white  bg-text-bg-gray rounded-md outline-[1px]  outline-light-mid-gray ml-6 mt-2"
+              className="w-full my-4 p-2  focus:bg-white  bg-text-bg-gray rounded-md outline-[1px]  outline-light-mid-gray  mt-2"
               />
               </div>
               
@@ -221,8 +227,8 @@ const ReadContractTable = () => {
            </div>
 
           <div className="flex justify-end pr-5 pt-4 pb-4 space-x-5">
-           <p className="text-xl"><BsCopy /></p>
-           <p className="text-xl"><IoCopy /></p>
+           <p className="text-xl" onClick={()=> handleCopy("decimals")}><BsCopy /></p>
+           <p className="text-xl" onClick={() => handleCopy("http://localhost:5173/tokendetailpage/PSTv3ZweeCRHd5cmxoL3dTTbSKGgtYZ5cm")}><IoCopy /></p>
           </div>
 
 
@@ -232,7 +238,7 @@ const ReadContractTable = () => {
             onClick={handleView} style={{cursor: 'pointer'}}>View </p>
             
             { isView && (
-              <p className="mt-1 text-lg font-bold">2sXa4yLs8RwUg7qhxuuBgMpEhb2FMQrgjY7PMmSJyE8ukWf8vZ9</p>
+              <p className="mt-1 text-lg font-bold">18</p>
             )}
            
           </div>
@@ -249,8 +255,8 @@ const ReadContractTable = () => {
            </div>
 
           <div className="flex justify-end pr-5 pt-4 pb-4 space-x-5">
-           <p className="text-xl"><BsCopy /></p>
-           <p className="text-xl"><IoCopy /></p>
+           <p className="text-xl" onClick={()=> handleCopy("eip712Domain")}><BsCopy /></p>
+           <p className="text-xl" onClick={() => handleCopy("http://localhost:5173/tokendetailpage/PSTv3ZweeCRHd5cmxoL3dTTbSKGgtYZ5cm")}><IoCopy /></p>
           </div>
 
           {key===6 && isOpen && (
@@ -275,8 +281,8 @@ const ReadContractTable = () => {
            </div>
 
           <div className="flex justify-end pr-5 pt-4 pb-4 space-x-5">
-           <p className="text-xl"><BsCopy /></p>
-           <p className="text-xl"><IoCopy /></p>
+           <p className="text-xl" onClick={()=> handleCopy("name")}><BsCopy /></p>
+           <p className="text-xl" onClick={() => handleCopy("http://localhost:5173/tokendetailpage/PSTv3ZweeCRHd5cmxoL3dTTbSKGgtYZ5cm")}><IoCopy /></p>
           </div>
 
           {key===7 && isOpen && (
@@ -285,7 +291,7 @@ const ReadContractTable = () => {
             onClick={handleView} style={{cursor: 'pointer'}}>View </p>
             
             { isView && (
-              <p className="mt-1 text-lg font-bold">2sXa4yLs8RwUg7qhxuuBgMpEhb2FMQrgjY7PMmSJyE8ukWf8vZ9</p>
+              <p className="mt-1 text-lg font-bold">Pollux Usd</p>
             )}
            
           </div>
@@ -302,20 +308,20 @@ const ReadContractTable = () => {
            </div>
 
           <div className="flex justify-end pr-5 pt-4 pb-4 space-x-5">
-           <p className="text-xl"><BsCopy /></p>
-           <p className="text-xl"><IoCopy /></p>
+           <p className="text-xl" onClick={()=> handleCopy("nonces")}><BsCopy /></p>
+           <p className="text-xl" onClick={() => handleCopy("http://localhost:5173/tokendetailpage/PSTv3ZweeCRHd5cmxoL3dTTbSKGgtYZ5cm")}><IoCopy /></p>
           </div>
 
           {key===8 && isOpen && (
             <div>
-            <div>
-              <p className="text-lg pl-6">owner_address<span className="text-dark-red text-xl">*</span></p>
+            <div className="px-6">
+              <p className="text-lg  ">owner_address<span className="text-dark-red text-xl">*</span></p>
               <input
               type="text"
               value={inputValue}
               onChange={handleChange}
               placeholder="owner_address"
-              className="w-[1460px] my-4 p-2  focus:bg-white  bg-text-bg-gray rounded-md outline-[1px]  outline-light-mid-gray ml-6 mt-2"
+              className="w-full my-4 p-2  focus:bg-white  bg-text-bg-gray rounded-md outline-[1px]  outline-light-mid-gray mt-2"
               />
               </div>
               
@@ -333,8 +339,8 @@ const ReadContractTable = () => {
            </div>
 
           <div className="flex justify-end pr-5 pt-4 pb-4 space-x-5">
-           <p className="text-xl"><BsCopy /></p>
-           <p className="text-xl"><IoCopy /></p>
+           <p className="text-xl" onClick={()=> handleCopy("owner")}><BsCopy /></p>
+           <p className="text-xl" onClick={() => handleCopy("http://localhost:5173/tokendetailpage/PSTv3ZweeCRHd5cmxoL3dTTbSKGgtYZ5cm")}><IoCopy /></p>
           </div>
           {key===9 && isOpen && (
             <div className="flex flex-row space-x-8">
@@ -342,7 +348,7 @@ const ReadContractTable = () => {
             onClick={handleView} style={{cursor: 'pointer'}}>View </p>
             
             { isView && (
-              <p className="mt-1 text-lg font-bold">2sXa4yLs8RwUg7qhxuuBgMpEhb2FMQrgjY7PMmSJyE8ukWf8vZ9</p>
+              <p className="mt-1 text-lg font-bold">PTiodKEPfGyxiy1XgU2HtdscPbpGVU1ENZ</p>
             )}
            
           </div>
@@ -359,8 +365,8 @@ const ReadContractTable = () => {
            </div>
 
           <div className="flex justify-end pr-5 pt-4 pb-4 space-x-5">
-           <p className="text-xl"><BsCopy /></p>
-           <p className="text-xl"><IoCopy /></p>
+           <p className="text-xl" onClick={()=> handleCopy("paused")}><BsCopy /></p>
+           <p className="text-xl" onClick={() => handleCopy("http://localhost:5173/tokendetailpage/PSTv3ZweeCRHd5cmxoL3dTTbSKGgtYZ5cm")}><IoCopy /></p>
           </div>
           { key===10 && isOpen && (
             <div className="flex flex-row space-x-8">
@@ -385,8 +391,8 @@ const ReadContractTable = () => {
            </div>
 
           <div className="flex justify-end pr-5 pt-4 pb-4 space-x-5">
-           <p className="text-xl"><BsCopy /></p>
-           <p className="text-xl"><IoCopy /></p>
+           <p className="text-xl" onClick={()=> handleCopy("symbol")}><BsCopy /></p>
+           <p className="text-xl" onClick={() => handleCopy("http://localhost:5173/tokendetailpage/PSTv3ZweeCRHd5cmxoL3dTTbSKGgtYZ5cm")}><IoCopy /></p>
           </div>
 
           {key===11 && isOpen && (
@@ -414,8 +420,8 @@ const ReadContractTable = () => {
            </div>
 
           <div className="flex justify-end pr-5 pt-4 pb-4 space-x-5">
-           <p className="text-xl"><BsCopy /></p>
-           <p className="text-xl"><IoCopy /></p>
+           <p className="text-xl" onClick={()=> handleCopy("totalSupply")}><BsCopy /></p>
+           <p className="text-xl" onClick={() => handleCopy("http://localhost:5173/tokendetailpage/PSTv3ZweeCRHd5cmxoL3dTTbSKGgtYZ5cm")}><IoCopy /></p>
           </div>
 
           {key===12 && isOpen && (
@@ -454,7 +460,11 @@ const WriteContractTable = () => {
   const handleChange = (event) => {
     setInputValue(event.target.value);
   };
-  
+   
+  const handleCopy = (issueTime) => {
+    navigator.clipboard.writeText(issueTime);
+    toast.success(" copied!");
+  };
   return (
     <div className="bg-white rounded-bl-xl rounded-br-xl shadow-xl pt-5 pb-5 pl-10 pr-10 ">
 
@@ -468,8 +478,8 @@ const WriteContractTable = () => {
         </div>
 
        <div className="flex justify-end pr-5 pt-4 pb-4 space-x-5">
-        <p className="text-xl"><BsCopy /></p>
-        <p className="text-xl"><IoCopy /></p>
+        <p className="text-xl" onClick={()=> handleCopy("approve")}><BsCopy /></p>
+        <p className="text-xl" onClick={() => handleCopy("http://localhost:5173/tokendetailpage/PSTv3ZweeCRHd5cmxoL3dTTbSKGgtYZ5cm")}><IoCopy /></p>
        </div>
 
        {key===1 && isOpen && (
@@ -512,8 +522,8 @@ const WriteContractTable = () => {
         </div>
 
        <div className="flex justify-end pr-5 pt-4 pb-4 space-x-5">
-        <p className="text-xl"><BsCopy /></p>
-        <p className="text-xl"><IoCopy /></p>
+        <p className="text-xl" onClick={()=> handleCopy("burn")}><BsCopy /></p>
+        <p className="text-xl" onClick={() => handleCopy("http://localhost:5173/tokendetailpage/PSTv3ZweeCRHd5cmxoL3dTTbSKGgtYZ5cm")}><IoCopy /></p>
        </div>
 
        {key===2 && isOpen && (
@@ -543,8 +553,8 @@ const WriteContractTable = () => {
         </div>
 
        <div className="flex justify-end pr-5 pt-4 pb-4 space-x-5">
-        <p className="text-xl"><BsCopy /></p>
-        <p className="text-xl"><IoCopy /></p>
+        <p className="text-xl" onClick={()=> handleCopy("burnFrom")}><BsCopy /></p>
+        <p className="text-xl" onClick={() => handleCopy("http://localhost:5173/tokendetailpage/PSTv3ZweeCRHd5cmxoL3dTTbSKGgtYZ5cm")}><IoCopy /></p>
        </div>
        {key===3 && isOpen && (
             <div >
@@ -579,14 +589,14 @@ const WriteContractTable = () => {
     <div className="border-[1px] border-mid-light-gray mt-8">
        <div className="flex flex-row justify-between p-5 bg-text-bg-gray  ">
        <p className="text-lg">4. mint</p>
-       <p className="text-2xl" onClick={()=>handleToggle(3)} style={{ cursor: 'pointer' }}>
+       <p className="text-2xl" onClick={()=>handleToggle(4)} style={{ cursor: 'pointer' }}>
           {isOpen ? <IoIosArrowDropupCircle /> : <IoIosArrowDropdownCircle />}
           </p>
         </div>
 
        <div className="flex justify-end pr-5 pt-4 pb-4 space-x-5">
-        <p className="text-xl"><BsCopy /></p>
-        <p className="text-xl"><IoCopy /></p>
+        <p className="text-xl" onClick={()=> handleCopy("mint")}><BsCopy /></p>
+        <p className="text-xl" onClick={() => handleCopy("http://localhost:5173/tokendetailpage/PSTv3ZweeCRHd5cmxoL3dTTbSKGgtYZ5cm")}>><IoCopy /></p>
        </div>
        {key===4 && isOpen && (
             <div >
@@ -630,17 +640,15 @@ const WriteContractTable = () => {
         </div>
 
        <div className="flex justify-end pr-5 pt-4 pb-4 space-x-5">
-        <p className="text-xl"><BsCopy /></p>
-        <p className="text-xl"><IoCopy /></p>
+        <p className="text-xl" onClick={()=> handleCopy("pause")}><BsCopy /></p>
+        <p className="text-xl" onClick={() => handleCopy("http://localhost:5173/tokendetailpage/PSTv3ZweeCRHd5cmxoL3dTTbSKGgtYZ5cm")}>><IoCopy /></p>
        </div>
        {key === 5 && isOpen && (
             <div className="flex flex-row space-x-8">
             <p className="border-[1px] border-light-gray bg-text-bg-gray rounded-md px-0 py-1 w-[70px] pl-4 ml-5 mb-7"
-            onClick={handleView} style={{cursor: 'pointer'}}>View </p>
+            onClick={handleView} style={{cursor: 'pointer'}}>Send </p>
             
-            { isView && (
-              <p className="mt-1 text-lg font-bold">2sXa4yLs8RwUg7qhxuuBgMpEhb2FMQrgjY7PMmSJyE8ukWf8vZ9</p>
-            )}
+         
            
           </div>
         
@@ -657,8 +665,8 @@ const WriteContractTable = () => {
         </div>
 
        <div className="flex justify-end pr-5 pt-4 pb-4 space-x-5">
-        <p className="text-xl"><BsCopy /></p>
-        <p className="text-xl"><IoCopy /></p>
+        <p className="text-xl" onClick={()=> handleCopy("permit")}><BsCopy /></p>
+        <p className="text-xl" onClick={() => handleCopy("http://localhost:5173/tokendetailpage/PSTv3ZweeCRHd5cmxoL3dTTbSKGgtYZ5cm")}>><IoCopy /></p>
        </div>
        {key===6 && isOpen && (
             <div >
@@ -758,17 +766,15 @@ const WriteContractTable = () => {
         </div>
 
        <div className="flex justify-end pr-5 pt-4 pb-4 space-x-5">
-        <p className="text-xl"><BsCopy /></p>
-        <p className="text-xl"><IoCopy /></p>
+        <p className="text-xl" onClick={()=> handleCopy("renounceOwnership")}><BsCopy /></p>
+        <p className="text-xl" onClick={() => handleCopy("http://localhost:5173/tokendetailpage/PSTv3ZweeCRHd5cmxoL3dTTbSKGgtYZ5cm")}>><IoCopy /></p>
        </div>
        {key === 7 && isOpen && (
             <div className="flex flex-row space-x-8">
             <p className="border-[1px] border-light-gray bg-text-bg-gray rounded-md px-0 py-1 w-[70px] pl-4 ml-5 mb-7"
-            onClick={handleView} style={{cursor: 'pointer'}}>View </p>
+            onClick={handleView} style={{cursor: 'pointer'}}>Send </p>
             
-            { isView && (
-              <p className="mt-1 text-lg font-bold">2sXa4yLs8RwUg7qhxuuBgMpEhb2FMQrgjY7PMmSJyE8ukWf8vZ9</p>
-            )}
+           
            
           </div>
         
@@ -785,8 +791,8 @@ const WriteContractTable = () => {
         </div>
 
        <div className="flex justify-end pr-5 pt-4 pb-4 space-x-5">
-        <p className="text-xl"><BsCopy /></p>
-        <p className="text-xl"><IoCopy /></p>
+        <p className="text-xl" onClick={()=> handleCopy("setAuthAdd")}><BsCopy /></p>
+        <p className="text-xl" onClick={() => handleCopy("http://localhost:5173/tokendetailpage/PSTv3ZweeCRHd5cmxoL3dTTbSKGgtYZ5cm")}>><IoCopy /></p>
        </div>
 
        {key===8 && isOpen && (
@@ -820,8 +826,8 @@ const WriteContractTable = () => {
         </div>
 
        <div className="flex justify-end pr-5 pt-4 pb-4 space-x-5">
-        <p className="text-xl"><BsCopy /></p>
-        <p className="text-xl"><IoCopy /></p>
+        <p className="text-xl" onClick={()=> handleCopy(" transfer")}><BsCopy /></p>
+        <p className="text-xl" onClick={() => handleCopy("http://localhost:5173/tokendetailpage/PSTv3ZweeCRHd5cmxoL3dTTbSKGgtYZ5cm")}>><IoCopy /></p>
        </div>
 
        
@@ -866,8 +872,8 @@ const WriteContractTable = () => {
         </div>
 
        <div className="flex justify-end pr-5 pt-4 pb-4 space-x-5">
-        <p className="text-xl"><BsCopy /></p>
-        <p className="text-xl"><IoCopy /></p>
+        <p className="text-xl" onClick={()=> handleCopy("transferFrom")}><BsCopy /></p>
+        <p className="text-xl" onClick={() => handleCopy("http://localhost:5173/tokendetailpage/PSTv3ZweeCRHd5cmxoL3dTTbSKGgtYZ5cm")}>><IoCopy /></p>
        </div>
 
        {key===10 && isOpen && (
@@ -882,6 +888,17 @@ const WriteContractTable = () => {
             className="w-full my-4 p-2  focus:bg-white  bg-text-bg-gray rounded-md outline-[1px]  outline-light-mid-gray ml-0 mt-2"
             />
             </div>
+            <div className="px-6">
+            <p className="text-lg ">to_address<span className="text-dark-red text-xl">*</span></p>
+            <input
+            type="text"
+            value={inputValue}
+            onChange={handleChange}
+            placeholder="to_address"
+            className="w-full my-4 p-2  focus:bg-white  bg-text-bg-gray rounded-md outline-[1px]  outline-light-mid-gray ml-0 mt-2"
+            />
+            </div>
+
             <div className="px-6">
             <p className="text-lg ">value_uint256<span className="text-dark-red text-xl">*</span></p>
             <input
@@ -905,30 +922,61 @@ const WriteContractTable = () => {
      <div className="border-[1px] border-mid-light-gray mt-8">
        <div className="flex flex-row justify-between p-5 bg-text-bg-gray  ">
        <p className="text-lg">11. transferOwnership</p>
-       <p className="text-2xl" onClick={()=>handleToggle(3)} style={{ cursor: 'pointer' }}>
+       <p className="text-2xl" onClick={()=>handleToggle(11)} style={{ cursor: 'pointer' }}>
           {isOpen ? <IoIosArrowDropupCircle /> : <IoIosArrowDropdownCircle />}
           </p>
         </div>
 
        <div className="flex justify-end pr-5 pt-4 pb-4 space-x-5">
-        <p className="text-xl"><BsCopy /></p>
-        <p className="text-xl"><IoCopy /></p>
+        <p className="text-xl" onClick={()=> handleCopy("transferOwnership")}><BsCopy /></p>
+        <p className="text-xl" onClick={() => handleCopy("http://localhost:5173/tokendetailpage/PSTv3ZweeCRHd5cmxoL3dTTbSKGgtYZ5cm")}>><IoCopy /></p>
        </div>
+
+       {key===11 && isOpen && (
+            <div >
+            <div className="px-6">
+            <p className="text-lg ">newOwner_address<span className="text-dark-red text-xl">*</span></p>
+            <input
+            type="text"
+            value={inputValue}
+            onChange={handleChange}
+            placeholder="newOwner_address"
+            className="w-full my-4 p-2  focus:bg-white  bg-text-bg-gray rounded-md outline-[1px]  outline-light-mid-gray ml-0 mt-2"
+            />
+            </div>
+           
+           
+  
+            <p className="border-[1px] border-light-gray bg-text-bg-gray rounded-md px-0 py-1 w-[70px] pl-4 ml-5 mb-7">Send</p>
+            
+            </div>
+          )}
     </div>
 
 
      <div className="border-[1px] border-mid-light-gray rounded-bl-lg rounded-br-lg mt-8">
        <div className="flex flex-row justify-between p-5 bg-text-bg-gray  ">
        <p className="text-lg">12. unpause</p>
-       <p className="text-2xl" onClick={()=>handleToggle(3)} style={{ cursor: 'pointer' }}>
+       <p className="text-2xl" onClick={()=>handleToggle(12)} style={{ cursor: 'pointer' }}>
           {isOpen ? <IoIosArrowDropupCircle /> : <IoIosArrowDropdownCircle />}
           </p>
         </div>
 
        <div className="flex justify-end pr-5 pt-4 pb-4 space-x-5">
-        <p className="text-xl"><BsCopy /></p>
-        <p className="text-xl"><IoCopy /></p>
+        <p className="text-xl" onClick={()=> handleCopy("unpause")}><BsCopy /></p>
+        <p className="text-xl" onClick={() => handleCopy("http://localhost:5173/tokendetailpage/PSTv3ZweeCRHd5cmxoL3dTTbSKGgtYZ5cm")}>><IoCopy /></p>
        </div>
+
+       {key === 12 && isOpen && (
+            <div className="flex flex-row space-x-8">
+            <p className="border-[1px] border-light-gray bg-text-bg-gray rounded-md px-0 py-1 w-[70px] pl-4 ml-5 mb-7"
+            onClick={handleView} style={{cursor: 'pointer'}}>Send</p>
+            
+          
+           
+          </div>
+        
+      )}
     </div>
  </div>
   )

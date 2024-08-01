@@ -33,9 +33,9 @@ const NewAccounts = () => {
 
       <div >
         <p className=" text-xl font-bold pb-7">New Accounts</p>
-        <div className="flex flex-row justify-between">
-          <div className="bg-white rounded-2xl w-[1300px]  h-[500px] shadow-xl">
-            <div className="w-[1000px] h-[450px] pt-20 pl-4">
+        <div className="flex flex-row justify-between w-full">
+          <div className="bg-white rounded-xl w-[70%] h-[450px] shadow-xl">
+            <div className="w-[1000px] h-[450px] p-10 ">
             <SimpleBarChart 
             value={data?.NewAccounts}
             xAxis="_id"
@@ -44,14 +44,14 @@ const NewAccounts = () => {
            
           </div>
 
-          <div className="flex flex-col ml-10 ">
-            <div className="bg-white rounded-2xl shadow-2xl w-[450px] h-[180px] ">
+          <div className="flex flex-col ml-7 w-[30%] h-[450px]">
+            <div className="bg-white rounded-xl shadow-xl h-[200px] ">
             <p className="text-lg font-bold pt-4 pl-8 pr-8">About</p>
             <p className="pl-8 pt-1 text-light-gray leading-6 text-md">
             The New Accounts chart shows the <br/> number of accounts whose first transfer <br/>record on TRON occurs during the <br/>specified period, including wallet <br/>accounts and contract accounts.. </p>
             </div>
 
-            <div className="bg-white rounded-2xl w-[450px] h-[280px] mt-10 shadow-xl">
+            <div className="bg-white rounded-xl  mt-5 shadow-xl h-[250px]">
               <p className="pt-7 pl-8 text-lg font-bold p-2">Highlight</p>
               <p className="pl-8  text-light-gray text-md">
               On average, 180k new accounts are <br/>recorded per day on TRON in the past 1 <br/>month</p>
@@ -71,7 +71,7 @@ const NewAccounts = () => {
             <p className="w-[50%] text-center">New Account</p>
           </div>
 
-          {data?.NewAccounts?.map && data?.NewAccounts?.map((param, index) => {
+          {data?.NewAccounts?.map && data?.NewAccounts?.slice(0, 10).map((param, index) => {
         return (
           <>
            <div className="flex flex-row justify-between p-5 border-b-2 border-b-lightest-gray">

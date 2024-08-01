@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { IoCheckmarkCircleOutline } from "react-icons/io5";
 import CountdownTimer from "./CountDownTimer";
 import Pagination from "../../components/Pagination";
+import DistributionGraph from "./DistributionGraph";
 
 const Table1 = ({data, showPagination, setCurrentPage}) => {
   const handlePageChange = (page) => {
@@ -15,6 +16,7 @@ const Table1 = ({data, showPagination, setCurrentPage}) => {
   };
   return (
     <div className="bg-white pt-2  rounded-tl-none rounded-2xl">
+        <p className="pl-5 font-bold" >Only the first 27 records are displayed</p>
     <div className="flex flex-row items-center justify-evenly bg-light-orange p-3 rounded-tl-none rounded-2xl m-4">
       <p className="w-[5%] text-center   font-bold ">Rank</p>
       <p className="w-[10%] text-center  font-bold  ">Name</p>
@@ -42,7 +44,7 @@ const Table1 = ({data, showPagination, setCurrentPage}) => {
         
         <p className="w-[9%]  text-center">1</p>
         <p className="w-[6%]  flex justify-center"><IoCheckmarkCircleOutline size={24} color="green" /></p> 
-        <p className="w-[8%] text-center">{representative.latestBlockNum && representative?.latestBlockNum ? representative?.latestBlockNum : 0}</p>
+        <p className="w-[8%] text-center text-dark-red">{representative.latestBlockNum && representative?.latestBlockNum ? representative?.latestBlockNum : 0}</p>
         <p className="w-[10%]  text-center">{representative.totalProduced && representative?.totalProduced ? representative?.totalProduced : 0}</p>
         <p className="w-[8%]  text-center">{representative.totalMissed && representative?.totalMissed ? representative?.totalMissed : 0}</p>
         <p className="w-[8%]  text-center">{representative.productivity && Number(representative.productivity).toFixed(8)}</p>
@@ -54,10 +56,13 @@ const Table1 = ({data, showPagination, setCurrentPage}) => {
     ))}
     {
       showPagination && 
-    <Pagination
+      <div className="flex justify-end">
+ <Pagination
     totalPages ={data?.totalSr}
     onPageChange={handlePageChange}
     />
+      </div>
+   
   }
   </div>
   );
@@ -140,17 +145,21 @@ const SuperRepresentatives = () => {
       </div>
 
       <p className=" text-2xl font-bold">Super Representatives</p>
-      <div className=" flex flex-row justify-evenly w-full space-x-10">
-        <div className="bg-white w-[50%] h-96 mt-10 rounded-2xl shadow-lg">
-          <p className="text-xl font-bold pt-10 pl-10">
+      <div className=" flex flex-row justify-evenly w-full space-x-5">
+        <div className="bg-white w-[50%] h-auto mt-10 rounded-2xl shadow-lg">
+          <p className="text-xl font-bold pt-5 pl-10">
             Real-time Block Distribution
           </p>
-          <CustomPieChart />
+          
+          <div className="pt-5 pb-0 w-[90%] flex items-center">
+          <DistributionGraph />
+          </div>
+         
         </div>
 
-        <div className="flex flex-row mt-10 w-[50%]">
+        <div className="flex flex-row  mt-10 w-[50%]">
           <div className="w-full mr-3">
-            <div className="bg-white  mb-3 rounded-tl-2xl  shadow-lg pl-5 pt-5">
+            <div className="bg-white  mb-3 rounded-tl-2xl  shadow-lg pl-5 pt-5 pb-2">
               <CardSuperRepresentative 
               title="Votes"
               leftSubTitle="Total (Real Time)"
@@ -158,7 +167,7 @@ const SuperRepresentatives = () => {
               rightSubTitle="Next Round"
               totalvalues="timer"/>
             </div>
-            <div className="bg-white rounded-bl-2xl shadow-lg pl-5 pt-5">
+            <div className="bg-white rounded-bl-2xl shadow-lg pl-5 pt-5 pb-2">
               <CardSuperRepresentative 
               title="Super Representatives" 
               className="text-nowrap"
@@ -169,8 +178,8 @@ const SuperRepresentatives = () => {
             </div>
           </div>
 
-          <div className="w-full">
-            <div className="bg-white  mb-3 rounded-tr-2xl shadow-lg pl-5 pt-5">
+          <div className="w-full ">
+            <div className="bg-white  mb-3 rounded-tr-2xl shadow-lg pl-5 pt-5 pb-2">
               <CardSuperRepresentative 
               title="Blocks Produced"
               leftSubTitle="Max. Sendbox"
@@ -178,7 +187,7 @@ const SuperRepresentatives = () => {
               totalvalues={""}
               />
             </div>
-            <div className="bg-white rounded-br-2xl shadow-lg pl-5 pt-5">
+            <div className="bg-white rounded-br-2xl shadow-lg pl-5 pt-5 pb-2">
               <CardSuperRepresentative 
               title="Productivity"
               leftSubTitle="Highest Sendbox"
@@ -215,24 +224,24 @@ const SuperRepresentatives = () => {
       <div className=" mt-10 rounded-2xl ">
         <div className="flex flex-row items-center space-x-12  rounded-xl">
           <p
-            className={`cursor-pointer py-3 px-4 ${isRender === "Super Representative" ? "bg-white  rounded-t-2xl" : "text-black"}`}
+            className={`cursor-pointer font-bold py-3 px-4 ${isRender === "Super Representative" ? "bg-white  rounded-t-2xl" : "text-black"}`}
             onClick={() => setIsRender("Super Representative")}
           > 
             Super Representatives
           </p>
           <p
-            className={`cursor-pointer py-3 px-4 ${isRender === "SR Partner" ? "bg-white  rounded-t-2xl" : "text-black"}`}
+            className={`cursor-pointer font-bold py-3 px-4 ${isRender === "SR Partner" ? "bg-white  rounded-t-2xl" : "text-black"}`}
             onClick={() => setIsRender("SR Partner")}
           >
             SR Partner
           </p>
           <p
-            className={`cursor-pointer py-3 px-4 ${isRender === "SR Candidates" ? "bg-white  rounded-t-2xl" : "text-black"}`}
+            className={`cursor-pointer font-bold py-3 px-4 ${isRender === "SR Candidates" ? "bg-white  rounded-t-2xl" : "text-black"}`}
             onClick={() => setIsRender("SR Candidates")}
           >
             SR Candidates
           </p>
-          <p >Only the first 27 records are displayed</p>
+        
         </div>
         <div>{renderItemComponent()}</div>
       </div>

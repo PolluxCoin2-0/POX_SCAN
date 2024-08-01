@@ -18,6 +18,9 @@ import { useState } from "react";
 import { LuCircle } from "react-icons/lu";
 import { IoMdArrowDropright } from "react-icons/io";
 import VoteImg from "../../assets/SVG3.png";
+import SecureImg from "../../assets/SVG1.png";
+import RewardImg from "../../assets/Rewards.png";
+
 const PoxStakingGovernance = () => {
   const [inputValue, setInputValue] = useState(10000);
 
@@ -57,10 +60,13 @@ const PoxStakingGovernance = () => {
             </div>
             </Link>
            
-            <div className="flex items-center space-x-4 bg-dark-yellow py-3 px-6 rounded-xl cursor-pointer">
+           
+           <div className="flex items-center space-x-4 bg-dark-yellow py-3 px-6 rounded-xl cursor-pointer">
               <button>Stake</button>
               <FaArrowRightLong />
             </div>
+           
+           
           </div>
         </div>
 
@@ -97,27 +103,27 @@ const PoxStakingGovernance = () => {
         </div>
       </div>
 
-      <div className="flex flex-row justify-between pt-10">
-        <div className=" ">
-          <img src={GovPox} alt="alt image" className="w-[472] h-[400] " />
+      <div className="flex flex-row justify-between w-full pt-10">
+        <div className="w-[50%] mt-16 ">
+          <img src={GovPox} alt="alt image" className="" />
         </div>
 
-        <div className=" ">
+        <div className=" w-[50%]">
           <p className="font-bold text-3xl">Governance Model</p>
-          <p className="text-md text-light-gray pt-4">
+          <p className="text-lg font-bold text-light-gray pt-4">
             Open, transparent and all on-chain
           </p>
 
           <div>
             <div>
               <div className="flex flex-row items-center pt-5">
-              <p className=""><img src={VoteImg} alt="vote image" /></p>
+              <p className=""><img src={VoteImg} alt="vote image" size={32}/></p>
               <p className="text-xl font-bold w-[40%] pl-2">
                 Vote in Elections
               </p>
               </div>
               
-              <p className="text-sm text-light-gray text-wrap pl-7">
+              <p className="text-md text-light-gray text-wrap pl-9 pt-2">
               POX, the native token of Pollux, can be staked by its holders to obtain Pollux Power <br/>
               which is used as votes in on-chain elections. The 27 most-voted <br/>
                candidates will be responsible for producing blocks and packing<br/> 
@@ -126,22 +132,33 @@ const PoxStakingGovernance = () => {
             </div>
 
             <div>
-              <p className="text-xl font-bold pt-10">Source the Network</p>
-              <p className="text-sm text-light-gray w-[80%]">
+              <div className="flex flex-row items-center pt-5">
+                <p><img src={SecureImg} alt="secure-image" /></p>
+              <p className="text-xl font-bold w-[40%] pl-2">Source the Network</p>
+              </div>
+             
+              <p className="text-md text-light-gray w-[80%] pl-9 pt-2">
                 {" "}
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever s
+               
+      Secure the Network Pollux is a DPoS network where Super Representatives (SRs)  <br/>
+      are responsible for record-keeping and validating transactions. In the case of <br/>
+      an inefficient or unavailable SR, voters can switch over their votes to a <br/> 
+      better node to ensure network security.
               </p>
             </div>
 
             <div>
-              <p className="text-xl font-bold pt-10">Share Block Rewards</p>
-              <p className="text-sm text-light-gray w-[80%]">
+              <div  className="flex flex-row items-center pt-5">
+                <p><img src={RewardImg} alt="reward-image" /></p>
+              <p className="text-xl font-bold w-[40%] pl-2">Share Block Rewards</p>
+              </div>
+             
+              <p className="text-md text-light-gray w-[80%] pl-9 pt-2">
                 {" "}
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever s
+                Pollux has designed an incentive model to ensure the blockchain's <br/>
+                security and efficiency. Witnesses who have successfully produced a <br/>
+                block will receive POX rewards in return, which will then be distributed to <br/> 
+                their voters according to a configured ratio.
               </p>
             </div>
           </div>

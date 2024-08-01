@@ -30,9 +30,9 @@ const TopContracts = () => {
 
       <div >
         <p className=" text-xl font-bold pb-7">Top Contracts</p>
-        <div className="flex flex-row justify-between">
-          <div className="bg-white rounded-2xl w-[1300px] h-[500px]  mr-10 shadow-xl">
-          <div className="w-[900px] h-[450px] pl-20 pt-16">
+        <div className="flex flex-row justify-between w-full">
+          <div className="bg-white rounded-xl w-[70%] h-[450px] shadow-xl">
+          <div className="w-[1000px] h-[450px] p-10 pl-10 pt-20">
           <VerticalComposedChart 
           value={data?.calls} 
           yAxis="totalCount" 
@@ -40,14 +40,14 @@ const TopContracts = () => {
             </div>
           </div>
 
-          <div className="flex flex-col  ">
-            <div className="bg-white rounded-2xl shadow-2xl w-[450px] h-[180px] ">
-            <p className="text-lg font-bold pt-4 pl-8 pr-8">About</p>
-            <p className="pl-8 pt-1 text-light-gray leading-6 text-md">
+          <div className="flex flex-col  ml-7 w-[30%] h-[450px]">
+            <div className="bg-white rounded-xl shadow-2xl h-[150px] ">
+            <p className="text-lg font-bold pt-3 pl-8 pr-8">About</p>
+            <p className="pl-8  text-light-gray leading-6 text-md">
             The Top Contracts chart shows most <br/> frequently called contracts on TRON. You <br/> can sort them by resources consumed or <br/>the number of calls. </p>
             </div>
 
-            <div className="bg-white rounded-2xl w-[450px] h-[280px] mt-10 shadow-xl">
+            <div className="bg-white rounded-xl h-[300px] mt-5 shadow-xl">
               <p className="pt-7 pl-8 text-lg font-bold p-2">Highlight</p>
               <p className="pl-8  text-light-gray text-md">
                  Contract recorded the most calls <br/>yesterday, exceeding 1.96m and <br/>accounting for 95.95%.<br/>

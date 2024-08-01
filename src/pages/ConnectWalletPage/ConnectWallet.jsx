@@ -33,12 +33,12 @@ const walletAddress = useSelector((state)=>state.wallet.address);
           Select Connection Method
         </p>
         <div className="flex space-x-10 justify-around py-12 w-3/5">
-          <div className="bg-white flex items-center space-x-4 rounded-lg px-8 py-3 cursor-pointer min-w-fit">
+          <div className="bg-white flex items-center space-x-4 rounded-lg px-8 py-3 cursor-pointer min-w-fit hover:bg-lightest-gray">
             <img src={PolinkImg} alt="polink" className="w-12" />
-            <p className="font-semibold text-3xl whitespace-nowrap">Pox Link</p>
+            <p className="font-semibold text-3xl whitespace-nowrap ">Pox Link</p>
           </div>
 
-          <div className="bg-white flex items-center space-x-4 rounded-lg px-8 py-3 cursor-pointer min-w-fit">
+          <div className="bg-white flex items-center space-x-4 rounded-lg px-8 py-3 cursor-pointer min-w-fit hover:bg-lightest-gray">
             <img src={Ledger} alt="ledger" className="w-24" />
             <p className="font-semibold text-3xl">Ledger</p>
           </div>

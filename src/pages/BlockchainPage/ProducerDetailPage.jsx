@@ -27,6 +27,8 @@ import { secondsAgo } from "../../utils/secondAgo";
 import { RxCrossCircled } from "react-icons/rx";
 import { getTrendingSearchGraphData } from "../../utils/axios/Home";
 import { toast } from "react-toastify";
+import GaugeChart from "../../components/GaugeChart";
+import VotesChart from "../../components/VotesChart";
 
 const TransactionTable = () => {
   // For Pagination
@@ -486,7 +488,7 @@ const ProducerDetailPage = () => {
 
       {/* Second div */}
       <div className="flex flex-row justify-between space-x-5 w-full mt-5">
-        <div className="w-[50%] bg-white rounded-lg shadow-lg p-5">
+        <div className="w-[50%] bg-white rounded-lg shadow-lg p-5 h-[300px]">
           
           <div className="flex flex-row justify-between items-center border-b-[1px] border-text-bg-gray pt-2 pb-4">
             <div className="flex flex-row space-x-2">
@@ -538,20 +540,20 @@ const ProducerDetailPage = () => {
           </div>
         </div>
 
-        <div className="w-[50%]   flex flex-row space-x-5">
+        <div className="w-[50%]   flex flex-row  space-x-5">
           <div className="w-[33%] bg-white rounded-lg shadow-lg p-5">
             <div className="flex flex-row space-x-2">
               <p className="bg-lightest-gray rounded-md pt-1 px-1">
                 <AiOutlineQuestion />
               </p>
-              <p className="font-bold"> Current Ranking</p>
+              <p className="font-bold "> Current Ranking</p>
             </div>
 
             <p className="text-xl font-semibold pt-3">
               {data?.checkSR?.ranking}
             </p>
 
-            <div className="pt-10 flex justify-end">
+            <div className="pt-20 flex justify-end">
               <img src="https://poxscan.io/images/cup.svg" alt="cup-image" />
             </div>
 
@@ -578,13 +580,8 @@ const ProducerDetailPage = () => {
               {data?.checkSR?.voteCount}
             </p>
 
-            <div className="w-[250px] h-[120px] pt-5">
-              <AreaChartComp
-                value={data}
-                xDataKey="date"
-                yDataKey="value"
-                componentChartColor="#C23631"
-              />
+            <div className=" h-[230px] w-[250px] pl-5 ">
+              <VotesChart/>
             </div>
           </div>
 
@@ -596,20 +593,22 @@ const ProducerDetailPage = () => {
               <p className="font-bold">Reward Distribution</p>
             </div>
 
-            <div className=" "></div>
+            <div className="h-[200px] w-[200px] ml-5" >
+              <GaugeChart />
+            </div>
 
-            <div className="mt-36">
+            <div className="">
               <div className="flex flex-row justify-between">
                 <div className="flex flex-row space-x-2">
-                  <p className="text-xl font-bold text-dark-red">98%</p>
-                  <p className="pt-2 text-dark-red">
+                  <p className="text-xl font-bold text-dark-green">98%</p>
+                  <p className="pt-2 text-dark-green">
                     <IoMdArrowUp />
                   </p>
                 </div>
 
                 <div className="flex flex-row space-x-2">
-                  <p className="text-xl font-bold text-dark-green">2%</p>
-                  <p className="pt-2 text-dark-green">
+                  <p className="text-xl font-bold text-dark-red">2%</p>
+                  <p className="pt-2 text-dark-red">
                     <IoMdArrowDown />
                   </p>
                 </div>
@@ -762,9 +761,9 @@ const ProducerDetailPage = () => {
 
         {/* Second Div */}
         <div className="w-[50%]  rounded-lg ">
-          <div className="flex flex-row justify-between space-x-1 rounded-lg ">
+          <div className="flex flex-row justify-between space-x-1 rounded-lg w-full">
             <p
-              className={`cursor-pointer py-3 px-24 font-bold whitespace-nowrap  ${
+              className={`cursor-pointer py-3 px-24 font-bold whitespace-nowrap w-[33%] ${
                 isRender === "Wallet (1)"
                   ? "bg-white rounded-t-lg"
                   : "bg-lightest-gray text-black rounded-lg rounded-bl-none"
@@ -774,7 +773,7 @@ const ProducerDetailPage = () => {
               Wallet (1)
             </p>
             <p
-              className={`cursor-pointer py-3 px-20 font-bold whitespace-nowrap  ${
+              className={`cursor-pointer py-3 px-20 font-bold whitespace-nowrap w-[33%] ${
                 isRender === "Portfolio (0)"
                   ? "bg-white rounded-t-lg"
                   : "bg-lightest-gray text-black rounded-lg"
@@ -784,7 +783,7 @@ const ProducerDetailPage = () => {
               Portfolio (0)
             </p>
             <p
-              className={`cursor-pointer py-3 px-20 font-bold whitespace-nowrap  ${
+              className={`cursor-pointer py-3 px-20 font-bold whitespace-nowrap w-[33%] ${
                 isRender === "Approval (0)"
                   ? "bg-white rounded-t-lg"
                   : "bg-lightest-gray text-black rounded-lg"

@@ -190,9 +190,9 @@ const ParametersProposals = () => {
       </div>
 
       <div className=" rounded-xl my-7 p-10">
-        <div className="flex flex-row space-x-8">
+        <div className="flex flex-row items-center space-x-8">
           <p
-            className={`cursor-pointer font-bold text-center border-2py-3 px-4 whitespace-nowrap ${
+            className={`cursor-pointer font-bold text-center border-2py-3 px-4 pb-4 pt-2 whitespace-nowrap ${
               isRender === "Network Parameter"
                 ? "bg-white  rounded-t-2xl"
                 : "text-black"

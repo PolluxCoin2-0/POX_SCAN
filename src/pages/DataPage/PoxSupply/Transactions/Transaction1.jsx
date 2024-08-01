@@ -32,7 +32,7 @@ const Transaction1 = () => {
 
       <div className="flex flex-row justify-between space-x-4">
         <div>
-          <p className="text-2xl font-bold">Total Accounts</p>
+          <p className="text-2xl font-bold">Transaction Trends</p>
           <div className="bg-white rounded-2xl shadow-xl w-[750px] h-[400px] mt-5">
           <div className="w-[700px] h-[370px] pt-8 pl-10">
             <SimpleAreaChart 
@@ -46,7 +46,7 @@ const Transaction1 = () => {
         </div>
 
         <div>
-          <p className="text-2xl font-bold">Active Accounts</p>
+          <p className="text-2xl font-bold">Cummulative Transaction</p>
           <div className="bg-white rounded-2xl shadow-xl w-[750px] h-[400px] mt-5">
           <div className="w-[700px] h-[370px] pt-8 pl-10">
             <SimpleAreaChart

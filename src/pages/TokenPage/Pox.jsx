@@ -192,7 +192,7 @@ const HoldersTable = () => {
        <div className="flex flex-row justify-between mt-5">
         <div className="flex flex-row items-center space-x-2">
         <span className="bg-pink-gradient px-2 py-2 rounded-lg"></span>
-        <p className="text-sm font-medium">{sliderdata?.rangeData?.[0]?.range}: {sliderdata?.rangeData?.[0]?.percentage}</p>
+        <p className="text-sm font-semibold">{sliderdata?.rangeData?.[0]?.range}: {sliderdata?.rangeData?.[0]?.percentage}</p>
         </div>
       
       <div className="flex flex-row items-center space-x-2">

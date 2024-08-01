@@ -183,18 +183,7 @@ const Transaction = () => {
               </p>
             </div>
 
-            <div className="hidden md:hidden lg:flex xl:flex 2xl:flex flex-row justify-between px-32 rounded-md  border-2 border-lightest-gray">
-              <IoSearch className=" text-xl pt-4 w-10 h-10 text-light-gray" />
-
-              <input
-                className="bg-white h-12 w-full  rounded-lg text-sm  focus:outline-none placeholder:text-light-gray placeholder:font-medium"
-                type="search"
-                name="search"
-                placeholder="Search by Contract Accounts/Name"
-              />
-
-              <PiArrowBendDownLeftBold className="w-10 h-10 pt-4  text-light-gray" />
-            </div>
+       
           </div>
 
           <div className="min-w-[1300px] flex flex-row justify-evenly bg-lightest-gray p-2 m-3 rounded-xl">

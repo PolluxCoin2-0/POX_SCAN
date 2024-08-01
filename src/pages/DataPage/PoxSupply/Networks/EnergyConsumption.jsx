@@ -31,8 +31,8 @@ const EnergyConsumption = () => {
 
       <div >
         <p className=" text-xl font-bold">Energy Consumption</p>
-        <div className="flex flex-row mt-8 justify-between">
-          <div className="bg-white rounded-2xl w-[1300px]  h-[500px]  shadow-xl">
+        <div className="flex flex-row mt-8 justify-between w-full">
+          <div className="bg-white rounded-2xl w-[70%] h-auto  shadow-xl">
           <div className="w-[1000px]  pl-20 pb-5 pt-20">
           <BarHashChart  
             value={data}
@@ -42,19 +42,19 @@ const EnergyConsumption = () => {
          
           </div>
 
-          <div className="flex flex-col ml-10">
-            <div className="bg-white rounded-2xl shadow-2xl w-[450px] h-[180px] ">
-            <p className="text-lg font-bold pt-7 pl-8 pr-8">About</p>
-            <p className="pl-8 pt-2 text-light-gray leading-6 text-md">The Energy Consumption chart shows<br/> total energy consumed o TRON per day. <br/>
+          <div className="flex flex-col ml-7 w-[30%] h-auto">
+            <div className="bg-white rounded-2xl shadow-2xl ">
+            <p className="text-lg font-bold pt-5 pl-8 pr-8">About</p>
+            <p className="pl-8 pt-1 pb-2 text-light-gray leading-6 text-md">The Energy Consumption chart shows<br/> total energy consumed o TRON per day. <br/>
             The higher the number is, the more<br/>frequent the contrats is called</p>
             </div>
 
-            <div className="bg-white rounded-2xl w-[450px] h-[280px] mt-10 shadow-xl">
-              <p className="pt-7 pl-8 text-lg font-bold p-2">Highlights</p>
+            <div className="bg-white rounded-2xl  mt-5 shadow-xl">
+              <p className="pt-5 pl-8 text-lg font-bold p-2">Highlights</p>
               <p className="pl-8 pt-1 text-light-gray text-md">The Protocol revenue of yesterday is <br/>$1.01m <br/> 
               The protocol revenue in the last 365 days is <br/>$405m</p>
-              <p className="pl-8 pt-8 text-lg font-bold">You may be interested in</p>
-              <p className="pl-8 pt-2 text-light-gray text-md">TRX Generated /Burned Top Contracts</p>
+              <p className="pl-8 pt-3 text-lg font-bold">You may be interested in</p>
+              <p className="pl-8 pt-1 pb-2 text-light-gray text-md">TRX Generated /Burned Top Contracts</p>
             </div>
           </div>
         </div>
@@ -69,7 +69,7 @@ const EnergyConsumption = () => {
             <p className="w-[50%] text-center">Energy Consumption</p>
           </div>
  
-          {data?.map && data?.map ((param, index) => {
+          {data?.map && data?.slice(0, 10).map ((param, index) => {
         return (
           <>
            <div className="flex flex-row justify-between p-5 border-b-2 border-b-lightest-gray">

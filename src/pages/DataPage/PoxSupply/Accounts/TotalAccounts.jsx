@@ -30,8 +30,8 @@ const TotalAccounts = () => {
 
       <div >
         <p className=" text-xl font-bold pb-7">Total Accounts</p>
-        <div className="flex flex-row justify-between">
-          <div className="bg-white rounded-2xl w-[1300px] p-10 h-[500px] mr-10 shadow-xl">
+        <div className="flex flex-row justify-between w-full">
+          <div className="bg-white rounded-xl w-[70%] p-10 h-auto shadow-xl">
             <div className="w-[1000px] h-[400px] pt-5 pr-4">
             <SimpleComposedChart
             value={data?.TotalAccount} 
@@ -41,15 +41,15 @@ const TotalAccounts = () => {
           
           </div>
 
-          <div className="flex flex-col  ">
-            <div className="bg-white rounded-2xl shadow-2xl w-[450px] h-[180px] ">
+          <div className="flex flex-col w-[30%] h-auto ml-7">
+            <div className="bg-white rounded-xl shadow-xl w-[450px] h-[180px] ">
             <p className="text-lg font-bold pt-7 pl-8 pr-8">About</p>
             <p className="pl-8 pt-2 text-light-gray leading-6 text-md">
             The Total Accounts chart shows the total <br/>number of accounts that have transfer <br/>records on TRON, including wallet <br/>accounts and contract accounts.
             </p>
             </div>
 
-            <div className="bg-white rounded-2xl w-[450px] h-[280px] mt-10 shadow-xl">
+            <div className="bg-white rounded-xl w-[450px] h-[280px] mt-5 shadow-xl">
               <p className="pt-7 pl-8 text-lg font-bold p-2">Highlights</p>
               <p className="pl-8 pt-1 text-light-gray text-md">TRON has over 199m accounts in total.</p>
               <p className="pl-8 pt-8 text-lg font-bold">You may be interested in</p>
@@ -68,7 +68,7 @@ const TotalAccounts = () => {
             <p className="w-[50%] text-center">Total Accounts</p>
           </div>
 
-          {data?.TotalAccount?.map && data?.TotalAccount?.map((param, index) => {
+          {data?.TotalAccount?.map && data?.TotalAccount?.slice(0, 10).map((param, index) => {
         return (
           <>
            <div className="flex flex-row justify-between p-5 border-b-2 border-b-lightest-gray">
