@@ -5,17 +5,15 @@ import EncodingConverter from "./EncodingConverter";
 const PoxEcosystem = () => {
   return (
     <div>
-     <ContractsDeployment/>
+      <ContractsDeployment />
 
-     <ContractVerification />
+      <ContractVerification />
 
-     <BroadcastTransaction />
+      <BroadcastTransaction />
 
-     <EncodingConverter />
-    
-    
+      <EncodingConverter />
     </div>
-  )
-}
+  );
+};
 
-export default PoxEcosystem
+export default PoxEcosystem;

@@ -2,9 +2,7 @@ import { Pagination, SearchBarExpand } from "../../components";
 import { BiSolidCopyAlt } from "react-icons/bi";
 import { RiQrCodeFill } from "react-icons/ri";
 import { AiOutlineQuestion } from "react-icons/ai";
-import AreaChartComp from "../../components/AreaChart";
 import { useEffect, useState } from "react";
-import { getPoxPriceTableData } from "../../utils/axios/Data";
 import {
   IoIosArrowForward,
   IoIosCheckmarkCircleOutline,
@@ -40,7 +38,6 @@ const TransactionTable = () => {
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
-
 
   useEffect(() => {
     const fetchData = async () => {
@@ -151,7 +148,6 @@ const TransactionTable = () => {
 
       <div className="flex justify-start md:justify-end">
         <Pagination
-          
           totalPages={data?.totalRecords}
           onPageChange={handlePageChange}
         />
@@ -189,7 +185,6 @@ const TransferTable = () => {
     const end = start + itemsPerPage;
     setCurrentPageData(data1?.transactions?.slice(start, end));
   }, [currentPage, data1]);
-
 
   return (
     <div className="bg-white rounded-2xl p-4 md:p-10 overflow-x-auto md:overflow-hidden">
@@ -316,7 +311,6 @@ const TransferTable = () => {
 
       <div className="flex justify-start md:justify-end">
         <Pagination
-        
           totalPages={data1?.totalRecords}
           onPageChange={handlePageChange}
         />
@@ -489,7 +483,6 @@ const ProducerDetailPage = () => {
       {/* Second div */}
       <div className="flex flex-row justify-between space-x-5 w-full mt-5">
         <div className="w-[50%] bg-white rounded-lg shadow-lg p-5 h-[300px]">
-          
           <div className="flex flex-row justify-between items-center border-b-[1px] border-text-bg-gray pt-2 pb-4">
             <div className="flex flex-row space-x-2">
               <p className="bg-lightest-gray rounded-md font-bold pt-1 px-1">
@@ -581,7 +574,7 @@ const ProducerDetailPage = () => {
             </p>
 
             <div className=" h-[230px] w-[250px] pl-5 ">
-              <VotesChart/>
+              <VotesChart />
             </div>
           </div>
 
@@ -593,7 +586,7 @@ const ProducerDetailPage = () => {
               <p className="font-bold">Reward Distribution</p>
             </div>
 
-            <div className="h-[200px] w-[200px] ml-5" >
+            <div className="h-[200px] w-[200px] ml-5">
               <GaugeChart />
             </div>
 

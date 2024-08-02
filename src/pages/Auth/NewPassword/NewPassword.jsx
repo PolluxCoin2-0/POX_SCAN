@@ -1,8 +1,6 @@
-
-
 import { useState } from "react";
 import { RxCross2 } from "react-icons/rx";
-import { FaArrowLeftLong, FaEye, FaEyeSlash } from "react-icons/fa6";
+import { FaArrowLeftLong } from "react-icons/fa6";
 
 const ForgetPasswordForm = () => {
   //   for cross button
@@ -22,7 +20,6 @@ const ForgetPasswordForm = () => {
   };
 
   const [formData, setFormData] = useState({
-    
     password: "",
     confirmpassword: "",
   });
@@ -71,30 +68,25 @@ const ForgetPasswordForm = () => {
                 className="w-full px-4 py-4 border border-lightest-gray rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
                 required
               />
-
-           
             </div>
-
-        
 
             <div>
               <label
                 htmlFor="password"
                 className="block text-lg font-bold mb-4 mt-8 text-gray-700 text-black"
               >
-               Confirm New Password
+                Confirm New Password
               </label>
               <input
                 type="password"
                 id="password"
                 name="confirmpassword"
-                placeholder="Enter your new password again"                                         
+                placeholder="Enter your new password again"
                 value={formData.confirmpassword}
                 onChange={handleChange}
                 className="w-full px-4 py-4 border border-lightest-gray  rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 "
                 required
               />
-             
             </div>
             <button
               type="submit"
@@ -105,7 +97,6 @@ const ForgetPasswordForm = () => {
             <div></div>
           </form>
         </div>
-        
       )}
     </div>
   );

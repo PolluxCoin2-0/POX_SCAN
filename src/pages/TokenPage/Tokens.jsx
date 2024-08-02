@@ -4,13 +4,11 @@ import Usdx from "./Usdx";
 const Tokens = () => {
   return (
     <div>
-      <Pox/>
+      <Pox />
 
-      <Usdx/>
-     
-    
+      <Usdx />
     </div>
-  )
-}
+  );
+};
 
-export default Tokens
+export default Tokens;

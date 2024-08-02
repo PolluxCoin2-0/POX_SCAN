@@ -8,8 +8,7 @@ import PoxImg from "../assets/PoxImg.png";
 import UsdxImg from "../assets/UsdxImg.png";
 import { NavbarOptions } from "../data/NavbarOptions";
 import { HiMenu } from "react-icons/hi";
-import { MdKeyboardArrowDown, MdKeyboardArrowUp, MdOutlineKeyboardArrowDown } from "react-icons/md";
-import { BsDot } from "react-icons/bs";
+import { MdKeyboardArrowUp, MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import HoverWalletPage from "../pages/ConnectWalletPage/HoverWalletPage";
 import { shortenString } from "../utils/shortenString";
@@ -138,14 +137,13 @@ const Navbar = () => {
   const [submenu, setSubmenu] = useState({});
   const [openSubmenus, setOpenSubmenus] = useState({});
   const [openWallet, setOpenWallet] = useState(false);
-  const walletAddress = useSelector((state)=>state.wallet.address);
-  const loginStatus = useSelector((state)=>state.wallet.login);
-  const signupStatus = useSelector((state)=>state.wallet.signup)
+  const walletAddress = useSelector((state) => state.wallet.address);
+  const loginStatus = useSelector((state) => state.wallet.login);
+  const signupStatus = useSelector((state) => state.wallet.signup);
 
-   
-// for showing notification
-   const [showNotification, setShowNotification] = useState(false);
-  
+  // for showing notification
+  const [showNotification, setShowNotification] = useState(false);
+
   const renderHoverComponent = () => {
     switch (hoveredItem) {
       case "Blockchain":
@@ -240,7 +238,9 @@ const Navbar = () => {
             <div key={index} className="mb-2">
               <Link to={buildPath(parentPath, item)}>
                 <button
-                  onClick={() => toggleSubmenu(item, buildPath(parentPath, item))}
+                  onClick={() =>
+                    toggleSubmenu(item, buildPath(parentPath, item))
+                  }
                   className={`flex justify-start items-center p-2 rounded-lg group font-semibold w-full ${
                     isActiveRoute(buildPath(parentPath, item))
                       ? "bg-dark-yellow text-black"
@@ -290,9 +290,11 @@ const Navbar = () => {
 
   return (
     <>
-       {/* Larger Scrren Navbar */}
-       <div className="hidden md:hidden lg:flex xl:flex 2xl:flex bg-dark-skyblue py-2 h-16 text-lg 
-       items-center justify-between lg:pl-2 pl-8 relative w-full">
+      {/* Larger Scrren Navbar */}
+      <div
+        className="hidden md:hidden lg:flex xl:flex 2xl:flex bg-dark-skyblue py-2 h-16 text-lg 
+       items-center justify-between lg:pl-2 pl-8 relative w-full"
+      >
         <div className="flex items-center lg:space-x-0 xl:space-x-2 2xl:space-x-10">
           <Link to="/" className="lg:w-32">
             <img
@@ -332,56 +334,54 @@ const Navbar = () => {
         </div>
 
         <div className="flex items-center justify-between lg:space-x-3 space-x-6 relative">
-          <SearchBar />
-            {" "}
-            <p className="text-white  cursor-pointer border-r-2 lg:pr-2 pr-6" 
-            onClick={()=>dispatch(setSignup(!signupStatus))}>
-              Register
-            </p>{" "}
-            <p className="text-white cursor-pointer"
-            onClick={()=>dispatch(setLogin(!loginStatus))}
-            >Login</p>{" "}
+          <SearchBar />{" "}
+          <p
+            className="text-white  cursor-pointer border-r-2 lg:pr-2 pr-6"
+            onClick={() => dispatch(setSignup(!signupStatus))}
+          >
+            Register
+          </p>{" "}
+          <p
+            className="text-white cursor-pointer"
+            onClick={() => dispatch(setLogin(!loginStatus))}
+          >
+            Login
+          </p>{" "}
           <Link to="/connectwallet">
-            <button className="bg-dark-yellow py-1  px-3 rounded-xl text-black cursor-pointer whitespace-nowrap" onClick={()=>setOpenWallet(!openWallet)}>
-              {walletAddress.length>0 ? shortenString(walletAddress,6):"Connect Wallet"}
+            <button
+              className="bg-dark-yellow py-1  px-3 rounded-xl text-black cursor-pointer whitespace-nowrap"
+              onClick={() => setOpenWallet(!openWallet)}
+            >
+              {walletAddress.length > 0
+                ? shortenString(walletAddress, 6)
+                : "Connect Wallet"}
             </button>
           </Link>
-          {
-         walletAddress.length>0 && 
-          openWallet && 
-          <div className="absolute top-14 right-1 ">
-            <HoverWalletPage/>
-          </div>
-            }
-
-
+          {walletAddress.length > 0 && openWallet && (
+            <div className="absolute top-14 right-1 ">
+              <HoverWalletPage />
+            </div>
+          )}
           <IoNotificationsCircleOutline
             size={36}
             color="white"
             className="cursor-pointer"
             onClick={() => setShowNotification(!showNotification)}
           />
-
-          { showNotification && (
+          {showNotification && (
             <div className="absolute right-20 mt-0 z-20">
-                <Notification />
+              <Notification />
             </div>
-          
-          )
-
-          }
-
-
-          <div onClick={()=>setShowNetOptions(!showNetOptions)}>
+          )}
+          <div onClick={() => setShowNetOptions(!showNetOptions)}>
             <img src={Logo} alt="logo-poxscan" className="cursor-pointer" />
           </div>
-          { showNetOptions && (
+          {showNetOptions && (
             <div className="absolute top-12 right-2 font-medium bg-white px-6 py-2 shadow-lg rounded-lg z-20">
               <p className="cursor-pointer">Testnet</p>
               <p className="cursor-pointer">Mainnet</p>
             </div>
-          )
-          }
+          )}
         </div>
       </div>
 
@@ -395,7 +395,12 @@ const Navbar = () => {
           />
         </Link>
         <div>
-          <HiMenu size={24} color="white" className="cursor-pointer" onClick={()=>setIsOpen(!isOpen)} />
+          <HiMenu
+            size={24}
+            color="white"
+            className="cursor-pointer"
+            onClick={() => setIsOpen(!isOpen)}
+          />
         </div>
       </div>
       {isOpen && (
@@ -418,7 +423,9 @@ const Navbar = () => {
                 )}
               </button>
               {openSubmenus[key] && (
-                <div className="mt-2">{renderSubmenu(NavbarOptions[key], key)}</div>
+                <div className="mt-2">
+                  {renderSubmenu(NavbarOptions[key], key)}
+                </div>
               )}
             </div>
           ))}
@@ -429,4 +436,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
- 

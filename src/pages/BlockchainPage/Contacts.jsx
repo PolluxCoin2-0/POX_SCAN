@@ -1,5 +1,3 @@
-// import React from 'react'
-
 import PieChartComp from "../../components/PieChartComp";
 import SearchBarExpand from "../../components/SearchBarExpand";
 import { IoSearch } from "react-icons/io5";
@@ -74,14 +72,16 @@ const VerifiedContractTable = () => {
           <p className="w-[6%] text-center font-bold  ">Account</p>
           <p className="w-[12%] text-center font-bold ">Contract Name</p>
           <p className="w-[12%] text-center font-bold ">Number of Calls </p>
-          <p className=" w-[20%]  text-center font-bold text-nowrap">Contract Address</p>
+          <p className=" w-[20%]  text-center font-bold text-nowrap">
+            Contract Address
+          </p>
           <p className="w-[12%] text-center font-bold ">Version</p>
           <p className="w-[9%] text-center font-bold ">License</p>
           <p className="w-[12%] text-center font-bold ">Created On</p>
           <p className="w-[12%] text-center font-bold ">Verified On</p>
           <p className="w-[5%] text-center font-bold">Setting</p>
         </div>
-  
+
         {data?.[0] &&
           data?.[0].map((contact, index) => {
             return (
@@ -99,13 +99,16 @@ const VerifiedContractTable = () => {
                     {contact?.noOfCalls && contact?.noOfCalls}
                   </p>
 
-                  <Link to={`/tokendetailpage/${contact?.contractAddress}`}  className="w-[20%] text-center text-dark-red">
-                  <p>
-                  {contact?.contractAddress &&
-                    shortenString(contact?.contractAddress, 10)}{" "}
-                </p>
+                  <Link
+                    to={`/tokendetailpage/${contact?.contractAddress}`}
+                    className="w-[20%] text-center text-dark-red"
+                  >
+                    <p>
+                      {contact?.contractAddress &&
+                        shortenString(contact?.contractAddress, 10)}{" "}
+                    </p>
                   </Link>
-                 
+
                   <p className="w-[12%] text-center  indent-4">
                     {contact?.compiler && contact?.compiler}
                   </p>
@@ -113,17 +116,21 @@ const VerifiedContractTable = () => {
                     {contact?.license && contact?.license}
                   </p>
                   <p className="w-[12%] text-center  indent-8">
-                    {contact?.createdAt && formatTimestampOnlyDate(contact.createdAt)}
+                    {contact?.createdAt &&
+                      formatTimestampOnlyDate(contact.createdAt)}
                   </p>
                   <p className="w-[12%] text-center  indent-8">
-                    {contact?.updatedAt && formatTimestampOnlyDate(contact?.updatedAt)}
+                    {contact?.updatedAt &&
+                      formatTimestampOnlyDate(contact?.updatedAt)}
                   </p>
-                  <Link to={`/tokendetailpage/${contact?.contractAddress}`}  className="w-[5%]  flex justify-center ">
-                  <p>
-                    <PiWrenchLight />
-                  </p>
+                  <Link
+                    to={`/tokendetailpage/${contact?.contractAddress}`}
+                    className="w-[5%]  flex justify-center "
+                  >
+                    <p>
+                      <PiWrenchLight />
+                    </p>
                   </Link>
-                 
                 </div>
               </>
             );
@@ -183,7 +190,7 @@ const AllContractTable = () => {
         <p className="w-[10%] text-center  font-bold ">Account</p>
         <p className="w-[30%] text-center  font-bold ">Contract Address</p>
         <p className="w-[20%] text-center  font-bold ">Number of Calls </p>
- 
+
         <p className="w-[15%] text-center font-bold  ">Created On</p>
         <p className="w-[15%] text-center font-bold  ">Verified On</p>
         <p className="w-[10%] text-center  font-bold ">Settings</p>
@@ -199,14 +206,17 @@ const AllContractTable = () => {
                     SC
                   </span>
                 </p>
-                
-                <Link  to={`/tokendetailpage/${contact?.contractAddress}`}  className="w-[30%] text-center text-dark-red ">
-                <p>
-                  {contact?.contractAddress &&
-                    shortenString(contact?.contractAddress, 14)}
-                </p>
+
+                <Link
+                  to={`/tokendetailpage/${contact?.contractAddress}`}
+                  className="w-[30%] text-center text-dark-red "
+                >
+                  <p>
+                    {contact?.contractAddress &&
+                      shortenString(contact?.contractAddress, 14)}
+                  </p>
                 </Link>
-             
+
                 <p className="w-[20%] text-center  ">
                   {contact?.noOfCalls && contact?.noOfCalls
                     ? contact?.noOfCalls
@@ -214,16 +224,21 @@ const AllContractTable = () => {
                 </p>
 
                 <p className="w-[15%] text-center   indent-4">
-                  {contact?.createdAt && formatTimestampOnlyDate(contact?.createdAt)}
+                  {contact?.createdAt &&
+                    formatTimestampOnlyDate(contact?.createdAt)}
                 </p>
                 <p className="w-[15%] text-center   indent-4">
-                  {contact?.updatedAt && formatTimestampOnlyDate(contact?.updatedAt)}
+                  {contact?.updatedAt &&
+                    formatTimestampOnlyDate(contact?.updatedAt)}
                 </p>
-                <Link to={`/tokendetailpage/${contact?.contractAddress}`}  className="w-[10%]  flex justify-center ">
+                <Link
+                  to={`/tokendetailpage/${contact?.contractAddress}`}
+                  className="w-[10%]  flex justify-center "
+                >
                   <p>
                     <PiWrenchLight />
                   </p>
-                  </Link>
+                </Link>
               </div>
             </>
           );
@@ -231,7 +246,6 @@ const AllContractTable = () => {
 
       <div className="flex justify-start md:justify-end ">
         <Pagination
-          
           totalPages={data1?.[1]?.total_contracts}
           onPageChange={handlePageChange}
         />
@@ -288,22 +302,26 @@ const Contacts = () => {
         <div className="flex flex-row justify-between items-center pb-10">
           <p className="text-lg md:text-2xl font-bold">Contracts</p>
           <Link to="pagenotfound">
-          <button className="bg-dark-yellow py-2 px-4 md:px-16 font-bold text-base md:text-xl rounded-lg text-black cursor-pointer  ">
-            Contracts Verification
-          </button>
+            <button className="bg-dark-yellow py-2 px-4 md:px-16 font-bold text-base md:text-xl rounded-lg text-black cursor-pointer  ">
+              Contracts Verification
+            </button>
           </Link>
-         
         </div>
 
-        <div className="flex flex-col space-y-6 md:space-y-6 lg:space-y-0 xl:space-y-0 2xl:space-y-0 md:flex-col 
-        lg:flex-row xl:flex-row 2xl:flex-row justify-between w-full">
+        <div
+          className="flex flex-col space-y-6 md:space-y-6 lg:space-y-0 xl:space-y-0 2xl:space-y-0 md:flex-col 
+        lg:flex-row xl:flex-row 2xl:flex-row justify-between w-full"
+        >
           <div className=" flex flex-col gap-10 w-full md:w-full lg:w-[30%] xl:w-[30%] 2xl:w-[30%]">
             <div className="bg-white px-4 md:px-12  py-6 gap-9 rounded-2xl shadow-xl ">
               <div className="flex flex-row justify-between">
                 <p className=" text-xl font-bold pl-0">Contracts</p>
                 <div className="flex flex-row pr-0">
                   <p className="text-dark-red ">More</p>
-                  <MdKeyboardArrowRight className="mt-1 text-xl" color="#C23631"/>
+                  <MdKeyboardArrowRight
+                    className="mt-1 text-xl"
+                    color="#C23631"
+                  />
                 </div>
               </div>
 
@@ -330,7 +348,10 @@ const Contacts = () => {
                 <p className=" text-xl font-bold "> Verified Contracts </p>
                 <div className="flex flex-row ">
                   <p className="text-dark-red">More</p>
-                  <MdKeyboardArrowRight className="mt-1 text-xl" color="#C23631"/>
+                  <MdKeyboardArrowRight
+                    className="mt-1 text-xl"
+                    color="#C23631"
+                  />
                 </div>
               </div>
 
@@ -365,33 +386,34 @@ const Contacts = () => {
               </div>
 
               <div className=" px-4 md:px-0 w-full md:w-[55%] h-80 overflow-y-scroll">
-                {piechartdata && piechartdata.map((data, idx) => {
-                  return (
-                    <>
-                      <div
-                        className="flex justify-between space-x-8 md:space-x-0 items-center my-5"
-                        key={idx}
-                      >
-                        <div>
-                          <p>
-                            <span className="px-2 py-2 bg-lightest-gray rounded-md mr-2">
-                              SC
-                            </span>
-                            <span className="px-2 py-2 bg-lightest-gray text-dark-red rounded-md">
-                              {data?.contractAddress}
-                            </span>
-                          </p>
+                {piechartdata &&
+                  piechartdata.map((data, idx) => {
+                    return (
+                      <>
+                        <div
+                          className="flex justify-between space-x-8 md:space-x-0 items-center my-5"
+                          key={idx}
+                        >
+                          <div>
+                            <p>
+                              <span className="px-2 py-2 bg-lightest-gray rounded-md mr-2">
+                                SC
+                              </span>
+                              <span className="px-2 py-2 bg-lightest-gray text-dark-red rounded-md">
+                                {data?.contractAddress}
+                              </span>
+                            </p>
+                          </div>
+                          <div className="pr-0 md:pr-5 text-right">
+                            <p>
+                              {data?.noOfCalls &&
+                                formatNumberWithCommas(data?.noOfCalls)}
+                            </p>
+                          </div>
                         </div>
-                        <div className="pr-0 md:pr-5 text-right">
-                          <p>
-                            {data?.noOfCalls &&
-                              formatNumberWithCommas(data?.noOfCalls)}
-                          </p>
-                        </div>
-                      </div>
-                    </>
-                  );
-                })}
+                      </>
+                    );
+                  })}
               </div>
             </div>
           </div>

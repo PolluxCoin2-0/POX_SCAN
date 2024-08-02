@@ -1,7 +1,6 @@
 import SimplePieChartComp from "../../components/SimplePieChartComp";
 import SearchBarExpand from "../../components/SearchBarExpand";
-import { IoCheckmarkCircleOutline, IoSearch } from "react-icons/io5";
-import { PiArrowBendDownLeftBold } from "react-icons/pi";
+import { IoCheckmarkCircleOutline } from "react-icons/io5";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import Pagination from "../../components/Pagination";
 import { useEffect, useState } from "react";
@@ -16,7 +15,6 @@ import { RxCrossCircled } from "react-icons/rx";
 import { formatNumberWithCommas } from "../../utils/FormattingNumber";
 
 const Transaction = () => {
-
   // For Pagination
   const [currentPage, setCurrentPage] = useState(0);
 
@@ -43,9 +41,6 @@ const Transaction = () => {
 
     fetchData();
   }, [currentPage]);
-
-  
-  
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -182,8 +177,6 @@ const Transaction = () => {
                 </span>
               </p>
             </div>
-
-       
           </div>
 
           <div className="min-w-[1300px] flex flex-row justify-evenly bg-lightest-gray p-2 m-3 rounded-xl">

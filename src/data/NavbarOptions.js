@@ -1,5 +1,5 @@
 export const NavbarOptions = {
-  Home:[],
+  Home: [],
   Blockchain: [
     "Nodes",
     "Blocks",

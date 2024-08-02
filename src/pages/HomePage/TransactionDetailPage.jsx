@@ -11,7 +11,7 @@ import { MdOutlineContentCopy } from "react-icons/md";
 import { toast } from "react-toastify";
 import { formatNumberWithCommas } from "../../utils/FormattingNumber";
 
-const OverviewData = ({ data,handleCopy }) => {
+const OverviewData = ({ data, handleCopy }) => {
   return (
     <div className="bg-white p-10 rounded-tl-none rounded-xl shadow-lg">
       <div className="flex flex-row space-x-48 pt-4 pb-4">
@@ -42,7 +42,12 @@ const OverviewData = ({ data,handleCopy }) => {
               data?.transactions?.[0]?.contractAddress}
           </p>
           <p className="pt-1">
-            <FaRegCopy className="cursor-pointer" onClick={()=>handleCopy(data?.transactions?.[0]?.contractAddress)}/>
+            <FaRegCopy
+              className="cursor-pointer"
+              onClick={() =>
+                handleCopy(data?.transactions?.[0]?.contractAddress)
+              }
+            />
           </p>
         </div>
       </div>
@@ -80,7 +85,10 @@ const OverviewData = ({ data,handleCopy }) => {
                 data?.transactions?.[0]?.fromAddress}
             </p>
             <p className="pt-1">
-              <FaRegCopy className="cursor-pointer" onClick={()=>handleCopy( data?.transactions?.[0]?.fromAddress)} />
+              <FaRegCopy
+                className="cursor-pointer"
+                onClick={() => handleCopy(data?.transactions?.[0]?.fromAddress)}
+              />
             </p>
           </div>
         </div>
@@ -93,7 +101,10 @@ const OverviewData = ({ data,handleCopy }) => {
                 data?.transactions?.[0]?.toAddress}
             </p>
             <p className="pt-1">
-              <FaRegCopy  className="cursor-pointer" onClick={()=>handleCopy( data?.transactions?.[0]?.toAddress)} />
+              <FaRegCopy
+                className="cursor-pointer"
+                onClick={() => handleCopy(data?.transactions?.[0]?.toAddress)}
+              />
             </p>
           </div>
         </div>
@@ -101,8 +112,11 @@ const OverviewData = ({ data,handleCopy }) => {
 
       <div className="flex flex-row space-x-16 pt-4 pb-4">
         <div className="flex flex-row ">
-        <span className=" ">
-            <AiOutlineQuestion size={24} className="bg-text-bg-gray pt-1 inline rounded-md px-1 " />
+          <span className=" ">
+            <AiOutlineQuestion
+              size={24}
+              className="bg-text-bg-gray pt-1 inline rounded-md px-1 "
+            />
           </span>
           <p className="font-bold pl-2 inline">All Transfer</p>
         </div>
@@ -156,8 +170,11 @@ const EventLogData = ({ data }) => {
     <div className="bg-white p-10 rounded-2xl shadow-lg">
       <div className="flex flex-row space-x-10 w-full">
         <div className="flex flex-row space-x-2 w-[10%]">
-          <p >
-            <AiOutlineQuestion size={24} className="bg-text-bg-gray px-1 pt-1 mb-72 rounded-md "/>
+          <p>
+            <AiOutlineQuestion
+              size={24}
+              className="bg-text-bg-gray px-1 pt-1 mb-72 rounded-md "
+            />
           </p>
           <p className="text-lg font-bold">All Logs</p>
         </div>
@@ -217,7 +234,7 @@ const EventLogData = ({ data }) => {
 
 const TransactionDetailPage = () => {
   const transActionId = useParams().id;
-  
+
   const [data, setData] = useState({});
   const [isRender, setIsRender] = useState("Overview");
   const [inputValue, setInputValue] = useState("");
@@ -521,30 +538,30 @@ const TransactionDetailPage = () => {
 
       {/* Fourth Div */}
       <div className="bg-white mt-10 rounded-lg w-full flex flex-col md:flex-row p-8">
-  <div className="flex flex-row items-start md:w-[20%] mb-4 md:mb-0">
-    <p className="bg-mid-light-gray p-2 rounded-md mr-2 flex items-center">
-      <AiOutlineQuestion />
-    </p>
-    <p className="font-semibold">Private Note:</p>
-  </div>
+        <div className="flex flex-row items-start md:w-[20%] mb-4 md:mb-0">
+          <p className="bg-mid-light-gray p-2 rounded-md mr-2 flex items-center">
+            <AiOutlineQuestion />
+          </p>
+          <p className="font-semibold">Private Note:</p>
+        </div>
 
-  <div className="md:w-[80%] flex flex-col">
-    <input
-      type="text"
-      value={inputValue}
-      onChange={handleChange}
-      placeholder="Enter the transaction note and press the “Enter Key” or click the blank space to save"
-      className="w-full my-4 p-3 bg-text-bg-gray focus:bg-white focus:border rounded-md outline-none"
-    />
-    <button className="bg-dark-yellow py-2 px-8 font-bold rounded-lg text-black cursor-pointer self-start mb-4">
-      Submit
-    </button>
-    <p className="text-sm text-gray-600">
-      Although this is only viewable to you, do not store any sensitive data including your password, mnemonic, or private key here.
-    </p>
-  </div>
-</div>
-
+        <div className="md:w-[80%] flex flex-col">
+          <input
+            type="text"
+            value={inputValue}
+            onChange={handleChange}
+            placeholder="Enter the transaction note and press the “Enter Key” or click the blank space to save"
+            className="w-full my-4 p-3 bg-text-bg-gray focus:bg-white focus:border rounded-md outline-none"
+          />
+          <button className="bg-dark-yellow py-2 px-8 font-bold rounded-lg text-black cursor-pointer self-start mb-4">
+            Submit
+          </button>
+          <p className="text-sm text-gray-600">
+            Although this is only viewable to you, do not store any sensitive
+            data including your password, mnemonic, or private key here.
+          </p>
+        </div>
+      </div>
     </div>
   );
 };

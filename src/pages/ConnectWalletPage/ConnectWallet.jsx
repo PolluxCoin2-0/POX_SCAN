@@ -1,25 +1,24 @@
 import PolinkImg from "../../assets/PoxscanImage.png";
 import Ledger from "../../assets/Ledger.png";
-import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setNetwork, setWalletAddress } from "../../redux/slice/walletSlice";
 import { toast } from "react-toastify";
 
 const ConnectWallet = () => {
   const dispatch = useDispatch();
-const walletAddress = useSelector((state)=>state.wallet.address);
+  const walletAddress = useSelector((state) => state.wallet.address);
 
   async function getPolinkweb() {
-   if(walletAddress){
-    return toast.error("Wallet is already connected");
-   }
+    if (walletAddress) {
+      return toast.error("Wallet is already connected");
+    }
 
     var obj = setInterval(async () => {
       if (window.pox) {
         clearInterval(obj);
         const detailsData = JSON.stringify(await window.pox.getDetails());
         const parsedDetailsObject = JSON.parse(detailsData);
-        console.log(parsedDetailsObject)
+        console.log(parsedDetailsObject);
         dispatch(setWalletAddress(parsedDetailsObject[1].data?.wallet_address));
         dispatch(setNetwork(parsedDetailsObject[1].data?.Network));
       }
@@ -35,7 +34,9 @@ const walletAddress = useSelector((state)=>state.wallet.address);
         <div className="flex space-x-10 justify-around py-12 w-3/5">
           <div className="bg-white flex items-center space-x-4 rounded-lg px-8 py-3 cursor-pointer min-w-fit hover:bg-lightest-gray">
             <img src={PolinkImg} alt="polink" className="w-12" />
-            <p className="font-semibold text-3xl whitespace-nowrap ">Pox Link</p>
+            <p className="font-semibold text-3xl whitespace-nowrap ">
+              Pox Link
+            </p>
           </div>
 
           <div className="bg-white flex items-center space-x-4 rounded-lg px-8 py-3 cursor-pointer min-w-fit hover:bg-lightest-gray">
@@ -43,7 +44,10 @@ const walletAddress = useSelector((state)=>state.wallet.address);
             <p className="font-semibold text-3xl">Ledger</p>
           </div>
         </div>
-        <button className="bg-dark-yellow px-28 py-3 rounded-lg font-bold text-xl" onClick={getPolinkweb}>
+        <button
+          className="bg-dark-yellow px-28 py-3 rounded-lg font-bold text-xl"
+          onClick={getPolinkweb}
+        >
           Connect
         </button>
         <div className="text-white pt-12 leading-8 font-light">

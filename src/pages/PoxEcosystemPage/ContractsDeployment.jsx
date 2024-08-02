@@ -3,10 +3,10 @@ import FileDropzone from "../../components/FileDropzone.jsx";
 
 const ContractsDeployment = () => {
   const handleFileUpload = (file) => {
-    console.log('File uploaded:', file);
+    console.log("File uploaded:", file);
     // You can handle the file upload process here, like sending it to a server
   };
-  
+
   return (
     <div className=" px-12 pb-12">
       <div>

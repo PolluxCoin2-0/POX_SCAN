@@ -1,9 +1,12 @@
 import { StableCoins } from "../../data/HomePageData";
 import PoxImg from "../../assets/PoxImg.png";
-// import { IoIosArrowForward } from "react-icons/io";
 import AreaChartComp from "../../components/AreaChart";
 import { useEffect, useState } from "react";
-import { getNewAndActiveAndTotalAccounts, getStableCoinGraphData, getStakedData } from "../../utils/axios/Home";
+import {
+  getNewAndActiveAndTotalAccounts,
+  getStableCoinGraphData,
+  getStakedData,
+} from "../../utils/axios/Home";
 import { formatNumberWithCommas } from "../../utils/FormattingNumber";
 
 const StableCoinContainer = () => {
@@ -12,7 +15,7 @@ const StableCoinContainer = () => {
   const [activeAccounts, setActiveAccounts] = useState([]);
   const [newAccounts, setNewAccounts] = useState([]);
   const [totalAccounts, setTotalAccounts] = useState([]);
-  const [selectedAccountType, setSelectedAccountType] = useState('NewAccounts');
+  const [selectedAccountType, setSelectedAccountType] = useState("NewAccounts");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,15 +24,19 @@ const StableCoinContainer = () => {
         setData(data?.message);
         const data1 = await getStakedData();
         setData1(data1);
-        const newAndActiveAndTotalAccounts = await getNewAndActiveAndTotalAccounts();
+        const newAndActiveAndTotalAccounts =
+          await getNewAndActiveAndTotalAccounts();
 
-        const transformedTotalAccounts = newAndActiveAndTotalAccounts?.message?.TotalAccount.map(item => ({
-          _id: item.date,
-          totalaccount: item.totalaccount
-        }));
+        const transformedTotalAccounts =
+          newAndActiveAndTotalAccounts?.message?.TotalAccount.map((item) => ({
+            _id: item.date,
+            totalaccount: item.totalaccount,
+          }));
 
-        setActiveAccounts(newAndActiveAndTotalAccounts?.message?.activeAccounts);
-        setNewAccounts(newAndActiveAndTotalAccounts?.message?.NewAccounts)
+        setActiveAccounts(
+          newAndActiveAndTotalAccounts?.message?.activeAccounts
+        );
+        setNewAccounts(newAndActiveAndTotalAccounts?.message?.NewAccounts);
         setTotalAccounts(transformedTotalAccounts);
       } catch (error) {
         console.error("error", error);
@@ -40,11 +47,11 @@ const StableCoinContainer = () => {
 
   const getAccountData = () => {
     switch (selectedAccountType) {
-      case 'NewAccounts':
+      case "NewAccounts":
         return newAccounts;
-      case 'activeAccounts':
+      case "activeAccounts":
         return activeAccounts;
-      case 'TotalAccount':
+      case "TotalAccount":
         return totalAccounts;
       default:
         return [];
@@ -53,17 +60,16 @@ const StableCoinContainer = () => {
 
   const getYAxisType = () => {
     switch (selectedAccountType) {
-      case 'NewAccounts':
+      case "NewAccounts":
         return "newaddress";
-      case 'activeAccounts':
+      case "activeAccounts":
         return "activeaddress";
-      case 'TotalAccount':
+      case "TotalAccount":
         return "totalaccount";
       default:
         return [];
     }
   };
-
 
   return (
     <div className="pb-6">
@@ -129,31 +135,67 @@ const StableCoinContainer = () => {
 
         {/* Charts */}
 
-        {/* Protocol Revenue     (NEEDED API) */}  
+        {/* Protocol Revenue     (NEEDED API) */}
 
-        
         <div className="w-full md:w-full lg:w-[28%] xl:w-[28%] 2xl:w-[28%] mt-6 md:mt-0">
           <div className="shadow-lg bg-white rounded-xl p-4 mb-4">
-            <p className="font-semibold">Protocol Revenue</p>    
+            <p className="font-semibold">Protocol Revenue</p>
             <div className="h-[170px]">
-            <AreaChartComp value={data} xDataKey="date" yDataKey="value" componentChartColor="#FFC300" />
-              </div>                                                  
-           
+              <AreaChartComp
+                value={data}
+                xDataKey="date"
+                yDataKey="value"
+                componentChartColor="#FFC300"
+              />
+            </div>
           </div>
 
           {/* New Accounts/ Active Accounts/ Total Accounts */}
           <div className="shadow-lg bg-white rounded-xl p-4 mb-4">
             {/* <p className="">New Accounts/Active Accounts/Total Accounts</p> */}
             <div className="flex justify-around mb-4">
-              <button onClick={() => setSelectedAccountType('NewAccounts')} className={`font-semibold px-4 py-2 rounded cursor-pointer 
-                ${selectedAccountType === 'NewAccounts' ? 'text-light-mid-gray' : 'text-black'}`}>New Accounts</button>
-              <button onClick={() => setSelectedAccountType('activeAccounts')} className={`font-semibold px-4 py-2 rounded cursor-pointer 
-                ${selectedAccountType === 'activeAccounts' ? ' text-light-mid-gray' : 'text-black'}`}>Active Accounts</button>
-              <button onClick={() => setSelectedAccountType('TotalAccount')} className={`font-semibold px-4 py-2 rounded cursor-pointer 
-                ${selectedAccountType === 'TotalAccount' ? 'text-light-mid-gray' : 'text-black'}`}>Total Accounts</button>
+              <button
+                onClick={() => setSelectedAccountType("NewAccounts")}
+                className={`font-semibold px-4 py-2 rounded cursor-pointer 
+                ${
+                  selectedAccountType === "NewAccounts"
+                    ? "text-light-mid-gray"
+                    : "text-black"
+                }`}
+              >
+                New Accounts
+              </button>
+              <button
+                onClick={() => setSelectedAccountType("activeAccounts")}
+                className={`font-semibold px-4 py-2 rounded cursor-pointer 
+                ${
+                  selectedAccountType === "activeAccounts"
+                    ? " text-light-mid-gray"
+                    : "text-black"
+                }`}
+              >
+                Active Accounts
+              </button>
+              <button
+                onClick={() => setSelectedAccountType("TotalAccount")}
+                className={`font-semibold px-4 py-2 rounded cursor-pointer 
+                ${
+                  selectedAccountType === "TotalAccount"
+                    ? "text-light-mid-gray"
+                    : "text-black"
+                }`}
+              >
+                Total Accounts
+              </button>
             </div>
             <div className="h-[170px]">
-            <AreaChartComp value={getAccountData()} xDataKey="_id" yDataKey={getYAxisType()} componentChartColor="#964B00" /></div>
+              <AreaChartComp
+                value={getAccountData()}
+                xDataKey="_id"
+                yDataKey={getYAxisType()}
+                componentChartColor="#964B00"
+              />
+            </div>
           </div>
 
           {/* Volume(24hr) */}
@@ -161,13 +203,15 @@ const StableCoinContainer = () => {
             <p className="font-semibold">Volume(24hr)</p>
 
             <div className="h-[170px]">
-            <AreaChartComp value={data} xDataKey="date" yDataKey="value" componentChartColor="#ff0000" />
+              <AreaChartComp
+                value={data}
+                xDataKey="date"
+                yDataKey="value"
+                componentChartColor="#ff0000"
+              />
             </div>
-           
           </div>
         </div>
-        
-        
       </div>
     </div>
   );
