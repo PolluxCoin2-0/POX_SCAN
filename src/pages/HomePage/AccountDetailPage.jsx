@@ -21,10 +21,11 @@ import { Link, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { getTrendingSearchGraphData } from "../../utils/axios/Home";
 
-const TransactionTable = () => { 
+const TransactionTable = () => {
+  const [currentPageData, setCurrentPageData] = useState([]);
+  const itemsPerPage = 10;
   // For Pagination
   const [currentPage, setCurrentPage] = useState(0);
-  
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -36,7 +37,7 @@ const TransactionTable = () => {
     const fetchData = async () => {
       try {
         const data = await getTransactionDetailsData(currentPage);
-        console.log(data)
+        console.log(data);
         setData(data?.message);
       } catch (error) {
         console.log("error", error);
@@ -44,7 +45,13 @@ const TransactionTable = () => {
     };
 
     fetchData();
-  }, [currentPage]);
+  }, []);
+
+  useEffect(() => {
+    const start = currentPage * itemsPerPage;
+    const end = start + itemsPerPage;
+    setCurrentPageData(data?.transactions?.slice(start, end));
+  }, [currentPage, data]);
 
   return (
     <div className="bg-white rounded-2xl p-4 md:p-10 overflow-x-auto md:overflow-hidden">
@@ -68,8 +75,8 @@ const TransactionTable = () => {
         <p className="w-[8%] font-bold text-center ">Result</p>
       </div>
 
-      {data?.transactions &&
-        data?.transactions.map((transaction, index) => (
+      {currentPageData &&
+        currentPageData.map((transaction, index) => (
           <div
             key={index}
             className="min-w-[1500px] flex flex-row justify-evenly p-4 m-3 border-b-2 border-lightest-gray rounded-xl"
@@ -78,17 +85,23 @@ const TransactionTable = () => {
               <IoMdEye />
             </p>
 
-            <Link to={`/transactiondetails/${transaction?.transactionId}`} className="w-[16%] text-center text-dark-red">
-            <p >
-              {transaction?.transactionId &&
-                shortenString(transaction?.transactionId, 8)}
-            </p>
+            <Link
+              to={`/transactiondetails/${transaction?.transactionId}`}
+              className="w-[16%] text-center text-dark-red"
+            >
+              <p>
+                {transaction?.transactionId &&
+                  shortenString(transaction?.transactionId, 8)}
+              </p>
             </Link>
-            
-            <Link to={`/blockdetailpage/${transaction?.blockNumber}`} className="w-[10%] text-center text-dark-red">
-            <p >{transaction?.blockNumber}</p>
+
+            <Link
+              to={`/blockdetailpage/${transaction?.blockNumber}`}
+              className="w-[10%] text-center text-dark-red"
+            >
+              <p>{transaction?.blockNumber}</p>
             </Link>
-          
+
             <p className="w-[10%] text-center">
               {transaction?.timeStamp && secondsAgo(transaction?.timeStamp)}
             </p>
@@ -96,20 +109,26 @@ const TransactionTable = () => {
               {transaction?.type && transaction?.type}
             </p>
 
-            <Link to={`/accountdetails/${transaction?.fromAddress}`} className="w-[12%] text-center text-dark-red">
-            <p >
-              {transaction?.fromAddress &&
-                shortenString(transaction?.fromAddress, 5)}
-            </p>
+            <Link
+              to={`/accountdetails/${transaction?.fromAddress}`}
+              className="w-[12%] text-center text-dark-red"
+            >
+              <p>
+                {transaction?.fromAddress &&
+                  shortenString(transaction?.fromAddress, 5)}
+              </p>
             </Link>
-           
-           <Link to={`/producerdetailpage/${transaction?.toAddress}`} className="w-[12%] text-center text-dark-red">
-           <p >
-              {transaction?.toAddress &&
-                shortenString(transaction?.toAddress, 5)}
-            </p>
-           </Link>
-          
+
+            <Link
+              to={`/producerdetailpage/${transaction?.toAddress}`}
+              className="w-[12%] text-center text-dark-red"
+            >
+              <p>
+                {transaction?.toAddress &&
+                  shortenString(transaction?.toAddress, 5)}
+              </p>
+            </Link>
+
             <p className="w-[14%] text-center">
               {transaction?.type && transaction?.type}
             </p>
@@ -125,7 +144,6 @@ const TransactionTable = () => {
 
       <div className="flex justify-start md:justify-end">
         <Pagination
-      
           totalPages={data?.totalRecords}
           onPageChange={handlePageChange}
         />
@@ -136,7 +154,8 @@ const TransactionTable = () => {
 
 const TransferTable = () => {
   const [currentPage, setCurrentPage] = useState(0);
-
+  const [currentPageData, setCurrentPageData] = useState([]);
+  const itemsPerPage = 10;
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -153,9 +172,15 @@ const TransferTable = () => {
         console.log("error", error);
       }
     };
-    
+
     fetchData();
-  }, [currentPage]);
+  }, []);
+
+  useEffect(() => {
+    const start = currentPage * itemsPerPage;
+    const end = start + itemsPerPage;
+    setCurrentPageData(data1?.transactions?.slice(start, end));
+  }, [currentPage, data1]);
 
   return (
     <div className="bg-white rounded-2xl p-4 md:p-10 overflow-x-auto md:overflow-hidden">
@@ -176,31 +201,48 @@ const TransferTable = () => {
         <p className="w-[7%] font-bold text-center ">Block</p>
       </div>
 
-      {data1?.transactions &&
-        data1?.transactions.map((transaction, index) => (
+      {currentPageData &&
+        currentPageData.map((transaction, index) => (
           <div
             key={index}
             className="min-w-[1500px] flex flex-row justify-evenly p-4 m-3 border-b-2 border-lightest-gray rounded-xl"
           >
-              
-              <div className="w-[19%]">
+            <div className="w-[19%]">
               <div className="flex justify-center space-x-6 ">
-                 <p className="text-dark-red "> Pollux...({transaction?.multipleDecodedData?.decodedDataResult?.name && transaction?.multipleDecodedData?.decodedDataResult?.name})</p>
-                 <p className="px-2 py-[1px] rounded-md bg-light-red text-black"> {transaction?.multipleDecodedData?.decodedDataResult?.name && transaction?.multipleDecodedData?.decodedDataResult?.name}</p>
-                 </div>
-            <Link to={`/transactiondetails/${transaction?.multipleDecodedData?.decodedDataResult?.contractAddress}`} className=" text-center text-light-gray">
-            <p >
-              {transaction?.multipleDecodedData?.decodedDataResult
-                ?.contractAddress &&
-              shortenString(transaction?.multipleDecodedData?.decodedDataResult
-                ?.contractAddress, 10)
-                ? shortenString(transaction?.multipleDecodedData?.decodedDataResult
-                    ?.contractAddress, 10)
-                : shortenString(transaction?.contractAddress, 10)}
-            </p>
-            </Link>
+                <p className="text-dark-red ">
+                  {" "}
+                  Pollux...(
+                  {transaction?.multipleDecodedData?.decodedDataResult?.name &&
+                    transaction?.multipleDecodedData?.decodedDataResult?.name}
+                  )
+                </p>
+                <p className="px-2 py-[1px] rounded-md bg-light-red text-black">
+                  {" "}
+                  {transaction?.multipleDecodedData?.decodedDataResult?.name &&
+                    transaction?.multipleDecodedData?.decodedDataResult?.name}
+                </p>
+              </div>
+              <Link
+                to={`/transactiondetails/${transaction?.multipleDecodedData?.decodedDataResult?.contractAddress}`}
+                className=" text-center text-light-gray"
+              >
+                <p>
+                  {transaction?.multipleDecodedData?.decodedDataResult
+                    ?.contractAddress &&
+                  shortenString(
+                    transaction?.multipleDecodedData?.decodedDataResult
+                      ?.contractAddress,
+                    10
+                  )
+                    ? shortenString(
+                        transaction?.multipleDecodedData?.decodedDataResult
+                          ?.contractAddress,
+                        10
+                      )
+                    : shortenString(transaction?.contractAddress, 10)}
+                </p>
+              </Link>
             </div>
-           
 
             <p className="w-[18%] text-center">
               {transaction?.multipleDecodedData?.decodedDataResult?.value &&
@@ -221,52 +263,58 @@ const TransferTable = () => {
             <p className="w-[10%] text-center">
               {transaction?.timeStamp && secondsAgo(transaction?.timeStamp)}
             </p>
-             
-             <Link to={`/accountdetails/${transaction?.multipleDecodedData?.decodedDataResult?.from}`} className="w-[13%] text-center text-dark-red">
-             <p >
-              {transaction?.multipleDecodedData?.decodedDataResult?.from &&
-              transaction?.multipleDecodedData?.decodedDataResult?.from
-                ? shortenString(
-                    transaction?.multipleDecodedData?.decodedDataResult?.from,
-                    5
-                  )
-                : shortenString(transaction?.fromAddress, 5)}
-            </p>
-             </Link>
-           
-            <Link to={`/producerdetailpage/${ transaction?.multipleDecodedData?.decodedDataResult?.to}`}  className="w-[13%] text-center text-dark-red">
-            <p >
-              {transaction?.multipleDecodedData?.decodedDataResult?.to &&
-              transaction?.multipleDecodedData?.decodedDataResult?.to
-                ? shortenString(
-                    transaction?.multipleDecodedData?.decodedDataResult?.to,
-                    5
-                  )
-                : shortenString(transaction?.toAddress, 5)}
-            </p>
-            </Link>
-           
-             
-             <Link to={`/transactiondetails/${transaction?.transactionId}`} className="w-[15%] text-center text-dark-red">
-             <p >
-              {transaction?.transactionId &&
-                shortenString(transaction?.transactionId, 8)}
-            </p>
-             </Link>
-            
-              
-              <Link to={`/blockdetailpage/${transaction?.blockNumber}`}  className="w-[7%] flex justify-center text-dark-red">
+
+            <Link
+              to={`/accountdetails/${transaction?.multipleDecodedData?.decodedDataResult?.from}`}
+              className="w-[13%] text-center text-dark-red"
+            >
               <p>
-              {transaction?.blockNumber && transaction?.blockNumber}
-            </p>
-              </Link>
-          
+                {transaction?.multipleDecodedData?.decodedDataResult?.from &&
+                transaction?.multipleDecodedData?.decodedDataResult?.from
+                  ? shortenString(
+                      transaction?.multipleDecodedData?.decodedDataResult?.from,
+                      5
+                    )
+                  : shortenString(transaction?.fromAddress, 5)}
+              </p>
+            </Link>
+
+            <Link
+              to={`/producerdetailpage/${transaction?.multipleDecodedData?.decodedDataResult?.to}`}
+              className="w-[13%] text-center text-dark-red"
+            >
+              <p>
+                {transaction?.multipleDecodedData?.decodedDataResult?.to &&
+                transaction?.multipleDecodedData?.decodedDataResult?.to
+                  ? shortenString(
+                      transaction?.multipleDecodedData?.decodedDataResult?.to,
+                      5
+                    )
+                  : shortenString(transaction?.toAddress, 5)}
+              </p>
+            </Link>
+
+            <Link
+              to={`/transactiondetails/${transaction?.transactionId}`}
+              className="w-[15%] text-center text-dark-red"
+            >
+              <p>
+                {transaction?.transactionId &&
+                  shortenString(transaction?.transactionId, 8)}
+              </p>
+            </Link>
+
+            <Link
+              to={`/blockdetailpage/${transaction?.blockNumber}`}
+              className="w-[7%] flex justify-center text-dark-red"
+            >
+              <p>{transaction?.blockNumber && transaction?.blockNumber}</p>
+            </Link>
           </div>
         ))}
 
       <div className="flex justify-start md:justify-end">
         <Pagination
-          
           totalPages={data1?.totalRecords}
           onPageChange={handlePageChange}
         />
@@ -275,7 +323,7 @@ const TransferTable = () => {
   );
 };
 
-const Wallet = ({value1, value2}) => {
+const Wallet = ({ value1, value2 }) => {
   return (
     <div className="bg-white h-auto rounded-lg p-5">
       <div>
@@ -287,20 +335,24 @@ const Wallet = ({value1, value2}) => {
           <img src={PoxImg} alt="pox image" className="" />
           <p className="pl-2 font-bold">Pollux (POX )</p>
         </div>
-<div>
-        <p>{value1}</p>
-        <p>≈ ${value2}</p>
+        <div>
+          <p>{value1}</p>
+          <p>≈ ${value2}</p>
         </div>
       </div>
 
       <div className="flex flex-row justify-between  p-7 border-b-[1px] border-text-bg-gray pt-4 pb-40">
         <div>
-        <div className="flex flex-row items-center">
-          <img src={PoxImg} alt="pox image" className="" />
-          <p className="pl-2 font-bold">Pollux USD (USDX)</p>
-          <p className=" ml-2 px-2 py-1 text-light-mid-gray bg-text-bg-gray rounded-lg">PRC20</p>
-        </div>
-        <p className="pl-10 font-semibold">PSTv3ZweeCRHd5cmxoL3dTTbSKGgtYZ5cm</p>
+          <div className="flex flex-row items-center">
+            <img src={PoxImg} alt="pox image" className="" />
+            <p className="pl-2 font-bold">Pollux USD (USDX)</p>
+            <p className=" ml-2 px-2 py-1 text-light-mid-gray bg-text-bg-gray rounded-lg">
+              PRC20
+            </p>
+          </div>
+          <p className="pl-10 font-semibold">
+            PSTv3ZweeCRHd5cmxoL3dTTbSKGgtYZ5cm
+          </p>
         </div>
 
         <p className="font-bold">8007.22</p>
@@ -318,7 +370,7 @@ const Wallet = ({value1, value2}) => {
 
 const AccountDetailPage = () => {
   const address = useParams().id;
-  
+
   const [isShow, setIsShow] = useState("Transactions");
   const [accountData, setAccountData] = useState({});
   const [poxPrice, setPoxPrice] = useState(0);
@@ -350,7 +402,7 @@ const AccountDetailPage = () => {
         return <TransactionTable />;
 
       case "Transfers":
-        return <TransferTable  />;
+        return <TransferTable />;
     }
   };
 
@@ -360,9 +412,13 @@ const AccountDetailPage = () => {
   const renderItemComponent = () => {
     switch (isRender) {
       case "Wallet (1)":
-        return <Wallet value1=  {(
-          (Number(accountData?.balance) / Math.pow(10, 6))
-        ).toFixed(6)} value2={poxPrice} value3={""} />;
+        return (
+          <Wallet
+            value1={(Number(accountData?.balance) / Math.pow(10, 6)).toFixed(6)}
+            value2={poxPrice}
+            value3={""}
+          />
+        );
 
       case "Portfolio (0)":
         return (
@@ -646,7 +702,7 @@ const AccountDetailPage = () => {
       </div>
 
       <div>{showItemComponent()}</div>
-      <div></div> 
+      <div></div>
     </div>
   );
 };

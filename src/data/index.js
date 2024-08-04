@@ -1,6 +1,3 @@
-import {SideBarOptions} from "./SideBarOptions";
+import { SideBarOptions } from "./SideBarOptions";
 
-export {
-    SideBarOptions,
-
-}
+export { SideBarOptions };

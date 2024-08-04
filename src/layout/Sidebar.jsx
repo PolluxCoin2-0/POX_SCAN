@@ -76,7 +76,9 @@ const Sidebar = ({ children }) => {
             <li key={index}>
               <Link to={buildPath(parentPath, item)}>
                 <button
-                  onClick={() => toggleSubmenu(item, buildPath(parentPath, item))}
+                  onClick={() =>
+                    toggleSubmenu(item, buildPath(parentPath, item))
+                  }
                   className={`flex justify-center items-center p-2 rounded-lg group font-semibold w-full ${
                     isActiveRoute(buildPath(parentPath, item))
                       ? "bg-dark-yellow text-black px-4 my-2"

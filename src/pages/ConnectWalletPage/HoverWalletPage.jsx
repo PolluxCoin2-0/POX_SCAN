@@ -37,62 +37,67 @@ const SendComponent = ({ onClose }) => {
 };
 
 const ReceiveComponent = ({ onClose }) => {
-    const [receivingAccount, setReceivingAccount] = useState("");
-  
-    const handleInputChange = (e) => {
-      setReceivingAccount(e.target.value);
-    };
-  
-    const handleSaveQRCode = () => {
-      const canvas = document.querySelector("canvas");
-      const pngUrl = canvas
-        .toDataURL("image/png")
-        .replace("image/png", "image/octet-stream");
-      let downloadLink = document.createElement("a");
-      downloadLink.href = pngUrl;
-      downloadLink.download = "qrcode.png";
-      document.body.appendChild(downloadLink);
-      downloadLink.click();
-      document.body.removeChild(downloadLink);
-    };
-  
-    return (
-      <div className="bg-white p-8 rounded-lg shadow-xl max-w-lg mx-auto border border-gray-200 w-3/4">
-        <div className="flex justify-end mb-0">
-          <RxCross2 color="gray" onClick={onClose} className="cursor-pointer text-xl hover:text-black transition" />
-        </div>
-        <p className="text-2xl font-semibold text-gray-800 mb-4 text-center">Account QR Code</p>
-        <div className="mb-6">
-          <label
-            htmlFor="receivingAccount"
-            className="block mb-2 text-base font-semibold text-gray-700"
-          >
-            Receiving Account
-          </label>
-          <input
-            type="text"
-            id="receivingAccount"
-            placeholder="Please enter receiving account"
-            value={receivingAccount}
-            onChange={handleInputChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none transition placeholder:text-base"
-          />
-        </div>
-        <div className="flex justify-center mb-10">
-          <QRCode  value={receivingAccount || "default"} size={200} />
-        </div>
-        <div className="flex justify-center">
-          <button
-            onClick={handleSaveQRCode}
-            className="bg-dark-midblue text-white px-6 py-3 rounded-lg shadow-md focus:outline-none focus:border-none transition"
-          >
-            Save QR Code
-          </button>
-        </div>
-      </div>
-    );
+  const [receivingAccount, setReceivingAccount] = useState("");
+
+  const handleInputChange = (e) => {
+    setReceivingAccount(e.target.value);
   };
-  
+
+  const handleSaveQRCode = () => {
+    const canvas = document.querySelector("canvas");
+    const pngUrl = canvas
+      .toDataURL("image/png")
+      .replace("image/png", "image/octet-stream");
+    let downloadLink = document.createElement("a");
+    downloadLink.href = pngUrl;
+    downloadLink.download = "qrcode.png";
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
+  };
+
+  return (
+    <div className="bg-white p-8 rounded-lg shadow-xl max-w-lg mx-auto border border-gray-200 w-3/4">
+      <div className="flex justify-end mb-0">
+        <RxCross2
+          color="gray"
+          onClick={onClose}
+          className="cursor-pointer text-xl hover:text-black transition"
+        />
+      </div>
+      <p className="text-2xl font-semibold text-gray-800 mb-4 text-center">
+        Account QR Code
+      </p>
+      <div className="mb-6">
+        <label
+          htmlFor="receivingAccount"
+          className="block mb-2 text-base font-semibold text-gray-700"
+        >
+          Receiving Account
+        </label>
+        <input
+          type="text"
+          id="receivingAccount"
+          placeholder="Please enter receiving account"
+          value={receivingAccount}
+          onChange={handleInputChange}
+          className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none transition placeholder:text-base"
+        />
+      </div>
+      <div className="flex justify-center mb-10">
+        <QRCode value={receivingAccount || "default"} size={200} />
+      </div>
+      <div className="flex justify-center">
+        <button
+          onClick={handleSaveQRCode}
+          className="bg-dark-midblue text-white px-6 py-3 rounded-lg shadow-md focus:outline-none focus:border-none transition"
+        >
+          Save QR Code
+        </button>
+      </div>
+    </div>
+  );
+};
 
 const MultiSignatureComponent = ({ onClose }) => {
   return (
@@ -120,9 +125,9 @@ const MultiSignatureComponent = ({ onClose }) => {
 
 const ExitWalletComponent = ({ onClose }) => {
   const dispatch = useDispatch();
-  const removeWalletAddress=()=>{
+  const removeWalletAddress = () => {
     dispatch(setWalletAddress(""));
-  }
+  };
   return (
     <div className="bg-light-gray p-6 rounded-lg shadow-lg max-w-sm mx-auto">
       <div className="flex justify-end pr-4">
@@ -130,7 +135,10 @@ const ExitWalletComponent = ({ onClose }) => {
       </div>
       <p className="text-xl mb-4">Exit Wallet</p>
       <p>Are you sure you want to exit the wallet?</p>
-      <button className="bg-red-500 text-white px-4 py-2 rounded-md mt-4" onClick={removeWalletAddress}>
+      <button
+        className="bg-red-500 text-white px-4 py-2 rounded-md mt-4"
+        onClick={removeWalletAddress}
+      >
         Exit
       </button>
     </div>
@@ -139,7 +147,7 @@ const ExitWalletComponent = ({ onClose }) => {
 
 const HoverWalletPage = () => {
   const [activeComponent, setActiveComponent] = useState("");
-const walletAddress = useSelector((state)=>state.wallet.address);
+  const walletAddress = useSelector((state) => state.wallet.address);
 
   const handleComponentClose = () => {
     setActiveComponent("");
@@ -147,7 +155,7 @@ const walletAddress = useSelector((state)=>state.wallet.address);
 
   const handleCopy = (address) => {
     navigator.clipboard.writeText(address);
-    return toast.success("Wallet Address copied")
+    return toast.success("Wallet Address copied");
   };
 
   return (
@@ -157,9 +165,10 @@ const walletAddress = useSelector((state)=>state.wallet.address);
         <div className="flex items-center space-x-2 mb-6">
           <HiUserCircle size={40} className="text-gray-500" />
           <p className="flex-grow text-gray-700 text-sm overflow-hidden overflow-ellipsis whitespace-nowrap">
-            {walletAddress.length>0 && walletAddress}
+            {walletAddress.length > 0 && walletAddress}
           </p>
-          <IoCopyOutline onClick={()=>handleCopy(walletAddress)}
+          <IoCopyOutline
+            onClick={() => handleCopy(walletAddress)}
             size={24}
             className="text-gray-500 cursor-pointer hover:text-gray-700"
           />
@@ -285,11 +294,11 @@ const walletAddress = useSelector((state)=>state.wallet.address);
         </div>
       )}
       */}
-       {activeComponent === "exitWallet" && (
-         <div className="fixed z-10 backdrop-blur-[1px] bg-dark-brown bg-opacity-30 h-screen w-full inset-0 flex items-center justify-center">
-           <ExitWalletComponent onClose={handleComponentClose} />
-         </div>
-       )} 
+      {activeComponent === "exitWallet" && (
+        <div className="fixed z-10 backdrop-blur-[1px] bg-dark-brown bg-opacity-30 h-screen w-full inset-0 flex items-center justify-center">
+          <ExitWalletComponent onClose={handleComponentClose} />
+        </div>
+      )}
     </>
   );
 };

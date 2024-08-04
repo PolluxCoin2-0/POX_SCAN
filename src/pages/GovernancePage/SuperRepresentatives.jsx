@@ -1,65 +1,109 @@
 import SearchBarExpand from "../../components/SearchBarExpand";
 import { useEffect, useState } from "react";
-import CustomPieChart from "../../components/CustomPieChart";
 import TinyChartComp from "../../components/TinyChartComp";
-import { getPartnersTableData, getSuperTableData } from "../../utils/axios/Governance";
+import {
+  getPartnersTableData,
+  getSuperTableData,
+} from "../../utils/axios/Governance";
 import { extractSiteName } from "../../utils/extractSiteName";
 import { Link } from "react-router-dom";
 import { IoCheckmarkCircleOutline } from "react-icons/io5";
-
 import CountdownTimer from "./CountDownTimer";
+import Pagination from "../../components/Pagination";
+import DistributionGraph from "./DistributionGraph";
 
-
-
-
-const Table1 = ({data}) => {
- 
+const Table1 = ({ data, showPagination, setCurrentPage }) => {
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
   return (
     <div className="bg-white pt-2  rounded-tl-none rounded-2xl">
-    <div className="flex flex-row items-center justify-evenly bg-light-orange p-3 rounded-tl-none rounded-2xl m-4">
-      <p className="w-[5%] text-center   font-bold ">Rank</p>
-      <p className="w-[10%] text-center  font-bold  ">Name</p>
-      <p className="w-[9%] text-center  font-bold ">Current Version</p>
-      <p className="w-[6%] text-center  font-bold  ">Status</p>
-      <p className="w-[8%] text-center  font-bold  ">Last Block</p>
-      <p className="w-[10%] text-center font-bold   ">Block Produced</p>
-      <p className="w-[8%] text-center font-bold   ">Block Missed</p>
-      <p className="w-[8%] text-center font-bold   ">Productivity</p>
-      <p className="w-[8%] text-center  font-bold  ">Current Vote</p>
-      <p className="w-[10%] text-center font-bold  ">Vote Weightage</p>
-      <p className="w-[10%]  text-center font-bold  ">Reward Distribution</p>
-      <p className="w-[8%] text-center  font-bold  ">APR</p>
-    </div>
-  
-    {data?.witnesses && data?.witnesses.map((representative, index) => (
-      <div
-        key={index}
-        className="flex flex-row justify-evenly p-3 border-b-2 border-lightest-gray"
-      >
-        <p className="w-[5%]  text-center ">{index + 1}</p>
-        <Link to={`/producerdetailpage/${representative?.poxaddress}`} className="w-[10%] text-dark-red text-center ">
-        <p >{representative?.url && extractSiteName(representative?.url)}</p>
-        </Link> 
-        
-        <p className="w-[9%]  text-center">1</p>
-        <p className="w-[6%]  flex justify-center"><IoCheckmarkCircleOutline size={24} color="green" /></p> 
-        <p className="w-[8%] text-center">{representative.latestBlockNum && representative?.latestBlockNum ? representative?.latestBlockNum : 0}</p>
-        <p className="w-[10%]  text-center">{representative.totalProduced && representative?.totalProduced ? representative?.totalProduced : 0}</p>
-        <p className="w-[8%]  text-center">{representative.totalMissed && representative?.totalMissed ? representative?.totalMissed : 0}</p>
-        <p className="w-[8%]  text-center">{representative.productivity.toFixed(8)}</p>
-        <p className="w-[8%]  text-center">{representative.voteCount}</p>
-        <p className="w-[10%]  text-center">{representative.voteWeightage.toFixed(8)}%</p>
-        <p className="w-[10%]  text-center">{representative.RewardDistribution}</p>
-        <p className="w-[8%]  text-center">{representative.apr}%</p>
+      <p className="pl-5 font-bold">Only the first 27 records are displayed</p>
+      <div className="flex flex-row items-center justify-evenly bg-light-orange p-3 rounded-tl-none rounded-2xl m-4">
+        <p className="w-[5%] text-center   font-bold ">Rank</p>
+        <p className="w-[10%] text-center  font-bold  ">Name</p>
+        <p className="w-[9%] text-center  font-bold ">Current Version</p>
+        <p className="w-[6%] text-center  font-bold  ">Status</p>
+        <p className="w-[8%] text-center  font-bold  ">Last Block</p>
+        <p className="w-[10%] text-center font-bold   ">Block Produced</p>
+        <p className="w-[8%] text-center font-bold   ">Block Missed</p>
+        <p className="w-[8%] text-center font-bold   ">Productivity</p>
+        <p className="w-[8%] text-center  font-bold  ">Current Vote</p>
+        <p className="w-[10%] text-center font-bold  ">Vote Weightage</p>
+        <p className="w-[10%]  text-center font-bold  ">Reward Distribution</p>
+        <p className="w-[8%] text-center  font-bold  ">APR</p>
       </div>
-    ))}
-    
-  </div>
-  
+
+      {data?.witnesses &&
+        data?.witnesses.map((representative, index) => (
+          <div
+            key={index}
+            className="flex flex-row justify-evenly p-3 border-b-2 border-lightest-gray"
+          >
+            <p className="w-[5%]  text-center ">{index + 1}</p>
+            <Link
+              to={`/producerdetailpage/${representative?.poxaddress}`}
+              className="w-[10%] text-dark-red text-center "
+            >
+              <p>
+                {representative?.url && extractSiteName(representative?.url)}
+              </p>
+            </Link>
+
+            <p className="w-[9%]  text-center">1</p>
+            <p className="w-[6%]  flex justify-center">
+              <IoCheckmarkCircleOutline size={24} color="green" />
+            </p>
+            <p className="w-[8%] text-center text-dark-red">
+              {representative.latestBlockNum && representative?.latestBlockNum
+                ? representative?.latestBlockNum
+                : 0}
+            </p>
+            <p className="w-[10%]  text-center">
+              {representative.totalProduced && representative?.totalProduced
+                ? representative?.totalProduced
+                : 0}
+            </p>
+            <p className="w-[8%]  text-center">
+              {representative.totalMissed && representative?.totalMissed
+                ? representative?.totalMissed
+                : 0}
+            </p>
+            <p className="w-[8%]  text-center">
+              {representative.productivity &&
+                Number(representative.productivity).toFixed(8)}
+            </p>
+            <p className="w-[8%]  text-center">{representative.voteCount}</p>
+            <p className="w-[10%]  text-center">
+              {representative.voteWeightage &&
+                Number(representative.voteWeightage).toFixed(8)}
+              %
+            </p>
+            <p className="w-[10%]  text-center">
+              {representative.RewardDistribution}
+            </p>
+            <p className="w-[8%]  text-center">{representative.apr}%</p>
+          </div>
+        ))}
+      {showPagination && (
+        <div className="flex justify-end">
+          <Pagination
+            totalPages={data?.totalSr}
+            onPageChange={handlePageChange}
+          />
+        </div>
+      )}
+    </div>
   );
 };
- 
-const CardSuperRepresentative = ({title, leftSubTitle, totalCount, rightSubTitle, totalvalues}) => {
+
+const CardSuperRepresentative = ({
+  title,
+  leftSubTitle,
+  totalCount,
+  rightSubTitle,
+  totalvalues,
+}) => {
   return (
     <>
       <div className="pb-3 flex flex-row">
@@ -70,7 +114,7 @@ const CardSuperRepresentative = ({title, leftSubTitle, totalCount, rightSubTitle
           <p className="pt-3 text-light-gray flex flex-row gap-1">
             {rightSubTitle}:{" "}
             <span className="text-dark-green font-bold">
-             {totalvalues==="timer"?<CountdownTimer/>:totalvalues} 
+              {totalvalues === "timer" ? <CountdownTimer /> : totalvalues}
             </span>
           </p>
         </div>
@@ -86,8 +130,9 @@ const CardSuperRepresentative = ({title, leftSubTitle, totalCount, rightSubTitle
 const SuperRepresentatives = () => {
   const [onSearch, setOnSearch] = useState("");
   const [isRender, setIsRender] = useState("Super Representative");
-
   const [data, setData] = useState({});
+  const [currentPage, setCurrentPage] = useState(0);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -95,37 +140,38 @@ const SuperRepresentatives = () => {
         switch (isRender) {
           case "Super Representative":
             fetchDataFunction = getSuperTableData;
-            
             break;
           case "SR Partner":
-            fetchDataFunction = getPartnersTableData;
+            fetchDataFunction = () => getPartnersTableData(currentPage);
             break;
           case "SR Candidates":
-            fetchDataFunction = getSuperTableData; // Adjust as per your API structure
-            break;
+            return "No Data Found"; // Adjust as per your API structure
+          // break;
           default:
             fetchDataFunction = getSuperTableData;
         }
-
-        
-
         const result = await fetchDataFunction();
-      
         setData(result?.message || []);
       } catch (error) {
-        console.log('Error fetching data:', error);
+        console.log("Error fetching data:", error);
       }
     };
 
     fetchData();
-  }, [isRender]);
+  }, [isRender, currentPage]);
 
   const renderItemComponent = () => {
     switch (isRender) {
       case "Super Representative":
-        return <Table1 data={data} />;
+        return <Table1 data={data} showPagination={false} />;
       case "SR Partner":
-        return <Table1 data={data} />;
+        return (
+          <Table1
+            data={data}
+            showPagination={true}
+            setCurrentPage={setCurrentPage}
+          />
+        );
       case "SR Candidates":
         return "No Data Found";
       default:
@@ -140,50 +186,56 @@ const SuperRepresentatives = () => {
       </div>
 
       <p className=" text-2xl font-bold">Super Representatives</p>
-      <div className=" flex flex-row justify-evenly w-full space-x-10">
-        <div className="bg-white w-[50%] h-96 mt-10 rounded-2xl shadow-lg">
-          <p className="text-xl font-bold pt-10 pl-10">
+      <div className=" flex flex-row justify-evenly w-full space-x-5">
+        <div className="bg-white w-[50%] h-auto mt-10 rounded-2xl shadow-lg">
+          <p className="text-xl font-bold pt-5 pl-10">
             Real-time Block Distribution
           </p>
-          <CustomPieChart />
+
+          <div className="pt-5 pb-0 w-[90%] flex items-center">
+            <DistributionGraph />
+          </div>
         </div>
 
-        <div className="flex flex-row mt-10 w-[50%]">
+        <div className="flex flex-row  mt-10 w-[50%]">
           <div className="w-full mr-3">
-            <div className="bg-white  mb-3 rounded-tl-2xl  shadow-lg pl-5 pt-5">
-              <CardSuperRepresentative 
-              title="Votes"
-              leftSubTitle="Total (Real Time)"
-              totalCount={data?.totalVotes}
-              rightSubTitle="Next Round"
-              totalvalues="timer"/>
+            <div className="bg-white  mb-3 rounded-tl-2xl  shadow-lg pl-5 pt-5 pb-2">
+              <CardSuperRepresentative
+                title="Votes"
+                leftSubTitle="Total (Real Time)"
+                totalCount={data?.totalVotes}
+                rightSubTitle="Next Round"
+                totalvalues="timer"
+              />
             </div>
-            <div className="bg-white rounded-bl-2xl shadow-lg pl-5 pt-5">
-              <CardSuperRepresentative 
-              title="Super Representatives" 
-              className="text-nowrap"
-              leftSubTitle="Total"
-              totalCount={data?.totalSr}
-              rightSubTitle="Last 30 days"
-              totalvalues={data?.pageNosr}/>
+            <div className="bg-white rounded-bl-2xl shadow-lg pl-5 pt-5 pb-2">
+              <CardSuperRepresentative
+                title="Super Representatives"
+                className="text-nowrap"
+                leftSubTitle="Total"
+                totalCount={data?.totalSr}
+                rightSubTitle="Last 30 days"
+                totalvalues={data?.pageNosr}
+              />
             </div>
           </div>
 
-          <div className="w-full">
-            <div className="bg-white  mb-3 rounded-tr-2xl shadow-lg pl-5 pt-5">
-              <CardSuperRepresentative 
-              title="Blocks Produced"
-              leftSubTitle="Max. Sendbox"
-              rightSubTitle="Min. inbox"
-              totalvalues={""}
+          <div className="w-full ">
+            <div className="bg-white  mb-3 rounded-tr-2xl shadow-lg pl-5 pt-5 pb-2">
+              <CardSuperRepresentative
+                title="Blocks Produced"
+                leftSubTitle="Max. Sendbox"
+                rightSubTitle="Min. inbox"
+                totalvalues={""}
               />
             </div>
-            <div className="bg-white rounded-br-2xl shadow-lg pl-5 pt-5">
-              <CardSuperRepresentative 
-              title="Productivity"
-              leftSubTitle="Highest Sendbox"
-              rightSubTitle="Lowest inbox"
-              totalvalues={""}/>
+            <div className="bg-white rounded-br-2xl shadow-lg pl-5 pt-5 pb-2">
+              <CardSuperRepresentative
+                title="Productivity"
+                leftSubTitle="Highest Sendbox"
+                rightSubTitle="Lowest inbox"
+                totalvalues={""}
+              />
             </div>
           </div>
         </div>
@@ -209,37 +261,39 @@ const SuperRepresentatives = () => {
         readable content of a page when looking at its layout.
       </p>
 
-
-
-
       <div className=" mt-10 rounded-2xl ">
         <div className="flex flex-row items-center space-x-12  rounded-xl">
           <p
-            className={`cursor-pointer py-3 px-4 ${isRender === "Super Representative" ? "bg-white  rounded-t-2xl" : "text-black"}`}
+            className={`cursor-pointer font-bold py-3 px-4 ${
+              isRender === "Super Representative"
+                ? "bg-white  rounded-t-2xl"
+                : "text-black"
+            }`}
             onClick={() => setIsRender("Super Representative")}
-          > 
+          >
             Super Representatives
           </p>
           <p
-            className={`cursor-pointer py-3 px-4 ${isRender === "SR Partner" ? "bg-white  rounded-t-2xl" : "text-black"}`}
+            className={`cursor-pointer font-bold py-3 px-4 ${
+              isRender === "SR Partner"
+                ? "bg-white  rounded-t-2xl"
+                : "text-black"
+            }`}
             onClick={() => setIsRender("SR Partner")}
           >
             SR Partner
           </p>
           <p
-            className={`cursor-pointer py-3 px-4 ${isRender === "SR Candidates" ? "bg-white  rounded-t-2xl" : "text-black"}`}
+            className={`cursor-pointer font-bold py-3 px-4 ${
+              isRender === "SR Candidates"
+                ? "bg-white  rounded-t-2xl"
+                : "text-black"
+            }`}
             onClick={() => setIsRender("SR Candidates")}
           >
             SR Candidates
           </p>
-          
-          <p >Only the first 27 records are displayed</p>
-          
-          
         </div>
-
-        
-
         <div>{renderItemComponent()}</div>
       </div>
     </div>

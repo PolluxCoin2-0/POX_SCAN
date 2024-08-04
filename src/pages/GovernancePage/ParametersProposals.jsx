@@ -10,7 +10,7 @@ import CommitteeProposalPage from "./CommitteeProposalPage";
 
 const ParameterTable = () => {
   const [data, setData] = useState({});
-  
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -89,24 +89,23 @@ const CommitteProposalTable = () => {
 
   // function to render the committee proposal on the basis of proposal id
 
-function getProposalById (proposal_id) {
-  let array = data1;
-  for(let i=0; i< array.length; i++){
-    if(array[i].proposal_id === proposal_id)
-      return (array[i]);
+  function getProposalById(proposal_id) {
+    let array = data1;
+    for (let i = 0; i < array.length; i++) {
+      if (array[i].proposal_id === proposal_id) return array[i];
+    }
+    return null;
   }
-  return null;
-}
 
-const handleModal =(id)=>{
-  const data = getProposalById(id);
-  setModalData(data);
-  handleShowModal();
-}
+  const handleModal = (id) => {
+    const data = getProposalById(id);
+    setModalData(data);
+    handleShowModal();
+  };
 
-const handleShowModal =()=>{
-  setIsShowModal(!isShowModal);
-}
+  const handleShowModal = () => {
+    setIsShowModal(!isShowModal);
+  };
 
   return (
     <div className="bg-white pt-2 pb-8 ">
@@ -114,7 +113,9 @@ const handleShowModal =()=>{
         <p className="w-[5%]  font-bold text-center ">Number</p>
         <p className="w-[20%] font-bold text-center  ">Content</p>
         <p className="w-[17%] font-bold text-center  ">Proposer</p>
-        <p className="w-[16%] font-bold text-center ">Created / Expire on (UTC)</p>
+        <p className="w-[16%] font-bold text-center ">
+          Created / Expire on (UTC)
+        </p>
         <p className="w-[12%] font-bold text-center  ">Status</p>
         <p className="w-[12%] font-bold text-center ">Upvotes / Total Votes</p>
         <p className="w-[18%] font-bold text-center  ">Operation</p>
@@ -135,19 +136,30 @@ const handleShowModal =()=>{
                     shortenString(param?.proposer_address, 10)}
                 </p>
                 <p className="w-[16%] text-center  ">
-                  {formatTimestamp(param?.create_time)} {" "}
+                  {formatTimestamp(param?.create_time)}{" "}
                   {formatTimestamp(param?.expiration_time)}
                 </p>
-                <p className="w-[12%] text-center text-dark-green ">{param?.state}</p>
+                <p className="w-[12%] text-center text-dark-green ">
+                  {param?.state}
+                </p>
                 <p className="w-[12%] text-center "></p>
-                <p className="w-[18%] text-center cursor-pointer text-dark-red underline text-nowrap " onClick={()=>handleModal(param?.proposal_id)}>View Details Committee Proposals </p>
+                <p
+                  className="w-[18%] text-center cursor-pointer text-dark-red underline text-nowrap "
+                  onClick={() => handleModal(param?.proposal_id)}
+                >
+                  View Details Committee Proposals{" "}
+                </p>
               </div>
             </>
           );
         })}
-          {
-          isShowModal && <CommitteeProposalPage value={modalData} isShowModal={isShowModal} handleShowModal={handleShowModal}/>
-        }
+      {isShowModal && (
+        <CommitteeProposalPage
+          value={modalData}
+          isShowModal={isShowModal}
+          handleShowModal={handleShowModal}
+        />
+      )}
     </div>
   );
 };
@@ -190,9 +202,9 @@ const ParametersProposals = () => {
       </div>
 
       <div className=" rounded-xl my-7 p-10">
-        <div className="flex flex-row space-x-8">
+        <div className="flex flex-row items-center space-x-8">
           <p
-            className={`cursor-pointer font-bold text-center border-2py-3 px-4 whitespace-nowrap ${
+            className={`cursor-pointer font-bold text-center border-2py-3 px-4 pb-4 pt-2 whitespace-nowrap ${
               isRender === "Network Parameter"
                 ? "bg-white  rounded-t-2xl"
                 : "text-black"

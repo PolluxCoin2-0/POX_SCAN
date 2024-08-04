@@ -2,45 +2,36 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
-    font-family: "Lato", sans-serif; 
+body {
+  font-family: "Lato", sans-serif;
 }
 
 .children-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
+  display: none;
+}
 
 .slick-slide {
-    margin-right:0px;
-    margin-left: 20px;
+  margin-right: 0px;
+  margin-left: 20px;
 }
 
-.slick-track
-{
-    display: flex !important;
+.slick-track {
+  display: flex !important;
 }
 
-.slick-slide
-{
-    height: inherit !important;
+.slick-slide {
+  height: inherit !important;
 }
 
-
-.app-bg{
-    background-image: url("./assets/BgImage.png");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    background-color: rgba(230, 238, 245, 0.6);
-    background-blend-mode: overlay;
+.app-bg {
+  background-image: url("./assets/BgImage.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-color: rgba(230, 238, 245, 0.6);
+  background-blend-mode: overlay;
 }
 
 .custom-toast {
-    top: 4rem;
-  }
-
-
-
-
-
-
+  top: 4rem;
+}

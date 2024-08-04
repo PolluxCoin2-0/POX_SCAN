@@ -33,9 +33,9 @@ const CumulativeTransactions = () => {
 
       <div >
         <p className=" text-xl font-bold pb-7">Cummulative Transactions</p>
-        <div className="flex flex-row justify-between">
-          <div className="bg-white rounded-2xl w-[1300px] h-[500px] shadow-xl">
-            <div className="w-[1000px] h-[430px] pt-12 pl-8">
+        <div className="flex flex-row justify-between w-full">
+          <div className="bg-white rounded-xl w-[70%] h-[450px] shadow-xl">
+            <div className="w-[1000px] h-[450px] p-10 ">
             <SimpleAreaChart
             value={data} 
             xAxis="date"
@@ -46,19 +46,19 @@ const CumulativeTransactions = () => {
          
           </div>
 
-          <div className="flex flex-col  ml-10">
-            <div className="bg-white rounded-2xl shadow-2xl w-[450px] h-[180px] ">
+          <div className="flex flex-col  ml-7 w-[30%] h-[450px]">
+            <div className="bg-white rounded-xl shadow-xl h-[150px]">
             <p className="text-lg font-bold pt-4 pl-8 pr-8">About</p>
-            <p className="pl-8 pt-4 text-light-gray leading-6 text-md">
+            <p className="pl-8 pt-2 text-light-gray leading-6 text-md">
             The Cumulative Transactions chart shows <br/>the total number of transactions on TRON <br/>since beginning of its operation.</p>
             </div>
 
-            <div className="bg-white rounded-2xl w-[450px] h-[280px] mt-10 shadow-xl">
+            <div className="bg-white rounded-xl  mt-5 shadow-xl h-[300px]">
               <p className="pt-7 pl-8 text-lg font-bold p-2">Highlight</p>
               <p className="pl-8  text-light-gray text-md">
                  TRON records over 6.80b transactions in total.<br/>
                  The transaction growth in the last 30 days <br/>is mainly driven by the increase in <br/>Smart Contracts Triggered (39%).</p>
-              <p className="pl-8 pt-4 text-lg font-bold">You may be interested in</p>
+              <p className="pl-8 pt-6 text-lg font-bold">You may be interested in</p>
               <p className="pl-8 pt-2 text-light-gray text-md">Transaction Trend On-Chain Data Size</p>
             </div>
           </div>
@@ -74,7 +74,7 @@ const CumulativeTransactions = () => {
             <p className="w-[50%] text-center">Commulative Transaction</p>
           </div>
           
-          {data?.map && data?.map((param, index) => {
+          {data?.map && data?.slice(0, 10).map((param, index) => {
         return (
           <>
            <div className="flex flex-row justify-between p-5 border-b-2 border-b-lightest-gray">

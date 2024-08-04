@@ -7,22 +7,19 @@ import Transfer from "./Transfer";
 const Blockchain = () => {
   return (
     <div>
-     
-    <Accounts />
+      <Accounts />
 
-    <Blocks />
+      <Blocks />
 
-    <Contacts />
+      <Contacts />
 
-    <Nodes />
+      <Nodes />
 
-    <Transaction />
+      <Transaction />
 
-    <Transfer />
-
-    
+      <Transfer />
     </div>
-  )
-}
+  );
+};
 
-export default Blockchain
+export default Blockchain;

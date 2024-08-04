@@ -41,9 +41,9 @@ const SrVotesDistribution = () => {
 
       <div >
         <p className=" text-2xl font-bold">SR Votes Distribution</p>
-        <div className="flex flex-row justify-between mt-8">
-          <div className="bg-white rounded-2xl w-[1300px]  h-[500px] mr-10 shadow-xl">
-            <div className=" p-14  h-[550px]">
+        <div className="flex flex-row justify-between mt-8  w-full">
+          <div className="bg-white rounded-xl w-[70%] shadow-xl">
+            <div className=" p-8  h-[500px]">
             <VerticalComposedChart 
             width="1000"
             value={data?.witnesses} 
@@ -53,16 +53,16 @@ const SrVotesDistribution = () => {
             
           </div>
 
-          <div className="flex flex-col ">
-            <div className="bg-white rounded-2xl shadow-2xl w-[450px] h-[180px] ">
+          <div className="flex flex-col w-[30%] ml-7 h-[500px]">
+            <div className="bg-white rounded-xl shadow-xl h-[150px]">
             <p className="text-lg font-bold pt-7 pl-10 pr-8">About</p>
-            <p className="pl-10 pt-1 text-light-gray leading-5 text-md">The SR Vote Distribution chart shows<br/>distribution votes on SRs in the latest
+            <p className="pl-10 pt-2 text-light-gray leading-5 text-md">The SR Vote Distribution chart shows<br/>distribution votes on SRs in the latest
             <br/> round.</p>
             </div>
 
-            <div className="bg-white rounded-2xl w-[450px] h-[280px] mt-10 shadow-xl">
+            <div className="bg-white rounded-xl  mt-5 shadow-xl h-[350px]">
               <p className="pt-4 pl-10 text-lg font-bold p-2">Highlights</p>
-              <p className="pl-10 pt-1 text-light-gray text-sm">Untill now the top 3 SRs in this round and <br/>their votes share are:<br/> 
+              <p className="pl-10 pt-1 text-light-gray text-md">Untill now the top 3 SRs in this round and <br/>their votes share are:<br/> 
                Binance Staking(9.75%) <br/> Crypto Labs(3.87%) <br/> Luganodes(3.79%) <br/> Untill now, the top 27 SRs in this round are
                <br/> the same as that in the last round.</p>
               <p className="pl-10 pt-4 text-lg font-bold">You may be interested in</p>

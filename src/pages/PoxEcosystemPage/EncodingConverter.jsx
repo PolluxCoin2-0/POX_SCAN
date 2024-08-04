@@ -8,12 +8,11 @@ const EncodingConverter = () => {
         <SearchBarExpand />
       </div>
 
-       <div>
+      <div>
         <EncodingData />
-       </div>
-       
+      </div>
     </div>
-  )
-}
+  );
+};
 
 export default EncodingConverter;

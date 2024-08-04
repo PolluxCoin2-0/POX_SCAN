@@ -31,8 +31,8 @@ const ProtocolRevenue = () => {
 
       <div >
         <p className="text-xl font-bold">Protocol Revenue</p>
-        <div className="flex flex-row mt-8 justify-between">
-          <div className="bg-white rounded-2xl w-[1300px]  h-[500px]  shadow-xl">
+        <div className="flex flex-row mt-8 justify-between w-full">
+          <div className="bg-white rounded-2xl  w-[70%]  h-auto shadow-xl">
           <div className="w-[1000px] h-[400px] pl-20 pt-10">
             <AreaChartComp 
             value={data?.tvlGraph}  
@@ -42,18 +42,18 @@ const ProtocolRevenue = () => {
             </div>
           </div>
 
-          <div className="flex flex-col ml-10">
-            <div className="bg-white rounded-2xl shadow-2xl w-[450px] h-[180px] ">
-            <p className="text-lg font-bold pt-7 pl-8 pr-8">About</p>
-            <p className="pl-8 pt-2 text-light-gray leading-6 text-md">The Protocol Revenue Chart shows the revenue <br/> trend of TRON consisting of users TRX burned to <br/>get resources and pay for <br/>transactions.</p>
+          <div className="flex flex-col ml-7 w-[30%]">
+            <div className="bg-white rounded-2xl shadow-2xl ">
+            <p className="text-lg font-bold pt-5 pl-8 pr-8">About</p>
+            <p className="pl-8 pt-1 pb-2 text-light-gray leading-6 text-md">The Protocol Revenue Chart shows the revenue <br/> trend of TRON consisting of users TRX burned to <br/>get resources and pay for <br/>transactions.</p>
             </div>
 
-            <div className="bg-white rounded-2xl w-[450px] h-[280px] mt-10 shadow-xl">
+            <div className="bg-white rounded-2xl  mt-5 shadow-xl pb-2">
               <p className="pt-7 pl-8 text-lg font-bold p-2">Highlights</p>
               <p className="pl-8 pt-1 text-light-gray text-md">The Protocol revenue of yesterday is <br/>$1.01m <br/> 
               The protocol revenue in the last 365 days is <br/>$405m</p>
-              <p className="pl-8 pt-8 text-lg font-bold">You may be interested in</p>
-              <p className="pl-8 pt-2 text-light-gray text-md">TRX Generated /Burned Top Contracts</p>
+              <p className="pl-8 pt-5 text-lg font-bold">You may be interested in</p>
+              <p className="pl-8 pb-2 pt-2 text-light-gray text-md">TRX Generated /Burned Top Contracts</p>
             </div>
           </div>
         </div>

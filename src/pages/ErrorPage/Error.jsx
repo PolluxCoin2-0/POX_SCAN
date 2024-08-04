@@ -1,15 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 import FrameImg from "../../assets/Frame.png";
 
 const Error = () => {
-  const [displayText, setDisplayText] = useState('');
+  const [displayText, setDisplayText] = useState("");
   const message = "Paage Not Found !";
-  
+
   useEffect(() => {
     let i = 0;
     const timer = setInterval(() => {
       if (i < message.length) {
-        setDisplayText(prev => prev + message.charAt(i));
+        setDisplayText((prev) => prev + message.charAt(i));
         i++;
       } else {
         clearInterval(timer);
@@ -27,6 +27,6 @@ const Error = () => {
       <img src={FrameImg} alt="Error Illustration" className="w-1/2 max-w-md" />
     </div>
   );
-}
+};
 
 export default Error;

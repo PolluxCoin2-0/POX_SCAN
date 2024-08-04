@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 const CountdownTimer = () => {
   const calculateTimeLeft = () => {
     // Define the target time (replace with your desired date and time)
-    const targetDate = new Date('2024-12-31T23:59:59');
+    const targetDate = new Date("2024-12-31T23:59:59");
     const now = new Date();
     const difference = targetDate - now;
 
@@ -35,7 +35,7 @@ const CountdownTimer = () => {
       <div className="timer w-2">
         <div>
           <h3 className="countdown-element hours  font-semibold text-md text-indigo-600 ">
-            {String(timeLeft.hours).padStart(2, '0')}
+            {String(timeLeft.hours).padStart(2, "0")}
           </h3>
         </div>
         {/* <p className="text-sm font-normal text-gray-900 mt-1 text-center w-full">hours</p> */}
@@ -45,7 +45,7 @@ const CountdownTimer = () => {
       <div className="timer w-2 ">
         <div>
           <h3 className="countdown-element minutes font-semibold text-md text-indigo-600 ">
-            {String(timeLeft.minutes).padStart(2, '0')}
+            {String(timeLeft.minutes).padStart(2, "0")}
           </h3>
         </div>
         {/* <p className="text-sm font-normal text-gray-900 mt-1 text-center w-full">minutes</p> */}
@@ -55,7 +55,7 @@ const CountdownTimer = () => {
       <div className="timer w-2">
         <div>
           <h3 className="countdown-element seconds  font-semibold text-md text-indigo-600 ">
-            {String(timeLeft.seconds).padStart(2, '0')}
+            {String(timeLeft.seconds).padStart(2, "0")}
           </h3>
         </div>
         {/* <p className="text-sm font-normal text-gray-900 mt-1 text-center w-full">seconds</p> */}

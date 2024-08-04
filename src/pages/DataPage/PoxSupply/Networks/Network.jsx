@@ -8,6 +8,7 @@ import LineChart from "../../../../components/LineChart";
 import AreaChartComp from "../../../../components/AreaChart";
 import { getAvgBlockSizeTableData, getBandwidthConsumptionTableData, getEnergyConsumptionTableData, getOnChainSizeTableData, getProtocolRevenueTableData, getSrVoteTableData } from "../../../../utils/axios/Data";
 import { useEffect, useState } from "react";
+import DistributionGraph from "../../../GovernancePage/DistributionGraph";
 
 const Network = () => {
 
@@ -148,9 +149,9 @@ const Network = () => {
           <p className="text-2xl font-bold">Real-Time Block Distribution</p>
           <div className="bg-white rounded-2xl shadow-xl h-[400px] mt-5">
 
-          <div className="h-96 pl-5 pt-12 w-[700px]">
-          < CustomPieChart/>
-            </div>
+          <div className="pt-10 pb-0 w-[90%] flex items-center">
+          <DistributionGraph />
+          </div>
           </div>
         </div>
 

@@ -1,5 +1,3 @@
-// import React from 'react'
-
 import { useState } from "react";
 import { RxCross2 } from "react-icons/rx";
 import { FaArrowLeftLong } from "react-icons/fa6";
@@ -86,14 +84,12 @@ const ForgetPasswordForm = () => {
             </div>
             </div>
 
-        
-
             <div>
               <label
                 htmlFor="password"
                 className="block text-lg font-bold mb-4 mt-8 text-gray-700 text-black"
               >
-               Confirm New Password
+                Confirm New Password
               </label>
               <div className="relative">
               <input
@@ -127,7 +123,6 @@ const ForgetPasswordForm = () => {
             <div></div>
           </form>
         </div>
-        
       )}
     </div>
   );

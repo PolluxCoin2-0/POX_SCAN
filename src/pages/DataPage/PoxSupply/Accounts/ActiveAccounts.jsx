@@ -33,8 +33,8 @@ const ActiveAccounts = () => {
 
       <div >
         <p className=" text-xl font-bold pb-7">Active Accounts</p>
-        <div className="flex flex-row justify-between">
-          <div className="bg-white rounded-2xl w-[1300px] p-10 h-[500px]  shadow-xl">
+        <div className="flex flex-row justify-between w-full">
+          <div className="bg-white rounded-xl w-[70%] p-10 h-[450px] shadow-xl">
             <div className="w-[1000px] h-[400px]">
             <MixBarChart 
             value={data?.activeAccounts}
@@ -44,20 +44,20 @@ const ActiveAccounts = () => {
            
           </div>
 
-          <div className="flex flex-col ml-10">
-            <div className="bg-white rounded-2xl shadow-2xl w-[450px] h-[180px] ">
+          <div className="flex flex-col ml-7 w-[30%] h-[450px]">
+            <div className="bg-white rounded-xl shadow-xl h-[200px]">
             <p className="text-lg font-bold pt-4 pl-8 pr-8">About</p>
             <p className="pl-8 pt-1 text-light-gray leading-6 text-md">
             The Active Accounts chart shows the <br/> number of accounts that have transfer <br/>records during the specified period on <br/>TRON, including wallet accounts and <br/>contract accounts. </p>
             </div>
 
-            <div className="bg-white rounded-2xl w-[450px] h-[280px] mt-10 shadow-xl">
-              <p className="pt-7 pl-8 text-lg font-bold p-2">Highlight</p>
+            <div className="bg-white rounded-xl  mt-5 shadow-xl h-[250px]">
+              <p className="pt-5 pl-8 text-lg font-bold p-2">Highlight</p>
               <p className="pl-8  text-light-gray text-md">
                  On average, the daily active accounts on <br/>TRON are 1.89m in the past 1 month.<br/>
-                    In 2023-11, daily active accounts on <br/>TRON are down by 4.69% compared with <br/> that in 2023-10.</p>
-              <p className="pl-8 pt-4 text-lg font-bold">You may be interested in</p>
-              <p className="pl-8 pt-2 text-light-gray text-md">Total Accounts Pox Accounts </p>
+                    In 2023-11, daily active accounts on <br/>TRON are down by 4.69% compared with  that in 2023-10.</p>
+              <p className="pl-8 pt-2 text-lg font-bold">You may be interested in</p>
+              <p className="pl-8 pt-1 text-light-gray text-md">Total Accounts Pox Accounts </p>
             </div>
           </div>
         </div>
@@ -72,7 +72,7 @@ const ActiveAccounts = () => {
             <p className="w-[50%] text-center">Active Accounts</p>
           </div>
            
-          {data?.activeAccounts?.map && data?.activeAccounts?.map((param, index) => {
+          {data?.activeAccounts?.map && data?.activeAccounts?.slice(0, 10).map((param, index) => {
         return (
           <>
            <div className="flex flex-row justify-between p-5 border-b-2 border-b-lightest-gray">

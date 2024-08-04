@@ -50,7 +50,7 @@ const PoxMarketCap = () => {
             <p className="w-[50%] text-center">Pox Price</p>
           </div>
 
-          {data?.map && data?.map ((param, index) => {
+          {data?.map && data?.slice(0, 10).map ((param, index) => {
         return (
           <>
            <div className="flex flex-row justify-between p-5 border-b-2 border-b-lightest-gray">

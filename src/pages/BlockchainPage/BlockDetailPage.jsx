@@ -20,8 +20,10 @@ const TransactionTable = () => {
 
   return (
     <div>
-      <div className="bg-white rounded-2xl mt-8 pt-5 pb-5 overflow-x-auto md:overflow-x-auto 
-      lg:overflow-auto xl:overflow-auto 2xl:overflow-hidden">
+      <div
+        className="bg-white rounded-2xl mt-8 pt-5 pb-5 overflow-x-auto md:overflow-x-auto 
+      lg:overflow-auto xl:overflow-auto 2xl:overflow-hidden"
+      >
         <div className=" flex flex-row justify-between">
           <div>
             <p className="pl-5 font-bold">A total of 10000 transaction(s)</p>
@@ -122,8 +124,10 @@ const BlockDetailPage = () => {
             </div>
 
             <div>
-              <div className="flex flex-col md:flex-col lg:flex-row xl:flex-row 2xl:flex-row space-x-0
-              md:space-x-0 lg:space-x-32  xl:space-x-32 2xl:space-x-32 border-b-[1px] border-text-bg-gray pt-4 pb-4">
+              <div
+                className="flex flex-col md:flex-col lg:flex-row xl:flex-row 2xl:flex-row space-x-0
+              md:space-x-0 lg:space-x-32  xl:space-x-32 2xl:space-x-32 border-b-[1px] border-text-bg-gray pt-4 pb-4"
+              >
                 <div className="flex flex-row whitespace-nowrap space-x-2">
                   <p className="bg-lightest-gray rounded-md pt-1 px-1">
                     <AiOutlineQuestion />{" "}
@@ -132,15 +136,19 @@ const BlockDetailPage = () => {
                 </div>
 
                 <div className="flex flex-row items-center space-x-4">
-                  <p className="truncate md:truncate lg:truncate xl:truncate xl:w-80 2xl:w-full">{blockdata?.blockHash}</p>
+                  <p className="truncate md:truncate lg:truncate xl:truncate xl:w-80 2xl:w-full">
+                    {blockdata?.blockHash}
+                  </p>
                   <p className="pt-1">
                     <MdContentCopy />
                   </p>
                 </div>
               </div>
 
-              <div className="flex flex-col md:flex-col lg:flex-row xl:flex-row 2xl:flex-row
-              space-x-0 md:space-x-0 lg:space-x-44 xl:space-x-44 2xl:space-x-44 border-b-[1px] border-text-bg-gray pt-4 pb-4">
+              <div
+                className="flex flex-col md:flex-col lg:flex-row xl:flex-row 2xl:flex-row
+              space-x-0 md:space-x-0 lg:space-x-44 xl:space-x-44 2xl:space-x-44 border-b-[1px] border-text-bg-gray pt-4 pb-4"
+              >
                 <div className="flex flex-row space-x-2">
                   <p className="bg-lightest-gray rounded-md pt-1 px-1">
                     <AiOutlineQuestion />{" "}
@@ -156,8 +164,10 @@ const BlockDetailPage = () => {
                 </div>
               </div>
 
-              <div className="flex flex-col md:flex-col lg:flex-row xl:flex-row 2xl:flex-row 
-              space-x-0 md:space-x-0 lg:space-x-36 xl:space-x-36 2xl:space-x-36 border-b-[1px] border-text-bg-gray pt-4 pb-4">
+              <div
+                className="flex flex-col md:flex-col lg:flex-row xl:flex-row 2xl:flex-row 
+              space-x-0 md:space-x-0 lg:space-x-36 xl:space-x-36 2xl:space-x-36 border-b-[1px] border-text-bg-gray pt-4 pb-4"
+              >
                 <div className="flex flex-row space-x-2">
                   <p className="bg-lightest-gray rounded-md pt-1 px-1">
                     <AiOutlineQuestion />{" "}
@@ -173,8 +183,10 @@ const BlockDetailPage = () => {
                 </div>
               </div>
 
-              <div className="flex flex-col md:flex-col lg:flex-row xl:flex-row 2xl:flex-row
-              space-x-0 md:space-x-0 lg:space-x-44 xl:space-x-44 2xl:space-x-44 border-b-[1px] border-text-bg-gray pt-4 pb-4">
+              <div
+                className="flex flex-col md:flex-col lg:flex-row xl:flex-row 2xl:flex-row
+              space-x-0 md:space-x-0 lg:space-x-44 xl:space-x-44 2xl:space-x-44 border-b-[1px] border-text-bg-gray pt-4 pb-4"
+              >
                 <div className="flex flex-row space-x-2">
                   <p className="bg-lightest-gray rounded-md pt-1 px-1">
                     <AiOutlineQuestion />{" "}
@@ -192,8 +204,10 @@ const BlockDetailPage = () => {
                 </div>
               </div>
 
-              <div className="flex flex-col md:flex-col lg:flex-row xl:flex-row 2xl:flex-row lg:items-center xl:items-center 2xl:items-center
-              space-x-0 md:space-x-0 lg:space-x-28 xl:space-x-28 2xl:space-x-28 border-b-[1px] border-text-bg-gray pt-4 pb-4">
+              <div
+                className="flex flex-col md:flex-col lg:flex-row xl:flex-row 2xl:flex-row lg:items-center xl:items-center 2xl:items-center
+              space-x-0 md:space-x-0 lg:space-x-28 xl:space-x-28 2xl:space-x-28 border-b-[1px] border-text-bg-gray pt-4 pb-4"
+              >
                 <div className="flex flex-row space-x-2">
                   <p className="bg-lightest-gray rounded-md pt-1 px-1">
                     <AiOutlineQuestion />{" "}
@@ -223,8 +237,10 @@ const BlockDetailPage = () => {
                 <p>0.2</p>
               </div>
 
-              <div className="flex flex-col md:flex-col lg:flex-row xl:flex-row 2xl:flex-row 
-             space-x-0 md:space-x-0 lg:space-x-20 xl:space-x-20 2xl:space-x-20 border-b-[1px] border-text-bg-gray pt-4 pb-4">
+              <div
+                className="flex flex-col md:flex-col lg:flex-row xl:flex-row 2xl:flex-row 
+             space-x-0 md:space-x-0 lg:space-x-20 xl:space-x-20 2xl:space-x-20 border-b-[1px] border-text-bg-gray pt-4 pb-4"
+              >
                 <div className="flex flex-row space-x-2">
                   <p className="bg-lightest-gray rounded-md pt-1 px-1">
                     <AiOutlineQuestion />{" "}
@@ -232,7 +248,9 @@ const BlockDetailPage = () => {
                   <p className="whitespace-nowrap">Parent Block Hash:</p>
                 </div>
                 <div className="flex flex-row space-x-4">
-                  <p className="truncate md:truncate lg:truncate xl:truncate xl:w-80 2xl:w-full">{blockdata?.parenthash}</p>
+                  <p className="truncate md:truncate lg:truncate xl:truncate xl:w-80 2xl:w-full">
+                    {blockdata?.parenthash}
+                  </p>
                   <p className="pt-1">
                     <MdContentCopy />
                   </p>
@@ -365,9 +383,11 @@ const BlockDetailPage = () => {
 
       {/* Table */}
 
-      <div className="flex flex-col md:flex-row lg:flex-row xl:flex-row 2xl:flex-row lg:items-center xl:items-center 2xl:items-center
+      <div
+        className="flex flex-col md:flex-row lg:flex-row xl:flex-row 2xl:flex-row lg:items-center xl:items-center 2xl:items-center
       space-x-0 md:space-x-10 lg:space-x-10 xl:space-x-10 2xl:space-x-10 space-y-4 md:space-y-4 
-      lg:space-y-0 xl:space-y-0 2xl:space-y-0 mt-10">
+      lg:space-y-0 xl:space-y-0 2xl:space-y-0 mt-10"
+      >
         <p
           className={`cursor-pointer py-3 px-6 whitespace-nowrap ${
             isRender === "Transactions"

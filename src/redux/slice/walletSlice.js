@@ -1,12 +1,12 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const walletSlice = createSlice({
-  name: 'wallet',
+  name: "wallet",
   initialState: {
     address: "",
-    Network:"",
-    login:false,
-    signup:false,
+    Network: "",
+    login: false,
+    signup: false,
   },
   reducers: {
     setWalletAddress: (state, action) => {
@@ -24,5 +24,6 @@ const walletSlice = createSlice({
   },
 });
 
-export const { setWalletAddress,setNetwork, setLogin, setSignup} = walletSlice.actions;
+export const { setWalletAddress, setNetwork, setLogin, setSignup } =
+  walletSlice.actions;
 export default walletSlice.reducer;

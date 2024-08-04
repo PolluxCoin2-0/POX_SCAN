@@ -1,7 +1,6 @@
 import SimplePieChartComp from "../../components/SimplePieChartComp";
 import SearchBarExpand from "../../components/SearchBarExpand";
-import { IoCheckmarkCircleOutline, IoSearch } from "react-icons/io5";
-import { PiArrowBendDownLeftBold } from "react-icons/pi";
+import { IoCheckmarkCircleOutline } from "react-icons/io5";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import Pagination from "../../components/Pagination";
 import { useEffect, useState } from "react";
@@ -16,7 +15,6 @@ import { RxCrossCircled } from "react-icons/rx";
 import { formatNumberWithCommas } from "../../utils/FormattingNumber";
 
 const Transaction = () => {
-
   // For Pagination
   const [currentPage, setCurrentPage] = useState(0);
 
@@ -43,9 +41,6 @@ const Transaction = () => {
 
     fetchData();
   }, [currentPage]);
-
-  
-  
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -181,19 +176,6 @@ const Transaction = () => {
                   A total of 10000 transactions(s)
                 </span>
               </p>
-            </div>
-
-            <div className="hidden md:hidden lg:flex xl:flex 2xl:flex flex-row justify-between px-32 rounded-md  border-2 border-lightest-gray">
-              <IoSearch className=" text-xl pt-4 w-10 h-10 text-light-gray" />
-
-              <input
-                className="bg-white h-12 w-full  rounded-lg text-sm  focus:outline-none placeholder:text-light-gray placeholder:font-medium"
-                type="search"
-                name="search"
-                placeholder="Search by Contract Accounts/Name"
-              />
-
-              <PiArrowBendDownLeftBold className="w-10 h-10 pt-4  text-light-gray" />
             </div>
           </div>
 

@@ -1,6 +1,5 @@
 import { TVLData } from "../../data/HomePageData";
 import PoxImg from "../../assets/PoxImg.png";
-// import { IoIosArrowForward } from "react-icons/io";
 import AreaChartComp from "../../components/AreaChart";
 import { getTvlPriceData } from "../../utils/axios/Home";
 import { useEffect, useState } from "react";
@@ -24,9 +23,7 @@ const TvlContainer = () => {
     <div className="">
       <div className="flex justify-between my-6 w-[75%]">
         <p className="font-bold text-xl">TVL</p>
-        {/* <p className="flex items-center cursor-pointer">
-          More <IoIosArrowForward />
-        </p> */}
+       
       </div>
 
       <div className="w-full flex flex-col md:flex-col lg:flex-row xl:flex-row 2xl:flex-row justify-between">
@@ -73,14 +70,13 @@ const TvlContainer = () => {
           <div className="shadow-lg bg-white rounded-xl p-4">
             <p className="font-semibold">TVL</p>
             <div className="h-[170px]">
-            <AreaChartComp
-              value={data?.tvlGraph}
-              xDataKey="date"
-              yDataKey="count"
-              componentChartColor="#c2a3fd"
-            />
+              <AreaChartComp
+                value={data?.tvlGraph}
+                xDataKey="date"
+                yDataKey="count"
+                componentChartColor="#c2a3fd"
+              />
             </div>
-           
           </div>
         </div>
       </div>
