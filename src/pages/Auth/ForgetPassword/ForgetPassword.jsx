@@ -65,8 +65,8 @@ const ForgetPassword = () => {
   };
 
   return (
-    <div className="fixed z-10 backdrop-blur-sm   w-full inset-0">
-      <div className="flex flex-col items-center justify-center min-h-screen bg-white w-full ">
+    <div className="fixed z-10 backdrop-blur-sm h-screen w-full inset-0">
+      <div className="flex flex-col items-center justify-center min-h-screen w-full ">
         {!isModalOpen && (
           <div className=" w-[700px] h-[430px] pl-16 pr-16 p-10 bg-white rounded-2xl shadow-md">
             <div className="flex flex-row justify-between text-light-gray ">

@@ -7,6 +7,9 @@ const walletSlice = createSlice({
     Network: "",
     login: false,
     signup: false,
+    newPassword: false,
+    forgotPassword : false,
+    
   },
   reducers: {
     setWalletAddress: (state, action) => {
@@ -21,9 +24,16 @@ const walletSlice = createSlice({
     setSignup: (state, action) => {
       state.signup = action.payload;
     },
+    setNewPassword: (state, action) => {
+      state.newPassword = action.payload;
+    },
+    setForgotPassword: (state, action) => {
+      state.forgotPassword = action.payload;
+    },
+    
   },
 });
 
-export const { setWalletAddress, setNetwork, setLogin, setSignup } =
+export const { setWalletAddress, setNetwork, setLogin, setSignup, setNewPassword, setForgotPassword, setRegister } =
   walletSlice.actions;
 export default walletSlice.reducer;

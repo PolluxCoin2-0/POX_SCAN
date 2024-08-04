@@ -3,15 +3,20 @@ import { RxCross2 } from "react-icons/rx";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { setLogin, setSignup } from "../../../redux/slice/walletSlice";
+import { setLogin, setSignup, setForgotPassword } from "../../../redux/slice/walletSlice";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../../Firebase/Firebase";
 import { toast } from "react-toastify";
 
 const Login = () => {
   const loginStatus = useSelector((state) => state.wallet.login);
+  const signupStatus = useSelector((state) => state.wallet.signup)
+  const forgotPasswordStatus = useSelector((state)=>state.wallet.forgotPassword);
+
   const dispatch = useDispatch();
   const [isVisible, setIsVisible] = useState(true);
+  const [errors, setErrors] = useState({});
+  const [submitButtonDisabled, setSubmitButtonDisabled] = useState(false);
 
   const toggleVisibility = () => {
     setIsVisible(!isVisible);
@@ -25,9 +30,6 @@ const Login = () => {
     phoneOrEmail: "",
     password: "",
   });
-
-  const [errors, setErrors] = useState({});
-  const [submitButtonDisabled, setSubmitButtonDisabled] = useState(false);
 
   const validate = () => {
     const errors = {};
@@ -72,7 +74,9 @@ const Login = () => {
       .then((res) => {
         toast.success("Successfully Login!");
         dispatch(setSignup(!loginStatus));
+        console.log(res);
       })
+    
       .catch((error) => {
         setSubmitButtonDisabled(false);
         setErrors(error.message);
@@ -80,6 +84,16 @@ const Login = () => {
         toast.error("Invalid Credentials");
       });
   };
+
+  const handleMoveToRegisterPage =()=>{
+    dispatch(setLogin(!loginStatus));
+    dispatch(setSignup(!signupStatus))
+  }
+
+  const handleMoveToForgotPage=()=>{
+    dispatch(setLogin(!loginStatus));
+    dispatch(setForgotPassword(!forgotPasswordStatus))
+  }
 
   return (
     <div className="fixed z-10 backdrop-blur-sm h-screen w-full inset-0">
@@ -166,27 +180,23 @@ const Login = () => {
               </button>
 
               <div className="flex flex-row justify-between">
-                <Link to="/forgetpassword">
                   {" "}
-                  <a
+                  <p onClick={handleMoveToForgotPage}
                     href="/forgot-password"
-                    className="text-lg text-blue-500 hover:underline "
+                    className="text-lg text-blue-500 hover:underline cursor-pointer "
                   >
                     {" "}
                     Forgot Password?{" "}
-                  </a>{" "}
-                </Link>
+                  </p>{" "}
 
-                <Link to="/register">
                   {" "}
-                  <a
+                  <p onClick={handleMoveToRegisterPage}
                     href="/forgot-password"
-                    className="text-lg text-blue-500 hover:underline text-dark-yellow"
+                    className="text-lg text-blue-500 hover:underline text-dark-yellow cursor-pointer"
                   >
                     {" "}
                     Register
-                  </a>
-                </Link>
+                  </p>
               </div>
             </form>
           </div>

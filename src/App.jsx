@@ -78,8 +78,6 @@ const routesArray = [
   "/transactiondetails/*",
   "/accountdetails/*",
   "/transaction/details",
-  "/forgetpassword",
-  "/newpassword",
   "/connectwallet",
   "/blockchain",
   "/blockchain/nodes",
@@ -143,6 +141,9 @@ const AppRoutes = () => {
   const location = useLocation();
   const loginStatus = useSelector((state) => state.wallet.login);
   const signupStatus = useSelector((state) => state.wallet.signup);
+  const newPasswordStatus = useSelector((state)=>state.wallet.newPassword);
+  const forgotPasswordStatus = useSelector((state)=>state.wallet.forgotPassword);
+  
 
   const hideSidebarRoutes = [
     "/",
@@ -155,10 +156,6 @@ const AppRoutes = () => {
     "/tokendetailpage",
     "/connectwallet",
     "/connectwallet2",
-    "/register",
-    "/login",
-    "/forgetpassword",
-    "/newpassword",
     "/error",
     "/governance/parameters",
   ];
@@ -183,6 +180,9 @@ const AppRoutes = () => {
       <Navbar />
       {loginStatus && <Login />}
       {signupStatus && <Register />}
+      {newPasswordStatus && <NewPassword/>}
+      {forgotPasswordStatus && <ForgetPassword/>}
+      
       {
         // eslint-disable-next-line no-constant-condition
         isValidRoutes ? (
@@ -207,16 +207,11 @@ const AppRoutes = () => {
                   path="/accountdetails/:id"
                   element={<AccountDetailPage />}
                 />
-                <Route path="/register" element={<Register />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/forgetpassword" element={<ForgetPassword />} />
-                <Route path="/newpassword" element={<NewPassword />} />
                 <Route
                   path="/governance/parameters"
                   element={<CommitteeProposalPage />}
                 />
                 <Route path="/connectwallet" element={<ConnectWallet />} />
-
                 <Route
                   path="/blockdetailpage/:id"
                   element={<BlockDetailPage />}

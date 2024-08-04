@@ -5,11 +5,13 @@ import { Link } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../../Firebase/Firebase";
 import { useDispatch, useSelector } from "react-redux";
-import { setSignup } from "../../../redux/slice/walletSlice";
+import { setSignup, setRegister, setLogin} from "../../../redux/slice/walletSlice";
 import { toast } from "react-toastify";
 
 const Register = () => {
   const signupStatus = useSelector((state) => state.wallet.signup);
+  const loginStatus = useSelector((state) => state.wallet.login);
+
   const dispatch = useDispatch();
   const [isPassword, setIsPassword] = useState(true);
   const [isConfirmPassword, setIsConfirmPassword] = useState(true);
@@ -106,6 +108,11 @@ const Register = () => {
         toast.error("Email-already-in-use)");
       });
   };
+
+  const handleMoveToLoginPage=()=>{
+    dispatch(setSignup(!signupStatus));
+    dispatch(setLogin(!loginStatus))
+  }
 
   return (
     <div className="fixed z-10 backdrop-blur-sm min-h-screen w-full inset-0">
@@ -233,9 +240,9 @@ const Register = () => {
                 name="termsAccepted"
                 checked={formData.termsAccepted}
                 onChange={handleChange}
-                className="form-checkbox h-5 w-5 rounded-lg text-indigo-600 mt-8"
+                className="form-checkbox h-5 w-5 rounded-lg text-indigo-600 mt-5"
               />
-              <span className="ml-2 text-md text-gray-700 mt-8">
+              <span className="ml-2 text-md text-gray-700 mt-5">
                 I agree to the Privacy Policy and Terms of Services
               </span>
             </label>
@@ -247,7 +254,7 @@ const Register = () => {
           </div>
           <button
             type="submit"
-            className={`w-full  text-white text-lg p-2 py-4 rounded-md hover:bg-indigo-700 mt-5
+            className={`w-full  text-white text-lg p-2 py-4 rounded-md hover:bg-indigo-700 mt-3
               submitButtonDisabled ? bg-darker-blue hover:bg-light-mid-gray : `}
             onClick={handleSubmit}
             disabled={submitButtonDisabled}
@@ -255,13 +262,13 @@ const Register = () => {
             Create
           </button>
 
-          <p className="mt-5">
+          <p className="mt-3" >
             I have an account,{" "}
-            <Link to="/login">
-              <span className="text-dark-yellow cursor-pointer">
+            
+              <span className="text-dark-yellow cursor-pointer" onClick={handleMoveToLoginPage}>
                 Log in now
               </span>
-            </Link>
+            
           </p>
         </form>
       </div>
