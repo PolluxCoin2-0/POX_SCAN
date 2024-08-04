@@ -3,18 +3,29 @@
 import { useState } from "react";
 import { RxCross2 } from "react-icons/rx";
 import { FaArrowLeftLong } from "react-icons/fa6";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const ForgetPasswordForm = () => {
   //   for cross button
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isNewPassword, setIsNewPassword] = useState(true);
+  const [isNewConfirmPassword, setIsNewConfirmPassword] = useState(true);
 
+  const toggleVisibility1 = () => {
+    setIsNewPassword(!isNewPassword);
+  };
+
+  const toggleVisibility2 = () => {
+    setIsNewConfirmPassword(!isNewConfirmPassword);
+  };
   const handleClose = () => {
     setIsModalOpen(!isModalOpen);
   };
 
   const [formData, setFormData] = useState({
-    phoneOrEmail: "",
-    password: "",
+    
+    newpassword: "",
+    confirmpassword: "",
   });
 
   const handleChange = (e) => {
@@ -51,16 +62,28 @@ const ForgetPasswordForm = () => {
               >
                 New Password
               </label>
+              <div className="relative">
               <input
-                type="password"
-                id="password"
-                name="password"
+                type={isNewPassword ? "password" : "text"}
+                id="newpassword"
+                name="newpassword"
                 placeholder="Enter your new password"
-                value={formData.phoneOrEmail}
+                value={formData.newpassword}
                 onChange={handleChange}
                 className="w-full px-4 py-4 border border-lightest-gray rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
                 required
               />
+              <div
+              className="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer"
+              onClick={toggleVisibility1}
+            >
+              {isNewPassword ? (
+                <FaEye className="w-5 h-5 text-light-gray" />
+              ) : (
+                <FaEyeSlash className="w-5 h-5 text-light-gray" />
+              )}
+            </div>
+            </div>
             </div>
 
         
@@ -72,16 +95,28 @@ const ForgetPasswordForm = () => {
               >
                Confirm New Password
               </label>
+              <div className="relative">
               <input
-                type="password"
-                id="password"
-                name="password"
+                type={isNewConfirmPassword? "password" : "text"}
+                id="confirmpassword"
+                name="confirmpassword"
                 placeholder="Enter your new password again"                                         
-                value={formData.password}
+                value={formData.confirmpassword}
                 onChange={handleChange}
                 className="w-full px-4 py-4 border border-lightest-gray  rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 "
                 required
               />
+              <div
+                  className="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer"
+                  onClick={toggleVisibility2}
+                >
+                  {isNewConfirmPassword ? (
+                    <FaEye className="w-5 h-5 text-light-gray" />
+                  ) : (
+                    <FaEyeSlash className="w-5 h-5 text-light-gray" />
+                  )}
+                </div>
+                </div>
             </div>
             <button
               type="submit"

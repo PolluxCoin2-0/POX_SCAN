@@ -170,6 +170,8 @@ const Register = () => {
                   )}
                 </div>
               </div>
+
+              
               {errors.password && (
                 <span className="text-dark-red text-sm">
                   {errors.password} !
