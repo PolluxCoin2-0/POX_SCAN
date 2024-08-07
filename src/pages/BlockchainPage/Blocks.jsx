@@ -5,6 +5,9 @@ import { getBlockData, getBlockTableData } from "../../utils/axios/Blockchain";
 import { secondsAgo } from "../../utils/secondAgo";
 import { formatNumberWithCommas } from "../../utils/FormattingNumber";
 import { Link } from "react-router-dom";
+import BlockImg from "../../assets/Blocks.png";
+import RewardImg from "../../assets/BlockRewards.png";
+import PoxStatsImg from "../../assets/PoxStats.png";
 
 const Blocks = () => {
   const [data, setData] = useState({});
@@ -39,9 +42,11 @@ const Blocks = () => {
       </div>
       <p className="font-bold text-2xl pb-8">Blocks</p>
       <div className=" flex flex-col space-y-6 md:space-y-0 md:flex-row justify-around ">
-        <div className="w-full md:w-[32%]  bg-white shadow-lg rounded-2xl p-5 ">
-          <div className="pt-1">
-            <p className="font-bold">Number of Blocks</p>
+        <div className="w-full md:w-[32%]  bg-[#fff7e0] shadow-lg rounded-2xl p-5 ">
+          <div className="pt-1 flex flex-row justify-between ">
+            <p className="font-bold text-lg">Number of Blocks</p>
+            <p><img src={BlockImg} alt="" className="" /></p>
+
           </div>
 
           <div className=" w-full flex flex-row justify-between pt-9 pl-1 ">
@@ -64,12 +69,13 @@ const Blocks = () => {
           </div>
         </div>
 
-        <div className="w-full md:w-[32%]  rounded-2xl p-5 bg-white shadow-md ">
+        <div className="w-full md:w-[32%]  rounded-2xl p-5 bg-[#cfdeed] shadow-md ">
           <div className=" flex flex-row pt-1 justify-between">
-            <p className="font-bold">Block Rewards</p>
+            <p className="font-bold text-lg">Block Rewards</p>
+            <p><img src={RewardImg} alt="" className="" /></p>
           </div>
 
-          <div className=" w-full flex flex-row justify-between pt-9 pl-1">
+          <div className=" w-full flex flex-row justify-between pt-6 pl-1">
             <div>
               <p className="md:text-lg text-xl font-bold">
                 {formatNumberWithCommas(
@@ -93,12 +99,13 @@ const Blocks = () => {
           </div>
         </div>
 
-        <div className="w-full md:w-[32%] rounded-2xl p-5 bg-white shadow-md ">
+        <div className="w-full md:w-[32%] rounded-2xl p-5 bg-[#edd8dc] shadow-md ">
           <div className=" flex flex-row justify-between pt-1">
-            <p className="font-bold">Stats on Burned POX</p>
+            <p className="font-bold text-lg">Stats on Burned POX</p>
+            <p><img src={PoxStatsImg} alt="" className="" /></p>
           </div>
 
-          <div className=" w-full flex flex-row justify-between pt-9 pl-1">
+          <div className=" w-full flex flex-row justify-between pt-8 pl-1">
             <div>
               <p className="md:text-lg text-xl font-bold">
                 {formatNumberWithCommas(

@@ -2,6 +2,10 @@ import { useEffect, useState } from "react";
 import SearchBarExpand from "../../components/SearchBarExpand";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import Pagination from "../../components/Pagination";
+import PoxHolderImg from "../../assets/poxholder.png";
+import UserImg from "../../assets/User.png";
+import AccountImg from "../../assets/account.png";
+
 import {
   getAccountsData,
   getAccountTableData,
@@ -47,16 +51,13 @@ const Accounts = () => {
 
       <p className="font-bold text-2xl pb-10">Accounts</p>
       <div className="flex flex-col space-y-6 md:space-y-0 md:flex-row justify-around ">
-        <div className="w-full md:w-[32%] bg-white shadow-lg rounded-2xl md:px-2 md:py-4 p-8">
-          <div className="flex flex-row justify-between pt-1 ">
+        <div className="w-full md:w-[32%] bg-[#fff7e0] shadow-lg rounded-2xl md:px-2 md:py-4 p-8">
+          <div className="flex flex-row justify-between pt-1 pl-3 pr-3">
             <p className="font-bold md:text-base text-lg">Number of Accounts</p>
-            <div className="flex flex-row">
-              <p className="text-dark-red">More</p>
-              <MdKeyboardArrowRight className="mt-1 text-xl" color="#C23631" />
-            </div>
+           <img src={PoxHolderImg}  alt="" className="" />
           </div>
 
-          <div className=" w-full flex flex-row justify-between pt-9 pl-1 ">
+          <div className=" w-full flex flex-row justify-between pt-9 pl-3 pr-3 ">
             <div>
               <p className="md:text-base font-bold text-xl">
                 {data?.totaladdr && formatNumberWithCommas(data?.totaladdr)}
@@ -64,7 +65,7 @@ const Accounts = () => {
               <p className="pt-4 text-sm text-light-gray">Total</p>
             </div>
 
-            <div>
+            <div className="flex flex-col items-end">
               <p className="md:text-base text-xl font-bold text-dark-green">
                 +{data?.yestudayaddr && data?.yestudayaddr}
               </p>
@@ -75,16 +76,13 @@ const Accounts = () => {
           </div>
         </div>
 
-        <div className="w-full md:w-[32%]  rounded-2xl md:px-2 md:py-4 p-8 bg-white shadow-md ">
-          <div className=" flex flex-row justify-between pt-1">
+        <div className="w-full md:w-[32%]  rounded-2xl md:px-2 md:py-4 p-8 bg-[#cfdeed] shadow-md ">
+          <div className=" flex flex-row justify-between pt-1 pl-3 pr-3">
             <p className="font-bold md:text-base text-lg">POX Holders</p>
-            <div className="flex flex-row">
-              <p className="text-dark-red">More</p>
-              <MdKeyboardArrowRight className="mt-1 text-xl" color="#C23631" />
-            </div>
+            <img src={UserImg} alt="" className=" " />
           </div>
 
-          <div className=" w-full flex flex-row justify-between pt-9 pl-1">
+          <div className=" w-full flex flex-row justify-between pt-9 pl-3 pr-3">
             <div>
               <p className="md:text-base text-xl font-bold">
                 {data?.hodlers && formatNumberWithCommas(data?.hodlers)}
@@ -92,7 +90,7 @@ const Accounts = () => {
               <p className="pt-4 text-sm text-light-gray">Total holders</p>
             </div>
 
-            <div>
+            <div className="flex flex-col items-end">
               <p className="md:text-base text-xl font-bold text-dark-green">
                 {data?.hpercen && data?.hpercen}%
               </p>
@@ -103,16 +101,13 @@ const Accounts = () => {
           </div>
         </div>
 
-        <div className="w-full md:w-[32%] rounded-2xl md:px-2 md:py-4 p-8 bg-white shadow-md ">
-          <div className="flex flex-row justify-between pt-1">
-            <p className="font-bold md:text-base text-lg">Active Accounts</p>
-            <div className="flex flex-row">
-              <p className="text-dark-red">More</p>
-              <MdKeyboardArrowRight className="mt-1 text-xl" color="#C23631" />
-            </div>
+        <div className="w-full md:w-[32%] rounded-2xl md:px-2 md:py-4 p-8 bg-[#edd8dc] shadow-md ">
+          <div className="flex flex-row justify-between pt-1 pl-3 pr-3">
+            <p className="font-bold  md:text-base text-lg">Active Accounts</p>
+            <img src={AccountImg} alt="" className="" />
           </div>
 
-          <div className=" w-full flex flex-row justify-between pt-9 pl-1">
+          <div className=" w-full flex flex-row justify-between pt-9 pl-3 pr-3">
             <div>
               <p className="md:text-base text-xl font-bold">
                 {data?.avgdailyactiveadr &&
@@ -125,7 +120,7 @@ const Accounts = () => {
               </p>
             </div>
 
-            <div>
+            <div className="flex flex-col items-end">
               <p className="md:text-base text-xl font-bold text-dark-red">
                 -{" "}
                 {data?.percentagedailyactiveaddr &&
